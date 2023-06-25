@@ -1,11 +1,10 @@
 import click
 
 from mlflow_reports.client.http_client import MlflowHttpClient
-from mlflow_reports.common import mlflow_utils
-from mlflow_reports.common import explode_utils 
+from mlflow_reports.common import mlflow_utils, explode_utils
 from mlflow_reports.common.click_options import(
     opt_run_id,
-    opt_dump_raw,
+    opt_get_raw,
     opt_artifact_max_level,
     opt_silent,
     opt_output_file
@@ -15,35 +14,29 @@ from mlflow_reports.data import local_utils
 http_client = MlflowHttpClient()
 
 
-def get(
-        run_id, 
-        artifact_max_level = -1, 
-        dump_raw = False, 
-        silent = True, 
-        output_file = None
-    ):
+def get(run_id, artifact_max_level=-1, get_raw=False):
     """
     Gets full run details including optionally a list of artifacts.
+    :return: Dictionary with "run" and optionally "artifacts" key
     """
     rsp = http_client.get(f"runs/get", { "run_id": run_id })
-    run = rsp["run"]
-    return adapt(run, artifact_max_level, dump_raw, silent, output_file)
+    return enrich(rsp["run"], artifact_max_level, get_raw)
 
 
-def adapt(run, artifact_max_level=-1, dump_raw=False, silent=True, output_file=None):
-    run_id = run["info"]["run_id"]
+def enrich(run, artifact_max_level=-1, get_raw=False):
+    """
+    Enrich the raw run API response.
+    :return: Dictionary with "run" and optionally "artifacts" key
+    """
     dct = { "run": run }
-
     if artifact_max_level > -1:
-        artifacts = mlflow_utils.build_artifacts(run_id, "", artifact_max_level)
+        artifacts = mlflow_utils.build_artifacts(run["info"]["run_id"], "", artifact_max_level)
         dct["artifacts"] = artifacts
 
-    if not dump_raw:
+    if not get_raw:
         _adjust_times(run)
         local_utils.mk_tags(run["data"])
         explode_utils.explode_json(dct)
-
-    local_utils.finish(dct, output_file, silent)
     return dct
 
 
@@ -60,15 +53,16 @@ def _adjust_times(run):
 @click.command()
 @opt_run_id
 @opt_artifact_max_level
-@opt_dump_raw
+@opt_get_raw
 @opt_silent
 @opt_output_file
 
-def main(run_id, artifact_max_level, dump_raw, silent, output_file):
+def main(run_id, artifact_max_level, get_raw, silent, output_file):
     print("Options:")
     for k,v in locals().items():
         print(f"  {k}: {v}")
-    get(run_id, artifact_max_level, dump_raw, silent, output_file)
+    dct = get(run_id, artifact_max_level, get_raw)
+    local_utils.dump_object(dct, output_file, silent)
 
 
 if __name__ == "__main__":
