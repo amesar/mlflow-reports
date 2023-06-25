@@ -76,3 +76,7 @@ Options:
   --output-file TEXT            JSON output file.
 ```
 
+## Samples
+
+Run samples:
+ * [run.json](samples/open_source/run/run.json) and [run_raw.json](samples/open_source/run/run_raw.json)

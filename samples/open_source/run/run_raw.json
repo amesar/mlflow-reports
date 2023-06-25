@@ -1,0 +1,174 @@
+{
+  "run": {
+    "info": {
+      "run_uuid": "acc51aff9bb4440e81744343cb680406",
+      "experiment_id": "2",
+      "run_name": "all_options",
+      "user_id": "andre",
+      "status": "FINISHED",
+      "start_time": 1687205142417,
+      "end_time": 1687205147505,
+      "artifact_uri": "/opt/mlflow/server/mlruns/2/acc51aff9bb4440e81744343cb680406/artifacts",
+      "lifecycle_stage": "active",
+      "run_id": "acc51aff9bb4440e81744343cb680406"
+    },
+    "data": {
+      "metrics": [
+        {
+          "key": "rmse",
+          "value": 0.7367947360663162,
+          "timestamp": 1687205142557,
+          "step": 0
+        },
+        {
+          "key": "r2",
+          "value": 0.28100217442439346,
+          "timestamp": 1687205142565,
+          "step": 0
+        },
+        {
+          "key": "mae",
+          "value": 0.5877424565761121,
+          "timestamp": 1687205142573,
+          "step": 0
+        }
+      ],
+      "params": [
+        {
+          "key": "max_depth",
+          "value": "4"
+        },
+        {
+          "key": "max_leaf_nodes",
+          "value": "32"
+        }
+      ],
+      "tags": [
+        {
+          "key": "mlflow.user",
+          "value": "andre"
+        },
+        {
+          "key": "mlflow.source.name",
+          "value": "/Users/andre/git/andre/mlflow-examples/python/sklearn/wine_quality/train.py"
+        },
+        {
+          "key": "mlflow.source.type",
+          "value": "LOCAL"
+        },
+        {
+          "key": "mlflow.source.git.commit",
+          "value": "69636ea8410052b052811c69510a0ded28bb9f91"
+        },
+        {
+          "key": "mlflow.runName",
+          "value": "all_options"
+        },
+        {
+          "key": "run_id",
+          "value": "acc51aff9bb4440e81744343cb680406"
+        },
+        {
+          "key": "save_signature",
+          "value": "True"
+        },
+        {
+          "key": "data_path",
+          "value": "https://raw.githubusercontent.com/mlflow/mlflow/master/examples/sklearn_elasticnet_wine/wine-quality.csv"
+        },
+        {
+          "key": "registered_model_name",
+          "value": "sklearn_wine"
+        },
+        {
+          "key": "registered_model_version_stage",
+          "value": "Production"
+        },
+        {
+          "key": "uuid",
+          "value": "SXa8sC9UKKJFqxo3zRhQsr"
+        },
+        {
+          "key": "dataset",
+          "value": "wine-quality"
+        },
+        {
+          "key": "run_origin",
+          "value": "none"
+        },
+        {
+          "key": "timestamp",
+          "value": "2023-06-19 16:05:42"
+        },
+        {
+          "key": "version.mlflow",
+          "value": "2.4.1"
+        },
+        {
+          "key": "version.sklearn",
+          "value": "1.2.2"
+        },
+        {
+          "key": "version.platform",
+          "value": "macOS-10.16-x86_64-i386-64bit"
+        },
+        {
+          "key": "version.python",
+          "value": "3.8.16"
+        },
+        {
+          "key": "use_mlflow.data",
+          "value": "True"
+        },
+        {
+          "key": "mlflow.log-model.history",
+          "value": "[{\"run_id\": \"acc51aff9bb4440e81744343cb680406\", \"artifact_path\": \"model\", \"utc_time_created\": \"2023-06-19 20:05:42.610150\", \"flavors\": {\"python_function\": {\"model_path\": \"model.pkl\", \"predict_fn\": \"predict\", \"loader_module\": \"mlflow.sklearn\", \"python_version\": \"3.8.16\", \"env\": {\"conda\": \"conda.yaml\", \"virtualenv\": \"python_env.yaml\"}}, \"sklearn\": {\"pickled_model\": \"model.pkl\", \"sklearn_version\": \"1.2.2\", \"serialization_format\": \"cloudpickle\", \"code\": null}}, \"model_uuid\": \"fa27e8f20f0e4bbd9001dd7667ce3c0d\", \"mlflow_version\": \"2.4.1\", \"signature\": {\"inputs\": \"[{\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"fixed acidity\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"volatile acidity\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"citric acid\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"residual sugar\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"chlorides\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"free sulfur dioxide\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"total sulfur dioxide\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"density\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"pH\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"sulphates\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"alcohol\\\"}]\", \"outputs\": \"[{\\\"type\\\": \\\"tensor\\\", \\\"tensor-spec\\\": {\\\"dtype\\\": \\\"float64\\\", \\\"shape\\\": [-1]}}]\"}, \"saved_input_example_info\": {\"artifact_path\": \"input_example.json\", \"type\": \"dataframe\", \"pandas_orient\": \"split\"}}, {\"run_id\": \"acc51aff9bb4440e81744343cb680406\", \"artifact_path\": \"onnx-model\", \"utc_time_created\": \"2023-06-19 20:05:45.757951\", \"flavors\": {\"python_function\": {\"loader_module\": \"mlflow.onnx\", \"python_version\": \"3.8.16\", \"data\": \"model.onnx\", \"env\": {\"conda\": \"conda.yaml\", \"virtualenv\": \"python_env.yaml\"}}, \"onnx\": {\"onnx_version\": \"1.13.0\", \"data\": \"model.onnx\", \"providers\": [\"CUDAExecutionProvider\", \"CPUExecutionProvider\"], \"onnx_session_options\": null, \"code\": null}}, \"model_uuid\": \"464d6af5c8854b41b9fdb6e7814e5646\", \"mlflow_version\": \"2.4.1\", \"signature\": {\"inputs\": \"[{\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"fixed acidity\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"volatile acidity\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"citric acid\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"residual sugar\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"chlorides\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"free sulfur dioxide\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"total sulfur dioxide\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"density\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"pH\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"sulphates\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"alcohol\\\"}]\", \"outputs\": \"[{\\\"type\\\": \\\"tensor\\\", \\\"tensor-spec\\\": {\\\"dtype\\\": \\\"float64\\\", \\\"shape\\\": [-1]}}]\"}, \"saved_input_example_info\": {\"artifact_path\": \"input_example.json\", \"type\": \"dataframe\", \"pandas_orient\": \"split\"}}]"
+        },
+        {
+          "key": "version.onnx",
+          "value": "1.13.0"
+        },
+        {
+          "key": "output_path",
+          "value": "None"
+        },
+        {
+          "key": "run.info.start_time",
+          "value": "1687205142417"
+        },
+        {
+          "key": "run.info.end_time",
+          "value": "1687205147505"
+        },
+        {
+          "key": "run.info._start_time",
+          "value": "2023-06-19 16:05:42"
+        },
+        {
+          "key": "run.info._end_time",
+          "value": "2023-06-19 16:05:48"
+        }
+      ]
+    },
+    "inputs": {
+      "dataset_inputs": [
+        {
+          "tags": [
+            {
+              "key": "mlflow.data.context",
+              "value": "training"
+            }
+          ],
+          "dataset": {
+            "name": "wine_quality_white",
+            "digest": "217f4949",
+            "source_type": "http",
+            "source": "{\"url\": \"https://raw.githubusercontent.com/mlflow/mlflow/master/examples/sklearn_elasticnet_wine/wine-quality.csv\"}",
+            "schema": "{\"mlflow_colspec\": [{\"type\": \"double\", \"name\": \"fixed acidity\"}, {\"type\": \"double\", \"name\": \"volatile acidity\"}, {\"type\": \"double\", \"name\": \"citric acid\"}, {\"type\": \"double\", \"name\": \"residual sugar\"}, {\"type\": \"double\", \"name\": \"chlorides\"}, {\"type\": \"double\", \"name\": \"free sulfur dioxide\"}, {\"type\": \"double\", \"name\": \"total sulfur dioxide\"}, {\"type\": \"double\", \"name\": \"density\"}, {\"type\": \"double\", \"name\": \"pH\"}, {\"type\": \"double\", \"name\": \"sulphates\"}, {\"type\": \"double\", \"name\": \"alcohol\"}]}",
+            "profile": "{\"num_rows\": 3428, \"num_elements\": 37708}"
+          }
+        }
+      ]
+    }
+  }
+}
