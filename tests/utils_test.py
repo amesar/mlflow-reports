@@ -1,4 +1,6 @@
 import time
+from tempfile import NamedTemporaryFile
+import shortuuid
 import mlflow
 import mlflow.sklearn
 
@@ -6,17 +8,18 @@ print("Mlflow path:", mlflow.__file__)
 print("MLflow version:", mlflow.__version__)
 
 client = mlflow.MlflowClient()
-exp_count = 0
+#exp_count = 0
 
 
 def now():
     return round(time.time())
 
+def mk_uuid():
+    return shortuuid.uuid()
+
 
 def create_experiment():
-    global exp_count
-    exp_name = f"test_exp_{now()}_{exp_count}"
-    exp_count += 1
+    exp_name = mk_uuid()
     mlflow.set_experiment(exp_name)
     exp = client.get_experiment_by_name(exp_name)
     for run in client.search_runs(exp.experiment_id):
@@ -27,11 +30,30 @@ def create_experiment():
 def create_run(exp=None):
     if not exp:
         exp = create_experiment()
+    content = "Bears invade inner suburbs"
     with mlflow.start_run() as run:
         mlflow.log_param("max_depth", 5)
         mlflow.log_metric("rmse", 0.786)
         mlflow.set_tag("t1", "hi")
+        with NamedTemporaryFile(prefix="file_", suffix=".txt", mode="w") as f:
+            f.file.write(content)
+            f.file.close()
+            mlflow.log_artifact(f.name, "")
+
     return run, exp
+
+
+def create_model_version(stage=None, archive_existing_versions=False):
+    model_name = mk_uuid()
+    client.create_registered_model(model_name)
+    run, _ = create_run()
+    source = f"{run.info.artifact_uri}/model"
+    desc = "My version desc"
+    tags = { "city": "yaxchilan" }
+    vr = client.create_model_version(model_name, source, run.info.run_id, description=desc, tags=tags)
+    if stage:
+        vr = client.transition_model_version_stage(model_name, vr.version, stage, archive_existing_versions)
+    return vr, run
 
 
 def delete_experiment(exp):

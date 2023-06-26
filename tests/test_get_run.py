@@ -39,7 +39,8 @@ def test_get_fail():
 
 
 def assert_run(run1, run2):
-    run2 = run2.get("run")
+    if "run" in run2:
+        run2 = run2.get("run")
     assert not "artifacts" in run2
     assert run2
     assert run1.info.run_id == run2["info"]["run_id"]
