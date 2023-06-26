@@ -20,6 +20,8 @@ def get(run_id, artifact_max_level=-1, get_raw=False):
     :return: Dictionary with "run" and optionally "artifacts" key
     """
     rsp = http_client.get(f"runs/get", { "run_id": run_id })
+    if get_raw:
+        return rsp
     return enrich(rsp["run"], artifact_max_level, get_raw)
 
 
@@ -29,7 +31,7 @@ def enrich(run, artifact_max_level=-1, get_raw=False):
     :return: Dictionary with "run" and optionally "artifacts" key
     """
     dct = { "run": run }
-    if artifact_max_level > -1:
+    if artifact_max_level > 0:
         artifacts = mlflow_utils.build_artifacts(run["info"]["run_id"], "", artifact_max_level)
         dct["artifacts"] = artifacts
 
@@ -48,6 +50,8 @@ def _adjust_times(run):
     if start and end:
         dur = float(int(end) - int(start))/1000
         info["_duration"] = dur
+    exp = http_client.get("experiments/get", {"experiment_id": info["experiment_id"]}) ["experiment"]
+    run["info"]["_experiment_name"] = exp["name"]
 
 
 @click.command()

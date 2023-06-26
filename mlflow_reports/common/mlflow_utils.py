@@ -63,9 +63,6 @@ def build_artifacts(run_id, artifact_path, artifact_max_level, level=0):
 
 
 def _build_artifacts(run_id, artifact_path, artifact_max_level, level=0):
-    """
-    TODO
-    """
     @dataclass()
     class Result:
         artifacts: dict = None
