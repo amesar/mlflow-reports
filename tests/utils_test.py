@@ -24,13 +24,14 @@ def create_experiment():
     return exp
 
 
-def create_runs():
-    create_experiment()
+def create_run(exp=None):
+    if not exp:
+        exp = create_experiment()
     with mlflow.start_run() as run:
-        mlflow.log_param("p1", "hi")
-        mlflow.log_metric("m1", 0.786)
+        mlflow.log_param("max_depth", 5)
+        mlflow.log_metric("rmse", 0.786)
         mlflow.set_tag("t1", "hi")
-    return client.search_runs(run.info.experiment_id, "")
+    return run, exp
 
 
 def delete_experiment(exp):
