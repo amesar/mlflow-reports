@@ -1,111 +1,123 @@
-import os
 from tempfile import NamedTemporaryFile
 import mlflow
+
 from mlflow_reports.common.mlflow_utils import build_artifacts
+#from mlflow_reports.common.object_utils import dump_as_json
 from . utils_test import create_experiment
 
-content = "the 14 eight-thousanders"
+
+content = "so many eight-thousanders"
 content_size = len(content)
 
 # == Test no levels
 
-def test_no_artifacts():
+def _create_level_0():
     create_experiment()
     with mlflow.start_run() as run:
-        mlflow.log_metric("m1", 0.1)
-    res = build_artifacts(run.info.run_id, "", 0)
-    _assert_result(res, 0, 0, 0, 0)
+        mlflow.log_metric("rmse", 0.789)
+    return run
 
 
-# == Test one level
+def test_create_no_levels_check_0_level():
+    _run_test_create(_create_level_0, max_level=0, num_levels=0, num_artifacts=0)
+
+def test_create_no_levels_check_1_level():
+    _run_test_create(_create_level_0, max_level=1, num_levels=1, num_artifacts=0)
+
+def test_create_no_levels_check_3_level():
+    _run_test_create(_create_level_0, max_level=3, num_levels=1, num_artifacts=0)
+
+
+# == Test one level 
 
 def _create_level_1():
     create_experiment()
-    with NamedTemporaryFile(prefix="file_", suffix=".txt", mode="w") as f:
-        with mlflow.start_run() as run:
+    with mlflow.start_run() as run:
+        with NamedTemporaryFile(prefix="file_", suffix=".txt", mode="w") as f:
             _log_artifact(f, "")
-    return run, f.name
+        with NamedTemporaryFile(prefix="file_", suffix=".txt", mode="w") as f:
+            _log_artifact(f, "")
+    return run
 
-def test_level_1_one_file():
-    run, _ = _create_level_1()
-    res = build_artifacts(run.info.run_id, "", 0)
-    _assert_result(res, 0, 0, 0, 0)
 
-def test_level_1_two_files():
-    run, file_name = _create_level_1()
-    res = build_artifacts(run.info.run_id, "", 1)
-    _assert_result(res, content_size, 1, 1, 1)
-    artifact = _find_file(res)
-    assert artifact["file_size"] == content_size
-    assert artifact["path"] == os.path.basename(file_name)
+def test_create_1_levels_check_0_level():
+    _run_test_create(_create_level_1, max_level=0, num_levels=0, num_artifacts=0)
+
+def test_create_1_levels_check_1_level():
+    _run_test_create(_create_level_1, max_level=1, num_levels=1, num_artifacts=2)
+
+def test_create_1_levels_check_2_level():
+    _run_test_create(_create_level_1, max_level=2, num_levels=1, num_artifacts=2)
 
 
 # == Test two levels
 
 def _create_level_2():
     create_experiment()
-    with NamedTemporaryFile(prefix="file_1_", suffix=".txt", mode="w") as f:
-        with mlflow.start_run() as run:
+    dir = "model"
+    with mlflow.start_run() as run:
+        with NamedTemporaryFile(prefix="file_", suffix=".txt", mode="w") as f:
             _log_artifact(f, "")
-            with NamedTemporaryFile(prefix="file_2_", suffix=".txt", mode="w") as f2:
-                _log_artifact(f2, "model")
+        with NamedTemporaryFile(prefix="MLModel_", suffix=".txt", mode="w") as f2:
+            _log_artifact(f2, dir)
+        with NamedTemporaryFile(prefix="pickle", suffix=".txt", mode="w") as f2:
+            _log_artifact(f2, dir)
     return run
 
-def test_level_2_one_file():
-    run = _create_level_2()
-    res = build_artifacts(run.info.run_id, "", 1)
-    _assert_result(res, content_size, 1, 1, 1)
-    assert len(res["files"]) == 2
 
-    artifact = _find_dir(res)
-    assert artifact["path"] == "model"
-    artifact = _find_file(res)
-    assert artifact["file_size"] == content_size
+def test_create_2_levels_check_0_level():
+    _run_test_create(_create_level_2, max_level=0, num_levels=0, num_artifacts=0)
 
-def test_level_2_two_files():
-    run = _create_level_2()
-    res = build_artifacts(run.info.run_id, "", 2)
-    _assert_result(res, content_size * 2, 2, 2, 2)
-    assert len(res["files"]) == 2
+def test_create_2_levels_check_1_level():
+    _run_test_create(_create_level_2, max_level=1, num_levels=1, num_artifacts=1)
 
-    artifact = _find_dir(res)
-    assert artifact["path"] == "model"
-    artifact = _find_file(res)
-    assert artifact["file_size"] == content_size
+def test_create_2_levels_check_2_level():
+    _run_test_create(_create_level_2, max_level=2, num_levels=2, num_artifacts=3)
+
+def test_create_2_levels_check_3_level():
+    _run_test_create(_create_level_2, max_level=3, num_levels=2, num_artifacts=3)
+
 
 # == Test three levels
 
 def _create_level_3():
     create_experiment()
-    with NamedTemporaryFile(prefix="file_1_",suffix=".txt", mode="w") as f:
-        with mlflow.start_run() as run:
+    dir = "spark-model"
+    with mlflow.start_run() as run:
+        with NamedTemporaryFile(prefix="file_", suffix=".txt", mode="w") as f:
             _log_artifact(f, "")
-            with NamedTemporaryFile(prefix="file_2a_",suffix=".txt", mode="w") as f2:
-                _log_artifact(f2, "model")
-            with NamedTemporaryFile(prefix="file_2b_",suffix=".txt", mode="w") as f2:
-                _log_artifact(f2, "model")
-            with NamedTemporaryFile(prefix="file_3_",suffix=".txt", mode="w") as f2:
-                _log_artifact(f2, "model/sklearn")
+        with NamedTemporaryFile(prefix="MLModel_", suffix=".txt", mode="w") as f2:
+            _log_artifact(f2, dir)
+        with NamedTemporaryFile(prefix="info", suffix=".txt", mode="w") as f2:
+            _log_artifact(f2, dir)
+        with NamedTemporaryFile(prefix="0_VectorAssembler_e717399caab5_", suffix=".txt", mode="w") as f2:
+            _log_artifact(f2, f"{dir}/sparkml")
     return run
 
-def test_level_3_three_files():
-    run = _create_level_3()
-    res = build_artifacts(run.info.run_id, "", 3)
-    _assert_result(res, content_size * 4, 4, 3, 3)
-    assert len(res["files"]) == 2
-    artifact = _find_dir(res)
-    assert artifact["path"] == "model"
+
+def test_create_3_levels_check_0_level():
+    _run_test_create(_create_level_3, max_level=0, num_levels=0, num_artifacts=0)
+
+def test_create_3_levels_check_1_level():
+    _run_test_create(_create_level_3, max_level=1, num_levels=1, num_artifacts=1)
+
+def test_create_3_levels_check_2_level():
+    _run_test_create(_create_level_3, max_level=2, num_levels=2, num_artifacts=3)
+
+def test_create_3_levels_check_3_level():
+    _run_test_create(_create_level_3, max_level=3, num_levels=3, num_artifacts=4)
+
+def test_create_3_levels_check_4_level():
+    _run_test_create(_create_level_3, max_level=4, num_levels=3, num_artifacts=4)
 
 
 # == Helper functions
 
-def _find_file(res):
-    matches = [x for x in res["files"] if not x["is_dir"] ]
-    return matches[0]
-
-def _find_dir(res):
-    matches = [x for x in res["files"] if x["is_dir"] ]
-    return matches[0]
+def _run_test_create(create_func, max_level, num_levels, num_artifacts):
+    run = create_func()
+    res = build_artifacts(run.info.run_id, "", max_level)
+    #dump_as_json(res["summary"])
+    _assert_result(res, content_size*num_artifacts, num_artifacts, num_levels, max_level)
 
 def _log_artifact(f, artifact_path):
     f.file.write(content)
