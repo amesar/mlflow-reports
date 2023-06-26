@@ -41,6 +41,7 @@ def opt_get_run(function):
         default=False,
         show_default=True
     )(function)
+    return function
 
 def opt_get_experiment(function):
     function = click.option("--get-experiment",
