@@ -29,12 +29,12 @@ def get(
     dct = {
         "model_version": version
     }
-    adapt(version)
+    enrich(version)
     if get_run:
         _get_vr_run(dct, artifact_max_level)
     return dct
 
-def adapt(version):
+def enrich(version):
     local_utils.adjust_ts(version, [ "creation_timestamp", "last_updated_timestamp" ])
     version["_reg_model_download_uri"] = get_reg_model_download_uri(version)
     version["_run_model_download_uri"] = get_run_model_download_uri(version)
