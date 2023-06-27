@@ -55,6 +55,19 @@ def create_model_version(stage=None, archive_existing_versions=False):
         vr = client.transition_model_version_stage(model_name, vr.version, stage, archive_existing_versions)
     return vr, run
 
+def create_registered_model():
+    def create_version(reg_model_name, stage, exp):
+        run, _ = create_run(exp)
+        vr = client.create_model_version(reg_model_name, run.info.artifact_uri, run.info.run_id)
+        client.transition_model_version_stage(reg_model_name, vr.version, stage)
+    reg_model_name = mk_uuid()
+    client.create_registered_model(reg_model_name)
+    exp = create_experiment()
+    create_version(reg_model_name, "production", exp)
+    create_version(reg_model_name, "staging", exp)
+    create_version(reg_model_name, "archived", exp)
+    return client.get_registered_model(reg_model_name)
+
 
 def delete_experiment(exp):
     client.delete_experiment(exp.experiment_id)
