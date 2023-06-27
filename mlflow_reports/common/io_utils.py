@@ -13,33 +13,29 @@ def write_file(path, content, file_type=None):
     """
     Write to JSON, YAML or text file.
     :param path: Output path.
-    :param content: Dictionary to write.
-    :param file_type: write in json, yaml format or if else write in binary.
+    :param content: Python object to write.
+    :param file_type: write in json, yaml or else in text
     """
     path = mk_local_path(path)
-    if path.endswith(".json"):
+    if path.endswith(".json") or file_type=="json":
         with open(path, "w", encoding="utf-8") as f:
             f.write(json.dumps(content, indent=2)+"\n")
     elif _is_yaml(path, file_type):
         with open(path, "w", encoding="utf-8") as f:
             yaml.dump(content, f, sort_keys=False)
     else:
-        with open(path, "wb" ) as f:
+        with open(path, "w", encoding="utf-8") as f:
             f.write(content)
 
 
-def read_file(path, file_type=None, is_binary=False):
+def read_file(path, file_type=None):
     """
     Read a JSON, YAML or text file.
     """
-    if is_binary:
-        with open(path, "rb") as f:
+    with open(path, "r", encoding="utf-8") as f:
+        if path.endswith(".json") or file_type=="json":
+            return json.loads(f.read())
+        elif _is_yaml(path, file_type):
+            return yaml.safe_load(f)
+        else:
             return f.read()
-    else:
-        with open(path, "r", encoding="utf-8") as f:
-            if path.endswith(".json"):
-                return json.loads(f.read())
-            elif _is_yaml(path, file_type):
-                return yaml.safe_load(f)
-            else:
-                return f.read()
