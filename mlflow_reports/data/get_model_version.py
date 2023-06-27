@@ -15,6 +15,7 @@ from mlflow_reports.data import local_utils
 
 http_client = MlflowHttpClient()
 
+
 def get(
         registered_model_name, 
         version, 
@@ -34,17 +35,19 @@ def get(
         _get_vr_run(dct, artifact_max_level)
     return dct
 
+
 def enrich(version):
     local_utils.adjust_ts(version, [ "creation_timestamp", "last_updated_timestamp" ])
     version["_reg_model_download_uri"] = get_reg_model_download_uri(version)
     version["_run_model_download_uri"] = get_run_model_download_uri(version)
+
 
 def _get_vr_run(dct, artifact_max_level):
     vr = dct["model_version"]
     try:
         dct["run"] = _get_run.get(vr["run_id"], artifact_max_level=artifact_max_level)
     except Exception as e:
-        print(f">> OUCH:",e)
+        print(f'ERROR: Cannot get run {vr["run_id"]} for version {vr["version"]}. Exception: {e}')
 
 
 @click.command()

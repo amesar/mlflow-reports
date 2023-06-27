@@ -23,10 +23,8 @@ def _add(obj, perm_levels, perms):
     if perm_levels and perms:
         obj["permissions"] = {}
         if perm_levels: # returns dict with keys: permission_levels
-            #print(">> PERM.1: perm_levels:",perm_levels.keys())
             obj["permissions"] = { **perm_levels }
         if perms: # returns dict with keys: 'object_id', 'object_type', 'access_control_list' 
-            #print(">> PERM.2: perms:",perms.keys())
             obj["permissions"]["permissions"] = perms
 
 
