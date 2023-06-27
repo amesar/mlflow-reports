@@ -38,7 +38,7 @@ print("get_raw:", get_raw)
 
 # COMMAND ----------
 
-assert_widget(experiment_id_or_name, "01. Experiment ID or name")
+assert_widget(experiment_id_or_name, "1. Experiment ID or name")
 
 # COMMAND ----------
 
