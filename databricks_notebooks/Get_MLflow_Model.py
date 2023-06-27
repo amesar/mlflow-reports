@@ -35,12 +35,9 @@ assert_widget(model_uri, "1. Model URI")
 
 from mlflow_reports.data import get_mlflow_model
 
-get_mlflow_model.get(
+rsp = get_mlflow_model.get(
     model_uri,
     get_run = get_run,
     get_raw = get_raw
 )
-
-# COMMAND ----------
-
-
+dump_as_json(rsp)
