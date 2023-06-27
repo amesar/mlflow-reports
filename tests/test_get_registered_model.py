@@ -41,7 +41,6 @@ def _do_test_get_rm_with_runs(artifact_max_level=-1):
     assert runs2
     for _run in runs2.values():
         run = _run["run"]
-        #print(">> run:",run.keys())
         assert_enriched_tags(run["info"], True)
         if artifact_max_level > -1:
             assert "artifacts" in _run

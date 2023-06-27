@@ -3,19 +3,29 @@ from tempfile import NamedTemporaryFile
 import shortuuid
 import mlflow
 import mlflow.sklearn
+from . sklearn_utils import create_sklearn_model
 
 print("Mlflow path:", mlflow.__file__)
 print("MLflow version:", mlflow.__version__)
 
 client = mlflow.MlflowClient()
-#exp_count = 0
+sklearn_model = create_sklearn_model()
+model_artifact_path = "sklearn-model"
 
 
 def now():
     return round(time.time())
 
+
 def mk_uuid():
     return shortuuid.uuid()
+
+
+def to_str(x):
+    """
+    REST API returns experiment_id as 'int' although it is documented as 'string'
+    """
+    return str(x)
 
 
 def create_experiment():
@@ -34,26 +44,30 @@ def create_run(exp=None):
     with mlflow.start_run() as run:
         mlflow.log_param("max_depth", 5)
         mlflow.log_metric("rmse", 0.786)
-        mlflow.set_tag("t1", "hi")
+        mlflow.set_tag("info", "hi")
         with NamedTemporaryFile(prefix="file_", suffix=".txt", mode="w") as f:
             f.file.write(content)
             f.file.close()
             mlflow.log_artifact(f.name, "")
-
+        mlflow.sklearn.log_model(sklearn_model, model_artifact_path)
     return run, exp
 
 
 def create_model_version(stage=None, archive_existing_versions=False):
+    """
+    Create a model version, its registered model and run
+    """
     model_name = mk_uuid()
     client.create_registered_model(model_name)
     run, _ = create_run()
-    source = f"{run.info.artifact_uri}/model"
+    source = f"{run.info.artifact_uri}/{model_artifact_path}"
     desc = "My version desc"
     tags = { "city": "yaxchilan" }
     vr = client.create_model_version(model_name, source, run.info.run_id, description=desc, tags=tags)
     if stage:
         vr = client.transition_model_version_stage(model_name, vr.version, stage, archive_existing_versions)
     return vr, run
+
 
 def create_registered_model():
     def create_version(reg_model_name, stage, exp):
