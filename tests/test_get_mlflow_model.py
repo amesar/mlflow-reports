@@ -8,14 +8,14 @@ from . utils_test import create_model_version, create_run, model_artifact_path, 
 
 def test_runs_uri():
     run, _ = create_run()
-    _do_test_models_uri(run, _mk_runs_uri(run))
+    _do_test_without_run(run, _mk_runs_uri(run))
 
 def test_models_uri():
     vr, run = create_model_version()
-    _do_test_models_uri(run, _mk_models_uri(vr))
+    _do_test_without_run(run, _mk_models_uri(vr))
 
 
-def _do_test_models_uri(run1, model_uri):
+def _do_test_without_run(run1, model_uri):
     _mm = get_mlflow_model.get(model_uri)
     mm = _mm["mlflow_model"]
     _assert_model(mm, run1)
@@ -26,14 +26,14 @@ def _do_test_models_uri(run1, model_uri):
 
 def test_runs_uri_with_run():
     run, _ = create_run()
-    _do_test_runs_uri_with_run(run, _mk_runs_uri(run))
+    _do_test_with_runs(run, _mk_runs_uri(run))
 
 def test_models_uri_with_run():
     vr, run = create_model_version()
-    _do_test_runs_uri_with_run(run, _mk_models_uri(vr))
+    _do_test_with_runs(run, _mk_models_uri(vr))
 
 
-def _do_test_runs_uri_with_run(run1, model_uri):
+def _do_test_with_runs(run1, model_uri):
     run1, _ = create_run()
     model_uri = _mk_runs_uri(run1)
 
