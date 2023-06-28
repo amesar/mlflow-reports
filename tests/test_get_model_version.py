@@ -6,7 +6,7 @@ from . import test_get_run
 
 
 def test_get_version():
-    vr1, _ = create_model_version()
+    vr1, _, _ = create_model_version()
     _vr2 = get_model_version.get(vr1.name, vr1.version)
     assert not "run" in _vr2
     vr2 = _vr2.get("model_version")
@@ -15,7 +15,7 @@ def test_get_version():
 
 
 def _do_test_get_version_with_run(artifact_max_level=-1):
-    vr1, run1 = create_model_version()
+    vr1, run1, _ = create_model_version()
     _vr2 = get_model_version.get(vr1.name, vr1.version, get_run=True, artifact_max_level=artifact_max_level)
     vr2 = _vr2.get("model_version")
     assert_version(vr1, vr2)
@@ -41,7 +41,7 @@ def test_get_version_with_run_and_artifacts():
 
 
 def test_get_version_raw():
-    vr1, _ = create_model_version()
+    vr1, _, _ = create_model_version()
     _vr2 = get_model_version.get(vr1.name, vr1.version, get_raw=True)
     assert len(_vr2) == 1
     vr2 = _vr2.get("model_version")

@@ -1,18 +1,23 @@
 from mlflow.exceptions import MlflowException
 
 from mlflow_reports.data import get_mlflow_model
-from . utils_test import create_model_version, create_run, model_artifact_path, to_str
-
+from . utils_test import (
+    create_model_version,
+    create_run,
+    model_artifact_path,
+    mk_runs_uri, mk_models_uri,
+    to_str
+)
 
 # ==== Test without runs
 
 def test_runs_uri():
     run, _ = create_run()
-    _do_test_without_run(run, _mk_runs_uri(run))
+    _do_test_without_run(run, mk_runs_uri(run))
 
 def test_models_uri():
-    vr, run = create_model_version()
-    _do_test_without_run(run, _mk_models_uri(vr))
+    vr, run, _ = create_model_version()
+    _do_test_without_run(run, mk_models_uri(vr))
 
 
 def _do_test_without_run(run1, model_uri):
@@ -26,16 +31,16 @@ def _do_test_without_run(run1, model_uri):
 
 def test_runs_uri_with_run():
     run, _ = create_run()
-    _do_test_with_runs(run, _mk_runs_uri(run))
+    _do_test_with_runs(run, mk_runs_uri(run))
 
 def test_models_uri_with_run():
-    vr, run = create_model_version()
-    _do_test_with_runs(run, _mk_models_uri(vr))
+    vr, run, _ = create_model_version()
+    _do_test_with_runs(run, mk_models_uri(vr))
 
 
 def _do_test_with_runs(run1, model_uri):
     run1, _ = create_run()
-    model_uri = _mk_runs_uri(run1)
+    model_uri = mk_runs_uri(run1)
 
     _mm = get_mlflow_model.get(model_uri, get_run=True)
     mm = _mm["mlflow_model"]
@@ -89,9 +94,3 @@ def _assert_model(mm, run):
     assert len(flavors) == 2
     assert flavors.get("python_function")
     assert flavors.get("sklearn")
-
-def _mk_runs_uri(run):
-    return f"runs:/{run.info.run_id}/{model_artifact_path}"
-
-def _mk_models_uri(vr):
-    return f"models:/{vr.name}/{vr.version}"

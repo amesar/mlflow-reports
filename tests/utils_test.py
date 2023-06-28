@@ -8,7 +8,7 @@ from . sklearn_utils import create_sklearn_model
 print("Mlflow path:", mlflow.__file__)
 print("MLflow version:", mlflow.__version__)
 
-client = mlflow.MlflowClient()
+mlflow_client = mlflow.MlflowClient()
 sklearn_model = create_sklearn_model()
 model_artifact_path = "sklearn-model"
 
@@ -21,6 +21,14 @@ def mk_uuid():
     return shortuuid.uuid()
 
 
+def mk_runs_uri(run):
+    return f"runs:/{run.info.run_id}/{model_artifact_path}"
+    
+
+def mk_models_uri(vr):
+    return f"models:/{vr.name}/{vr.version}"
+
+
 def to_str(x):
     """
     REST API returns experiment_id as 'int' although it is documented as 'string'
@@ -31,9 +39,9 @@ def to_str(x):
 def create_experiment():
     exp_name = mk_uuid()
     mlflow.set_experiment(exp_name)
-    exp = client.get_experiment_by_name(exp_name)
-    for run in client.search_runs(exp.experiment_id):
-        client.delete_run(run.info.run_id)
+    exp = mlflow_client.get_experiment_by_name(exp_name)
+    for run in mlflow_client.search_runs(exp.experiment_id):
+        mlflow_client.delete_run(run.info.run_id)
     return exp
 
 
@@ -58,33 +66,33 @@ def create_model_version(stage=None, archive_existing_versions=False):
     Create a model version, its registered model and run
     """
     model_name = mk_uuid()
-    client.create_registered_model(model_name)
-    run, _ = create_run()
+    mlflow_client.create_registered_model(model_name)
+    run, exp = create_run()
     source = f"{run.info.artifact_uri}/{model_artifact_path}"
     desc = "My version desc"
     tags = { "city": "yaxchilan" }
-    vr = client.create_model_version(model_name, source, run.info.run_id, description=desc, tags=tags)
+    vr = mlflow_client.create_model_version(model_name, source, run.info.run_id, description=desc, tags=tags)
     if stage:
-        vr = client.transition_model_version_stage(model_name, vr.version, stage, archive_existing_versions)
-    return vr, run
+        vr = mlflow_client.transition_model_version_stage(model_name, vr.version, stage, archive_existing_versions)
+    return vr, run, exp
 
 
 def create_registered_model():
     def create_version(reg_model_name, stage, exp):
         run, _ = create_run(exp)
-        vr = client.create_model_version(reg_model_name, run.info.artifact_uri, run.info.run_id)
-        client.transition_model_version_stage(reg_model_name, vr.version, stage)
+        vr = mlflow_client.create_model_version(reg_model_name, run.info.artifact_uri, run.info.run_id)
+        mlflow_client.transition_model_version_stage(reg_model_name, vr.version, stage)
     reg_model_name = mk_uuid()
-    client.create_registered_model(reg_model_name)
+    mlflow_client.create_registered_model(reg_model_name)
     exp = create_experiment()
     create_version(reg_model_name, "production", exp)
     create_version(reg_model_name, "staging", exp)
     create_version(reg_model_name, "archived", exp)
-    return client.get_registered_model(reg_model_name)
+    return mlflow_client.get_registered_model(reg_model_name)
 
 
 def delete_experiment(exp):
-    client.delete_experiment(exp.experiment_id)
+    mlflow_client.delete_experiment(exp.experiment_id)
 
 
 def compare_dirs(d1, d2):
