@@ -1,8 +1,10 @@
 from mlflow_reports.common import MlflowReportsException
+from mlflow_reports.common import model_version_utils
 from mlflow_reports.data import get_model_version
 from . utils_test import assert_enriched_tags
 from . utils_test import create_model_version
 from . import test_get_run
+from mlflow_reports.common.object_utils import dump_as_json
 
 
 def test_get_version():
@@ -43,10 +45,11 @@ def test_get_version_with_run_and_artifacts():
 def test_get_version_raw():
     vr1, _, _ = create_model_version()
     _vr2 = get_model_version.get(vr1.name, vr1.version, get_raw=True)
+    dump_as_json(_vr2)
     assert len(_vr2) == 1
     vr2 = _vr2.get("model_version")
     assert vr2
-    assert_version(vr1, vr2)
+    assert_version(vr1, vr2, False)
     assert_enriched_tags(vr2, False)
 
 
@@ -58,7 +61,20 @@ def test_get_fail():
         assert e.http_status_code == 404
 
 
-def assert_version(vr1, vr2):
+def assert_version(vr1, vr2, enriched=True):
     assert vr1.version == vr2.get("version")
     assert vr1.name == vr2.get("name")
     assert vr1.current_stage == vr2.get("current_stage")
+    assert vr1.source == vr2.get("source")
+
+    if not enriched:
+        return 
+
+    run_model_uri = vr2.get("_run_model_download_uri")
+    assert run_model_uri
+    assert run_model_uri == vr1.source
+
+    reg_model_uri = vr2.get("_reg_model_download_uri")
+    assert reg_model_uri
+    assert reg_model_uri == model_version_utils.get_reg_model_download_uri(vr2)
+
