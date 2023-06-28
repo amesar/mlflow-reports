@@ -23,3 +23,10 @@ def get_model_artifact(model_uri, artifact_path, file_type=None, explode_json=Tr
         if explode_json:
             explode_utils.explode_json(dct)
         return dct
+
+
+def mk_run_uri(run_id, artifact_path):
+    return f"runs:/{run_id}/{artifact_path}"
+
+def mk_run_download_uri(run, artifact_path):
+    return f'{run["info"]["artifact_uri"]}/{artifact_path}'

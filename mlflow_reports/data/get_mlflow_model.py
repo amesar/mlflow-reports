@@ -1,7 +1,7 @@
 import click
 
 from mlflow_reports.client.http_client import MlflowHttpClient
-from mlflow_reports.data import mlflow_model
+from mlflow_reports.mlflow_model import mlflow_model_utils
 from mlflow_reports.data import get_run as _get_run
 from mlflow_reports.data import get_experiment as _get_experiment
 from mlflow_reports.common.click_options import(
@@ -21,7 +21,7 @@ def get(
         get_run = False, 
         get_raw = False, 
     ):
-    model_info = mlflow_model.get_model_info(model_uri)
+    model_info = mlflow_model_utils.get_model_info(model_uri)
     dct = {
         "mlflow_model": model_info
     }
