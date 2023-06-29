@@ -44,9 +44,10 @@ assert_widget(experiment_id_or_name, "1. Experiment ID or name")
 
 from mlflow_reports.data import get_experiment
 
-get_experiment.get(experiment_id_or_name,
+rsp = get_experiment.get(experiment_id_or_name,
     get_runs = get_runs,
     artifact_max_level = artifact_max_level,
     get_permissions = get_permissions,
     get_raw = get_raw
 )
+dump_as_json(rsp)
