@@ -1,6 +1,7 @@
 import click
 import mlflow
 
+from mlflow_reports.common import MlflowReportsException
 from mlflow_reports.client.http_client import MlflowHttpClient
 from mlflow_reports.common import (
     model_version_utils,
@@ -65,13 +66,17 @@ def _get_data_from_api(model_uri, get_permissions=False, get_raw=False):
         registered_model = None
         model_version = None
 
-    run = get_run.get(run_id, get_raw=get_raw)
-    run = run["run"]
-    experiment = get_experiment.get(run["info"]["experiment_id"], get_permissions=get_permissions, get_raw=get_raw)
-    experiment = experiment["experiment"]
-
-    run_model_download_uri = mk_run_download_uri(run, mlflow_model.get("artifact_path"))
-    model_uris["run_model_download_uri"] = run_model_download_uri
+    try:
+        run = get_run.get(run_id, get_raw=get_raw)
+        run = run["run"]
+        experiment = get_experiment.get(run["info"]["experiment_id"], get_permissions=get_permissions, get_raw=get_raw)
+        experiment = experiment["experiment"]
+        model_uris["run_model_download_uri"] = mk_run_download_uri(run, mlflow_model.get("artifact_path"))
+    except MlflowReportsException as e:
+        msg = { "model_uri": model_uri, "run_id": run_id }
+        print(f"ERROR: Cannot get run: {msg}. Exception: {e}")
+        run = { "error": str(e) }
+        experiment = None
 
     manifest = {
         "model_uri": model_uri,
