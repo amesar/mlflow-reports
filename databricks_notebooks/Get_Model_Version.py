@@ -5,7 +5,7 @@
 # MAGIC * Recursively shows all run artifacts up to the specified max level
 # MAGIC
 # MAGIC **Widgets**
-# MAGIC * `Registered model` -registered model
+# MAGIC * `Registered model` - registered model
 # MAGIC * `Version` - model version
 # MAGIC * `Get run` - get run of the version
 # MAGIC * `Artifact max level` - number of artifact levels to show
