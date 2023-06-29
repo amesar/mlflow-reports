@@ -7,6 +7,7 @@
 # MAGIC MLflow object dump notebooks
 # MAGIC * [MLflow_Model_Manager]($MLflow_Model_Manager)
 # MAGIC * [Get_MLflow_Model]($Get_MLflow_Model)
+# MAGIC * [Get_Registered_Model]($Get_Registered_Model)
 # MAGIC * [Get_Model_Version]($Get_Model_Version)
 # MAGIC * [Get_Experiment]($Get_Experiment)
 # MAGIC * [Get_Run]($Get_Run)
