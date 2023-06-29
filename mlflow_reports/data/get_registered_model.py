@@ -7,7 +7,7 @@ from mlflow_reports.common import permissions_utils
 from mlflow_reports.common.click_options import(
     opt_registered_model,
     opt_get_permissions,
-    opt_get_runs,
+    opt_get_run,
     opt_artifact_max_level,
     opt_get_raw,
     opt_silent,
@@ -21,7 +21,7 @@ http_client = MlflowHttpClient()
 
 def get(
         model_name, 
-        get_runs = False, 
+        get_run = False, 
         artifact_max_level = -1,
         get_permissions = False, 
         get_raw = False, 
@@ -32,7 +32,7 @@ def get(
 
     dct = { "registered_model": reg_model }
     enrich(reg_model, get_permissions)
-    if get_runs:
+    if get_run:
         dct = _fetch_runs(reg_model, artifact_max_level)
     return dct
 
@@ -62,17 +62,17 @@ def _fetch_runs(reg_model, artifact_max_level):
 
 @click.command()
 @opt_registered_model
-@opt_get_runs
+@opt_get_run
 @opt_artifact_max_level 
 @opt_get_permissions
 @opt_get_raw
 @opt_silent
 @opt_output_file
-def main(registered_model, get_runs, artifact_max_level, get_permissions, get_raw, silent, output_file):
+def main(registered_model, get_run, artifact_max_level, get_permissions, get_raw, silent, output_file):
     print("Options:")
     for k,v in locals().items():
         print(f"  {k}: {v}")
-    dct = get(registered_model, get_runs, artifact_max_level, get_permissions, get_raw)
+    dct = get(registered_model, get_run, artifact_max_level, get_permissions, get_raw)
     local_utils.dump_object(dct, output_file, silent)
 
 

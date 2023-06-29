@@ -25,7 +25,7 @@ def test_get_rm():
 
 def _do_test_get_rm_with_runs(artifact_max_level=-1):
     rm1 = create_registered_model()
-    _rm2 = get_registered_model.get(rm1.name, get_runs=True, artifact_max_level=artifact_max_level)
+    _rm2 = get_registered_model.get(rm1.name, get_run=True, artifact_max_level=artifact_max_level)
     dump_as_json(_rm2)
     rm2 = _rm2.get("registered_model")
     assert rm2
