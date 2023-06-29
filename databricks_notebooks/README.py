@@ -9,5 +9,6 @@
 # MAGIC * [Get_MLflow_Model]($Get_MLflow_Model)
 # MAGIC * [Get_Model_Version]($Get_Model_Version)
 # MAGIC * [Get_Experiment]($Get_Experiment)
+# MAGIC * [Get_Run]($Get_Run)
 # MAGIC
-# MAGIC Last updated: 2023-06-28
+# MAGIC Last updated: 2023-06-29
