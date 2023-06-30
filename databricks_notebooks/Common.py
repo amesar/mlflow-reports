@@ -9,6 +9,17 @@ def assert_widget(value, name):
 
 # COMMAND ----------
 
-def dump_as_json(dct, sort_keys=None):
+def mk_local_path(path):
+    return path.replace("dbfs:","/dbfs")
+
+# COMMAND ----------
+
+def dump_as_json(dct, output_file=None, sort_keys=None):
     import json
-    print(json.dumps(dct, sort_keys=sort_keys, indent=2))
+    content = json.dumps(dct, sort_keys=sort_keys, indent=2)
+    print(content)
+    if output_file:
+        output_file = mk_local_path(output_file)
+        print(">> output_file:",output_file)
+        with open(output_file, "w", encoding="utf-8") as f:
+            f.write(content)
