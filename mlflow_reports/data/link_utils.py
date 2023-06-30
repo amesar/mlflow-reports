@@ -1,6 +1,9 @@
 from mlflow_reports.client.http_client import MlflowHttpClient
+from mlflow.utils.databricks_utils import is_in_databricks_runtime, get_workspace_info_from_dbutils
 
 http_client = MlflowHttpClient()
+
+_workspace_host, _workspace_id = get_workspace_info_from_dbutils()
 
 _UI_LINK_TAG = "_web_ui_link"
 
@@ -31,6 +34,11 @@ def _mk_mlflow_link():
     client_uri = (str(http_client))
     idx = client_uri.find("/api/")
     mlflow_uri = client_uri[0:idx]
-    #mlflow_uri += "#" # TODO: for open source
-    mlflow_uri += "#mlflow"
+    if _workspace_host: # inside Databricks, e.g. "https://c3-south.mist.databricks.com"
+         mlflow_uri = f"{_workspace_host}#mlflow"
+    else:
+        if not http_client.token: # calling OSS server
+            mlflow_uri += "#" # for open source
+        else: # calling Databricks externally
+            mlflow_uri += "#mlflow"
     return mlflow_uri 
