@@ -3,9 +3,7 @@ import click
 import copy
 from mdutils.mdutils import MdUtils
 
-##from mlflow_reports.mlflow_model import model_manager
 from mlflow_reports.mlflow_model import mlflow_model_manager as model_manager
-
 from mlflow_reports.common import mlflow_utils, io_utils
 from mlflow_reports.common.click_options import(
     opt_model_uri,
@@ -23,7 +21,6 @@ def build_report(model_uri, get_permissions, output_file, show_as_json=False, sh
     Main entry point for report
     """
     data = model_manager.get(model_uri, get_permissions)
-    io_utils.write_file("out.json", data) # TODO
 
     card = MdUtils(file_name=output_file, title=f"MLflow Model: _{model_uri}_")
     rf = ReportFactory(card)
@@ -42,6 +39,8 @@ def build_report(model_uri, get_permissions, output_file, show_as_json=False, sh
     card.new_table_of_contents(table_title="Contents", depth=2)
     card.create_md_file()
 
+    return data
+
 
 def _build_overview_model(wf, data, show_manifest):
     wf.card.new_header(level=1, title="Model Overview")
@@ -53,7 +52,7 @@ def _build_overview_model(wf, data, show_manifest):
     model_artifacts_size = _calc_model_size(run_id, data.get("mlflow_model")["artifact_path"])
 
     utc_time = data.get("mlflow_model").get("utc_time_created")
-    utc_time_created = utc_time.split(".")[0] # TODO: parse and round
+    utc_time_created = utc_time.split(".")[0]
     manifest = data.get("manifest")
     dct_mlflow_model = {
         "model_uri": manifest.get("model_uri"),
@@ -268,13 +267,21 @@ def _build_tags(wf, tags, level):
      show_default=True
 )   
 @opt_output_file
+@click.option("--output-data-file",
+     help="Output JSON data file",
+     type=str,
+     default=None,
+     show_default=True
+)   
 @opt_get_permissions
 
-def main(model_uri, show_as_json, show_manifest, output_file, get_permissions):
+def main(model_uri, show_as_json, show_manifest, output_file, output_data_file, get_permissions):
     print("Options:")
     for k,v in locals().items():
         print(f"  {k}: {v}")
-    build_report(model_uri, get_permissions, output_file, show_as_json, show_manifest)
+    data = build_report(model_uri, get_permissions, output_file, show_as_json, show_manifest)
+    if (output_data_file):
+        io_utils.write_file(output_data_file, data)
 
 if __name__ == "__main__":
     main()
