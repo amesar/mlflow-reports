@@ -9,7 +9,7 @@
 # MAGIC * `Experiment ID or name` - either the experiment name or the ID
 # MAGIC * `Get runs` - get runs of the experiment
 # MAGIC * `Artifact max level` - number of artifact levels to show
-# MAGIC * `Get permissions` - dump run data if showing runs
+# MAGIC * `Get permissions` - Get permissions
 # MAGIC * `Get raw` - get JSON as received from API request
 
 # COMMAND ----------
