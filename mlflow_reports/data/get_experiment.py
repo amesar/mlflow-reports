@@ -16,7 +16,7 @@ from mlflow_reports.common.click_options import(
     opt_silent,
     opt_output_file
 )
-from mlflow_reports.data import local_utils
+from mlflow_reports.data import local_utils, link_utils
 
 http_client = MlflowHttpClient()
 
@@ -38,7 +38,7 @@ def get(
     dct = { "experiment": experiment }
     if get_runs:
         runs = SearchRunsIterator(http_client, [experiment_id])
-        dct["runs"] = [ _get_run.enrich(run, artifact_max_level=artifact_max_level, get_raw=get_raw) for run in runs ]
+        dct["runs"] = [ _get_run.enrich(run, artifact_max_level=artifact_max_level) for run in runs ]
     enrich(experiment, get_permissions)
 
     return dct
@@ -48,6 +48,7 @@ def enrich(exp, get_permissions=False):
     local_utils.mk_tags(exp)
     local_utils.adjust_ts(exp, ["creation_time", "last_update_time"])
     exp["_tracking_uri"] = mlflow.get_tracking_uri()
+    link_utils.add_experiment_link(exp)
     explode_utils.explode_json(exp)
     if get_permissions:
         permissions_utils.add_experiment_permissions(exp)

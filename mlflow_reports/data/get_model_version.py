@@ -11,7 +11,7 @@ from mlflow_reports.common.click_options import(
     opt_output_file
 )
 from mlflow_reports.data import get_run as _get_run
-from mlflow_reports.data import local_utils
+from mlflow_reports.data import local_utils, link_utils
 
 http_client = MlflowHttpClient()
 
@@ -38,6 +38,7 @@ def get(
 
 def enrich(version):
     local_utils.mk_tags(version)
+    link_utils.add_model_version_link(version)
     local_utils.adjust_ts(version, [ "creation_timestamp", "last_updated_timestamp" ])
     version["_reg_model_download_uri"] = get_reg_model_download_uri(version)
     version["_run_model_download_uri"] = get_run_model_download_uri(version)

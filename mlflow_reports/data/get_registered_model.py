@@ -14,7 +14,7 @@ from mlflow_reports.common.click_options import(
     opt_output_file
 )
 from mlflow_reports.data import get_run, get_model_version
-from mlflow_reports.data import local_utils
+from mlflow_reports.data import local_utils, link_utils
 
 http_client = MlflowHttpClient()
 
@@ -39,6 +39,7 @@ def get(
 
 def enrich(reg_model, get_permissions=False):
     reg_model["tags"] = mlflow_utils.mk_tags_dict(reg_model.get("tags"))
+    link_utils.add_registered_model_link(reg_model)
     local_utils.adjust_ts(reg_model, [ "creation_timestamp", "last_updated_timestamp" ])
     for vr in reg_model["latest_versions"]:
         get_model_version.enrich(vr)

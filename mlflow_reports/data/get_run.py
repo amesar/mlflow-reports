@@ -9,7 +9,7 @@ from mlflow_reports.common.click_options import(
     opt_silent,
     opt_output_file
 )
-from mlflow_reports.data import local_utils
+from mlflow_reports.data import local_utils, link_utils
 
 http_client = MlflowHttpClient()
 
@@ -22,10 +22,10 @@ def get(run_id, artifact_max_level=-1, get_raw=False):
     rsp = http_client.get(f"runs/get", { "run_id": run_id })
     if get_raw:
         return rsp
-    return enrich(rsp["run"], artifact_max_level, get_raw)
+    return enrich(rsp["run"], artifact_max_level)
 
 
-def enrich(run, artifact_max_level=-1, get_raw=False):
+def enrich(run, artifact_max_level=-1):
     """
     Enrich the raw run API response.
     :return: Dictionary with "run" and optionally "artifacts" key
@@ -35,10 +35,11 @@ def enrich(run, artifact_max_level=-1, get_raw=False):
         artifacts = mlflow_utils.build_artifacts(run["info"]["run_id"], "", artifact_max_level)
         dct["artifacts"] = artifacts
 
-    if not get_raw:
-        _adjust_times(run)
-        local_utils.mk_tags(run["data"])
-        explode_utils.explode_json(dct)
+    _adjust_times(run)
+    link_utils.add_run_link(run)
+    local_utils.mk_tags(run["data"])
+    explode_utils.explode_json(dct)
+
     return dct
 
 
