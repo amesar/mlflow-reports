@@ -2,7 +2,6 @@ from mlflow_reports.client.http_client import MlflowHttpClient
 from mlflow.utils.databricks_utils import get_workspace_info_from_dbutils
 
 http_client = MlflowHttpClient()
-print(">> XX: http_client:",http_client)
 
 _workspace_host, _workspace_id = get_workspace_info_from_dbutils()
 
@@ -33,7 +32,6 @@ def add_model_version_links(version):
     link = f"{_mk_mlflow_link()}/models/{name}/versions/{vr}"
     version[_UI_LINK_TAG] = link
     link = f"{http_client}/model-versions/get?name={name}&version={vr}"
-    print(">> LL: link:",link)
     version[_API_LINK_TAG] = link
 
 
