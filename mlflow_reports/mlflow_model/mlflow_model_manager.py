@@ -45,7 +45,9 @@ def get(
 
 def _get_data_from_api(model_uri, get_permissions=False, get_raw=False):
     scheme = _get_scheme(model_uri)
-    mlflow_model = _get_mlflow_model.get(model_uri, get_raw=get_raw)["mlflow_model"]
+    ##mlflow_model = _get_mlflow_model.get(model_uri, get_raw=get_raw)["mlflow_model"]
+    _mlflow_model = _get_mlflow_model.get(model_uri, get_raw=get_raw)
+    mlflow_model = _mlflow_model["mlflow_model"]
     run_id = mlflow_model.get("run_id")
     run_uri = mk_run_uri(run_id, mlflow_model.get("artifact_path"))
     
@@ -96,6 +98,9 @@ def _get_data_from_api(model_uri, get_permissions=False, get_raw=False):
         dct["registered_model"] = registered_model
     if model_version:
         dct["model_version"] = model_version
+    mlflow_model_secondary = _mlflow_model.get("mlflow_model_secondary")
+    if mlflow_model_secondary:
+        dct["mlflow_model_secondary"] = mlflow_model_secondary
     return dct
 
 
