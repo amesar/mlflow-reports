@@ -27,9 +27,9 @@ def get(
         "mlflow_model": model_info
     }
     dump_as_json(dct)
-    model_info_2 = _get_feature_store_model(model_uri, model_info)
-    if model_info_2:
-        dct["mlflow_model_secondary"] = model_info_2
+    model_info_raw = _get_feature_store_model(model_uri, model_info)
+    if model_info_raw:
+        dct["mlflow_model_raw"] = model_info_raw
     if get_run:
         rsp = _get_run.get(model_info["run_id"], get_raw=get_raw)
         run = rsp["run"]
@@ -40,6 +40,9 @@ def get(
 
 
 def _get_feature_store_model(model_uri, model_info):
+    """
+    If this is a feature store model, then we process data/feature_store/raw_model/MLmodel.
+    """
     flavors = model_info.get("flavors")
     if len(flavors) > 1:
         return None

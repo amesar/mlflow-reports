@@ -45,9 +45,9 @@ def get(
 
 def _get_data_from_api(model_uri, get_permissions=False, get_raw=False):
     scheme = _get_scheme(model_uri)
-    ##mlflow_model = _get_mlflow_model.get(model_uri, get_raw=get_raw)["mlflow_model"]
     _mlflow_model = _get_mlflow_model.get(model_uri, get_raw=get_raw)
     mlflow_model = _mlflow_model["mlflow_model"]
+
     run_id = mlflow_model.get("run_id")
     run_uri = mk_run_uri(run_id, mlflow_model.get("artifact_path"))
     
@@ -58,7 +58,7 @@ def _get_data_from_api(model_uri, get_permissions=False, get_raw=False):
     if scheme == "models":
         registered_model, model_version = model_version_utils.get_model_and_version(model_uri, get_permissions=get_permissions)
         get_registered_model.enrich(registered_model, get_permissions=get_permissions)
-        registered_model.pop("latest_versions", None) # NOTE: don't need this for MLflow model purposes
+        registered_model.pop("latest_versions", None) # NOTE: don't need this for our current purposes
         get_model_version.enrich(model_version)
         _run_id = model_version["run_id"]
         assert run_id == _run_id 
@@ -98,9 +98,9 @@ def _get_data_from_api(model_uri, get_permissions=False, get_raw=False):
         dct["registered_model"] = registered_model
     if model_version:
         dct["model_version"] = model_version
-    mlflow_model_secondary = _mlflow_model.get("mlflow_model_secondary")
-    if mlflow_model_secondary:
-        dct["mlflow_model_secondary"] = mlflow_model_secondary
+    mlflow_model_raw = _mlflow_model.get("mlflow_model_raw")
+    if mlflow_model_raw:
+        dct["mlflow_model_raw"] = mlflow_model_raw
     return dct
 
 

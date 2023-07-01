@@ -27,6 +27,7 @@ def build_report(model_uri, get_permissions, output_file, show_as_json=False, sh
 
     _build_overview_model(rf.wf, data, show_manifest)
     _build_model_info(rf, data.get("mlflow_model"), show_as_json, 1)
+    _build_model_info_fs(rf, data.get("mlflow_model_raw"), show_as_json, 1)
     if data.get("registered_model"):
         _build_registered_model(rf, data.get("registered_model"))
     if data.get("model_version"):
@@ -79,7 +80,6 @@ def _calc_model_size(run_id, model_artifact_path):
 
 def _build_mlflow_model_uris(wf, manifest): 
     dct = manifest.get("model_uris")
-    run_uri = dct.get("run_uri")
     wf.build_table(dct, "MLflow Model URIs", level=0, columns=["URI type","URI"])
 
 
@@ -87,14 +87,13 @@ def get_native_flavor_adjusted(flavors):
     if len(flavors.keys()) == 1:
         return get_native_flavor_adjusted_fs(flavors)
     else:
-        assert len(flavor.keys()) == 2
+        assert len(flavors.keys()) == 2
         return get_native_flavor_adjusted_std(flavors)
 
 
 def get_native_flavor_adjusted_fs(flavors):
     """ 
-    If feature store model with two MLmodel files. One flavor in top-leve MLmodel. 
-    Actual flavor is in data/feature_store. TODO.
+    Process the raw feature store MLmodel.
     """
     keys = list(flavors.keys())
     flavor = flavors.get(keys[0])
@@ -133,10 +132,6 @@ def _build_model_info(rf, model_info, show_as_json=True, level=1, title="MLflow 
     """
     Build MLflow model info section
     """
-    def _build_model_info_details(wf, model_info, level):
-        dct = { k:v for k,v in model_info.items() if is_primitive(v) }
-        wf.mk_list_as_table(dct, title="Details", level=level)
-
     rf.wf.card.new_header(level=level, title=title)
     _build_model_info_details(rf.wf, model_info, level+1)
 
@@ -144,6 +139,27 @@ def _build_model_info(rf, model_info, show_as_json=True, level=1, title="MLflow 
     
     rf.build_signature(model_info.get("signature"), level=level+1)
     rf.build_saved_input_example_info(model_info.get("saved_input_example_info"), level=level+1)
+
+
+def _build_model_info_fs(rf, fs_model_info, show_as_json=True, level=1, title="Raw Feature Store Model"):
+    if not fs_model_info:
+        return
+    rf.wf.card.new_header(level=level, title=title)
+    model_info = fs_model_info["mlflow_model"]
+
+    _build_model_info_details(rf.wf, model_info, level+1)
+    rf.build_flavors(model_info.get("flavors"), level=level+1, show_as_json=show_as_json)
+
+    rf.wf.card.new_header(level=level+1, title="Feature Spec")
+    fs_spec = fs_model_info.get("feature_spec")
+    from mlflow_reports.markdown.local_utils import escape_col
+    rf.wf.card.new_line(escape_col(fs_spec))
+
+
+def _build_model_info_details(wf, model_info, level):
+    dct = { k:v for k,v in model_info.items() if is_primitive(v) }
+    wf.mk_list_as_table(dct, title="Details", level=level)
+
 
 def _build_registered_model(rf, registered_model):
     rf.card.new_header(level=1, title="Registered Model")
