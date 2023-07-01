@@ -36,7 +36,7 @@ def enrich(run, artifact_max_level=-1):
         dct["artifacts"] = artifacts
 
     _adjust_times(run)
-    link_utils.add_run_link(run)
+    link_utils.add_run_links(run)
     local_utils.mk_tags(run["data"])
     explode_utils.explode_json(dct)
 

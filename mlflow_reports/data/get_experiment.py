@@ -48,7 +48,7 @@ def enrich(exp, get_permissions=False):
     local_utils.mk_tags(exp)
     local_utils.adjust_ts(exp, ["creation_time", "last_update_time"])
     exp["_tracking_uri"] = mlflow.get_tracking_uri()
-    link_utils.add_experiment_link(exp)
+    link_utils.add_experiment_links(exp)
     explode_utils.explode_json(exp)
     if get_permissions:
         permissions_utils.add_experiment_permissions(exp)

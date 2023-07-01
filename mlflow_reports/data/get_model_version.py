@@ -38,7 +38,7 @@ def get(
 
 def enrich(version):
     local_utils.mk_tags(version)
-    link_utils.add_model_version_link(version)
+    link_utils.add_model_version_links(version)
     local_utils.adjust_ts(version, [ "creation_timestamp", "last_updated_timestamp" ])
     version["_reg_model_download_uri"] = get_reg_model_download_uri(version)
     version["_run_model_download_uri"] = get_run_model_download_uri(version)
