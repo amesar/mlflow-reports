@@ -46,9 +46,7 @@ def _build_overview_model(wf, data, show_manifest):
     wf.card.new_header(level=1, title="Model Overview")
 
     run_id = data.get("mlflow_model").get("run_id")
-
     flavor = get_native_flavor_adjusted(data.get("mlflow_model").get("flavors"))
-
     model_artifacts_size = _calc_model_size(run_id, data.get("mlflow_model")["artifact_path"])
 
     utc_time = data.get("mlflow_model").get("utc_time_created")
@@ -81,13 +79,37 @@ def _calc_model_size(run_id, model_artifact_path):
 
 def _build_mlflow_model_uris(wf, manifest): 
     dct = manifest.get("model_uris")
+    run_uri = dct.get("run_uri")
     wf.build_table(dct, "MLflow Model URIs", level=0, columns=["URI type","URI"])
 
 
 def get_native_flavor_adjusted(flavors):
+    if len(flavors.keys()) == 1:
+        return get_native_flavor_adjusted_fs(flavors)
+    else:
+        assert len(flavor.keys()) == 2
+        return get_native_flavor_adjusted_std(flavors)
+
+
+def get_native_flavor_adjusted_fs(flavors):
+    """ 
+    If feature store model with two MLmodel files. One flavor in top-leve MLmodel. 
+    Actual flavor is in data/feature_store. TODO.
+    """
     keys = list(flavors.keys())
-    assert len(keys) == 2
-        
+    flavor = flavors.get(keys[0])
+    dct = { 
+        "flavor": flavor.get("loader_module"),
+        "version": ""
+    }
+    return dct
+
+
+def get_native_flavor_adjusted_std(flavors):
+    """ 
+    If standard model with one MLmodel file. 
+    """
+    keys = list(flavors.keys())
     pyfunc, native = flavors.get(keys[0]), flavors.get(keys[1])
     keys = list(flavors.keys())
     if keys[1] == "python_function":
@@ -105,7 +127,6 @@ def get_native_flavor_adjusted(flavors):
         
     flavor = { **{ "flavor": flavor_name, "version": version }, **native }
     return flavor 
-
 
 
 def _build_model_info(rf, model_info, show_as_json=True, level=1, title="MLflow Model"):
