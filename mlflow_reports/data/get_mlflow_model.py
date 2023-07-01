@@ -1,4 +1,5 @@
 import click
+from mlflow_reports.common.object_utils import dump_as_json
 
 from mlflow_reports.client.http_client import MlflowHttpClient
 from mlflow_reports.mlflow_model import mlflow_model_utils
@@ -25,6 +26,10 @@ def get(
     dct = {
         "mlflow_model": model_info
     }
+    dump_as_json(dct)
+    model_info_2 = _get_feature_store_model(model_uri, model_info)
+    if model_info_2:
+        dct["mlflow_model_secondary"] = model_info_2
     if get_run:
         rsp = _get_run.get(model_info["run_id"], get_raw=get_raw)
         run = rsp["run"]
@@ -32,6 +37,28 @@ def get(
         rsp = _get_experiment.get(run["info"]["experiment_id"], get_raw=get_raw)
         dct["experiment"] = rsp["experiment"]
     return dct
+
+
+def _get_feature_store_model(model_uri, model_info):
+    flavors = model_info.get("flavors")
+    if len(flavors) > 1:
+        return None
+    pyfunc = flavors["python_function"]
+    lm = pyfunc.get("loader_module")
+    if lm == "databricks.feature_store.mlflow_model":
+        subdir = "data/feature_store"
+        fs_spec = model_info = mlflow_model_utils.get_model_artifact(model_uri, f"{subdir}/feature_spec.yaml")
+        fs_model_info = mlflow_model_utils.get_model_artifact(model_uri, f"{subdir}/raw_model/MLmodel", file_type="yaml")
+        return {
+            "model_type": "feature_store",
+            "mlflow_model": fs_model_info,
+            "feature_spec": fs_spec
+        }
+    else:
+        return {
+            "model_type": "unknown",
+            "loader_module": lm
+        }
 
 
 @click.command()
