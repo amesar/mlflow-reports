@@ -227,7 +227,7 @@ def _build_run_tags(rf, tags):
         #dct = _strip_tag_prefix(dct, "mlflow.databricks.")
 
         sys_tags, user_tags = {}, {}
-        git_tags, nb_tags, cluster_tags, src_tags, ws_tags = {}, {}, {}, {}, {}
+        git_tags, nb_tags, cluster_tags, src_tags, ws_tags, job_tags = {}, {}, {}, {}, {}, {}
 
         for k,v in tags.items():
             if k.startswith("mlflow.databricks.gitRepo"):
@@ -240,6 +240,8 @@ def _build_run_tags(rf, tags):
                 ws_tags[k] = v
             elif k.startswith("mlflow.source."):
                 src_tags[k] = v
+            elif k.startswith("mlflow.databricks.job"):
+                job_tags[k] = v
             elif k.startswith("mlflow"):
                 sys_tags[k] = v
             else:
@@ -255,6 +257,8 @@ def _build_run_tags(rf, tags):
             rf.wf.build_table(ws_tags, "Workspace Tags", level=3, **TAG_COLUMNS)
         if src_tags:
             rf.wf.build_table(src_tags, "Source Tags", level=3, **TAG_COLUMNS)
+        if job_tags:
+            rf.wf.build_table(job_tags, "Job Tags", level=3, **TAG_COLUMNS)
         rf.wf.build_table(sys_tags, "Other System Tags", level=3, **TAG_COLUMNS)
         rf.wf.build_table(user_tags, "User Tags", level=3, **TAG_COLUMNS)
 
