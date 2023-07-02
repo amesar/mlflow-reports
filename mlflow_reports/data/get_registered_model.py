@@ -39,8 +39,8 @@ def get(
 
 def enrich(reg_model, get_permissions=False):
     reg_model["tags"] = mlflow_utils.mk_tags_dict(reg_model.get("tags"))
-    link_utils.add_registered_model_link(reg_model)
     local_utils.adjust_ts(reg_model, [ "creation_timestamp", "last_updated_timestamp" ])
+    link_utils.add_registered_model_links(reg_model)
     for vr in reg_model["latest_versions"]:
         get_model_version.enrich(vr)
     if get_permissions and "id" in reg_model:  # if calling Databricks tracking server
