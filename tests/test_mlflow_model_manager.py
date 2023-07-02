@@ -2,7 +2,6 @@ import mlflow
 
 from mlflow.exceptions import MlflowException
 from mlflow_reports.mlflow_model import mlflow_model_manager
-from mlflow_reports.common.object_utils import dump_as_json
 
 from . utils_test import (
     create_model_version,
@@ -14,16 +13,16 @@ from . utils_test import (
 
 mlflow_client = mlflow.MlflowClient()
 
-# ==== Test standard model URIs
+# ==== Test basic 
 
 def test_runs_uri():
     run1, exp1 = create_run()
     model_uri = mk_runs_uri(run1)
     _mm = mlflow_model_manager.get(model_uri)
-    dump_as_json(_mm)
     _assert(_mm, run1, exp1)
     assert not "registered_model" in _mm
     assert not "model_version" in _mm
+
 
 def test_models_uri():
     vr1, run1, exp1 = create_model_version()
