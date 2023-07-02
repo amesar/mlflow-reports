@@ -27,7 +27,7 @@ def get(
         "mlflow_model": model_info
     }
     dump_as_json(dct)
-    model_info_raw = _get_feature_store_model(model_uri, model_info)
+    model_info_raw = _get_raw_model(model_uri, model_info)
     if model_info_raw:
         dct["mlflow_model_raw"] = model_info_raw
     if get_run:
@@ -39,7 +39,7 @@ def get(
     return dct
 
 
-def _get_feature_store_model(model_uri, model_info):
+def _get_raw_model(model_uri, model_info):
     """
     If this is a feature store model, then we process data/feature_store/raw_model/MLmodel.
     """
@@ -48,6 +48,8 @@ def _get_feature_store_model(model_uri, model_info):
         return None
     pyfunc = flavors["python_function"]
     lm = pyfunc.get("loader_module")
+    if lm == "mlflow.pyfunc.model":
+        return None
     if lm == "databricks.feature_store.mlflow_model":
         subdir = "data/feature_store"
         fs_spec = model_info = mlflow_model_utils.get_model_artifact(model_uri, f"{subdir}/feature_spec.yaml")
