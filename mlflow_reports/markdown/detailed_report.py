@@ -16,18 +16,20 @@ from mlflow_reports.markdown.local_utils import newline_tweak, is_primitive
 max_artifact_level = sys.maxsize
 
 
-def build_report(model_uri, get_permissions, output_file, show_as_json=False, show_manifest=False):
+def build_report(model_uri, get_permissions, output_file, output_data_file, show_as_json=False, show_manifest=False):
     """
     Main entry point for report
     """
     data = model_manager.get(model_uri, get_permissions)
+    if (output_data_file):
+        io_utils.write_file(output_data_file, data)
 
     card = MdUtils(file_name=output_file, title=f"MLflow Model: _{model_uri}_")
     rf = ReportFactory(card)
 
     _build_overview_model(rf.wf, data, show_manifest)
     _build_model_info(rf, data.get("mlflow_model"), show_as_json, 1)
-    _build_model_info_fs(rf, data.get("mlflow_model_raw"), show_as_json, 1)
+    _build_model_info_raw(rf, data.get("mlflow_model_raw"), show_as_json, 1)
     if data.get("registered_model"):
         _build_registered_model(rf, data.get("registered_model"))
     if data.get("model_version"):
@@ -141,7 +143,7 @@ def _build_model_info(rf, model_info, show_as_json=True, level=1, title="MLflow 
     rf.build_saved_input_example_info(model_info.get("saved_input_example_info"), level=level+1)
 
 
-def _build_model_info_fs(rf, fs_model_info, show_as_json=True, level=1, title="Raw Feature Store Model"):
+def _build_model_info_raw(rf, fs_model_info, show_as_json=True, level=1, title="Raw Model - Feature Store"):
     if not fs_model_info:
         return
     rf.wf.card.new_header(level=level, title=title)
@@ -316,9 +318,7 @@ def main(model_uri, show_as_json, show_manifest, output_file, output_data_file, 
     print("Options:")
     for k,v in locals().items():
         print(f"  {k}: {v}")
-    data = build_report(model_uri, get_permissions, output_file, show_as_json, show_manifest)
-    if (output_data_file):
-        io_utils.write_file(output_data_file, data)
+    build_report(model_uri, get_permissions, output_file, output_data_file, show_as_json, show_manifest)
 
 if __name__ == "__main__":
     main()
