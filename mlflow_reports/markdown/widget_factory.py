@@ -1,4 +1,6 @@
 from mlflow_reports.markdown.local_utils import newline_tweak
+from mlflow_reports.markdown.local_utils import escape_col
+
 
 _TAG_COLUMNS = ["Key","Value"]
 _NAME_COLUMNS = ["Name","Value"]
@@ -83,3 +85,15 @@ class WidgetFactory:
 
     def mk_not_present(self):
         self.card.new_line(NOT_FOUND)
+
+
+    # =====
+    # Errors
+
+    def mk_error(self, dct):
+        escape_col(dct)
+        self.build_table(dct, title=self.mk_red("Error"), level=1, columns=None)
+
+    def mk_red(self, msg):
+        return f'**<font color="red">{msg}</font>**'
+

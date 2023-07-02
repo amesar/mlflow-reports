@@ -1,6 +1,4 @@
 import click
-from mlflow_reports.common.object_utils import dump_as_json
-
 from mlflow_reports.client.http_client import MlflowHttpClient
 from mlflow_reports.mlflow_model import mlflow_model_utils
 from mlflow_reports.data import get_run as _get_run
@@ -23,10 +21,13 @@ def get(
         get_raw = False, 
     ):
     model_info = mlflow_model_utils.get_model_info(model_uri)
-    dct = {
-        "mlflow_model": model_info
-    }
-    dump_as_json(dct)
+    if not isinstance(model_info, dict):
+        # NOTE: maybe raise exception instead of return
+        return { 
+            "error": f"Failed to parse MLmodel file of '{model_uri}'",
+            "contents": str(model_info)
+        }
+    dct = { "mlflow_model": model_info }
     model_info_raw = _get_raw_model(model_uri, model_info)
     if model_info_raw:
         dct["mlflow_model_raw"] = model_info_raw

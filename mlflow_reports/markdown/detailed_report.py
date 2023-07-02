@@ -20,12 +20,18 @@ def build_report(model_uri, get_permissions, output_file, output_data_file, show
     """
     Main entry point for report
     """
+    card = MdUtils(file_name=output_file, title=f"MLflow Model: _{model_uri}_")
+    rf = ReportFactory(card)
+
     data = model_manager.get(model_uri, get_permissions)
     if (output_data_file):
         io_utils.write_file(output_data_file, data)
 
-    card = MdUtils(file_name=output_file, title=f"MLflow Model: _{model_uri}_")
-    rf = ReportFactory(card)
+    data = model_manager.get(model_uri, get_permissions)
+    if "error" in data:
+        rf.wf.mk_error(data)
+        card.create_md_file()
+        return data
 
     _build_overview_model(rf.wf, data, show_manifest)
     _build_model_info(rf, data.get("mlflow_model"), show_as_json, 1)
