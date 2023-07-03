@@ -37,6 +37,9 @@ def get(
 
 
 def enrich(version):
+    rsp = http_client.get(f"transition-requests/list", {"name": version['name'], "version": version['version']} )
+    if rsp:
+        version["transition_requests"] = rsp["requests"]
     local_utils.mk_tags(version)
     local_utils.adjust_ts(version, [ "creation_timestamp", "last_updated_timestamp" ])
     version["_reg_model_download_uri"] = get_reg_model_download_uri(version)

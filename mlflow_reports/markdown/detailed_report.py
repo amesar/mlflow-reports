@@ -11,7 +11,7 @@ from mlflow_reports.common.click_options import(
     opt_get_permissions
 )
 from mlflow_reports.markdown.report_factory import ReportFactory, TAG_COLUMNS
-from mlflow_reports.markdown.local_utils import newline_tweak, is_primitive
+from mlflow_reports.markdown.local_utils import newline_tweak, is_primitive, escape_col
 
 max_artifact_level = sys.maxsize
 
@@ -27,7 +27,6 @@ def build_report(model_uri, get_permissions, output_file, output_data_file, show
     if (output_data_file):
         io_utils.write_file(output_data_file, data)
 
-    data = model_manager.get(model_uri, get_permissions)
     if "error" in data:
         rf.wf.mk_error(data)
         card.create_md_file()
@@ -160,7 +159,6 @@ def _build_model_info_raw(rf, fs_model_info, show_as_json=True, level=1, title="
 
     rf.wf.card.new_header(level=level+1, title="Feature Spec")
     fs_spec = fs_model_info.get("feature_spec")
-    from mlflow_reports.markdown.local_utils import escape_col
     rf.wf.card.new_line(escape_col(fs_spec))
 
 
@@ -191,6 +189,11 @@ def _build_model_version(wf, model_version):
     
     tags = model_version.get("tags")
     wf.build_table(tags, "Tags", level=2)
+
+    transition_requests = model_version.get("transition_requests")
+    if transition_requests:
+        wf.card.new_header(level=2, title="Transition Requests")
+        wf.card.new_line(escape_col(transition_requests))
 
 
 def _build_run(rf, run):
