@@ -1,24 +1,76 @@
+from abc import abstractmethod, ABCMeta
 import os
 import json
 import requests
 import click
 from mlflow_reports.common import MlflowReportsException
-from mlflow_reports.client import USER_AGENT
-from mlflow_reports.client import mlflow_auth_utils
-from mlflow_reports.client import databricks_cli_utils
+from . import USER_AGENT
+from . import mlflow_auth_utils
+from . import databricks_cli_utils
 
 _TIMEOUT = 15
 
 
-class HttpClient():
-    """ Wrapper for GET and POST methods for Databricks REST APIs  - standard Databricks API and MLflow API. """
+class BaseHttpClient(metaclass=ABCMeta):
+    """
+    Base HTTP client class.
+    """
+
+    @abstractmethod
+    def get(self, resource, params=None):
+        pass
+
+    @abstractmethod
+    def _get(self, resource, params=None):
+        pass
+
+
+    @abstractmethod
+    def post(self, resource, data=None):
+        pass
+
+    @abstractmethod
+    def _post(self, resource, data=None):
+        pass
+
+
+    @abstractmethod
+    def put(self, resource, data=None):
+        pass
+
+    @abstractmethod
+    def _put(self, resource, data=None):
+        pass
+
+
+    @abstractmethod
+    def patch(self, resource, data=None):
+        pass
+
+    @abstractmethod
+    def _patch(self, resource, data=None):
+        pass
+
+
+    @abstractmethod
+    def delete(self, resource):
+        pass
+
+    @abstractmethod
+    def _delete(self, resource):
+        pass
+
+
+class HttpClient(BaseHttpClient):
+    """ 
+    Wrapper for HTTP calls for MLflow Databricks APIs.
+    """
     def __init__(self, api_name, host=None, token=None):
         """
         :param api_name: Name of base API such as 'api/2.0' or 'api/2.0/mlflow'.
         :param host: Host name of tracking server such as 'http://localhost:5000' or 'databricks://my_profile'.
         :param token: Databricks token if using Databricks.
         """
-
         if host:
             # Assume 'host' is a Databricks profile 
             if not host.startswith("http"):
@@ -30,8 +82,8 @@ class HttpClient():
         if host is None:
             raise MlflowReportsException(
                 "MLflow tracking URI (MLFLOW_TRACKING_URI environment variable) is not configured correctly",
-                http_status_code=401)
-
+                http_status_code=401
+            )
         self.api_uri = os.path.join(host, api_name)
         self.token = token
         
@@ -43,20 +95,20 @@ class HttpClient():
 
     def get(self, resource, params=None):
         """ Executes an HTTP GET call
-        :param resource: Relative path name of resource such as cluster/list
+        :param resource: Relative path name of resource such as experiments/search
         :param params: Dict of query parameters
         """
         return json.loads(self._get(resource, params).text)
 
 
     def _post(self, resource, data=None):
-        """ Executes an HTTP POST call
-        :param resource: Relative path name of resource such as runs/search
-        :param data: Request request payload as dict
-        """
         return self._mutator(requests.post, resource, data)
 
     def post(self, resource, data=None):
+        """ Executes an HTTP POST call
+        :param resource: Relative path name of resource such as runs/search
+        :param data: Request payload as dict
+        """
         return json.loads(self._post(resource, self._json_dumps(data)).text)
 
 
@@ -70,9 +122,6 @@ class HttpClient():
         """
         return json.loads(self._put(resource, self._json_dumps(data)).text)
 
-    def _json_dumps(self, data):
-        return json.dumps(data) if data else None
-
 
     def _patch(self, resource, data=None):
         return self._mutator(requests.patch, resource, data)
@@ -85,14 +134,6 @@ class HttpClient():
         return json.loads(self._patch(resource, self._json_dumps(data)).text)
 
 
-    def _mutator(self, method, resource, data=None):
-        uri = self._mk_uri(resource)
-        rsp = method(uri, headers=self._mk_headers(), data=data, timeout=_TIMEOUT)
-        return self._check_response(rsp)
-
-    def _to_json(self, data):
-        return json.dumps(data) if data else None
-
     def _delete(self, resource):
         uri = self._mk_uri(resource)
         rsp = requests.delete(uri, headers=self._mk_headers(), timeout=_TIMEOUT)
@@ -101,9 +142,18 @@ class HttpClient():
     def delete(self, resource):
         """ Executes an HTTP POST call
         :param resource: Relative path name of resource such as runs/search
-        :param data: Post request payload as dict
         """
         return json.loads(self._delete(resource).text)
+
+
+    def _mutator(self, method, resource, data=None):
+        uri = self._mk_uri(resource)
+        rsp = method(uri, headers=self._mk_headers(), data=data, timeout=_TIMEOUT)
+        return self._check_response(rsp)
+
+
+    def _json_dumps(self, data):
+        return json.dumps(data) if data else None
 
 
     def _mk_headers(self):
@@ -134,13 +184,91 @@ class HttpClient():
 
 
 class DatabricksHttpClient(HttpClient):
+    """
+    Databricks API client: api/2.0
+    """
     def __init__(self, host=None, token=None):
         super().__init__("api/2.0", host, token)
 
 
 class MlflowHttpClient(HttpClient):
+    """
+    MLflow API client: api/2.0
+    """
     def __init__(self, host=None, token=None):
         super().__init__("api/2.0/mlflow", host, token)
+
+
+class UnityCatalogHttpClient(BaseHttpClient):
+    """
+    Composite client that supports Databricks Unity Catalog API.
+    Contains two underlying clients: standard MLflow API client 'api/2.0/mlflow' 
+    and UC client for calls to 'api/2.0/mlflow/unity-catalog'.
+    """
+    uc_resources = {
+        "registered-models",
+        "model-versions",
+        "registry-webhooks",
+        "transition-requests"
+        "comments"
+    }
+    def __init__(self, mlflow_client=None, uc_client=None):
+        self._mlflow_client = mlflow_client or MlflowHttpClient()
+        self._uc_client = uc_client or HttpClient("api/2.0/mlflow/unity-catalog")
+        self.token = self._mlflow_client.token # NOTE: needed to decide downstream if we are calling Databricks
+
+
+    def _get_client(self, resource):
+        resource = resource.split("/")[0]
+        return self._uc_client if resource in UnityCatalogHttpClient.uc_resources else self._mlflow_client
+
+
+    def get(self, resource, params=None):
+        return self._get_client(resource).get(resource, params)
+
+    def _get(self, resource, params=None):
+        return self._get_client(resource)._get(resource, params)
+
+
+    def post(self, resource, data=None):
+        return self._get_client(resource).post(resource, data)
+
+    def _post(self, resource, data=None):
+        return self._get_client(resource).post(resource, data)
+
+
+    def put(self, resource, data=None):
+        return self.mlflow_client.put(resource, data)
+
+    def _put(self, resource, data=None):
+        return self._get_client(resource).put(resource, data)
+
+
+    def patch(self, resource, data=None):
+        return self.mlflow_client.patch(resource, data)
+
+    def _patch(self, resource, data=None):
+        return self._get_client(resource).patch(resource, data)
+
+
+    def delete(self, resource):
+        return self.mlflow_client.delete(resource)
+
+    def _delete(self, resource, data=None):
+        return self._get_client(resource).delete(resource, data)
+
+    def __repr__(self):
+        msg = { "mlflow_client": str(self._mlflow_client), "uc_client": str(self._uc_client) }
+        return str(msg)
+
+
+def get_mlflow_client():
+    """
+    Returns either a UC-enabled client or not, depending if MLFLOW_REGISTRY_URI is set to 'databricks-uc://e2_demo'
+    """
+    registry_uri = os.environ.get("MLFLOW_REGISTRY_URI")
+    client = UnityCatalogHttpClient() if registry_uri else MlflowHttpClient() 
+    return client
 
 
 @click.command()
