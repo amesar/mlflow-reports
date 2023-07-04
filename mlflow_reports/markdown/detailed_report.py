@@ -175,7 +175,7 @@ def _build_registered_model(rf, registered_model):
     rf.wf.build_table(dct, "Details", level=2)
     
     tags = registered_model.get("tags")
-    _build_tags(rf.wf, tags, level=2)
+    rf.wf.build_table(tags, "Tags", level=2)
         
     rf.build_permissions(registered_model.get("permissions"), 2)
 
