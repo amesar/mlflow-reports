@@ -21,7 +21,7 @@ from mlflow_reports.data import (
     get_experiment ,
     get_run 
 )
-from mlflow_reports.data import local_utils
+from mlflow_reports.data import local_utils # TODO: move to common
 from . mlflow_model_utils import mk_run_uri, mk_run_download_uri
 
 

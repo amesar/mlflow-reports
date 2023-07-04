@@ -1,6 +1,6 @@
 import click
 
-from mlflow_reports.client.http_client import MlflowHttpClient
+from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.common import MlflowReportsException
 from mlflow_reports.common import mlflow_utils
 from mlflow_reports.common import permissions_utils
@@ -16,7 +16,7 @@ from mlflow_reports.common.click_options import(
 from mlflow_reports.data import get_run, get_model_version
 from mlflow_reports.data import local_utils, link_utils
 
-http_client = MlflowHttpClient()
+http_client = get_mlflow_client()
 
 
 def get(
@@ -41,8 +41,12 @@ def enrich(reg_model, get_permissions=False):
     reg_model["tags"] = mlflow_utils.mk_tags_dict(reg_model.get("tags"))
     local_utils.adjust_ts(reg_model, [ "creation_timestamp", "last_updated_timestamp" ])
     link_utils.add_registered_model_links(reg_model)
-    for vr in reg_model["latest_versions"]:
-        get_model_version.enrich(vr)
+    versions = reg_model.get("latest_versions") # NOTE: In UC, this is null, otherwise an array
+    if versions:
+        for vr in versions:
+            get_model_version.enrich(vr)
+    else:
+        pass # TODO - all versions?
     if get_permissions and "id" in reg_model:  # if calling Databricks tracking server
         permissions_utils.add_model_permissions(reg_model)
     return reg_model

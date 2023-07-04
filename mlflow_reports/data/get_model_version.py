@@ -1,6 +1,6 @@
 import click
 
-from mlflow_reports.client.http_client import MlflowHttpClient
+from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.common import MlflowReportsException
 from mlflow_reports.common.model_version_utils import get_reg_model_download_uri, get_run_model_download_uri
 from mlflow_reports.common.click_options import(
@@ -14,7 +14,7 @@ from mlflow_reports.common.click_options import(
 from mlflow_reports.data import get_run as _get_run
 from mlflow_reports.data import local_utils, link_utils
 
-http_client = MlflowHttpClient()
+http_client = get_mlflow_client()
 
 
 def get(

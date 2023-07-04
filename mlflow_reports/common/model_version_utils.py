@@ -1,7 +1,7 @@
-from mlflow_reports.client.http_client import MlflowHttpClient
+from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.common import mlflow_utils
 
-http_client = MlflowHttpClient()
+http_client = get_mlflow_client()
 
 
 def split_model_uri(model_uri):

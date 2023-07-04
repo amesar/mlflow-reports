@@ -1,9 +1,10 @@
 from dataclasses import dataclass
 
 from mlflow.exceptions import RestException
-from mlflow_reports.client.http_client import MlflowHttpClient
+from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.common import MlflowReportsException
-http_client = MlflowHttpClient()
+
+http_client = get_mlflow_client()
 
 
 def get_experiment(exp_id_or_name):

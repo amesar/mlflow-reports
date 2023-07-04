@@ -1,7 +1,7 @@
-from mlflow_reports.client.http_client import MlflowHttpClient
+from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow.utils.databricks_utils import get_workspace_info_from_dbutils
 
-http_client = MlflowHttpClient()
+http_client = get_mlflow_client()
 
 _workspace_host, _workspace_id = get_workspace_info_from_dbutils()
 

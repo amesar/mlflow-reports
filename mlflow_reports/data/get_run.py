@@ -1,6 +1,6 @@
 import click
 
-from mlflow_reports.client.http_client import MlflowHttpClient
+from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.common import mlflow_utils, explode_utils
 from mlflow_reports.common.click_options import(
     opt_run_id,
@@ -11,7 +11,7 @@ from mlflow_reports.common.click_options import(
 )
 from mlflow_reports.data import local_utils, link_utils
 
-http_client = MlflowHttpClient()
+http_client = get_mlflow_client()
 
 
 def get(run_id, artifact_max_level=-1, get_raw=False):
