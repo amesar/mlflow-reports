@@ -266,9 +266,15 @@ def get_mlflow_client():
     """
     Returns either a UC-enabled client or not, depending if MLFLOW_REGISTRY_URI is set to 'databricks-uc://e2_demo'
     """
-    registry_uri = os.environ.get("MLFLOW_REGISTRY_URI")
-    client = UnityCatalogHttpClient() if registry_uri else MlflowHttpClient() 
-    return client
+    return UnityCatalogHttpClient() if is_unity_catalog() else MlflowHttpClient() 
+
+
+def is_unity_catalog():
+    UC_VALUE = "databricks-uc"
+    import mlflow
+    env_var = os.environ.get("MLFLOW_REGISTRY_URI")
+    api_val = mlflow.get_registry_uri()
+    return (env_var and env_var.startswith(UC_VALUE)) or (api_val and api_val.startswith(UC_VALUE))
 
 
 @click.command()
