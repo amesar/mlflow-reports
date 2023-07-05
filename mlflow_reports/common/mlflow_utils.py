@@ -105,3 +105,7 @@ def mk_tags_dict(tags_array):
     if tags_array is None:
         return {}
     return { x["key"]:x["value"] for x in tags_array }
+
+
+def is_unity_catalog_model(model_name):
+    return "." in model_name
