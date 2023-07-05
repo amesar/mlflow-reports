@@ -1,11 +1,67 @@
-# mlflow-reports
+# Mlflow Reports
 
-Reporting tools for MLflow.
+Solution  accelerator for MLflow model reports and displaying MLflow objects.
 
-Command line scripts to retrieve objects from the MLflow API.
+Two types of tools:
+* [Model reports](README_model_reports.md) - solution  accelerator to display all details of an MLflow model in markdown.
+* [MLflow object retrieval](README_objects.md) - returns JSON representation of MLflow object details.
+
+[Databricks notebooks](databricks_notebooks/README.md) versions of the scripts also available.
+
+Databricks Unity Catalog models are also supported (WIP).
+
+
+## Quick start
+
+```
+pip install git+https:///github.com/amesar/mlflow-reports/#egg=mlflow-reports
+
+```
+
+**MLflow Model Report**
+```
+model-report \
+  --model-uri models:/credit_adjudication/production \
+  --output-file model_report.md \
+  --output-data-file model_report.json
+```
+
+See a sample [model_report.md](samples/databricks/model_reports/credit_adjudication/report.md).
+
+**MLflow Object Retrieval**
+```
+get-mlflow-model \
+  --model-uri models:/credit_adjudication/3
+```
+```
+{         
+  "mlflow_model": {
+    "artifact_path": "model",
+    "databricks_runtime": "12.2.x-cpu-ml-scala2.12",
+    "flavors": {
+      "python_function": {
+        "env": {
+          "conda": "conda.yaml",
+          "virtualenv": "python_env.yaml"
+        },
+        "loader_module": "mlflow.sklearn",
+        "model_path": "model.pkl",
+        "predict_fn": "predict",
+        "python_version": "3.9.5"
+      },
+      "sklearn": {
+        "code": null,
+        "pickled_model": "model.pkl",
+        "serialization_format": "cloudpickle",
+        "sklearn_version": "1.0.2"
+      }
+    },
+```
 
 
 ## Setup 
+
+Standard stuff.
 
 ##### Step 1. Create a virtual environment.
 ```
@@ -27,56 +83,8 @@ cd mlflow-reports
 pip install -e .
 ```
 
-## Commands
-
-### Get run
-
-Get run details.
-* Source: [get_run.py](mlflow_reports/data/get_run.py).
-* Shows info, params, metrics and tags of a run.
-* Recursively lists run artifacts up to the specified level.
-
-**Example**
+##### Step 3. Enable Unity Catalog model registry if desired
 
 ```
-get-run
-  --run-id 4af184e8527a4f4a8fc563386807acb2 \
-  --artifact-max-level 5
+export MLFLOW_REGISTRY_URI=databricks-uc
 ```
-
-```
-{
-  "run": {
-    "info": {
-      "experiment_id": "2",
-      "run_name": "all_options",
-      "user_id": "andre",
-      "status": "FINISHED",
-      "start_time": 1687205142417,
-      "end_time": 1687205147505,
-      "_start_time": "2023-06-19 20:05:42",
-      "_end_time": "2023-06-19 20:05:48",
-      "_duration": 5.088
-. . .
-```
-
-**Usage**
-
-```
-get-run --help
-
-Options:
-Options:
-  --run-id TEXT                 Run ID  [required]
-  --artifact-max-level INTEGER  Number of artifact levels to recurse for run
-                                artifacts.  [default: 1]
-  --dump-raw BOOLEAN            Show raw JSON as received from API call.
-                                Ignore all other options.  [default: False]
-  --silent BOOLEAN              Do not display to stdout.  [default: False]
-  --output-file TEXT            JSON output file.
-```
-
-## Samples
-
-Run samples:
- * [run.json](samples/open_source/run/run.json) and [run_raw.json](samples/open_source/run/run_raw.json)
