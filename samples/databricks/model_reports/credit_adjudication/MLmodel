@@ -1,0 +1,31 @@
+artifact_path: model
+databricks_runtime: 12.2.x-cpu-ml-scala2.12
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.9.5
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.0.2
+mlflow_version: 2.1.1
+model_uuid: e38b5fefce844b31be8e371430557cfc
+run_id: 76031d22c5464dd99431e426b939e800
+signature:
+  inputs: '[{"name": "AGE", "type": "long"}, {"name": "CREDIT_AMOUNT", "type": "long"},
+    {"name": "DURATION", "type": "long"}, {"name": "PURPOSE_domestic appliances",
+    "type": "integer"}, {"name": "PURPOSE_furniture/equipment", "type": "integer"},
+    {"name": "PURPOSE_vacation/others", "type": "integer"}, {"name": "SEX_male", "type":
+    "integer"}, {"name": "HOUSING_own", "type": "integer"}, {"name": "SAVING_moderate",
+    "type": "integer"}, {"name": "SAVING_no_inf", "type": "integer"}, {"name": "SAVING_quite
+    rich", "type": "integer"}, {"name": "SAVING_rich", "type": "integer"}, {"name":
+    "CHECK_moderate", "type": "integer"}, {"name": "CHECK_no_inf", "type": "integer"},
+    {"name": "AGE_CAT_Young", "type": "integer"}]'
+  outputs: '[{"name": "RISK_EN", "type": "double"}]'
+utc_time_created: '2023-06-15 23:34:12.981982'
