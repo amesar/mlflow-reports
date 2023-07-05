@@ -61,6 +61,15 @@ class BaseHttpClient(metaclass=ABCMeta):
         pass
 
 
+    @abstractmethod
+    def get_api_uri(self):
+        pass
+
+    @abstractmethod
+    def get_token(self):
+        pass
+
+
 class HttpClient(BaseHttpClient):
     """ 
     Wrapper for HTTP calls for MLflow Databricks APIs.
@@ -146,15 +155,20 @@ class HttpClient(BaseHttpClient):
         return json.loads(self._delete(resource).text)
 
 
+    def get_api_uri(self):
+        return self.api_uri
+
+    def get_token(self):
+        return self.token
+
+
     def _mutator(self, method, resource, data=None):
         uri = self._mk_uri(resource)
         rsp = method(uri, headers=self._mk_headers(), data=data, timeout=_TIMEOUT)
         return self._check_response(rsp)
 
-
     def _json_dumps(self, data):
         return json.dumps(data) if data else None
-
 
     def _mk_headers(self):
         headers = { "User-Agent": USER_AGENT }
@@ -215,7 +229,6 @@ class UnityCatalogHttpClient(BaseHttpClient):
     def __init__(self, mlflow_client=None, uc_client=None):
         self._mlflow_client = mlflow_client or MlflowHttpClient()
         self._uc_client = uc_client or HttpClient("api/2.0/mlflow/unity-catalog")
-        self.token = self._mlflow_client.token # NOTE: needed to decide downstream if we are calling Databricks
 
 
     def _get_client(self, resource):
@@ -256,6 +269,12 @@ class UnityCatalogHttpClient(BaseHttpClient):
 
     def _delete(self, resource, data=None):
         return self._get_client(resource).delete(resource, data)
+
+    def get_api_uri(self):
+        return self._mlflow_client.get_api_uri()
+
+    def get_token(self):
+        return self._mlflow_client.get_token()
 
     def __repr__(self):
         msg = { "mlflow_client": str(self._mlflow_client), "uc_client": str(self._uc_client) }

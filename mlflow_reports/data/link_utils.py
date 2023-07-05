@@ -50,7 +50,7 @@ def _mk_mlflow_link():
     if _workspace_host: # inside Databricks, e.g. "https://c3-south.mist.databricks.com"
         mlflow_uri = f"{_workspace_host}#mlflow"
     else:
-        if not http_client.token: # calling OSS server
+        if not http_client.get_token(): # calling OSS server
             mlflow_uri += "#" # for open source
         else: # calling Databricks externally
             mlflow_uri += "#mlflow"
