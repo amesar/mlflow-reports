@@ -31,6 +31,7 @@ setup(
     ],
     entry_points = {
         "console_scripts": [
+            "mlflow-model-report = mlflow_reports.markdown.detailed_report:main",
             "get-run = mlflow_reports.data.get_run:main",
             "get-experiment = mlflow_reports.data.get_experiment:main",
             "get-model-version = mlflow_reports.data.get_model_version:main",

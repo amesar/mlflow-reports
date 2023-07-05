@@ -1,0 +1,391 @@
+{
+  "model_version": {
+    "name": "credit_adjudication",
+    "version": "3",
+    "creation_timestamp": 1686872066253,
+    "last_updated_timestamp": 1686872073462,
+    "user_id": "antoine.amend@databricks.com",
+    "current_stage": "Production",
+    "description": "This version of credit adjudication model was built for the purpose of DAIS summit demo. \nModel was co-developped between EY and Databricks, finding XGBClassifier as best fit model trained against 50 different experiments.\nAll experiments are tracked and available on MLFlow experiment tracker.",
+    "source": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac/76031d22c5464dd99431e426b939e800/artifacts/model",
+    "run_id": "76031d22c5464dd99431e426b939e800",
+    "status": "READY",
+    "tags": {
+      "Model complexity": "MEDIUM",
+      "Model explainability": "MEDIUM",
+      "Model selection": "HYPEROPT",
+      "Model type": "XGBClassifier"
+    },
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/credit_adjudication/versions/3",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/model-versions/get?name=credit_adjudication&version=3",
+    "_creation_timestamp": "2023-06-15 23:34:26",
+    "_last_updated_timestamp": "2023-06-15 23:34:33",
+    "_reg_model_download_uri": "dbfs:/databricks/mlflow-registry/417e414731e74e03b731fb3a63a3b4e4/models/model",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac/76031d22c5464dd99431e426b939e800/artifacts/model"
+  },
+  "run": {
+    "run": {
+      "info": {
+        "run_id": "76031d22c5464dd99431e426b939e800",
+        "run_uuid": "76031d22c5464dd99431e426b939e800",
+        "experiment_id": "bf024d57582f4c8cbf816151cc6e1bac",
+        "run_name": "credit adjudication",
+        "status": "FINISHED",
+        "start_time": 1686872052388,
+        "end_time": 1686872056211,
+        "artifact_uri": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac/76031d22c5464dd99431e426b939e800/artifacts",
+        "lifecycle_stage": "active",
+        "_start_time": "2023-06-15 23:34:12",
+        "_end_time": "2023-06-15 23:34:16",
+        "_duration": 3.823,
+        "_experiment_name": "/Repos/antoine.amend@databricks.com/mrm-generation/templates/Credit Adjudication - Example",
+        "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/bf024d57582f4c8cbf816151cc6e1bac/runs/76031d22c5464dd99431e426b939e800",
+        "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=76031d22c5464dd99431e426b939e800"
+      },
+      "data": {
+        "metrics": [
+          {
+            "key": "cv_accuracy",
+            "value": 0.7066666666666668,
+            "timestamp": 1686872064320,
+            "step": 0
+          },
+          {
+            "key": "cv_f1",
+            "value": 0.46731387638541333,
+            "timestamp": 1686872064539,
+            "step": 0
+          },
+          {
+            "key": "cv_precision",
+            "value": 0.5218130677484225,
+            "timestamp": 1686872064387,
+            "step": 0
+          },
+          {
+            "key": "cv_recall",
+            "value": 0.4360843347685453,
+            "timestamp": 1686872064451,
+            "step": 0
+          },
+          {
+            "key": "ks_pvalue",
+            "value": 0.0,
+            "timestamp": 1686872064880,
+            "step": 0
+          },
+          {
+            "key": "ks_statistic",
+            "value": 1.0,
+            "timestamp": 1686872064812,
+            "step": 0
+          }
+        ],
+        "params": [
+          {
+            "key": "base_score",
+            "value": "None"
+          },
+          {
+            "key": "booster",
+            "value": "None"
+          },
+          {
+            "key": "callbacks",
+            "value": "None"
+          },
+          {
+            "key": "colsample_bylevel",
+            "value": "None"
+          },
+          {
+            "key": "colsample_bynode",
+            "value": "None"
+          },
+          {
+            "key": "colsample_bytree",
+            "value": "None"
+          },
+          {
+            "key": "early_stopping_rounds",
+            "value": "None"
+          },
+          {
+            "key": "enable_categorical",
+            "value": "False"
+          },
+          {
+            "key": "eval_metric",
+            "value": "logloss"
+          },
+          {
+            "key": "feature_types",
+            "value": "None"
+          },
+          {
+            "key": "gamma",
+            "value": "None"
+          },
+          {
+            "key": "gpu_id",
+            "value": "None"
+          },
+          {
+            "key": "grow_policy",
+            "value": "None"
+          },
+          {
+            "key": "importance_type",
+            "value": "None"
+          },
+          {
+            "key": "interaction_constraints",
+            "value": "None"
+          },
+          {
+            "key": "learning_rate",
+            "value": "None"
+          },
+          {
+            "key": "max_bin",
+            "value": "None"
+          },
+          {
+            "key": "max_cat_threshold",
+            "value": "None"
+          },
+          {
+            "key": "max_cat_to_onehot",
+            "value": "None"
+          },
+          {
+            "key": "max_delta_step",
+            "value": "None"
+          },
+          {
+            "key": "max_depth",
+            "value": "None"
+          },
+          {
+            "key": "max_leaves",
+            "value": "None"
+          },
+          {
+            "key": "min_child_weight",
+            "value": "None"
+          },
+          {
+            "key": "missing",
+            "value": "nan"
+          },
+          {
+            "key": "monotone_constraints",
+            "value": "None"
+          },
+          {
+            "key": "n_estimators",
+            "value": 100
+          },
+          {
+            "key": "n_jobs",
+            "value": "None"
+          },
+          {
+            "key": "num_parallel_tree",
+            "value": "None"
+          },
+          {
+            "key": "objective",
+            "value": "binary:logistic"
+          },
+          {
+            "key": "predictor",
+            "value": "None"
+          },
+          {
+            "key": "random_state",
+            "value": "None"
+          },
+          {
+            "key": "reg_alpha",
+            "value": "None"
+          },
+          {
+            "key": "reg_lambda",
+            "value": "None"
+          },
+          {
+            "key": "sampling_method",
+            "value": "None"
+          },
+          {
+            "key": "scale_pos_weight",
+            "value": "None"
+          },
+          {
+            "key": "subsample",
+            "value": "None"
+          },
+          {
+            "key": "tree_method",
+            "value": "None"
+          },
+          {
+            "key": "use_label_encoder",
+            "value": "None"
+          },
+          {
+            "key": "validate_parameters",
+            "value": "None"
+          },
+          {
+            "key": "verbosity",
+            "value": 0
+          }
+        ],
+        "tags": {
+          "Model complexity": "MEDIUM",
+          "Model explainability": "MEDIUM",
+          "Model name": "XGBClassifier",
+          "mlflow.databricks.cluster.id": "0614-194712-2nyzmplk",
+          "mlflow.databricks.cluster.info": {
+            "cluster_name": "mrmgen",
+            "spark_version": "12.2.x-cpu-ml-scala2.12",
+            "node_type_id": "i3.xlarge",
+            "driver_node_type_id": "i3.xlarge",
+            "autotermination_minutes": 120,
+            "disk_spec": {
+              "disk_count": 0
+            },
+            "autoscale": {
+              "min_workers": 2,
+              "max_workers": 20,
+              "target_workers": 4
+            }
+          },
+          "mlflow.databricks.cluster.libraries": {
+            "installable": [],
+            "redacted": []
+          },
+          "mlflow.databricks.gitRepoCommit": "435fa512608b0a87fc33aedfbac2427b0c1d947b",
+          "mlflow.databricks.gitRepoProvider": "gitHub",
+          "mlflow.databricks.gitRepoReference": "dais",
+          "mlflow.databricks.gitRepoReferenceType": "branch",
+          "mlflow.databricks.gitRepoRelativePath": "templates/Credit Adjudication - Example",
+          "mlflow.databricks.gitRepoStatus": "unknown",
+          "mlflow.databricks.gitRepoUrl": "https://github.com/databricks-industry-solutions/fsi-mrm-generation.git",
+          "mlflow.databricks.notebook.commandID": "1630835003914618246_5442231573309100337_8e188548453f4c8e9188dda502e74938",
+          "mlflow.databricks.notebookID": 3022585156450040,
+          "mlflow.databricks.notebookPath": "/Repos/antoine.amend@databricks.com/mrm-generation/templates/Credit Adjudication - Example",
+          "mlflow.databricks.webappURL": "https://oregon.cloud.databricks.com",
+          "mlflow.databricks.workspaceID": 2556758628403379,
+          "mlflow.databricks.workspaceURL": "e2-demo-west.cloud.databricks.com",
+          "mlflow.log-model.history": [
+            {
+              "artifact_path": "model",
+              "signature": {
+                "inputs": [
+                  {
+                    "name": "AGE",
+                    "type": "long"
+                  },
+                  {
+                    "name": "CREDIT_AMOUNT",
+                    "type": "long"
+                  },
+                  {
+                    "name": "DURATION",
+                    "type": "long"
+                  },
+                  {
+                    "name": "PURPOSE_domestic appliances",
+                    "type": "integer"
+                  },
+                  {
+                    "name": "PURPOSE_furniture/equipment",
+                    "type": "integer"
+                  },
+                  {
+                    "name": "PURPOSE_vacation/others",
+                    "type": "integer"
+                  },
+                  {
+                    "name": "SEX_male",
+                    "type": "integer"
+                  },
+                  {
+                    "name": "HOUSING_own",
+                    "type": "integer"
+                  },
+                  {
+                    "name": "SAVING_moderate",
+                    "type": "integer"
+                  },
+                  {
+                    "name": "SAVING_no_inf",
+                    "type": "integer"
+                  },
+                  {
+                    "name": "SAVING_quite rich",
+                    "type": "integer"
+                  },
+                  {
+                    "name": "SAVING_rich",
+                    "type": "integer"
+                  },
+                  {
+                    "name": "CHECK_moderate",
+                    "type": "integer"
+                  },
+                  {
+                    "name": "CHECK_no_inf",
+                    "type": "integer"
+                  },
+                  {
+                    "name": "AGE_CAT_Young",
+                    "type": "integer"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "RISK_EN",
+                    "type": "double"
+                  }
+                ]
+              },
+              "flavors": {
+                "python_function": {
+                  "predict_fn": "predict",
+                  "model_path": "model.pkl",
+                  "loader_module": "mlflow.sklearn",
+                  "env": {
+                    "conda": "conda.yaml",
+                    "virtualenv": "python_env.yaml"
+                  },
+                  "python_version": "3.9.5"
+                },
+                "sklearn": {
+                  "pickled_model": "model.pkl",
+                  "sklearn_version": "1.0.2",
+                  "serialization_format": "cloudpickle",
+                  "code": null
+                }
+              },
+              "run_id": "76031d22c5464dd99431e426b939e800",
+              "model_uuid": "e38b5fefce844b31be8e371430557cfc",
+              "utc_time_created": "2023-06-15 23:34:12.981982",
+              "mlflow_version": "2.1.1",
+              "databricks_runtime": "12.2.x-cpu-ml-scala2.12"
+            }
+          ],
+          "mlflow.note.content": "A 10 fold cross-validation procedure was used to select the best model and hyperparameters across multiple techniques.\nOur model selection included XGBoost and K nearest neighbors and selected XGBClassifier as best fit.\nThis run was evaluated as our best run that maximizes `cross_val_score`.\n",
+          "mlflow.runName": "credit adjudication",
+          "mlflow.source.name": "/Repos/antoine.amend@databricks.com/mrm-generation/templates/Credit Adjudication - Example",
+          "mlflow.source.type": "NOTEBOOK",
+          "mlflow.user": "antoine.amend@databricks.com"
+        }
+      },
+      "inputs": {}
+    }
+  }
+}
