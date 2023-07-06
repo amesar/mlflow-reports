@@ -2,8 +2,7 @@
 # MAGIC %md ## README - mlflow-reports Databricks notebooks
 # MAGIC
 # MAGIC Model audit reports
-# MAGIC * [Detailed_Model_Report]($reports/Detailed_Model_Report)
-# MAGIC * [Summary_Report]($reports/Summary_Report) - WIP
+# MAGIC * [Detailed_Model_Report]($reports/Detailed_Model_Report) - full report of MLflow model and its related objects (run, model version, etc.)
 # MAGIC
 # MAGIC MLflow object dump notebooks
 # MAGIC * [MLflow_Model_Manager]($objects/MLflow_Model_Manager)
@@ -16,4 +15,4 @@
 # MAGIC Other
 # MAGIC * [Common]($Common)
 # MAGIC
-# MAGIC Last updated: 2023-06-29
+# MAGIC Last updated: 2023-07-06

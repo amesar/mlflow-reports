@@ -2,13 +2,17 @@
 # MAGIC %md ## Detailed MLflow Model Report
 # MAGIC
 # MAGIC **Overview**
-# MAGIC * Generates a markdown file for the detailed report for an MLflow model.
+# MAGIC * Generates a markdown file for a detailed report of an MLflow model.
 # MAGIC
 # MAGIC **Widgets**
 # MAGIC * `Model URI` - either the experiment name or the ID
 # MAGIC * `Get permissions` - dump run data if showing runs
 # MAGIC * `Output file` - output markdown file such as `model.md`
-# MAGIC * `Output data file` - output JSON file of API data used for report such as `model.json`
+# MAGIC * `Output data file` - output JSON file (e.g. `model.json`) of API data used to build the report
+# MAGIC
+# MAGIC **Sample files**
+# MAGIC * [report.md](https://github.com/amesar/mlflow-reports/blob/master/samples/databricks/model_reports/credit_adjudication/report.md) - Markdown model report
+# MAGIC * [report.json](https://github.com/amesar/mlflow-reports/blob/master/samples/databricks/model_reports/credit_adjudication/report.json) - MLflow API data used to generate the report
 
 # COMMAND ----------
 
@@ -52,7 +56,11 @@ assert_widget(output_file, "2. Output file")
 
 from mlflow_reports.markdown import detailed_report
 
-data = detailed_report.build_report(model_uri, get_permissions, output_file)
+data = detailed_report.build_report(
+    model_uri = model_uri, 
+    get_permissions = get_permissions, 
+    output_file = output_file
+)
 dump_as_json(data, output_data_file)
 
 # COMMAND ----------

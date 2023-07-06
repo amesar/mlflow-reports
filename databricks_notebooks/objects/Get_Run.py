@@ -1,7 +1,4 @@
 # Databricks notebook source
-
-# COMMAND ----------
-
 # MAGIC %md ## Get run with artifacts
 # MAGIC
 # MAGIC **Overview**
@@ -12,6 +9,8 @@
 # MAGIC * `Run ID`
 # MAGIC * `Artifact max level` - number of artifact levels to show
 # MAGIC * `Get raw` - get JSON as received from API request
+# MAGIC
+# MAGIC Sample: [run dump](https://github.com/amesar/mlflow-reports/blob/master/samples/databricks/mlflow_objects/runs/credit_adjudication.json).
 
 # COMMAND ----------
 
@@ -26,7 +25,6 @@ dbutils.widgets.dropdown("3. Get raw", "no", ["yes","no"])
 run_id = dbutils.widgets.get("1. Run ID")
 artifact_max_level = int(dbutils.widgets.get("2. Artifact max level"))
 get_raw = dbutils.widgets.get("3. Get raw") == "yes"
-
 
 print("run_id:", run_id)
 print("artifact_max_level:", artifact_max_level)
