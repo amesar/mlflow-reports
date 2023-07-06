@@ -16,7 +16,7 @@ from mlflow_reports.markdown.local_utils import newline_tweak, is_primitive, esc
 max_artifact_level = sys.maxsize
 
 
-def build_report(model_uri, get_permissions, output_file, output_data_file, show_as_json=False, show_manifest=False):
+def build_report(model_uri, get_permissions, output_file, output_data_file=None, show_as_json=False, show_manifest=False):
     """
     Main entry point for report
     """
