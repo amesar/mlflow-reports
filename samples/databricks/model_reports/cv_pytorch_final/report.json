@@ -1,0 +1,257 @@
+{
+  "manifest": {
+    "model_uri": "models:/cv pytorch final/production",
+    "source": "databricks://e2_demo",
+    "model_uris": {
+      "model_uri": "models:/cv pytorch final/production",
+      "run_uri": "runs:/e9e6fe6273e74e06a89f7ef63d4c563b/model",
+      "reg_model_download_uri": "dbfs:/databricks/mlflow-registry/c69f204760464640815335cbc9bd66f5/models/model",
+      "run_model_download_uri": "dbfs:/databricks/mlflow-tracking/4355293466307566/e9e6fe6273e74e06a89f7ef63d4c563b/artifacts/model"
+    },
+    "mlflow_version": "2.4.1",
+    "timestamp": "2023-07-02 11:06:57"
+  },
+  "mlflow_model": {
+    "artifact_path": "model",
+    "databricks_runtime": "12.2.x-cpu-ml-scala2.12",
+    "flavors": {
+      "python_function": {
+        "cloudpickle_version": "2.0.0",
+        "env": {
+          "conda": "conda.yaml",
+          "virtualenv": "python_env.yaml"
+        },
+        "loader_module": "mlflow.pyfunc.model",
+        "python_model": "python_model.pkl",
+        "python_version": "3.9.5"
+      }
+    },
+    "mlflow_version": "2.1.1",
+    "model_uuid": "59cdaebf976c42cabde59dc0c8734a0c",
+    "run_id": "e9e6fe6273e74e06a89f7ef63d4c563b",
+    "utc_time_created": "2023-06-22 21:50:28.846208"
+  },
+  "run": {
+    "info": {
+      "run_id": "e9e6fe6273e74e06a89f7ef63d4c563b",
+      "run_uuid": "e9e6fe6273e74e06a89f7ef63d4c563b",
+      "experiment_id": 4355293466307566,
+      "run_name": "cv pytorch final",
+      "status": "FINISHED",
+      "start_time": 1687470628444,
+      "end_time": 1687470636015,
+      "artifact_uri": "dbfs:/databricks/mlflow-tracking/4355293466307566/e9e6fe6273e74e06a89f7ef63d4c563b/artifacts",
+      "lifecycle_stage": "active",
+      "_start_time": "2023-06-22 21:50:28",
+      "_end_time": "2023-06-22 21:50:36",
+      "_duration": 7.571,
+      "_experiment_name": "/Users/john.doe@mycompany.com/computer_vision_foundations",
+      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/4355293466307566/runs/e9e6fe6273e74e06a89f7ef63d4c563b",
+      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=e9e6fe6273e74e06a89f7ef63d4c563b"
+    },
+    "data": {
+      "tags": {
+        "mlflow.databricks.cluster.id": "0622-201705-7xz0fslb",
+        "mlflow.databricks.cluster.info": {
+          "cluster_name": "job-1075127877828314-run-212001702-cvf_cluster",
+          "spark_version": "12.2.x-cpu-ml-scala2.12",
+          "node_type_id": "i3.xlarge",
+          "driver_node_type_id": "i3.xlarge",
+          "autotermination_minutes": 120,
+          "disk_spec": {},
+          "num_workers": 2
+        },
+        "mlflow.databricks.cluster.libraries": {
+          "installable": [],
+          "redacted": []
+        },
+        "mlflow.databricks.gitRepoCommit": "d7c0b15b07cce3eabbd99cd4c1b5cb90e3b6294d",
+        "mlflow.databricks.gitRepoProvider": "gitHub",
+        "mlflow.databricks.gitRepoReference": "",
+        "mlflow.databricks.gitRepoReferenceType": "branch",
+        "mlflow.databricks.gitRepoRelativePath": "04a_Model Deployment",
+        "mlflow.databricks.gitRepoStatus": "unknown",
+        "mlflow.databricks.gitRepoUrl": "https://github.com/databricks-industry-solutions/computer-vision-foundations",
+        "mlflow.databricks.jobID": 1075127877828314,
+        "mlflow.databricks.jobRunID": 212004127,
+        "mlflow.databricks.jobType": "notebook",
+        "mlflow.databricks.notebook.commandID": "8005624379433251498_8481276767484422642_job-1075127877828314-run-212004127-action-2759552360149555",
+        "mlflow.databricks.webappURL": "https://oregon.cloud.databricks.com",
+        "mlflow.databricks.workspaceID": 2556758628403379,
+        "mlflow.databricks.workspaceURL": "e2-demo-west.cloud.databricks.com",
+        "mlflow.log-model.history": [
+          {
+            "artifact_path": "model",
+            "flavors": {
+              "python_function": {
+                "cloudpickle_version": "2.0.0",
+                "loader_module": "mlflow.pyfunc.model",
+                "python_model": "python_model.pkl",
+                "env": {
+                  "conda": "conda.yaml",
+                  "virtualenv": "python_env.yaml"
+                },
+                "python_version": "3.9.5"
+              }
+            },
+            "run_id": "e9e6fe6273e74e06a89f7ef63d4c563b",
+            "model_uuid": "59cdaebf976c42cabde59dc0c8734a0c",
+            "utc_time_created": "2023-06-22 21:50:28.846208",
+            "mlflow_version": "2.1.1",
+            "databricks_runtime": "12.2.x-cpu-ml-scala2.12"
+          }
+        ],
+        "mlflow.runName": "cv pytorch final",
+        "mlflow.source.name": "jobs/1075127877828314/run/212004127",
+        "mlflow.source.type": "JOB",
+        "mlflow.user": "john.doe@mycompany.com"
+      }
+    },
+    "inputs": {}
+  },
+  "experiment": {
+    "experiment_id": 4355293466307566,
+    "name": "/Users/john.doe@mycompany.com/computer_vision_foundations",
+    "artifact_location": "dbfs:/databricks/mlflow-tracking/4355293466307566",
+    "lifecycle_stage": "active",
+    "last_update_time": 1687471289725,
+    "creation_time": 1660802155313,
+    "tags": {
+      "mlflow.ownerId": 5215232244814299,
+      "mlflow.experiment.sourceName": "/Users/john.doe@mycompany.com/computer_vision_foundations",
+      "mlflow.ownerEmail": "john.doe@mycompany.com",
+      "mlflow.experimentType": "MLFLOW_EXPERIMENT"
+    },
+    "_creation_time": "2022-08-18 05:55:55",
+    "_last_update_time": "2023-06-22 22:01:30",
+    "_tracking_uri": "databricks://e2_demo",
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/4355293466307566",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/experiments/get?experiment_id=4355293466307566",
+    "permissions": {
+      "permission_levels": [
+        {
+          "permission_level": "CAN_READ",
+          "description": "Can view the experiment"
+        },
+        {
+          "permission_level": "CAN_EDIT",
+          "description": "Can view, log runs, and edit the experiment"
+        },
+        {
+          "permission_level": "CAN_MANAGE",
+          "description": "Can view, log runs, edit, delete, and change permissions of the experiment"
+        }
+      ],
+      "permissions": {
+        "error": "HTTP status code: 403. Reason: Forbidden URL: https://e2-demo-west.cloud.databricks.com/api/2.0/permissions/experiments/4355293466307566. Params: None. Text: {\"error_code\":\"PERMISSION_DENIED\",\"message\":\"andre@mycompany.com does not have Owner permissions on /Users/john.doe@mycompany.com/computer_vision_foundations. Please contact the owner or an administrator for access.\"}"
+      }
+    }
+  },
+  "registered_model": {
+    "name": "cv pytorch final",
+    "creation_timestamp": 1660804625716,
+    "last_updated_timestamp": 1687470636332,
+    "user_id": "john.doe@mycompany.com",
+    "id": "235fe5ba3efa41cfb1a0ce0ba6a3dd18",
+    "permission_level": "CAN_MANAGE",
+    "tags": {},
+    "_creation_timestamp": "2022-08-18 06:37:06",
+    "_last_updated_timestamp": "2023-06-22 21:50:36",
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/cv pytorch final",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/registered-models/get?name=cv pytorch final",
+    "permissions": {
+      "permission_levels": [
+        {
+          "permission_level": "CAN_READ",
+          "description": "Can view the details of the registered model and its model versions, and use the model versions."
+        },
+        {
+          "permission_level": "CAN_EDIT",
+          "description": "Can view and edit the details of a registered model and its model versions (except stage changes), and add new model versions."
+        },
+        {
+          "permission_level": "CAN_MANAGE_STAGING_VERSIONS",
+          "description": "Can view and edit the details of a registered model and its model versions, add new model versions, and manage stage transitions between non-Production stages."
+        },
+        {
+          "permission_level": "CAN_MANAGE_PRODUCTION_VERSIONS",
+          "description": "Can view and edit the details of a registered model and its model versions, add new model versions, and manage stage transitions between any stages."
+        },
+        {
+          "permission_level": "CAN_MANAGE",
+          "description": "Can manage permissions on, view all details of, and perform all actions on the registered model and its model versions."
+        }
+      ],
+      "permissions": {
+        "object_id": "/registered-models/235fe5ba3efa41cfb1a0ce0ba6a3dd18",
+        "object_type": "registered-model",
+        "access_control_list": [
+          {
+            "group_name": "admins",
+            "all_permissions": [
+              {
+                "permission_level": "CAN_MANAGE",
+                "inherited": true,
+                "inherited_from_object": [
+                  "/registered-models/"
+                ]
+              }
+            ]
+          },
+          {
+            "group_name": "users",
+            "all_permissions": [
+              {
+                "permission_level": "CAN_MANAGE",
+                "inherited": true,
+                "inherited_from_object": [
+                  "/registered-models/"
+                ]
+              }
+            ]
+          },
+          {
+            "service_principal_name": "038455d4-e5ec-4544-b6cf-64d55b91fee1",
+            "display_name": "service-principal-e2-demo-west-ws-do-not-delete",
+            "all_permissions": [
+              {
+                "permission_level": "CAN_MANAGE",
+                "inherited": true,
+                "inherited_from_object": [
+                  "/registered-models/"
+                ]
+              }
+            ]
+          },
+          {
+            "user_name": "john.doe@mycompany.com",
+            "display_name": "Jan Doe",
+            "all_permissions": [
+              {
+                "permission_level": "CAN_MANAGE",
+                "inherited": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "model_version": {
+    "name": "cv pytorch final",
+    "version": "17",
+    "creation_timestamp": 1687470629740,
+    "last_updated_timestamp": 1687470636332,
+    "user_id": "john.doe@mycompany.com",
+    "current_stage": "Production",
+    "source": "dbfs:/databricks/mlflow-tracking/4355293466307566/e9e6fe6273e74e06a89f7ef63d4c563b/artifacts/model",
+    "run_id": "e9e6fe6273e74e06a89f7ef63d4c563b",
+    "status": "READY",
+    "_creation_timestamp": "2023-06-22 21:50:30",
+    "_last_updated_timestamp": "2023-06-22 21:50:36",
+    "_reg_model_download_uri": "dbfs:/databricks/mlflow-registry/c69f204760464640815335cbc9bd66f5/models/model",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/4355293466307566/e9e6fe6273e74e06a89f7ef63d4c563b/artifacts/model",
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/cv pytorch final/versions/17",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/model-versions/get?name=cv pytorch final&version=17"
+  }
+}

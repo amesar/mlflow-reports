@@ -1,0 +1,33 @@
+artifact_path: onnx-model
+databricks_runtime: 13.1.x-cpu-ml-scala2.12
+flavors:
+  onnx:
+    code: null
+    data: model.onnx
+    onnx_version: 1.12.0
+    providers:
+    - CUDAExecutionProvider
+    - CPUExecutionProvider
+  python_function:
+    data: model.onnx
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.onnx
+    python_version: 3.10.6
+mlflow_version: 2.3.1
+model_uuid: 39f9661f755e42278ddcb5583d3e03d4
+run_id: dfec96c410ef4d3d956bc2afcce8f1a9
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  type: dataframe
+signature:
+  inputs: '[{"name": "fixed_acidity", "type": "double"}, {"name": "volatile_acidity",
+    "type": "double"}, {"name": "citric_acid", "type": "double"}, {"name": "residual_sugar",
+    "type": "double"}, {"name": "chlorides", "type": "double"}, {"name": "free_sulfur_dioxide",
+    "type": "double"}, {"name": "total_sulfur_dioxide", "type": "double"}, {"name":
+    "density", "type": "double"}, {"name": "pH", "type": "double"}, {"name": "sulphates",
+    "type": "double"}, {"name": "alcohol", "type": "double"}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1]}}]'
+utc_time_created: '2023-06-02 14:37:30.859332'

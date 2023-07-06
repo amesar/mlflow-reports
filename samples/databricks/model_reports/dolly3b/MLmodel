@@ -1,0 +1,32 @@
+artifact_path: dolly3b
+databricks_runtime: 13.1.x-cpu-ml-scala2.12
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.transformers
+    pipeline: pipeline
+    python_version: 3.10.6
+  transformers:
+    code: null
+    components:
+    - tokenizer
+    instance_type: InstructionTextGenerationPipeline
+    pipeline: pipeline
+    pipeline_model_type: GPTNeoXForCausalLM
+    source_model_name: databricks/dolly-v2-3b
+    task: text-generation
+    tokenizer_type: GPTNeoXTokenizerFast
+    transformers_version: 4.28.1
+mlflow_version: 2.3.1
+model_uuid: c47df0c7b78341f8b631374c6ef49946
+run_id: abbe441c4d9f4b69a9943e4beb71ce89
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  type: dataframe
+signature:
+  inputs: '[{"type": "string"}]'
+  outputs: '[{"type": "string"}]'
+utc_time_created: '2023-06-13 06:53:44.178099'

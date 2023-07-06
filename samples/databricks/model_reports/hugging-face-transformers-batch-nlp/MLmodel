@@ -1,0 +1,33 @@
+artifact_path: pipeline
+databricks_runtime: 13.1.x-cpu-ml-scala2.12
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.transformers
+    model_binary: model
+    python_version: 3.10.6
+  transformers:
+    code: null
+    components:
+    - tokenizer
+    framework: pt
+    instance_type: SummarizationPipeline
+    model_binary: model
+    pipeline_model_type: BartForConditionalGeneration
+    source_model_name: sshleifer/distilbart-cnn-12-6
+    task: summarization
+    tokenizer_type: BartTokenizerFast
+    transformers_version: 4.28.1
+mlflow_version: 2.4.1
+model_uuid: 0d4a99f1bfe643aab0076b14d6361193
+run_id: 38c0395ef5694d6aae3766cf3e1731e9
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  type: dataframe
+signature:
+  inputs: '[{"type": "string"}]'
+  outputs: '[{"type": "string"}]'
+utc_time_created: '2023-06-12 20:47:29.862183'

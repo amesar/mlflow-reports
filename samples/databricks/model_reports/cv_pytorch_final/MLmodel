@@ -1,0 +1,15 @@
+artifact_path: model
+databricks_runtime: 12.2.x-cpu-ml-scala2.12
+flavors:
+  python_function:
+    cloudpickle_version: 2.0.0
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pyfunc.model
+    python_model: python_model.pkl
+    python_version: 3.9.5
+mlflow_version: 2.1.1
+model_uuid: 59cdaebf976c42cabde59dc0c8734a0c
+run_id: e9e6fe6273e74e06a89f7ef63d4c563b
+utc_time_created: '2023-06-22 21:50:28.846208'
