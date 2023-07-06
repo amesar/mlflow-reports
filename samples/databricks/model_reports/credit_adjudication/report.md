@@ -41,6 +41,7 @@ Contents
 |size_bytes|206,418|
 |databricks_runtime|12.2.x-cpu-ml-scala2.12|
 |time_created|2023-06-15 23:34:12|
+|report_time|2023-07-06 03:38:55|
   
 <b><font size="+1">MLflow Model URIs</font></b>  
 
@@ -138,7 +139,7 @@ Contents
 |_creation_timestamp|2023-06-15 23:14:43|
 |_last_updated_timestamp|2023-06-15 23:34:33|
 |_web_ui_link|https://e2-demo-west.cloud.databricks.com#mlflow/models/credit_adjudication|
-|_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow//registered-models/get?name=credit_adjudication|
+|_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/registered-models/get?name=credit_adjudication|
 
 ## Tags
   

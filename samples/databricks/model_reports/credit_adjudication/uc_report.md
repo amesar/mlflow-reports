@@ -41,6 +41,7 @@ Contents
 |size_bytes|206,418|
 |databricks_runtime|12.2.x-cpu-ml-scala2.12|
 |time_created|2023-06-15 23:34:12|
+|report_time|2023-07-06 03:42:09|
   
 <b><font size="+1">MLflow Model URIs</font></b>  
 
@@ -165,7 +166,7 @@ Contents
 |_reg_model_download_uri|s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/667c0c81-05ec-4bab-8357-454b1097b217/versions/9c148c5c-0006-40de-92a8-4dcf32105080|
 |_run_model_download_uri|dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac/76031d22c5464dd99431e426b939e800/artifacts/model|
 |_web_ui_link|https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models.credit_adjudication/version/1|
-|_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalogmodel-versions/get?name=andre.ml_models.credit_adjudication&version=1|
+|_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=andre.ml_models.credit_adjudication&version=1|
 
 ## Tags
   
@@ -191,7 +192,7 @@ Contents
 |_duration|3.823|
 |_experiment_name|/Repos/antoine.amend@databricks.com/mrm-generation/templates/Credit Adjudication - Example|
 |_web_ui_link|https://e2-demo-west.cloud.databricks.com#mlflow/experiments/bf024d57582f4c8cbf816151cc6e1bac/runs/76031d22c5464dd99431e426b939e800|
-|_api_link|{'mlflow_client': 'https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow', 'uc_client': 'https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog'}/runs/get?run_id=76031d22c5464dd99431e426b939e800|
+|_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=76031d22c5464dd99431e426b939e800|
 
 ## Params
   
@@ -360,7 +361,7 @@ Contents
 |_last_update_time|2023-06-15 23:34:12|
 |_tracking_uri|databricks://e2_demo|
 |_web_ui_link|https://e2-demo-west.cloud.databricks.com#mlflow/experiments/bf024d57582f4c8cbf816151cc6e1bac|
-|_api_link|{'mlflow_client': 'https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow', 'uc_client': 'https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog'}/experiments/get?experiment_id=bf024d57582f4c8cbf816151cc6e1bac|
+|_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/experiments/get?experiment_id=bf024d57582f4c8cbf816151cc6e1bac|
 
 ## Tags
 

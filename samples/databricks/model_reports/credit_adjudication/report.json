@@ -9,7 +9,7 @@
       "run_model_download_uri": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac/76031d22c5464dd99431e426b939e800/artifacts/model"
     },
     "mlflow_version": "2.4.1",
-    "timestamp": "2023-07-05 12:39:46"
+    "timestamp": "2023-07-06 03:38:55"
   },
   "mlflow_model": {
     "artifact_path": "model",
@@ -524,7 +524,7 @@
     "_creation_timestamp": "2023-06-15 23:14:43",
     "_last_updated_timestamp": "2023-06-15 23:34:33",
     "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/credit_adjudication",
-    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow//registered-models/get?name=credit_adjudication",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/registered-models/get?name=credit_adjudication",
     "permissions": {
       "permission_levels": [
         {
