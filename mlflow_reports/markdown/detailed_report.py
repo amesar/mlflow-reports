@@ -4,7 +4,7 @@ import copy
 from mdutils.mdutils import MdUtils
 
 from mlflow_reports.mlflow_model import mlflow_model_manager as model_manager
-from mlflow_reports.common import mlflow_utils, io_utils
+from mlflow_reports.common import mlflow_utils, io_utils, timestamp_utils
 from mlflow_reports.common.click_options import(
     opt_model_uri,
     opt_output_file,
@@ -67,7 +67,8 @@ def _build_overview_model(wf, data, show_manifest):
         "mlflow_version": data.get("mlflow_model").get("mlflow_version"),
         "size_bytes": f"{model_artifacts_size:,}",
         "databricks_runtime": data.get("mlflow_model").get("databricks_runtime",""),
-        "time_created": utc_time_created
+        "time_created": utc_time_created,
+        "report_time": timestamp_utils.ts_now_fmt_utc
     }
 
     wf.build_table(dct_mlflow_model, "MLflow Model", level=0)
