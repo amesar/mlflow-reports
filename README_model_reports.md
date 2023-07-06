@@ -4,31 +4,40 @@
 ## Overview
 
 **TLDR**
-* Commands to generate MLflow model reports.
+* Commands to generate MLflow model reports based upon the [MLmodel](https://www.mlflow.org/docs/latest/models.html#fields-in-the-mlmodel-format) file.
 * Keywords: model cards, model governance, model lineage, model auditing, regualted industries.
-* This work was inspired by a similar effort by the Databricks Industry Solutions - Financial Services:
+* This work was inspired by a similar effort from the Databricks Industry Solutions - Financial Services project:
   * [Model Risk Management, a true accelerator to corporate AI](https://www.databricks.com/blog/model-risk-management-true-accelerator-corporate-ai) - blog - 2023-05-23
   * https://github.com/databricks-industry-solutions/fsi-mrm-generation
 
 **Features**
-* Provides a comprehensive view of your entir model.
-* Can handle all standard MLflow model schemes such as `models:/`, `runs:/` or `dbfs:/`.
-* Besides a markdown report file, can save a JSON file representing all the data used to build the report.
-* Handles varying forms of MLflow models - feature store models, AutoML models, both notebook and workspace experiments and models run as jobs.
-
-**Sample report files**
-* [model_report.md](samples/databricks/model_reports/credit_adjudication/report.md) - Markdown model report.
-* [uc_model_report.md](samples/databricks/model_reports/credit_adjudication/uc_report.md) - Unity Catalog version of above.
-* [model_report.json](samples/databricks/model_reports/credit_adjudication/report.json) - JSON API data used to generate the report.
+* Provides a comprehensive view of an entire MLflow model.
+* Handles all standard MLflow model schemes such as `models:/`, `runs:/` or `dbfs:/`.
+* Generates a markdown model report file
+* Saves (optional) a JSON file representing all the data used to build the report.
+* Handles varying kinds of MLflow models - feature store models, AutoML models, both notebook and workspace experiments and models run as jobs.
 
 **Future enhancements**
 * Create an executive summary report as well as other views for different stakeholders (C-suite, ML data scientists, MLOps staff, 3rd party regulators).
-* Generate other representations of model report such as PDF and HTML.
+* Generate other representations of a model report such as PDF and HTML.
 * Develop abstraction of higher-level data structure to represent the entire model graph so rendering can work from this instead of raw API calls to lower-level objects.
 * Persist model reports and the accompanying JSON data files. This creates a point-in-time snapshot for model governance purposes.
 * Integrate better with Databricks Feature Store data lineage. Dependent upon a public Feature Store API.
-* Integrate with Databricks Unity Catalog lineage features.
+* Integrate fully with Databricks Unity Catalog model features.
+* Integrate with Databricks Unity Catalog data lineage features.
 
+## Model Report Samples 
+
+| Model | Markdown | JSON | MLmodel |  Note
+|-------|----------|------|---|--|
+| credit_adjudication | [link](samples/databricks/model_reports/credit_adjudication/report.md) | [link](samples/databricks/model_reports/credit_adjudication/report.json) | [link](samples/databricks/model_reports/credit_adjudication/MLmodel) | Git Repo notebook experiment |
+| credit_adjudication (UC)| [link](samples/databricks/model_reports/credit_adjudication/uc_report.md) | [link](samples/databricks/model_reports/credit_adjudication/uc_report.json) |  | Unity Catalog model
+| dolly3b | [link](samples/databricks/model_reports/dolly3b/report.md) | [link](samples/databricks/model_reports/dolly3b/report.json) | [link](samples/databricks/model_reports/dolly3b/MLmodel) | LLM, Notebook experiment
+| hugging-face-transformers-batch-nlp | [link](samples/databricks/model_reports/hugging-face-transformers-batch-nlp/report.md) | [link](samples/databricks/model_reports/hugging-face-transformers-batch-nlp/report.json) | [link](samples/databricks/model_reports/hugging-face-transformers-batch-nlp/MLmodel) | LLM, Notebook experiment
+| Sklearn_Wine_ONNX_ws | [link](samples/databricks/model_reports/Sklearn_Wine_ONNX_ws/report.md) | [link](samples/databricks/model_reports/Sklearn_Wine_ONNX_ws/report.json) | [link](samples/databricks/model_reports/Sklearn_Wine_ONNX_ws/MLmodel) | Workspace experiment  
+| Sklearn_Wine_AutoML | [link](samples/databricks/model_reports/AutoML_Wine_2023_05_21/report.md) | [link](samples/databricks/model_reports/AutoML_Wine_2023_05_21/report.json) | [link](samples/databricks/model_reports/AutoML_Wine_2023_05_21/MLmodel) | AutoML experiment
+| Sklearn_Wine_Feature_Store | [link](samples/databricks/model_reports/Sklearn_Wine_FS_ws/report.md) | [link](samples/databricks/model_reports/Sklearn_Wine_FS_ws/report.json) | [link](samples/databricks/model_reports/Sklearn_Wine_FS_ws) | Feature Store model
+| cv_pytorch_final | [link](samples/databricks/model_reports/cv_pytorch_final/report.md) | [link](samples/databricks/model_reports/cv_pytorch_final/report.json) | [link](samples/databricks/model_reports/cv_pytorch_final/MLmodel) | Job experiment
 
 ## Report structure
 
