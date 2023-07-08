@@ -109,3 +109,23 @@ def mk_tags_dict(tags_array):
 
 def is_unity_catalog_model(model_name):
     return "." in model_name
+
+
+_is_calling_into_databricks = None
+             
+def is_calling_databricks(dbx_client=None):
+    """
+    Are we calling Databricks MLflow? Check by making call to Databricks-specific API endpoint.
+    """
+    from mlflow_reports.client.http_client import DatabricksHttpClient
+    
+    global _is_calling_into_databricks
+    dbx_client = dbx_client or DatabricksHttpClient()
+    if _is_calling_into_databricks is None:
+        try:
+            dbx_client.get("workspace/get-status")
+            return False # Should never get here
+        except MlflowReportsException as e:
+            _is_calling_into_databricks =  e.http_status_code == 400
+            print(f"Calling Databricks MLflow: {_is_calling_into_databricks}")
+    return _is_calling_into_databricks

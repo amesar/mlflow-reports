@@ -3,6 +3,7 @@ import click
 from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.common import MlflowReportsException
 from mlflow_reports.common.model_version_utils import get_reg_model_download_uri, get_run_model_download_uri
+from mlflow_reports.common import mlflow_utils
 from mlflow_reports.common.click_options import(
     opt_registered_model,
     opt_get_run,
@@ -38,12 +39,13 @@ def get(
 
 
 def enrich(version):
-    try:
-        rsp = http_client.get(f"transition-requests/list", {"name": version['name'], "version": version['version']} )
-        if rsp:
-            version["transition_requests"] = rsp["requests"]
-    except MlflowReportsException as e:
-        print(f"WARNING: Databricks API call failed: {e}")
+    if mlflow_utils.is_calling_databricks():
+        try:
+            rsp = http_client.get(f"transition-requests/list", {"name": version['name'], "version": version['version']} )
+            if rsp:
+                version["transition_requests"] = rsp["requests"]
+        except MlflowReportsException as e:
+            print(f"WARNING: Databricks API call failed: {e}")
 
     local_utils.mk_tags(version)
     local_utils.adjust_ts(version, [ "creation_timestamp", "last_updated_timestamp" ])

@@ -1,5 +1,4 @@
 import click
-from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.mlflow_model import mlflow_model_utils
 from mlflow_reports.data import get_run as _get_run
 from mlflow_reports.data import get_experiment as _get_experiment
@@ -11,8 +10,6 @@ from mlflow_reports.common.click_options import(
     opt_output_file
 )
 from mlflow_reports.data import local_utils
-
-http_client = get_mlflow_client()
 
 
 def get(
