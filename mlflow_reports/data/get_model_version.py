@@ -66,11 +66,6 @@ def _get_vr_run(dct, artifact_max_level):
 @click.command()
 @opt_registered_model
 @opt_model_version
-#@click.option("--version",
-     #help="Registered model version.",
-     #type=str,
-     #required=True
-#)
 @opt_get_run
 @opt_artifact_max_level 
 @opt_get_raw
