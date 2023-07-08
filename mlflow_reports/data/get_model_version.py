@@ -6,6 +6,7 @@ from mlflow_reports.common.model_version_utils import get_reg_model_download_uri
 from mlflow_reports.common import mlflow_utils
 from mlflow_reports.common.click_options import(
     opt_registered_model,
+    opt_model_version,
     opt_get_run,
     opt_artifact_max_level,
     opt_get_raw,
@@ -64,11 +65,12 @@ def _get_vr_run(dct, artifact_max_level):
 
 @click.command()
 @opt_registered_model
-@click.option("--version",
-     help="Registered model version.",
-     type=str,
-     required=True
-)   
+@opt_model_version
+#@click.option("--version",
+     #help="Registered model version.",
+     #type=str,
+     #required=True
+#)
 @opt_get_run
 @opt_artifact_max_level 
 @opt_get_raw

@@ -33,6 +33,14 @@ def opt_registered_model(function):
     )(function)
     return function
 
+def opt_model_version(function):
+    function = click.option("--version",
+        help="Model version.",
+        type=str,
+        required=True
+    )(function)
+    return function
+
 
 def opt_get_run(function):
     function = click.option("--get-run",
