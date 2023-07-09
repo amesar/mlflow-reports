@@ -13,7 +13,7 @@ from mlflow_reports.common.click_options import(
     opt_output_file
 )
 from mlflow_reports.data import get_run, get_model_version
-from mlflow_reports.data import local_utils, link_utils
+from mlflow_reports.data import data_utils, link_utils
 
 
 def get(
@@ -36,15 +36,14 @@ def get(
 
 def enrich(reg_model, get_permissions=False):
     reg_model["tags"] = mlflow_utils.mk_tags_dict(reg_model.get("tags"))
-    local_utils.adjust_ts(reg_model, [ "creation_timestamp", "last_updated_timestamp" ])
+    data_utils.adjust_ts(reg_model, [ "creation_timestamp", "last_updated_timestamp" ])
     link_utils.add_registered_model_links(reg_model)
     versions = reg_model.get("latest_versions") # NOTE: In UC, this is null, otherwise an array
     if versions:
         for vr in versions:
             get_model_version.enrich(vr)
     else:
-        pass # TODO - all versions
-        print(f"WARNING: Unity catalog registered model '{reg_model['name']}' does got support 'latest_versions()'")
+        print(f"WARNING: Unity catalog registered model '{reg_model['name']}' does got support 'latest_versions()'") # TODO - all versions
     if get_permissions and "id" in reg_model:  # if calling Databricks tracking server
         permissions_utils.add_model_permissions(reg_model)
     return reg_model
@@ -80,7 +79,7 @@ def main(registered_model, get_run, artifact_max_level, get_permissions, get_raw
     for k,v in locals().items():
         print(f"  {k}: {v}")
     dct = get(registered_model, get_run, artifact_max_level, get_permissions, get_raw)
-    local_utils.dump_object(dct, output_file, silent)
+    data_utils.dump_object(dct, output_file, silent)
 
 
 if __name__ == "__main__":

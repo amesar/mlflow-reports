@@ -21,7 +21,7 @@ from mlflow_reports.data import (
     get_experiment ,
     get_run 
 )
-from mlflow_reports.data import local_utils # TODO: move to common
+from mlflow_reports.data import data_utils
 from . mlflow_model_utils import mk_run_uri, mk_run_download_uri
 
 
@@ -132,7 +132,7 @@ def main(model_uri, get_permissions, get_raw, silent, output_file):
     for k,v in locals().items():
         print(f"  {k}: {v}")
     dct = get(model_uri, get_permissions, get_raw)
-    local_utils.dump_object(dct, output_file, silent)
+    data_utils.dump_object(dct, output_file, silent)
 
 
 if __name__ == "__main__":

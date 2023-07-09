@@ -9,7 +9,7 @@ from mlflow_reports.common.click_options import(
     opt_silent,
     opt_output_file
 )
-from mlflow_reports.data import local_utils
+from mlflow_reports.data import data_utils
 
 
 def get(
@@ -76,7 +76,7 @@ def main(model_uri, get_run, get_raw, silent, output_file):
     for k,v in locals().items():
         print(f"  {k}: {v}")
     dct = get(model_uri, get_run, get_raw)
-    local_utils.dump_object(dct, output_file, silent)
+    data_utils.dump_object(dct, output_file, silent)
 
 
 if __name__ == "__main__":

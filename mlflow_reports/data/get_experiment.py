@@ -16,7 +16,7 @@ from mlflow_reports.common.click_options import(
     opt_silent,
     opt_output_file
 )
-from mlflow_reports.data import local_utils, link_utils
+from mlflow_reports.data import data_utils, link_utils
 
 http_client = get_mlflow_client()
 
@@ -46,8 +46,8 @@ def get(
 
 
 def enrich(exp, get_permissions=False):
-    local_utils.mk_tags(exp)
-    local_utils.adjust_ts(exp, ["creation_time", "last_update_time"])
+    data_utils.mk_tags(exp)
+    data_utils.adjust_ts(exp, ["creation_time", "last_update_time"])
     exp["_tracking_uri"] = mlflow.get_tracking_uri()
     link_utils.add_experiment_links(exp)
     explode_utils.explode_json(exp)
@@ -68,7 +68,7 @@ def main(experiment_id_or_name, get_runs, get_permissions, artifact_max_level, g
     for k,v in locals().items():
         print(f"  {k}: {v}")
     dct = get(experiment_id_or_name, get_runs, get_permissions, artifact_max_level, get_raw)
-    local_utils.dump_object(dct, output_file, silent) 
+    data_utils.dump_object(dct, output_file, silent) 
 
 if __name__ == "__main__":
     main()

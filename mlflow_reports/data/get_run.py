@@ -9,7 +9,7 @@ from mlflow_reports.common.click_options import(
     opt_silent,
     opt_output_file
 )
-from mlflow_reports.data import local_utils, link_utils
+from mlflow_reports.data import data_utils, link_utils
 
 http_client = get_mlflow_client()
 
@@ -37,7 +37,7 @@ def enrich(run, artifact_max_level=-1):
 
     _adjust_times(run)
     link_utils.add_run_links(run)
-    local_utils.mk_tags(run["data"])
+    data_utils.mk_tags(run["data"])
     explode_utils.explode_json(dct)
 
     return dct
@@ -45,7 +45,7 @@ def enrich(run, artifact_max_level=-1):
 
 def _adjust_times(run):
     info = run["info"]
-    local_utils.adjust_ts(info,["start_time", "end_time"])
+    data_utils.adjust_ts(info,["start_time", "end_time"])
     start = info.get("start_time")
     end = info.get("end_time")
     if start and end:
@@ -67,7 +67,7 @@ def main(run_id, artifact_max_level, get_raw, silent, output_file):
     for k,v in locals().items():
         print(f"  {k}: {v}")
     dct = get(run_id, artifact_max_level, get_raw)
-    local_utils.dump_object(dct, output_file, silent)
+    data_utils.dump_object(dct, output_file, silent)
 
 
 if __name__ == "__main__":

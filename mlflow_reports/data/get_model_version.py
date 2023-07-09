@@ -14,7 +14,7 @@ from mlflow_reports.common.click_options import(
     opt_output_file
 )
 from mlflow_reports.data import get_run as _get_run
-from mlflow_reports.data import local_utils, link_utils
+from mlflow_reports.data import data_utils, link_utils
 
 http_client = get_mlflow_client()
 
@@ -48,8 +48,8 @@ def enrich(version):
         except MlflowReportsException as e:
             print(f"WARNING: Databricks API call failed: {e}")
 
-    local_utils.mk_tags(version)
-    local_utils.adjust_ts(version, [ "creation_timestamp", "last_updated_timestamp" ])
+    data_utils.mk_tags(version)
+    data_utils.adjust_ts(version, [ "creation_timestamp", "last_updated_timestamp" ])
     version["_reg_model_download_uri"] = get_reg_model_download_uri(version)
     version["_run_model_download_uri"] = get_run_model_download_uri(version)
     link_utils.add_model_version_links(version)
@@ -76,7 +76,7 @@ def main(registered_model, version, get_run, artifact_max_level, get_raw, silent
     for k,v in locals().items():
         print(f"  {k}: {v}")
     dct = get(registered_model, version, get_run, artifact_max_level, get_raw)
-    local_utils.dump_object(dct, output_file, silent)
+    data_utils.dump_object(dct, output_file, silent)
 
 
 if __name__ == "__main__":
