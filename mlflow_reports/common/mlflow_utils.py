@@ -37,7 +37,7 @@ def get_registered_model(model_name, get_permissions):
             model = http_client.get(resource, {"name": model_name} )
             return model["registered_model_databricks"]
         except MlflowReportsException:
-            print(f"WARNING: Databricks call failed: '{http_client}/{resource}'")
+            print(f"WARNING: Databricks call failed: '{http_client.get_api_uri()}/{resource}'")
             model = http_client.get(f"registered-models/get", {"name": model_name} )
             return model["registered_model"]
     else:
