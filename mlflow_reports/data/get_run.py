@@ -10,6 +10,7 @@ from mlflow_reports.common.click_options import(
     opt_output_file
 )
 from mlflow_reports.data import data_utils, link_utils
+from mlflow_reports.data import enriched_tags
 
 http_client = get_mlflow_client()
 
@@ -50,9 +51,9 @@ def _adjust_times(run):
     end = info.get("end_time")
     if start and end:
         dur = float(int(end) - int(start))/1000
-        info["_duration"] = dur
+        info[enriched_tags.TAG_DURATION] = dur
     exp = http_client.get("experiments/get", {"experiment_id": info["experiment_id"]}) ["experiment"]
-    run["info"]["_experiment_name"] = exp["name"]
+    run["info"][enriched_tags.TAG_EXPERIMENT_NAME] = exp["name"]
 
 
 @click.command()

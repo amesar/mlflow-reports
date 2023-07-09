@@ -15,6 +15,7 @@ from mlflow_reports.common.click_options import(
 )
 from mlflow_reports.data import get_run as _get_run
 from mlflow_reports.data import data_utils, link_utils
+from mlflow_reports.data import enriched_tags
 
 http_client = get_mlflow_client()
 
@@ -51,8 +52,8 @@ def enrich(version):
     data_utils.mk_tags(version)
     data_utils.adjust_ts(version, [ "creation_timestamp", "last_updated_timestamp" ])
     data_utils.adjust_uc(version)
-    version["_reg_model_download_uri"] = get_reg_model_download_uri(version)
-    version["_run_model_download_uri"] = get_run_model_download_uri(version)
+    version[enriched_tags.TAG_REG_MODEL_DOWNLOAD_URI] = get_reg_model_download_uri(version)
+    version[enriched_tags.TAG_RUN_MODEL_DOWNLOAD_URI] = get_run_model_download_uri(version)
     link_utils.add_model_version_links(version)
 
 

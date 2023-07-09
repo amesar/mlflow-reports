@@ -12,8 +12,7 @@ from mlflow_reports.common.click_options import(
 )
 from mlflow_reports.markdown.report_factory import ReportFactory, TAG_COLUMNS
 from mlflow_reports.markdown.local_utils import newline_tweak, is_primitive, escape_col
-
-max_artifact_level = sys.maxsize
+from mlflow_reports.data import enriched_tags
 
 
 def build_report(model_uri, get_permissions, output_file, output_data_file=None, show_as_json=False, show_manifest=False):
@@ -61,7 +60,7 @@ def _build_overview_model(wf, data, show_manifest):
     utc_time_created = utc_time.split(".")[0]
     manifest = data.get("manifest")
     reg_model = data.get("registered_model")
-    is_unity_catalog = reg_model.get("_is_unity_catalog") if reg_model else ""
+    is_unity_catalog = reg_model.get(enriched_tags.TAG_IS_UNITY_CATALOG) if reg_model else ""
     dct_mlflow_model = {
         "model_uri": manifest.get("model_uri"),
         "flavor": flavor.get("flavor"),
@@ -85,7 +84,7 @@ def _build_overview_model(wf, data, show_manifest):
 
 
 def _calc_model_size(run_id, model_artifact_path): 
-    model_artifacts = mlflow_utils.build_artifacts(run_id, model_artifact_path, max_artifact_level)
+    model_artifacts = mlflow_utils.build_artifacts(run_id, model_artifact_path, sys.maxsize)
     return model_artifacts["summary"]["num_bytes"]
 
 

@@ -17,6 +17,7 @@ from mlflow_reports.common.click_options import(
     opt_output_file
 )
 from mlflow_reports.data import data_utils, link_utils
+from mlflow_reports.data import enriched_tags
 
 http_client = get_mlflow_client()
 
@@ -48,7 +49,7 @@ def get(
 def enrich(exp, get_permissions=False):
     data_utils.mk_tags(exp)
     data_utils.adjust_ts(exp, ["creation_time", "last_update_time"])
-    exp["_tracking_uri"] = mlflow.get_tracking_uri()
+    exp[enriched_tags.TAG_TRACKING_URI] = mlflow.get_tracking_uri()
     link_utils.add_experiment_links(exp)
     explode_utils.explode_json(exp)
     if get_permissions:
