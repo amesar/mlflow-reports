@@ -63,7 +63,7 @@ def _fetch_runs(reg_model, artifact_max_level):
                 print(f"ERROR: Cannot get run for {msg}. Exception: {e}")
         dct["version_runs"] = runs
     else:
-        print(f"WARNING: Unity catalog registered model '{reg_model['name']}' does got support 'latest_versions()'")
+        print(f"WARNING: Unity catalog registered model '{reg_model['name']}' does got support 'RegisteredModel.latest_versions()'")
     return dct
 
 

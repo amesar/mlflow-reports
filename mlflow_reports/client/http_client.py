@@ -187,10 +187,8 @@ class HttpClient(BaseHttpClient):
 
     def _check_response(self, rsp, params=None):
         if rsp.status_code < 200 or rsp.status_code > 299:
-            raise MlflowReportsException(
-                f"HTTP status code: {rsp.status_code}. Reason: {rsp.reason} URL: {rsp.url}. Params: {params}. Text: {rsp.text}",
-                rsp.status_code
-            )
+            msg = { "http_status_code": rsp.status_code, "uri": rsp.url, "params": params, "response": rsp.text }
+            raise MlflowReportsException(json.dumps(msg), http_status_code = rsp.status_code)
         return rsp
 
     def __repr__(self):

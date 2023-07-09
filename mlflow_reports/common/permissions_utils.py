@@ -36,12 +36,12 @@ def _call(resource, root=None):
 
         # Calling OSS Mlflow
         if e.http_status_code == 404:
-            print(f"WARNING: Databricks API call failed: '{dbx_client}/{resource}'") 
+            print(f"WARNING: Databricks permissions API call failed: {e}")
             return None
 
         # Calling Databricks but apparently a notebook experiment fails for get permissions
         else: 
-            print(f"ERROR: Databricks call failed: {e}")
+            print(f"WARNING: Databricks permissions API call failed: {e}")
             error = { "error": str(e) }
             if root:
                 error = { root: error }
