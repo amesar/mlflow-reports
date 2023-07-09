@@ -23,3 +23,8 @@ def adjust_ts(dct, keys):
             dct[f"_{key}"] = fmt_ts_millis(int(ts))
     for k in keys:
         format_ts(dct, k)
+
+
+def adjust_uc(reg_model_or_version):
+    model_name = reg_model_or_version.get("name")
+    reg_model_or_version["_is_unity_catalog"] = mlflow_utils.is_unity_catalog_model(model_name)

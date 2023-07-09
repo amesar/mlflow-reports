@@ -50,6 +50,7 @@ def enrich(version):
 
     data_utils.mk_tags(version)
     data_utils.adjust_ts(version, [ "creation_timestamp", "last_updated_timestamp" ])
+    data_utils.adjust_uc(version)
     version["_reg_model_download_uri"] = get_reg_model_download_uri(version)
     version["_run_model_download_uri"] = get_run_model_download_uri(version)
     link_utils.add_model_version_links(version)

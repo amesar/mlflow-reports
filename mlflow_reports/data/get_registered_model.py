@@ -37,6 +37,7 @@ def get(
 def enrich(reg_model, get_permissions=False):
     reg_model["tags"] = mlflow_utils.mk_tags_dict(reg_model.get("tags"))
     data_utils.adjust_ts(reg_model, [ "creation_timestamp", "last_updated_timestamp" ])
+    data_utils.adjust_uc(reg_model)
     link_utils.add_registered_model_links(reg_model)
     versions = reg_model.get("latest_versions") # NOTE: In UC, this is null, otherwise an array
     if versions:

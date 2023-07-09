@@ -60,6 +60,8 @@ def _build_overview_model(wf, data, show_manifest):
     utc_time = data.get("mlflow_model").get("utc_time_created")
     utc_time_created = utc_time.split(".")[0]
     manifest = data.get("manifest")
+    reg_model = data.get("registered_model")
+    is_unity_catalog = reg_model.get("_is_unity_catalog") if reg_model else ""
     dct_mlflow_model = {
         "model_uri": manifest.get("model_uri"),
         "flavor": flavor.get("flavor"),
@@ -67,6 +69,7 @@ def _build_overview_model(wf, data, show_manifest):
         "mlflow_version": data.get("mlflow_model").get("mlflow_version"),
         "size_bytes": f"{model_artifacts_size:,}",
         "databricks_runtime": data.get("mlflow_model").get("databricks_runtime",""),
+        "is_unity_catalog": is_unity_catalog,
         "time_created": utc_time_created,
         "report_time": timestamp_utils.ts_now_fmt_utc
     }
