@@ -43,7 +43,8 @@ def enrich(reg_model, get_permissions=False):
         for vr in versions:
             get_model_version.enrich(vr)
     else:
-        pass # TODO - all versions?
+        pass # TODO - all versions
+        print(f"WARNING: Unity catalog registered model '{reg_model['name']}' does got support 'latest_versions()'")
     if get_permissions and "id" in reg_model:  # if calling Databricks tracking server
         permissions_utils.add_model_permissions(reg_model)
     return reg_model
@@ -52,13 +53,17 @@ def enrich(reg_model, get_permissions=False):
 def _fetch_runs(reg_model, artifact_max_level):
     dct = { "registered_model": reg_model }
     runs = {}
-    for vr in reg_model["latest_versions"]:
-        try:
-            runs[vr["version"]] = get_run.get(vr["run_id"], artifact_max_level=artifact_max_level) 
-        except MlflowReportsException as e:
-            msg = { "model": vr["name"], "version": vr["version"], "run_id": vr["run_id"] }
-            print(f"ERROR: Cannot get run for {msg}. Exception: {e}")
-    dct["version_runs"] = runs
+    vrs = reg_model.get("latest_versions")
+    if vrs:
+        for vr in vrs:
+            try:
+                runs[vr["version"]] = get_run.get(vr["run_id"], artifact_max_level=artifact_max_level) 
+            except MlflowReportsException as e:
+                msg = { "model": vr["name"], "version": vr["version"], "run_id": vr["run_id"] }
+                print(f"ERROR: Cannot get run for {msg}. Exception: {e}")
+        dct["version_runs"] = runs
+    else:
+        print(f"WARNING: Unity catalog registered model '{reg_model['name']}' does got support 'latest_versions()'")
     return dct
 
 
