@@ -23,3 +23,23 @@ def dump_as_json(dct, output_file=None, sort_keys=None):
         print(">> output_file:",output_file)
         with open(output_file, "w", encoding="utf-8") as f:
             f.write(content)
+
+# COMMAND ----------
+
+import mlflow
+
+def show_mlflow_uris(msg):
+    print(f"{msg}:")
+    print("  mlflow.get_tracking_uri:", mlflow.get_tracking_uri())
+    print("  mlflow.get_registry_uri:", mlflow.get_registry_uri())
+    #print("  mlflowClient.tracking_uri:", client.tracking_uri)
+    #print("  mlflowClient.registry_uri:", client._registry_uri)
+
+# COMMAND ----------
+
+def activate_unity_catalog(activate):
+    if activate:
+        mlflow.set_registry_uri("databricks-uc")
+        show_mlflow_uris("After Unity Catalog activation")
+    #else:
+        #show_mlflow_uris("No Unity Catalog activation")

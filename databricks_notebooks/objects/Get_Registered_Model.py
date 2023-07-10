@@ -9,6 +9,7 @@
 # MAGIC * `Artifact max level` - number of artifact levels to show
 # MAGIC * `Get permissions` - dump run data if showing runs
 # MAGIC * `Get raw` - get JSON as received from API request
+# MAGIC * `Unity Catalog` - use Unity Catalog
 
 # COMMAND ----------
 
@@ -21,22 +22,27 @@ dbutils.widgets.dropdown("2. Get version run", "no", ["yes","no"])
 dbutils.widgets.text("3. Artifact max level", "1")
 dbutils.widgets.dropdown("4. Get permissions", "yes", ["yes","no"])
 dbutils.widgets.dropdown("5. Get raw", "no", ["yes","no"])
+dbutils.widgets.dropdown("6. Unity Catalog", "no", ["yes","no"])
 
 reg_model_name = dbutils.widgets.get("1. Registered model")
 get_run = dbutils.widgets.get("2. Get version run") == "yes"
 artifact_max_level = int(dbutils.widgets.get("3. Artifact max level"))
 get_permissions = dbutils.widgets.get("4. Get permissions") == "yes"
 get_raw = dbutils.widgets.get("5. Get raw") == "yes"
+use_uc = dbutils.widgets.get("6. Unity Catalog") == "yes"
 
 print("reg_model_name:", reg_model_name)
 print("get_run:", get_run)
 print("artifact_max_level:", artifact_max_level)
 print("get_permissions:", get_permissions)
 print("get_raw:", get_raw)
+print("use_uc:", use_uc)
 
 # COMMAND ----------
 
 assert_widget(reg_model_name, "1. Registered model")
+
+activate_unity_catalog(use_uc)
 
 # COMMAND ----------
 
