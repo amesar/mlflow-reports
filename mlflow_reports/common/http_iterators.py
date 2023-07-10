@@ -4,14 +4,14 @@ class BaseIterator():
     """
     Base class to iterate for 'search' methods that return PageList.
     """
-    def __init__(self, client, resource, max_results=None, filter=None, http_method=None, filter_field_name="filter_string"):
+    def __init__(self, client, resource, max_results=None, filter=None, http_method=None):
         self.client = client
         self.resource = resource
         self.filter = filter
         self.idx = 0
         self.paged_list = None
         self.kwargs = {}
-        if filter: self.kwargs[filter_field_name] = filter
+        if filter: self.kwargs["filter"] = filter
         if max_results: self.kwargs["max_results"] = max_results
         self.http_method = http_method
 
@@ -79,7 +79,7 @@ class SearchRegisteredModelsIterator(BaseIterator):
             print(model)
     """
     def __init__(self, client, max_results=None, filter=None):
-        super().__init__(client,"registered-models", max_results=max_results, filter=filter, filter_field_name="filter")
+        super().__init__(client,"registered-models", max_results=max_results, filter=filter)
 
 
 class SearchModelVersionsIterator(BaseIterator):
