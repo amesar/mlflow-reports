@@ -69,6 +69,15 @@ def opt_get_registered_model(function):
     )(function)
     return function
 
+def opt_get_versions(function):
+    function = click.option("--get-versions",
+        help="Get model versions.",
+        type=bool,
+        default=False,
+        show_default=True
+    )(function)
+    return function
+
 def opt_get_runs(function):
     function = click.option("--get-runs",
         help="Get runs.",
