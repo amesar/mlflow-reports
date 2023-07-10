@@ -5,7 +5,7 @@
 # MAGIC * Gets the metadata of an MLflow model from the MLmodel file.
 # MAGIC
 # MAGIC **Widgets**
-# MAGIC * `Model URI` - either the experiment name or the ID
+# MAGIC * `Model URI` - model URI such as `models:/my-model/1` or `runs:/18121205149219141865/model`
 # MAGIC * `Get run` - get run of the experiment
 # MAGIC * `Get raw` - get JSON as received from API request
 # MAGIC * `Unity Catalog` - use Unity Catalog

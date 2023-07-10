@@ -5,7 +5,7 @@
 # MAGIC * Gets the expanded view of an MLflow model from the MLmodel file. An "expanded view" contains all the key objects associated with an MLflow model.
 # MAGIC
 # MAGIC **Widgets**
-# MAGIC * `Model URI` - either the experiment name or the ID
+# MAGIC * `Model URI` - model URI such as `models:/my-model/1` or `runs:/18121205149219141865/model`
 # MAGIC * `Get run` - get run of the experiment
 # MAGIC * `Get raw` - get JSON as received from API request
 # MAGIC * `Unity Catalog` - use Unity Catalog
@@ -62,6 +62,7 @@ dump_as_json(rsp)
 
 # COMMAND ----------
 
+import pandas as pd
 uris = rsp["manifest"]["model_uris"]
 data = [ [k,v] for k,v in uris.items() ]
 df = pd.DataFrame(data, columns = ["URI type", "URI"])
