@@ -85,7 +85,7 @@ In addition a customer data scheme is available to load from a JSON file:
 _Standard_
 ```
 mlflow-model-report \
-  --model-uri models:/credit_adjudication/3
+  --model-uri models:/credit_adjudication/3 \
   --output-file credit_adjudication.md \
   --output-data-file credit_adjudication.json
 ```
@@ -108,7 +108,6 @@ mlflow-model-report \
 ```
 mlflow-model-report --help
 
-Options:
 Options:
   --model-uri TEXT           Model URI such as 'models:/my-model/123' or
                              'runs:/123/my-model'.  [required]
