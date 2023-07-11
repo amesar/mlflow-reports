@@ -9,7 +9,7 @@
       "run_model_download_uri": "dbfs:/databricks/mlflow-tracking/2668333326915882/7ee5e476cc964a99beec2f4269f8e811/artifacts/model"
     },
     "mlflow_version": "2.4.1",
-    "timestamp": "2023-07-10 04:19:40"
+    "timestamp": "2023-07-11 03:16:38"
   },
   "mlflow_model": {
     "artifact_path": "model",
@@ -390,7 +390,67 @@
     "_last_update_time": "2023-07-08 04:53:21",
     "_tracking_uri": "databricks://e2_demo",
     "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/2668333326915882",
-    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/experiments/get?experiment_id=2668333326915882"
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/experiments/get?experiment_id=2668333326915882",
+    "permissions": {
+      "permission_levels": [
+        {
+          "permission_level": "CAN_READ",
+          "description": "Can view the experiment"
+        },
+        {
+          "permission_level": "CAN_EDIT",
+          "description": "Can view, log runs, and edit the experiment"
+        },
+        {
+          "permission_level": "CAN_MANAGE",
+          "description": "Can view, log runs, edit, delete, and change permissions of the experiment"
+        }
+      ],
+      "permissions": {
+        "object_id": "/experiments/2668333326915882",
+        "object_type": "mlflowExperiment",
+        "access_control_list": [
+          {
+            "service_principal_name": "038455d4-e5ec-4544-b6cf-64d55b91fee1",
+            "display_name": "service-principal-e2-demo-west-ws-do-not-delete",
+            "all_permissions": [
+              {
+                "permission_level": "CAN_MANAGE",
+                "inherited": true,
+                "inherited_from_object": [
+                  "/directories/"
+                ]
+              }
+            ]
+          },
+          {
+            "user_name": "andre@mycompany.com",
+            "display_name": "Andre",
+            "all_permissions": [
+              {
+                "permission_level": "CAN_MANAGE",
+                "inherited": true,
+                "inherited_from_object": [
+                  "/directories/767933989557963"
+                ]
+              }
+            ]
+          },
+          {
+            "group_name": "admins",
+            "all_permissions": [
+              {
+                "permission_level": "CAN_MANAGE",
+                "inherited": true,
+                "inherited_from_object": [
+                  "/directories/"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
   },
   "registered_model": {
     "name": "andre.ml_models2.sklearn_wine_best",
@@ -409,7 +469,24 @@
     "_last_updated_timestamp": "2023-07-09 03:11:08",
     "_is_unity_catalog": true,
     "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models2.sklearn_wine_best",
-    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=andre.ml_models2.sklearn_wine_best"
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=andre.ml_models2.sklearn_wine_best",
+    "permissions": {
+      "permissions": {},
+      "effective_permissions": {
+        "privilege_assignments": [
+          {
+            "principal": "andre@mycompany.com",
+            "privileges": [
+              {
+                "privilege": "EXECUTE",
+                "inherited_from_type": "SCHEMA",
+                "inherited_from_name": "andre.ml_models2"
+              }
+            ]
+          }
+        ]
+      }
+    }
   },
   "model_version": {
     "name": "andre.ml_models2.sklearn_wine_best",

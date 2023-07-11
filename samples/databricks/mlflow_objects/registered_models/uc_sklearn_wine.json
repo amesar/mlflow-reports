@@ -17,7 +17,23 @@
     "_is_unity_catalog": true,
     "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models2.sklearn_wine_best",
     "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=andre.ml_models2.sklearn_wine_best",
-    "permissions": "TODO"
+    "permissions": {
+      "permissions": {},
+      "effective_permissions": {
+        "privilege_assignments": [
+          {
+            "principal": "andre@mycompany.com",
+            "privileges": [
+              {
+                "privilege": "EXECUTE",
+                "inherited_from_type": "SCHEMA",
+                "inherited_from_name": "andre.ml_models2"
+              }
+            ]
+          }
+        ]
+      }
+    }
   },
   "versions": [
     {
