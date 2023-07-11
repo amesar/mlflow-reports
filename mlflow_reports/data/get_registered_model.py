@@ -50,17 +50,14 @@ def enrich(reg_model, get_permissions=False):
     filter = f"name = '{model_name}'"
     versions = SearchModelVersionsIterator(mlflow_client, filter=filter)
     versions = list(versions)
-    #reg_model["versions"] = versions
     for vr in versions:
         get_model_version.enrich(vr)
 
-    if mlflow_utils.is_unity_catalog_model(model_name):
-        reg_model["permissions"] = "TODO"
-    else:
+    if not mlflow_utils.is_unity_catalog_model(model_name):
         for vr in reg_model.get("latest_versions"):
             get_model_version.enrich(vr)
-        if get_permissions and mlflow_utils.is_calling_databricks():
-            permissions_utils.add_model_permissions(reg_model)
+    if get_permissions and mlflow_utils.is_calling_databricks():
+        permissions_utils.add_model_permissions(reg_model)
     return versions
 
 
