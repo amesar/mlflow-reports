@@ -33,8 +33,8 @@
 
 dbutils.widgets.text("1. Model URI", "")
 dbutils.widgets.dropdown("2. Get permissions", "yes", ["yes","no"])
-dbutils.widgets.text("3. Output file", "")
-dbutils.widgets.text("4. Output data file", "model.md")
+dbutils.widgets.text("3. Output file", "model.md")
+dbutils.widgets.text("4. Output data file", "")
 dbutils.widgets.dropdown("5. Unity Catalog", "no", ["yes","no"])
 
 model_uri = dbutils.widgets.get("1. Model URI")
