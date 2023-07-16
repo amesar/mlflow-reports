@@ -1,0 +1,81 @@
+{
+  "registered_model": {
+    "name": "credit_adjudication",
+    "creation_timestamp": 1686870883318,
+    "last_updated_timestamp": 1686872073462,
+    "user_id": "antoine.amend@databricks.com",
+    "description": "Co-developped with EY, This model is a simple example of how organisations could standardize their approach to AI by defining a series of steps that any data science team ought to address prior to a model validation. Although not exhaustive, this shows that most of the questions required by IVU process for a given use case (Credit adjudication) could be addressed upfront to reduce the friction between regulatory imposed silos, increase model validation success rate and drammatically reduce time from exploration to productionization of AI use cases.",
+    "latest_versions": [
+      {
+        "name": "credit_adjudication",
+        "version": "2",
+        "creation_timestamp": 1686871509181,
+        "last_updated_timestamp": 1686872073298,
+        "user_id": "antoine.amend@databricks.com",
+        "current_stage": "Archived",
+        "description": "This version of credit adjudication model was built for the purpose of DAIS summit demo. \nModel was co-developped between EY and Databricks, finding XGBClassifier as best fit model trained against 50 different experiments.\nAll experiments are tracked and available on MLFlow experiment tracker.",
+        "source": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac/346591717c9c40fcadd0df1e8ac98161/artifacts/model",
+        "run_id": "346591717c9c40fcadd0df1e8ac98161",
+        "status": "READY",
+        "tags": [
+          {
+            "key": "Model complexity",
+            "value": "MEDIUM"
+          },
+          {
+            "key": "Model explainability",
+            "value": "MEDIUM"
+          },
+          {
+            "key": "Model selection",
+            "value": "HYPEROPT"
+          },
+          {
+            "key": "Model type",
+            "value": "XGBClassifier"
+          }
+        ]
+      },
+      {
+        "name": "credit_adjudication",
+        "version": "3",
+        "creation_timestamp": 1686872066253,
+        "last_updated_timestamp": 1686872073462,
+        "user_id": "antoine.amend@databricks.com",
+        "current_stage": "Production",
+        "description": "This version of credit adjudication model was built for the purpose of DAIS summit demo. \nModel was co-developped between EY and Databricks, finding XGBClassifier as best fit model trained against 50 different experiments.\nAll experiments are tracked and available on MLFlow experiment tracker.",
+        "source": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac/76031d22c5464dd99431e426b939e800/artifacts/model",
+        "run_id": "76031d22c5464dd99431e426b939e800",
+        "status": "READY",
+        "tags": [
+          {
+            "key": "Model complexity",
+            "value": "MEDIUM"
+          },
+          {
+            "key": "Model explainability",
+            "value": "MEDIUM"
+          },
+          {
+            "key": "Model selection",
+            "value": "HYPEROPT"
+          },
+          {
+            "key": "Model type",
+            "value": "XGBClassifier"
+          }
+        ]
+      }
+    ],
+    "tags": [
+      {
+        "key": "Model materiality",
+        "value": "HIGH"
+      },
+      {
+        "key": "Model review",
+        "value": "REQUESTED"
+      }
+    ]
+  }
+}

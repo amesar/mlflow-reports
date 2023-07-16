@@ -1,0 +1,36 @@
+{
+  "experiment": {
+    "experiment_id": "bf024d57582f4c8cbf816151cc6e1bac",
+    "name": "/Repos/antoine.amend@databricks.com/mrm-generation/templates/Credit Adjudication - Example",
+    "artifact_location": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac",
+    "lifecycle_stage": "active",
+    "last_update_time": 1686872052388,
+    "creation_time": 1686761701458,
+    "tags": [
+      {
+        "key": "mlflow.experiment.sourceType",
+        "value": "REPO_NOTEBOOK"
+      },
+      {
+        "key": "mlflow.ownerId",
+        "value": "3658755248564160"
+      },
+      {
+        "key": "mlflow.experiment.sourceName",
+        "value": "/Repos/antoine.amend@databricks.com/mrm-generation/templates/Credit Adjudication - Example"
+      },
+      {
+        "key": "mlflow.ownerId",
+        "value": "3658755248564160"
+      },
+      {
+        "key": "mlflow.ownerEmail",
+        "value": "antoine.amend@databricks.com"
+      },
+      {
+        "key": "mlflow.experiment.sourceId",
+        "value": "3022585156450040"
+      }
+    ]
+  }
+}
