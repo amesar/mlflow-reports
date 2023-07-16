@@ -28,9 +28,10 @@ def get(
         get_permissions = False, 
         get_raw = False, 
     ):
-    reg_model = mlflow_utils.get_registered_model(model_name, get_permissions)
     if get_raw:
-        return { "registered_model": reg_model }
+        return mlflow_client.get("registered-models/get", { "name": model_name })
+    
+    reg_model = mlflow_utils.get_registered_model(model_name, get_permissions)
     dct = { "registered_model": reg_model }
     if get_versions:
         dct["versions"] = enrich(reg_model, get_permissions)
