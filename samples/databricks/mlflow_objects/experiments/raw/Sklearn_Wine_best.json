@@ -1,0 +1,44 @@
+{
+  "experiment": {
+    "experiment_id": "2668333326915655",
+    "name": "/Users/andre@mycompany.com/experiments/best/Sklearn_Wine_repo",
+    "artifact_location": "dbfs:/databricks/mlflow-tracking/2668333326915655",
+    "lifecycle_stage": "active",
+    "last_update_time": 1689485462094,
+    "creation_time": 1688788527131,
+    "tags": [
+      {
+        "key": "exp_info",
+        "value": "Best_experiment_run"
+      },
+      {
+        "key": "mlflow.ownerId",
+        "value": "4566812440727830"
+      },
+      {
+        "key": "timestamp",
+        "value": "2023-07-16 05:24:04"
+      },
+      {
+        "key": "version_mlflow",
+        "value": "2.4.2"
+      },
+      {
+        "key": "mlflow.experiment.sourceName",
+        "value": "/Users/andre@mycompany.com/experiments/best/Sklearn_Wine_repo"
+      },
+      {
+        "key": "mlflow.ownerId",
+        "value": "4566812440727830"
+      },
+      {
+        "key": "mlflow.ownerEmail",
+        "value": "andre@mycompany.com"
+      },
+      {
+        "key": "mlflow.experimentType",
+        "value": "MLFLOW_EXPERIMENT"
+      }
+    ]
+  }
+}

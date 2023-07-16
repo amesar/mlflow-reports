@@ -1,0 +1,20 @@
+{
+  "model_version": {
+    "name": "Sklearn_Wine_best",
+    "version": "1",
+    "creation_timestamp": 1689485470786,
+    "last_updated_timestamp": 1689485649646,
+    "user_id": "andre@mycompany.com",
+    "current_stage": "None",
+    "description": "Sklearn_Wine_best model_version",
+    "source": "dbfs:/databricks/mlflow-tracking/2668333326915655/f2bd24cf48f5461a85f626cd6ab1b47b/artifacts/model",
+    "run_id": "f2bd24cf48f5461a85f626cd6ab1b47b",
+    "status": "READY",
+    "tags": [
+      {
+        "key": "model_info",
+        "value": "best reg model-version"
+      }
+    ]
+  }
+}
