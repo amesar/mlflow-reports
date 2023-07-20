@@ -30,7 +30,7 @@ Contents
 
 ## Confusion matrix
   
-![](/Users/andre/git/andre/mlflow-reports/wheel/dbx/out/mrmgen_matrix.png)
+![](mrmgen_matrix.png)
 ## Sensitivity
   
-![](/Users/andre/git/andre/mlflow-reports/wheel/dbx/out/mrmgen_sensitivity.png)
+![](mrmgen_sensitivity.png)
