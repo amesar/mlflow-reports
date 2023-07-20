@@ -1,0 +1,300 @@
+{
+  "model_version": {
+    "name": "andre.ml_models2.sklearn_wine_best",
+    "version": "1",
+    "creation_timestamp": 1688792018396,
+    "last_updated_timestamp": 1688872290474,
+    "user_id": "andre@mycompany.com",
+    "description": "My best sklearn_wine comment",
+    "source": "dbfs:/databricks/mlflow-tracking/2668333326915882/7ee5e476cc964a99beec2f4269f8e811/artifacts/model",
+    "run_id": "7ee5e476cc964a99beec2f4269f8e811",
+    "run_tracking_server_id": "2556758628403379",
+    "status": "READY",
+    "storage_location": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/2a88e828-a618-4a93-8491-d1d7bc645403/versions/33bf5aa4-9b93-4bc2-a554-8c8618dd22c9",
+    "aliases": [
+      {
+        "alias": "prod",
+        "version": "1"
+      }
+    ],
+    "_creation_timestamp": "2023-07-08 04:53:38",
+    "_last_updated_timestamp": "2023-07-09 03:11:30",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/2a88e828-a618-4a93-8491-d1d7bc645403/versions/33bf5aa4-9b93-4bc2-a554-8c8618dd22c9",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/2668333326915882/7ee5e476cc964a99beec2f4269f8e811/artifacts/model",
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models2.sklearn_wine_best/version/1",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=andre.ml_models2.sklearn_wine_best&version=1"
+  },
+  "run": {
+    "run": {
+      "info": {
+        "run_id": "7ee5e476cc964a99beec2f4269f8e811",
+        "run_uuid": "7ee5e476cc964a99beec2f4269f8e811",
+        "experiment_id": 2668333326915882,
+        "run_name": "Best_Reference_Run_UC",
+        "status": "FINISHED",
+        "start_time": 1688792000629,
+        "end_time": 1688792019958,
+        "artifact_uri": "dbfs:/databricks/mlflow-tracking/2668333326915882/7ee5e476cc964a99beec2f4269f8e811/artifacts",
+        "lifecycle_stage": "active",
+        "_start_time": "2023-07-08 04:53:21",
+        "_end_time": "2023-07-08 04:53:40",
+        "_duration": 19.329,
+        "_experiment_name": "/Users/andre@mycompany.com/experiments/best/Sklearn_Wine_repo_uc",
+        "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/2668333326915882/runs/7ee5e476cc964a99beec2f4269f8e811",
+        "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=7ee5e476cc964a99beec2f4269f8e811"
+      },
+      "data": {
+        "metrics": [
+          {
+            "key": "r2",
+            "value": 0.1553172302194683,
+            "timestamp": 1688792019768,
+            "step": 0
+          },
+          {
+            "key": "rmse",
+            "value": 0.7986004372118107,
+            "timestamp": 1688792019565,
+            "step": 0
+          }
+        ],
+        "params": [
+          {
+            "key": "max_depth",
+            "value": 1
+          }
+        ],
+        "tags": {
+          "algorithm": "<class 'sklearn.tree._classes.DecisionTreeRegressor'>",
+          "data_source": "andre.ml_data.winequality_white",
+          "input_example": "True",
+          "log_input": "True",
+          "mlflow.databricks.cluster.id": "0414-154233-qm0df4rx",
+          "mlflow.databricks.cluster.info": {
+            "cluster_name": "andre_ML_13.1",
+            "spark_version": "13.2.x-cpu-ml-scala2.12",
+            "node_type_id": "i3.xlarge",
+            "driver_node_type_id": "i3.xlarge",
+            "autotermination_minutes": 120,
+            "disk_spec": {
+              "disk_count": 0
+            },
+            "num_workers": 1
+          },
+          "mlflow.databricks.cluster.libraries": {
+            "installable": [
+              {
+                "jar": "dbfs:/home/andre@mycompany.com/lib/jars/PrintArgs.jar"
+              },
+              {
+                "whl": "dbfs:/home/andre@mycompany.com/work/jobs/sklearn_wine/mlflow_sklearn_wine-0.0.1-py3-none-any.whl"
+              }
+            ],
+            "redacted": []
+          },
+          "mlflow.databricks.gitRepoCommit": "8bc7a70e5c75acf20c368ee7b463b14a525236b4",
+          "mlflow.databricks.gitRepoProvider": "gitHub",
+          "mlflow.databricks.gitRepoReference": "master",
+          "mlflow.databricks.gitRepoReferenceType": "branch",
+          "mlflow.databricks.gitRepoRelativePath": "databricks/notebooks/basic/Sklearn_Wine",
+          "mlflow.databricks.gitRepoStatus": "unknown",
+          "mlflow.databricks.gitRepoUrl": "https://github.com/amesar/mlflow-examples",
+          "mlflow.databricks.notebook.commandID": "6785241734622852263_7667615984189449245_2df0651ed9d14281be1e96075526d35d",
+          "mlflow.databricks.notebookID": 3336498746241054,
+          "mlflow.databricks.notebookPath": "/Repos/andre@mycompany.com/public-mlflow-examples/databricks/notebooks/basic/Sklearn_Wine",
+          "mlflow.databricks.notebookRevisionID": 1688792020378,
+          "mlflow.databricks.webappURL": "https://oregon.cloud.databricks.com",
+          "mlflow.databricks.workspaceID": 2556758628403379,
+          "mlflow.databricks.workspaceURL": "e2-demo-west.cloud.databricks.com",
+          "mlflow.log-model.history": [
+            {
+              "artifact_path": "model",
+              "saved_input_example_info": {
+                "artifact_path": "input_example.json",
+                "type": "dataframe",
+                "pandas_orient": "split"
+              },
+              "signature": {
+                "inputs": [
+                  {
+                    "type": "double",
+                    "name": "fixed_acidity"
+                  },
+                  {
+                    "type": "double",
+                    "name": "volatile_acidity"
+                  },
+                  {
+                    "type": "double",
+                    "name": "citric_acid"
+                  },
+                  {
+                    "type": "double",
+                    "name": "residual_sugar"
+                  },
+                  {
+                    "type": "double",
+                    "name": "chlorides"
+                  },
+                  {
+                    "type": "double",
+                    "name": "free_sulfur_dioxide"
+                  },
+                  {
+                    "type": "double",
+                    "name": "total_sulfur_dioxide"
+                  },
+                  {
+                    "type": "double",
+                    "name": "density"
+                  },
+                  {
+                    "type": "double",
+                    "name": "pH"
+                  },
+                  {
+                    "type": "double",
+                    "name": "sulphates"
+                  },
+                  {
+                    "type": "double",
+                    "name": "alcohol"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "type": "tensor",
+                    "tensor-spec": {
+                      "dtype": "float64",
+                      "shape": [
+                        -1
+                      ]
+                    }
+                  }
+                ]
+              },
+              "flavors": {
+                "python_function": {
+                  "predict_fn": "predict",
+                  "model_path": "model.pkl",
+                  "loader_module": "mlflow.sklearn",
+                  "env": {
+                    "conda": "conda.yaml",
+                    "virtualenv": "python_env.yaml"
+                  },
+                  "python_version": "3.10.6"
+                },
+                "sklearn": {
+                  "pickled_model": "model.pkl",
+                  "sklearn_version": "1.2.2",
+                  "serialization_format": "cloudpickle",
+                  "code": null
+                }
+              },
+              "run_id": "7ee5e476cc964a99beec2f4269f8e811",
+              "model_uuid": "3d22615565ae4f5f896d3a05072b552f",
+              "utc_time_created": "2023-07-08 04:53:25.446742",
+              "mlflow_version": "2.4.1",
+              "databricks_runtime": "13.2.x-cpu-ml-scala2.12"
+            }
+          ],
+          "mlflow.runName": "Best_Reference_Run_UC",
+          "mlflow.source.name": "/Repos/andre@mycompany.com/public-mlflow-examples/databricks/notebooks/basic/Sklearn_Wine",
+          "mlflow.source.type": "NOTEBOOK",
+          "mlflow.user": "andre@mycompany.com",
+          "run_name": "Best_Reference_Run_UC",
+          "save_signature": "True",
+          "sparkDatasourceInfo": [
+            {
+              "path": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/tables/fb9f1fbf-156a-4a91-8ea3-4a8e58d7b1bf",
+              "version": "0",
+              "format": "delta"
+            }
+          ],
+          "timestamp": "2023-07-08 04:53:16",
+          "version.DATABRICKS_RUNTIME_VERSION": 13.2,
+          "version.mlflow": "2.4.1",
+          "version.python": "3.10.6",
+          "version.sklearn": "1.2.2"
+        }
+      },
+      "inputs": {
+        "dataset_inputs": [
+          {
+            "tags": [
+              {
+                "key": "mlflow.data.context",
+                "value": "training"
+              }
+            ],
+            "dataset": {
+              "name": "winequality-white",
+              "digest": "4a361360",
+              "source_type": "delta_table",
+              "source": {
+                "delta_table_name": "andre.ml_data.winequality_white",
+                "is_databricks_uc_table": true
+              },
+              "schema": {
+                "mlflow_colspec": [
+                  {
+                    "type": "double",
+                    "name": "fixed_acidity"
+                  },
+                  {
+                    "type": "double",
+                    "name": "volatile_acidity"
+                  },
+                  {
+                    "type": "double",
+                    "name": "citric_acid"
+                  },
+                  {
+                    "type": "double",
+                    "name": "residual_sugar"
+                  },
+                  {
+                    "type": "double",
+                    "name": "chlorides"
+                  },
+                  {
+                    "type": "double",
+                    "name": "free_sulfur_dioxide"
+                  },
+                  {
+                    "type": "double",
+                    "name": "total_sulfur_dioxide"
+                  },
+                  {
+                    "type": "double",
+                    "name": "density"
+                  },
+                  {
+                    "type": "double",
+                    "name": "pH"
+                  },
+                  {
+                    "type": "double",
+                    "name": "sulphates"
+                  },
+                  {
+                    "type": "double",
+                    "name": "alcohol"
+                  },
+                  {
+                    "type": "integer",
+                    "name": "quality"
+                  }
+                ]
+              },
+              "profile": {
+                "approx_count": 4898
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

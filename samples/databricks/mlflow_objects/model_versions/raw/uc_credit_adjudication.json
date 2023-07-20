@@ -1,0 +1,15 @@
+{
+  "model_version": {
+    "name": "andre.ml_models2.credit_adjudication",
+    "version": "1",
+    "creation_timestamp": 1689279694436,
+    "last_updated_timestamp": 1689279695182,
+    "user_id": "andre@mycompany.com",
+    "description": "This version of credit adjudication model was built for the purpose of DAIS summit demo. \nModel was co-developped between EY and Databricks, finding XGBClassifier as best fit model trained against 50 different experiments.\nAll experiments are tracked and available on MLFlow experiment tracker.",
+    "source": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac/76031d22c5464dd99431e426b939e800/artifacts/model",
+    "run_id": "76031d22c5464dd99431e426b939e800",
+    "run_tracking_server_id": "2556758628403379",
+    "status": "READY",
+    "storage_location": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/117583dc-67c2-483e-b862-8191b6f38519/versions/5099810b-e591-436a-949d-141d729da9b0"
+  }
+}
