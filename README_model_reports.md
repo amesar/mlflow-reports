@@ -117,3 +117,57 @@ Options:
   --output-data-file TEXT    Output JSON data file
   --get-permissions BOOLEAN  Get Databricks permissions.  [default: False]
 ```
+
+## Experimental Image Reporter
+
+This experimental report tool allows you to dislay images from the artifact folder of your model run.
+It will generate the standard markdown report and any image files you specify in an output directory.
+
+See sample [report.md](samples/databricks/model_reports/image_report/report.md).
+
+**Example Report Build**
+
+Assume the following model run artifact directory.
+```
+artifacts
+├── images
+│   ├── mrmgen_matrix.png
+│   └── mrmgen_sensitivity.png
+├── model
+│   ├── MLmodel
+│   ├── conda.yaml
+│   ├── model.pkl
+│   ├── python_env.yaml
+│   └── requirements.txt
+```
+
+Build the report.
+```
+python -um mlflow_reports.markdown.image_report \
+  --model-uri models:/credit_adjudication/3 \
+  --output-dir out \
+  --images images/mrmgen_matrix.png;Confusion_matrix,images/mrmgen_sensitivity.png;Sensitivity
+```
+
+Your output directory will look like this.
+```
+out
+├── mrmgen_matrix.png
+├── mrmgen_sensitivity.png
+├── report.json
+└── report.md
+```
+
+**Usage**
+
+```
+mlflow-model-report --help
+
+Options:
+  --model-uri TEXT           Model URI such as 'models:/my-model/123' or
+                             'runs:/123/my-model'.  [required]
+  --show-as-json BOOLEAN     Show as JSON selected fields  [default: False]
+  --show-manifest BOOLEAN    Show manifest stanza  [default: False]
+
+```
+
