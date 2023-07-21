@@ -1,0 +1,10 @@
+artifacts
+├── model
+│   ├── MLmodel
+│   ├── conda.yaml
+│   ├── model.pkl
+│   ├── python_env.yaml
+│   └── requirements.txt
+└── images
+    ├── mrmgen_matrix.png
+    └── mrmgen_sensitivity.png
