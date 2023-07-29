@@ -93,7 +93,44 @@
         }
       ]
     },
-    "utc_time_created": "2023-06-15 23:34:12.981982"
+    "utc_time_created": "2023-06-15 23:34:12.981982",
+    "model_size_bytes": 206418,
+    "artifacts": {
+      "summary": {
+        "artifact_max_level": 9223372036854775807,
+        "num_artifacts": 5,
+        "num_bytes": 206418,
+        "num_levels": 1
+      },
+      "root_uri": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac/76031d22c5464dd99431e426b939e800/artifacts",
+      "files": [
+        {
+          "path": "model/MLmodel",
+          "is_dir": false,
+          "file_size": 1355
+        },
+        {
+          "path": "model/conda.yaml",
+          "is_dir": false,
+          "file_size": 241
+        },
+        {
+          "path": "model/model.pkl",
+          "is_dir": false,
+          "file_size": 204580
+        },
+        {
+          "path": "model/python_env.yaml",
+          "is_dir": false,
+          "file_size": 121
+        },
+        {
+          "path": "model/requirements.txt",
+          "is_dir": false,
+          "file_size": 121
+        }
+      ]
+    }
   },
   "run": {
     "info": {
