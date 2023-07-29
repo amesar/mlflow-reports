@@ -9,7 +9,9 @@ def get_model_info(model_uri):
     """ 
     Returns dictionary representation of MLflow MLmodel file (analagous to ModelInfo object)
     """
-    return get_model_artifact(model_uri, "MLmodel", file_type="yaml", explode_json=True)
+    model_info = get_model_artifact(model_uri, "MLmodel", file_type="yaml", explode_json=True)
+    enrich_model_info(model_info)
+    return model_info
 
 
 def get_model_artifact(model_uri, artifact_path, file_type=None, explode_json=True):
@@ -23,6 +25,19 @@ def get_model_artifact(model_uri, artifact_path, file_type=None, explode_json=Tr
         if explode_json:
             explode_utils.explode_json(dct)
         return dct
+
+
+def enrich_model_info(model_info):
+    """
+    Add native model flavor as 'model_flavor" attribute to model_info
+    """
+    flavor_names = list(model_info["flavors"].keys())
+    if len(flavor_names) == 1:
+        flavor = flavor_names[0]
+    else:
+        flavors = [ f for f in flavor_names if f != "python_function" ]
+        flavor = flavors[0]
+    model_info["model_flavor"] = flavor
 
 
 def mk_run_uri(run_id, artifact_path):
