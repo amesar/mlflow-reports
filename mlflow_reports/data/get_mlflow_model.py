@@ -3,7 +3,9 @@ import sys
 from mlflow_reports.mlflow_model import mlflow_model_utils
 from mlflow_reports.data import get_run as _get_run
 from mlflow_reports.data import get_experiment as _get_experiment
+from mlflow_reports.common import MlflowReportsException
 from mlflow_reports.common import mlflow_utils
+
 from mlflow_reports.common.click_options import(
     opt_model_uri,
     opt_get_run,
@@ -31,10 +33,7 @@ def get(
     if model_info_raw:
         dct["mlflow_model_raw"] = model_info_raw
 
-    # Calculate model size in bytes
-    artifacts = mlflow_utils.build_artifacts(model_info["run_id"], model_info["artifact_path"],  sys.maxsize)
-    model_info["model_size_bytes"] = artifacts["summary"]["num_bytes"]
-    model_info["artifacts"] = artifacts
+    _calc_model_size(model_info, model_uri)
 
     if get_run:
         rsp = _get_run.get(model_info["run_id"], get_raw=get_raw)
@@ -43,6 +42,25 @@ def get(
         rsp = _get_experiment.get(run["info"]["experiment_id"], get_raw=get_raw)
         dct["experiment"] = rsp["experiment"]
     return dct
+
+
+def _calc_model_size(model_info, model_uri):
+    """
+    Calculate model size in bytes.
+    Sum up the artifact sizes in the run MLflow model artifact directory.
+    Get not-so-clear error message if don't have permissions to read the run's artifacts.
+    """
+    try:
+        artifacts = mlflow_utils.build_artifacts(
+            model_info["run_id"], 
+            model_info["artifact_path"],  
+            sys.maxsize)
+        model_info["model_size_bytes"] = artifacts["summary"]["num_bytes"]
+        model_info["artifacts"] = artifacts
+    except MlflowReportsException as e:
+        msg = { "model_uri": model_uri, "run_id": model_info["run_id"] }
+        print(f"WARNING: Cannot calculate model size from run model: {msg}: {e}")
+        model_info["model_size_bytes"] = -1
 
 
 def _get_raw_model(model_uri, model_info):
