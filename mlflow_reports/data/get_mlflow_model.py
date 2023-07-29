@@ -1,7 +1,9 @@
 import click
+import sys
 from mlflow_reports.mlflow_model import mlflow_model_utils
 from mlflow_reports.data import get_run as _get_run
 from mlflow_reports.data import get_experiment as _get_experiment
+from mlflow_reports.common import mlflow_utils
 from mlflow_reports.common.click_options import(
     opt_model_uri,
     opt_get_run,
@@ -28,6 +30,12 @@ def get(
     model_info_raw = _get_raw_model(model_uri, model_info)
     if model_info_raw:
         dct["mlflow_model_raw"] = model_info_raw
+
+    # Calculate model size in bytes
+    artifacts = mlflow_utils.build_artifacts(model_info["run_id"], model_info["artifact_path"],  sys.maxsize)
+    model_info["model_size_bytes"] = artifacts["summary"]["num_bytes"]
+    model_info["artifacts"] = artifacts
+
     if get_run:
         rsp = _get_run.get(model_info["run_id"], get_raw=get_raw)
         run = rsp["run"]

@@ -1,4 +1,3 @@
-import sys
 import click
 import copy
 from mdutils.mdutils import MdUtils
@@ -52,22 +51,21 @@ def build_report(model_uri, get_permissions, output_file, output_data_file=None,
 def _build_overview_model(wf, data, show_manifest):
     wf.card.new_header(level=1, title="Model Overview")
 
-    run_id = data.get("mlflow_model").get("run_id")
-    flavor = get_native_flavor_adjusted(data.get("mlflow_model").get("flavors"))
-    model_artifacts_size = _calc_model_size(run_id, data.get("mlflow_model")["artifact_path"])
-
-    utc_time = data.get("mlflow_model").get("utc_time_created")
+    mlflow_model = data.get("mlflow_model")
+    flavor = get_native_flavor_adjusted(mlflow_model.get("flavors"))
+    utc_time = mlflow_model.get("utc_time_created")
     utc_time_created = utc_time.split(".")[0]
     manifest = data.get("manifest")
     reg_model = data.get("registered_model")
+    model_size_bytes = mlflow_model.get("model_size_bytes")
     is_unity_catalog = reg_model.get(enriched_tags.TAG_IS_UNITY_CATALOG) if reg_model else ""
     dct_mlflow_model = {
         "model_uri": manifest.get("model_uri"),
         "flavor": flavor.get("flavor"),
         "flavor_version": flavor.get("version"),
-        "mlflow_version": data.get("mlflow_model").get("mlflow_version"),
-        "size_bytes": f"{model_artifacts_size:,}",
-        "databricks_runtime": data.get("mlflow_model").get("databricks_runtime",""),
+        "mlflow_version": mlflow_model.get("mlflow_version"),
+        "size_bytes": f"{model_size_bytes:,}",
+        "databricks_runtime": mlflow_model.get("databricks_runtime",""),
         "is_unity_catalog": is_unity_catalog,
         "time_created": utc_time_created,
         "report_time": timestamp_utils.ts_now_fmt_utc
@@ -81,11 +79,6 @@ def _build_overview_model(wf, data, show_manifest):
         dct = copy.deepcopy(manifest)
         dct.pop("model_uris",None)
         wf.build_table(dct, "Manifest", level=0)
-
-
-def _calc_model_size(run_id, model_artifact_path): 
-    model_artifacts = mlflow_utils.build_artifacts(run_id, model_artifact_path, sys.maxsize)
-    return model_artifacts["summary"]["num_bytes"]
 
 
 def _build_mlflow_model_uris(wf, manifest): 
