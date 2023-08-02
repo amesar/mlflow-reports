@@ -1,0 +1,1197 @@
+{
+  "manifest": {
+    "model_uri": "models:/dbdemos_pcb_classification/1",
+    "source": "databricks://e2_demo",
+    "model_uris": {
+      "model_uri": "models:/dbdemos_pcb_classification/1",
+      "run_uri": "runs:/815123f2db9b49cdb9790c6a0371a4da/model",
+      "reg_model_download_uri": "dbfs:/databricks/mlflow-registry/4e3ac9ee6e464efd88270d84dfd54c12/models/model",
+      "run_model_download_uri": "dbfs:/databricks/mlflow-tracking/3428923814239786/815123f2db9b49cdb9790c6a0371a4da/artifacts/model"
+    },
+    "mlflow_version": "2.5.0",
+    "timestamp": "2023-08-02 09:10:56"
+  },
+  "mlflow_model": {
+    "artifact_path": "model",
+    "databricks_runtime": "13.1.x-gpu-ml-scala2.12",
+    "flavors": {
+      "transformers": {
+        "code": null,
+        "components": [
+          "tokenizer",
+          "image_processor"
+        ],
+        "image_processor_type": "ViTFeatureExtractor",
+        "instance_type": "ImageClassificationPipeline",
+        "pipeline": "pipeline",
+        "pipeline_model_type": "ViTForImageClassification",
+        "source_model_name": "/tmp/huggingface/pcb/vit-base-patch16-224-finetuned-leaf/checkpoint-2410",
+        "task": "image-classification",
+        "tokenizer_type": "ViTFeatureExtractor",
+        "transformers_version": "4.28.1"
+      }
+    },
+    "mlflow_version": "2.3.1",
+    "model_uuid": "3c21c7a008da4727b96a99b44fb72151",
+    "run_id": "815123f2db9b49cdb9790c6a0371a4da",
+    "utc_time_created": "2023-08-02 08:18:11.144619",
+    "model_flavor": "transformers",
+    "model_size_bytes": 343271516,
+    "artifacts": {
+      "summary": {
+        "artifact_max_level": 9223372036854775807,
+        "num_artifacts": 9,
+        "num_bytes": 343271516,
+        "num_levels": 3
+      },
+      "root_uri": "dbfs:/databricks/mlflow-tracking/3428923814239786/815123f2db9b49cdb9790c6a0371a4da/artifacts",
+      "files": [
+        {
+          "path": "model/MLmodel",
+          "is_dir": false,
+          "file_size": 681
+        },
+        {
+          "path": "model/conda.yaml",
+          "is_dir": false,
+          "file_size": 178
+        },
+        {
+          "path": "model/python_env.yaml",
+          "is_dir": false,
+          "file_size": 122
+        },
+        {
+          "path": "model/requirements.txt",
+          "is_dir": false,
+          "file_size": 69
+        },
+        {
+          "path": "model/components",
+          "is_dir": true,
+          "artifacts": {
+            "root_uri": "dbfs:/databricks/mlflow-tracking/3428923814239786/815123f2db9b49cdb9790c6a0371a4da/artifacts",
+            "files": [
+              {
+                "path": "model/components/image_processor",
+                "is_dir": true,
+                "artifacts": {
+                  "root_uri": "dbfs:/databricks/mlflow-tracking/3428923814239786/815123f2db9b49cdb9790c6a0371a4da/artifacts",
+                  "files": [
+                    {
+                      "path": "model/components/image_processor/preprocessor_config.json",
+                      "is_dir": false,
+                      "file_size": 327
+                    }
+                  ]
+                }
+              },
+              {
+                "path": "model/components/tokenizer",
+                "is_dir": true,
+                "artifacts": {
+                  "root_uri": "dbfs:/databricks/mlflow-tracking/3428923814239786/815123f2db9b49cdb9790c6a0371a4da/artifacts",
+                  "files": [
+                    {
+                      "path": "model/components/tokenizer/preprocessor_config.json",
+                      "is_dir": false,
+                      "file_size": 327
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "path": "model/pipeline",
+          "is_dir": true,
+          "artifacts": {
+            "root_uri": "dbfs:/databricks/mlflow-tracking/3428923814239786/815123f2db9b49cdb9790c6a0371a4da/artifacts",
+            "files": [
+              {
+                "path": "model/pipeline/config.json",
+                "is_dir": false,
+                "file_size": 768
+              },
+              {
+                "path": "model/pipeline/preprocessor_config.json",
+                "is_dir": false,
+                "file_size": 327
+              },
+              {
+                "path": "model/pipeline/pytorch_model.bin",
+                "is_dir": false,
+                "file_size": 343268717
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "run": {
+    "info": {
+      "run_id": "815123f2db9b49cdb9790c6a0371a4da",
+      "run_uuid": "815123f2db9b49cdb9790c6a0371a4da",
+      "experiment_id": 3428923814239786,
+      "run_name": "hugging_face",
+      "status": "FINISHED",
+      "start_time": 1690961357276,
+      "end_time": 1690964297725,
+      "artifact_uri": "dbfs:/databricks/mlflow-tracking/3428923814239786/815123f2db9b49cdb9790c6a0371a4da/artifacts",
+      "lifecycle_stage": "active",
+      "_start_time": "2023-08-02 07:29:17",
+      "_end_time": "2023-08-02 08:18:18",
+      "_duration": 2940.449,
+      "_experiment_name": "/Users/andre@mycompany.com/experiments/dbdemos/computer-vision-dl/pcb",
+      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/3428923814239786/runs/815123f2db9b49cdb9790c6a0371a4da",
+      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=815123f2db9b49cdb9790c6a0371a4da"
+    },
+    "data": {
+      "metrics": [
+        {
+          "key": "epoch",
+          "value": 15.0,
+          "timestamp": 1690964288888,
+          "step": 7230
+        },
+        {
+          "key": "eval_f1",
+          "value": 0.9945694336695112,
+          "timestamp": 1690964279034,
+          "step": 7230
+        },
+        {
+          "key": "eval_loss",
+          "value": 0.006073087453842163,
+          "timestamp": 1690964279034,
+          "step": 7230
+        },
+        {
+          "key": "eval_runtime",
+          "value": 17.9988,
+          "timestamp": 1690964279034,
+          "step": 7230
+        },
+        {
+          "key": "eval_samples_per_second",
+          "value": 214.07,
+          "timestamp": 1690964279034,
+          "step": 7230
+        },
+        {
+          "key": "eval_steps_per_second",
+          "value": 6.723,
+          "timestamp": 1690964279034,
+          "step": 7230
+        },
+        {
+          "key": "learning_rate",
+          "value": 1.388888888888889e-05,
+          "timestamp": 1690964260927,
+          "step": 7230
+        },
+        {
+          "key": "loss",
+          "value": 0.0001,
+          "timestamp": 1690964260927,
+          "step": 7230
+        },
+        {
+          "key": "total_flos",
+          "value": 1.7913435348529054e+19,
+          "timestamp": 1690964288888,
+          "step": 7230
+        },
+        {
+          "key": "train_loss",
+          "value": 0.040428217096158583,
+          "timestamp": 1690964288888,
+          "step": 7230
+        },
+        {
+          "key": "train_runtime",
+          "value": 2930.6453,
+          "timestamp": 1690964288888,
+          "step": 7230
+        },
+        {
+          "key": "train_samples_per_second",
+          "value": 105.171,
+          "timestamp": 1690964288888,
+          "step": 7230
+        },
+        {
+          "key": "train_steps_per_second",
+          "value": 3.289,
+          "timestamp": 1690964288888,
+          "step": 7230
+        }
+      ],
+      "params": [
+        {
+          "key": "_name_or_path",
+          "value": "google/vit-base-patch16-224"
+        },
+        {
+          "key": "adafactor",
+          "value": "False"
+        },
+        {
+          "key": "adam_beta1",
+          "value": 0.9
+        },
+        {
+          "key": "adam_beta2",
+          "value": 0.999
+        },
+        {
+          "key": "adam_epsilon",
+          "value": 1e-08
+        },
+        {
+          "key": "add_cross_attention",
+          "value": "False"
+        },
+        {
+          "key": "architectures",
+          "value": "['ViTForImageClassification']"
+        },
+        {
+          "key": "attention_probs_dropout_prob",
+          "value": 0.0
+        },
+        {
+          "key": "auto_find_batch_size",
+          "value": "False"
+        },
+        {
+          "key": "bad_words_ids",
+          "value": "None"
+        },
+        {
+          "key": "begin_suppress_tokens",
+          "value": "None"
+        },
+        {
+          "key": "bf16",
+          "value": "False"
+        },
+        {
+          "key": "bf16_full_eval",
+          "value": "False"
+        },
+        {
+          "key": "bos_token_id",
+          "value": "None"
+        },
+        {
+          "key": "chunk_size_feed_forward",
+          "value": 0
+        },
+        {
+          "key": "cross_attention_hidden_size",
+          "value": "None"
+        },
+        {
+          "key": "data_seed",
+          "value": "None"
+        },
+        {
+          "key": "dataloader_drop_last",
+          "value": "False"
+        },
+        {
+          "key": "dataloader_num_workers",
+          "value": 0
+        },
+        {
+          "key": "dataloader_pin_memory",
+          "value": "True"
+        },
+        {
+          "key": "ddp_bucket_cap_mb",
+          "value": "None"
+        },
+        {
+          "key": "ddp_find_unused_parameters",
+          "value": "None"
+        },
+        {
+          "key": "ddp_timeout",
+          "value": 1800
+        },
+        {
+          "key": "debug",
+          "value": []
+        },
+        {
+          "key": "decoder_start_token_id",
+          "value": "None"
+        },
+        {
+          "key": "deepspeed",
+          "value": "None"
+        },
+        {
+          "key": "disable_tqdm",
+          "value": "False"
+        },
+        {
+          "key": "diversity_penalty",
+          "value": 0.0
+        },
+        {
+          "key": "do_eval",
+          "value": "True"
+        },
+        {
+          "key": "do_predict",
+          "value": "False"
+        },
+        {
+          "key": "do_sample",
+          "value": "False"
+        },
+        {
+          "key": "do_train",
+          "value": "False"
+        },
+        {
+          "key": "early_stopping",
+          "value": "False"
+        },
+        {
+          "key": "encoder_no_repeat_ngram_size",
+          "value": 0
+        },
+        {
+          "key": "encoder_stride",
+          "value": 16
+        },
+        {
+          "key": "eos_token_id",
+          "value": "None"
+        },
+        {
+          "key": "eval_accumulation_steps",
+          "value": "None"
+        },
+        {
+          "key": "eval_delay",
+          "value": 0
+        },
+        {
+          "key": "eval_steps",
+          "value": "None"
+        },
+        {
+          "key": "evaluation_strategy",
+          "value": "epoch"
+        },
+        {
+          "key": "exponential_decay_length_penalty",
+          "value": "None"
+        },
+        {
+          "key": "finetuning_task",
+          "value": "None"
+        },
+        {
+          "key": "forced_bos_token_id",
+          "value": "None"
+        },
+        {
+          "key": "forced_eos_token_id",
+          "value": "None"
+        },
+        {
+          "key": "fp16",
+          "value": "False"
+        },
+        {
+          "key": "fp16_backend",
+          "value": "auto"
+        },
+        {
+          "key": "fp16_full_eval",
+          "value": "False"
+        },
+        {
+          "key": "fp16_opt_level",
+          "value": "O1"
+        },
+        {
+          "key": "fsdp",
+          "value": []
+        },
+        {
+          "key": "fsdp_config",
+          "value": "{'fsdp_min_num_params': 0, 'xla': False, 'xla_fsdp_grad_ckpt': False}"
+        },
+        {
+          "key": "fsdp_min_num_params",
+          "value": 0
+        },
+        {
+          "key": "fsdp_transformer_layer_cls_to_wrap",
+          "value": "None"
+        },
+        {
+          "key": "full_determinism",
+          "value": "False"
+        },
+        {
+          "key": "gradient_accumulation_steps",
+          "value": 1
+        },
+        {
+          "key": "gradient_checkpointing",
+          "value": "False"
+        },
+        {
+          "key": "greater_is_better",
+          "value": "True"
+        },
+        {
+          "key": "group_by_length",
+          "value": "False"
+        },
+        {
+          "key": "half_precision_backend",
+          "value": "auto"
+        },
+        {
+          "key": "hidden_act",
+          "value": "gelu"
+        },
+        {
+          "key": "hidden_dropout_prob",
+          "value": 0.0
+        },
+        {
+          "key": "hidden_size",
+          "value": 768
+        },
+        {
+          "key": "hub_model_id",
+          "value": "None"
+        },
+        {
+          "key": "hub_private_repo",
+          "value": "False"
+        },
+        {
+          "key": "hub_strategy",
+          "value": "every_save"
+        },
+        {
+          "key": "hub_token",
+          "value": "<HUB_TOKEN>"
+        },
+        {
+          "key": "id2label",
+          "value": "{0: 'normal', 1: 'damaged'}"
+        },
+        {
+          "key": "ignore_data_skip",
+          "value": "False"
+        },
+        {
+          "key": "image_size",
+          "value": 224
+        },
+        {
+          "key": "include_inputs_for_metrics",
+          "value": "False"
+        },
+        {
+          "key": "initializer_range",
+          "value": 0.02
+        },
+        {
+          "key": "intermediate_size",
+          "value": 3072
+        },
+        {
+          "key": "is_decoder",
+          "value": "False"
+        },
+        {
+          "key": "is_encoder_decoder",
+          "value": "False"
+        },
+        {
+          "key": "jit_mode_eval",
+          "value": "False"
+        },
+        {
+          "key": "label2id",
+          "value": "{'normal': 0, 'damaged': 1}"
+        },
+        {
+          "key": "label_names",
+          "value": "None"
+        },
+        {
+          "key": "label_smoothing_factor",
+          "value": 0.0
+        },
+        {
+          "key": "layer_norm_eps",
+          "value": 1e-12
+        },
+        {
+          "key": "learning_rate",
+          "value": 5e-05
+        },
+        {
+          "key": "length_column_name",
+          "value": "length"
+        },
+        {
+          "key": "length_penalty",
+          "value": 1.0
+        },
+        {
+          "key": "load_best_model_at_end",
+          "value": "True"
+        },
+        {
+          "key": "local_rank",
+          "value": 0
+        },
+        {
+          "key": "log_level",
+          "value": "passive"
+        },
+        {
+          "key": "log_level_replica",
+          "value": "warning"
+        },
+        {
+          "key": "log_on_each_node",
+          "value": "True"
+        },
+        {
+          "key": "logging_dir",
+          "value": "/tmp/huggingface/pcb/vit-base-patch16-224-finetuned-leaf/runs/Aug02_07-29-08_0802-063411-pb0ujrfr-10-0-3-133"
+        },
+        {
+          "key": "logging_first_step",
+          "value": "False"
+        },
+        {
+          "key": "logging_nan_inf_filter",
+          "value": "True"
+        },
+        {
+          "key": "logging_steps",
+          "value": 10
+        },
+        {
+          "key": "logging_strategy",
+          "value": "steps"
+        },
+        {
+          "key": "lr_scheduler_type",
+          "value": "linear"
+        },
+        {
+          "key": "max_grad_norm",
+          "value": 1.0
+        },
+        {
+          "key": "max_length",
+          "value": 20
+        },
+        {
+          "key": "max_steps",
+          "value": -1
+        },
+        {
+          "key": "metric_for_best_model",
+          "value": "f1"
+        },
+        {
+          "key": "min_length",
+          "value": 0
+        },
+        {
+          "key": "model_type",
+          "value": "vit"
+        },
+        {
+          "key": "mp_parameters",
+          "value": ""
+        },
+        {
+          "key": "no_cuda",
+          "value": "False"
+        },
+        {
+          "key": "no_repeat_ngram_size",
+          "value": 0
+        },
+        {
+          "key": "num_attention_heads",
+          "value": 12
+        },
+        {
+          "key": "num_beam_groups",
+          "value": 1
+        },
+        {
+          "key": "num_beams",
+          "value": 1
+        },
+        {
+          "key": "num_channels",
+          "value": 3
+        },
+        {
+          "key": "num_hidden_layers",
+          "value": 12
+        },
+        {
+          "key": "num_return_sequences",
+          "value": 1
+        },
+        {
+          "key": "num_train_epochs",
+          "value": 20
+        },
+        {
+          "key": "optim",
+          "value": "adamw_hf"
+        },
+        {
+          "key": "optim_args",
+          "value": "None"
+        },
+        {
+          "key": "output_attentions",
+          "value": "False"
+        },
+        {
+          "key": "output_dir",
+          "value": "/tmp/huggingface/pcb/vit-base-patch16-224-finetuned-leaf"
+        },
+        {
+          "key": "output_hidden_states",
+          "value": "False"
+        },
+        {
+          "key": "output_scores",
+          "value": "False"
+        },
+        {
+          "key": "overwrite_output_dir",
+          "value": "False"
+        },
+        {
+          "key": "pad_token_id",
+          "value": "None"
+        },
+        {
+          "key": "past_index",
+          "value": -1
+        },
+        {
+          "key": "patch_size",
+          "value": 16
+        },
+        {
+          "key": "per_device_eval_batch_size",
+          "value": 32
+        },
+        {
+          "key": "per_device_train_batch_size",
+          "value": 32
+        },
+        {
+          "key": "per_gpu_eval_batch_size",
+          "value": "None"
+        },
+        {
+          "key": "per_gpu_train_batch_size",
+          "value": "None"
+        },
+        {
+          "key": "prediction_loss_only",
+          "value": "False"
+        },
+        {
+          "key": "prefix",
+          "value": "None"
+        },
+        {
+          "key": "problem_type",
+          "value": "None"
+        },
+        {
+          "key": "pruned_heads",
+          "value": {}
+        },
+        {
+          "key": "push_to_hub",
+          "value": "False"
+        },
+        {
+          "key": "push_to_hub_model_id",
+          "value": "None"
+        },
+        {
+          "key": "push_to_hub_organization",
+          "value": "None"
+        },
+        {
+          "key": "push_to_hub_token",
+          "value": "<PUSH_TO_HUB_TOKEN>"
+        },
+        {
+          "key": "qkv_bias",
+          "value": "True"
+        },
+        {
+          "key": "ray_scope",
+          "value": "last"
+        },
+        {
+          "key": "remove_invalid_values",
+          "value": "False"
+        },
+        {
+          "key": "remove_unused_columns",
+          "value": "False"
+        },
+        {
+          "key": "repetition_penalty",
+          "value": 1.0
+        },
+        {
+          "key": "report_to",
+          "value": "['mlflow', 'tensorboard']"
+        },
+        {
+          "key": "resume_from_checkpoint",
+          "value": "None"
+        },
+        {
+          "key": "return_dict",
+          "value": "True"
+        },
+        {
+          "key": "return_dict_in_generate",
+          "value": "False"
+        },
+        {
+          "key": "run_name",
+          "value": "/tmp/huggingface/pcb/vit-base-patch16-224-finetuned-leaf"
+        },
+        {
+          "key": "save_on_each_node",
+          "value": "False"
+        },
+        {
+          "key": "save_safetensors",
+          "value": "False"
+        },
+        {
+          "key": "save_steps",
+          "value": 500
+        },
+        {
+          "key": "save_strategy",
+          "value": "epoch"
+        },
+        {
+          "key": "save_total_limit",
+          "value": "None"
+        },
+        {
+          "key": "seed",
+          "value": 42
+        },
+        {
+          "key": "sep_token_id",
+          "value": "None"
+        },
+        {
+          "key": "sharded_ddp",
+          "value": []
+        },
+        {
+          "key": "skip_memory_metrics",
+          "value": "True"
+        },
+        {
+          "key": "suppress_tokens",
+          "value": "None"
+        },
+        {
+          "key": "task_specific_params",
+          "value": "None"
+        },
+        {
+          "key": "temperature",
+          "value": 1.0
+        },
+        {
+          "key": "tf32",
+          "value": "None"
+        },
+        {
+          "key": "tf_legacy_loss",
+          "value": "False"
+        },
+        {
+          "key": "tie_encoder_decoder",
+          "value": "False"
+        },
+        {
+          "key": "tie_word_embeddings",
+          "value": "True"
+        },
+        {
+          "key": "tokenizer_class",
+          "value": "None"
+        },
+        {
+          "key": "top_k",
+          "value": 50
+        },
+        {
+          "key": "top_p",
+          "value": 1.0
+        },
+        {
+          "key": "torch_compile",
+          "value": "False"
+        },
+        {
+          "key": "torch_compile_backend",
+          "value": "None"
+        },
+        {
+          "key": "torch_compile_mode",
+          "value": "None"
+        },
+        {
+          "key": "torch_dtype",
+          "value": "None"
+        },
+        {
+          "key": "torchdynamo",
+          "value": "None"
+        },
+        {
+          "key": "torchscript",
+          "value": "False"
+        },
+        {
+          "key": "tpu_metrics_debug",
+          "value": "False"
+        },
+        {
+          "key": "tpu_num_cores",
+          "value": "None"
+        },
+        {
+          "key": "transformers_version",
+          "value": "4.28.1"
+        },
+        {
+          "key": "typical_p",
+          "value": 1.0
+        },
+        {
+          "key": "use_bfloat16",
+          "value": "False"
+        },
+        {
+          "key": "use_ipex",
+          "value": "False"
+        },
+        {
+          "key": "use_legacy_prediction_loop",
+          "value": "False"
+        },
+        {
+          "key": "use_mps_device",
+          "value": "False"
+        },
+        {
+          "key": "warmup_ratio",
+          "value": 0.1
+        },
+        {
+          "key": "warmup_steps",
+          "value": 0
+        },
+        {
+          "key": "weight_decay",
+          "value": 0.0
+        },
+        {
+          "key": "xpu_backend",
+          "value": "None"
+        }
+      ],
+      "tags": {
+        "dbdemos": "pcb_classification",
+        "mlflow.databricks.cluster.id": "0802-063411-pb0ujrfr",
+        "mlflow.databricks.cluster.info": {
+          "cluster_name": "dbdemos-computer-vision-pcb-andre",
+          "spark_version": "13.1.x-gpu-ml-scala2.12",
+          "node_type_id": "g5.2xlarge",
+          "driver_node_type_id": "g5.2xlarge",
+          "autotermination_minutes": 120,
+          "disk_spec": {
+            "disk_count": 0
+          },
+          "num_workers": 0
+        },
+        "mlflow.databricks.cluster.libraries": {
+          "installable": [],
+          "redacted": []
+        },
+        "mlflow.databricks.notebook.commandID": "3306527556979248248_7842249936114663509_dacf43fdc36a4ede9d1f28803a51c0f5",
+        "mlflow.databricks.notebookID": 3428923814239730,
+        "mlflow.databricks.notebookPath": "/Users/andre@mycompany.com/dbdemos/computer-vision-pcb/02-huggingface-model-training-Andre",
+        "mlflow.databricks.notebookRevisionID": 1690964298173,
+        "mlflow.databricks.webappURL": "https://oregon.cloud.databricks.com",
+        "mlflow.databricks.workspaceID": 2556758628403379,
+        "mlflow.databricks.workspaceURL": "e2-demo-west.cloud.databricks.com",
+        "mlflow.log-model.history": [
+          {
+            "artifact_path": "model",
+            "flavors": {
+              "transformers": {
+                "task": "image-classification",
+                "source_model_name": "/tmp/huggingface/pcb/vit-base-patch16-224-finetuned-leaf/checkpoint-2410",
+                "components": [
+                  "tokenizer",
+                  "image_processor"
+                ],
+                "pipeline": "pipeline",
+                "code": null,
+                "image_processor_type": "ViTFeatureExtractor",
+                "tokenizer_type": "ViTFeatureExtractor",
+                "pipeline_model_type": "ViTForImageClassification",
+                "instance_type": "ImageClassificationPipeline",
+                "transformers_version": "4.28.1"
+              }
+            },
+            "run_id": "815123f2db9b49cdb9790c6a0371a4da",
+            "model_uuid": "3c21c7a008da4727b96a99b44fb72151",
+            "utc_time_created": "2023-08-02 08:18:11.144619",
+            "mlflow_version": "2.3.1",
+            "databricks_runtime": "13.1.x-gpu-ml-scala2.12"
+          }
+        ],
+        "mlflow.runName": "hugging_face",
+        "mlflow.source.name": "/Users/andre@mycompany.com/dbdemos/computer-vision-pcb/02-huggingface-model-training-Andre",
+        "mlflow.source.type": "NOTEBOOK",
+        "mlflow.user": "andre@mycompany.com",
+        "sparkDatasourceInfo": [
+          {
+            "path": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/tables/9020abb0-5741-4f42-9b3c-7bc72dad583a",
+            "version": "43",
+            "format": "delta"
+          }
+        ]
+      }
+    },
+    "inputs": {}
+  },
+  "experiment": {
+    "experiment_id": 3428923814239786,
+    "name": "/Users/andre@mycompany.com/experiments/dbdemos/computer-vision-dl/pcb",
+    "artifact_location": "dbfs:/databricks/mlflow-tracking/3428923814239786",
+    "lifecycle_stage": "active",
+    "last_update_time": 1690961357276,
+    "creation_time": 1690961026005,
+    "tags": {
+      "mlflow.ownerId": 4566812440727830,
+      "mlflow.experiment.sourceName": "/Users/andre@mycompany.com/experiments/dbdemos/computer-vision-dl/pcb",
+      "mlflow.ownerEmail": "andre@mycompany.com",
+      "mlflow.experimentType": "MLFLOW_EXPERIMENT"
+    },
+    "_creation_time": "2023-08-02 07:23:46",
+    "_last_update_time": "2023-08-02 07:29:17",
+    "_tracking_uri": "databricks://e2_demo",
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/3428923814239786",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/experiments/get?experiment_id=3428923814239786",
+    "permissions": {
+      "permission_levels": [
+        {
+          "permission_level": "CAN_READ",
+          "description": "Can view the experiment"
+        },
+        {
+          "permission_level": "CAN_EDIT",
+          "description": "Can view, log runs, and edit the experiment"
+        },
+        {
+          "permission_level": "CAN_MANAGE",
+          "description": "Can view, log runs, edit, delete, and change permissions of the experiment"
+        }
+      ],
+      "permissions": {
+        "object_id": "/experiments/3428923814239786",
+        "object_type": "mlflowExperiment",
+        "access_control_list": [
+          {
+            "service_principal_name": "038455d4-e5ec-4544-b6cf-64d55b91fee1",
+            "display_name": "service-principal-e2-demo-west-ws-do-not-delete",
+            "all_permissions": [
+              {
+                "permission_level": "CAN_MANAGE",
+                "inherited": true,
+                "inherited_from_object": [
+                  "/directories/"
+                ]
+              }
+            ]
+          },
+          {
+            "user_name": "andre@mycompany.com",
+            "display_name": "Andre",
+            "all_permissions": [
+              {
+                "permission_level": "CAN_MANAGE",
+                "inherited": true,
+                "inherited_from_object": [
+                  "/directories/767933989557963"
+                ]
+              }
+            ]
+          },
+          {
+            "group_name": "admins",
+            "all_permissions": [
+              {
+                "permission_level": "CAN_MANAGE",
+                "inherited": true,
+                "inherited_from_object": [
+                  "/directories/"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "registered_model": {
+    "name": "dbdemos_pcb_classification",
+    "creation_timestamp": 1690964304680,
+    "last_updated_timestamp": 1690964320389,
+    "user_id": "andre@mycompany.com",
+    "id": "b4e61c7c063440149cd2439490075737",
+    "permission_level": "CAN_MANAGE",
+    "tags": {},
+    "_creation_timestamp": "2023-08-02 08:18:25",
+    "_last_updated_timestamp": "2023-08-02 08:18:40",
+    "_is_unity_catalog": false,
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/dbdemos_pcb_classification",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/registered-models/get?name=dbdemos_pcb_classification",
+    "permissions": {
+      "permission_levels": [
+        {
+          "permission_level": "CAN_READ",
+          "description": "Can view the details of the registered model and its model versions, and use the model versions."
+        },
+        {
+          "permission_level": "CAN_EDIT",
+          "description": "Can view and edit the details of a registered model and its model versions (except stage changes), and add new model versions."
+        },
+        {
+          "permission_level": "CAN_MANAGE_STAGING_VERSIONS",
+          "description": "Can view and edit the details of a registered model and its model versions, add new model versions, and manage stage transitions between non-Production stages."
+        },
+        {
+          "permission_level": "CAN_MANAGE_PRODUCTION_VERSIONS",
+          "description": "Can view and edit the details of a registered model and its model versions, add new model versions, and manage stage transitions between any stages."
+        },
+        {
+          "permission_level": "CAN_MANAGE",
+          "description": "Can manage permissions on, view all details of, and perform all actions on the registered model and its model versions."
+        }
+      ],
+      "permissions": {
+        "object_id": "/registered-models/b4e61c7c063440149cd2439490075737",
+        "object_type": "registered-model",
+        "access_control_list": [
+          {
+            "group_name": "admins",
+            "all_permissions": [
+              {
+                "permission_level": "CAN_MANAGE",
+                "inherited": true,
+                "inherited_from_object": [
+                  "/registered-models/"
+                ]
+              }
+            ]
+          },
+          {
+            "group_name": "users",
+            "all_permissions": [
+              {
+                "permission_level": "CAN_MANAGE",
+                "inherited": true,
+                "inherited_from_object": [
+                  "/registered-models/"
+                ]
+              }
+            ]
+          },
+          {
+            "service_principal_name": "038455d4-e5ec-4544-b6cf-64d55b91fee1",
+            "display_name": "service-principal-e2-demo-west-ws-do-not-delete",
+            "all_permissions": [
+              {
+                "permission_level": "CAN_MANAGE",
+                "inherited": true,
+                "inherited_from_object": [
+                  "/registered-models/"
+                ]
+              }
+            ]
+          },
+          {
+            "user_name": "andre@mycompany.com",
+            "display_name": "Andre",
+            "all_permissions": [
+              {
+                "permission_level": "CAN_MANAGE",
+                "inherited": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "model_version": {
+    "name": "dbdemos_pcb_classification",
+    "version": "1",
+    "creation_timestamp": 1690964304928,
+    "last_updated_timestamp": 1690964320389,
+    "user_id": "andre@mycompany.com",
+    "current_stage": "Production",
+    "source": "dbfs:/databricks/mlflow-tracking/3428923814239786/815123f2db9b49cdb9790c6a0371a4da/artifacts/model",
+    "run_id": "815123f2db9b49cdb9790c6a0371a4da",
+    "status": "READY",
+    "_creation_timestamp": "2023-08-02 08:18:25",
+    "_last_updated_timestamp": "2023-08-02 08:18:40",
+    "_is_unity_catalog": false,
+    "_reg_model_download_uri": "dbfs:/databricks/mlflow-registry/4e3ac9ee6e464efd88270d84dfd54c12/models/model",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/3428923814239786/815123f2db9b49cdb9790c6a0371a4da/artifacts/model",
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/dbdemos_pcb_classification/versions/1",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/model-versions/get?name=dbdemos_pcb_classification&version=1"
+  }
+}
