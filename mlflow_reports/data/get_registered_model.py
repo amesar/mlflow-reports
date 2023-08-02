@@ -40,7 +40,7 @@ def get(
     return dct
 
 
-def enrich(reg_model, get_permissions=False):
+def enrich(reg_model, get_permissions=False, enrich_versions=False):
     model_name = reg_model["name"]
     reg_model["tags"] = mlflow_utils.mk_tags_dict(reg_model.get("tags"))
     data_utils.adjust_ts(reg_model, [ "creation_timestamp", "last_updated_timestamp" ])
@@ -51,8 +51,9 @@ def enrich(reg_model, get_permissions=False):
     filter = f"name = '{model_name}'"
     versions = SearchModelVersionsIterator(mlflow_client, filter=filter)
     versions = list(versions)
-    for vr in versions:
-        get_model_version.enrich(vr)
+    if enrich_versions:
+        for vr in versions:
+            get_model_version.enrich(vr)
 
     if not mlflow_utils.is_unity_catalog_model(model_name):
         for vr in reg_model.get("latest_versions"):

@@ -56,7 +56,7 @@ def _get_data_from_api(model_uri, get_permissions=False, get_raw=False):
     }
     if scheme == "models":
         registered_model, model_version = model_version_utils.get_model_and_version(model_uri, get_permissions=get_permissions)
-        get_registered_model.enrich(registered_model, get_permissions=get_permissions)
+        get_registered_model.enrich(registered_model, get_permissions=get_permissions, enrich_versions=False)
         registered_model.pop("latest_versions", None) # NOTE: don't need this for our current purposes
         get_model_version.enrich(model_version)
         _run_id = model_version["run_id"]
