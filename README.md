@@ -10,6 +10,7 @@ Two types of tools:
 
 Databricks Unity Catalog models are also supported (WIP).
 
+See extensive [JSON and markdown samples](samples/databricks/README.md).
 
 ## Quick start
 
