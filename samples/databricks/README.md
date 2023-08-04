@@ -55,7 +55,36 @@
 
 ## Featured MLflow Models
 
-### Sklearn_Wine_best Model
+### Model: credit_adjudication 
+
+_**MLflow Model Report**_
+
+| Model Report | Markdown | JSON |
+|-----|-------|---|
+| non-UC| [report.md](model_reports/credit_adjudication/report.md) | [report.json](model_reports/credit_adjudication/report.json) |
+| UC | [report.md](model_reports/credit_adjudication/uc/report.md) | [report.json](model_reports/credit_adjudication/uc/report.json) |
+| MLmodel | | [MLmodel](model_reports/credit_adjudication/MLmodel) |
+
+
+_**MLflow Objects**_
+| Object | Enriched | Original |
+|-----|-------|---|
+| Run | [enriched json](mlflow_objects/runs/credit_adjudication/run.json) | [raw json](mlflow_objects/runs/credit_adjudication/run_raw.json) |
+| Experiment | [enriched json](mlflow_objects/experiments/credit_adjudication.json) | [raw json](mlflow_objects/experiments/raw/credit_adjudication.json) |
+| Registered Model | [enriched json](mlflow_objects/registered_models/credit_adjudication.json) | [raw json](mlflow_objects/registered_models/raw/credit_adjudication.json) |
+| Model Version| [enriched json](mlflow_objects/model_versions/credit_adjudication.json) | [raw json](mlflow_objects/model_versions/raw/credit_adjudication.json) |
+| UC Model Version| [enriched json](mlflow_objects/model_versions/uc/credit_adjudication.json) | [raw json](mlflow_objects/model_versions/raw/uc_credit_adjudication.json) |
+
+
+### Model: Sklearn_Wine_best
+
+_**MLflow Model Report**_
+
+| Model Report | Markdown | JSON |
+|-----|-------|---|
+| non-UC| [report.md](model_reports/Sklearn_Wine_best/report.md) | [report.json](model_reports/Sklearn_Wine_best/report.json) |
+| UC | [report.md](model_reports/Sklearn_Wine_best/uc/report.md) | [report.json](model_reports/Sklearn_Wine_best/uc/report.json) |
+| MLmodel | | [MLmodel](mlflow_objects/runs/Sklearn_Wine_best/MLmodel) |
 
 _**MLflow Objects**_
 | Object | Enriched | Original |
@@ -65,12 +94,4 @@ _**MLflow Objects**_
 | Registered Model | [enriched json](mlflow_objects/registered_models/Sklearn_Wine_best.json) | [raw json](mlflow_objects/registered_models/raw/Sklearn_Wine_best.json) |
 | Model Version | [enriched json](mlflow_objects/model_versions/Sklearn_Wine_best/model_version.json) | [raw json](mlflow_objects/model_versions/Sklearn_Wine_best/raw/model_version.json) |
 | UC Model Version | [enriched json](mlflow_objects/model_versions/Sklearn_Wine_best/uc_model_version.json) | [raw json](mlflow_objects/model_versions/Sklearn_Wine_best/raw/uc_model_version.json) |
-
-_**MLflow Model Report**_
-
-| Model Report | Markdown | JSON |
-|-----|-------|---|
-| non-UC| [report.md](model_reports/Sklearn_Wine_best/report.md) | [report.json](model_reports/Sklearn_Wine_best/report.json) |
-| UC | [report.md](model_reports/Sklearn_Wine_best/uc/report.md) | [report.json](model_reports/Sklearn_Wine_best/uc/report.json) |
-| MLmodel | | [MLmodel](mlflow_objects/runs/Sklearn_Wine_best/MLmodel) |
 
