@@ -2,7 +2,7 @@
 
 ## MLflow Model Reports
 
-[model_reports](model_reports)
+Top-level directory of [model_reports](model_reports).
 
 ### Non-Unity Catalog Reports
 
@@ -14,8 +14,9 @@
 
 **LLMs**
   * [dolly3b](model_reports/dolly3b) - Dolly
-  * [hugging-face-transformers-batch-nlp](model_reports/hugging-face-transformers-batch-nlp) - HugginFace
-  * [Conversational_Task](model_reports/transformers/Conversational_Task)
+  * Hugging Face models:
+    * [hugging-face-transformers-batch-nlp](model_reports/hugging-face-transformers-batch-nlp)
+    * [Conversational_Task](model_reports/transformers/Conversational_Task)
 
 ### Unity Catalog Reports
 
@@ -26,7 +27,7 @@
 
 ## MLflow Objects
 
-[mlflow_objects](mlflow_objects)
+Top-level directory of [mlflow_objects](mlflow_objects).
 
 ### Basic
 
