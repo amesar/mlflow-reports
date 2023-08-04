@@ -1,0 +1,32 @@
+artifact_path: model
+databricks_runtime: 13.2.x-cpu-ml-scala2.12
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.10.6
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.2.2
+mlflow_version: 2.4.1
+model_uuid: 3d22615565ae4f5f896d3a05072b552f
+run_id: 7ee5e476cc964a99beec2f4269f8e811
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "fixed_acidity"}, {"type": "double", "name":
+    "volatile_acidity"}, {"type": "double", "name": "citric_acid"}, {"type": "double",
+    "name": "residual_sugar"}, {"type": "double", "name": "chlorides"}, {"type": "double",
+    "name": "free_sulfur_dioxide"}, {"type": "double", "name": "total_sulfur_dioxide"},
+    {"type": "double", "name": "density"}, {"type": "double", "name": "pH"}, {"type":
+    "double", "name": "sulphates"}, {"type": "double", "name": "alcohol"}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1]}}]'
+utc_time_created: '2023-07-08 04:53:25.446742'
