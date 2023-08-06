@@ -70,7 +70,9 @@ def _get_raw_model(model_uri, model_info):
     flavors = model_info.get("flavors")
     if len(flavors) > 1:
         return None
-    pyfunc = flavors["python_function"]
+    pyfunc = flavors.get("python_function")
+    if pyfunc is None:
+        return None
     lm = pyfunc.get("loader_module")
     if lm == "mlflow.pyfunc.model":
         return None
