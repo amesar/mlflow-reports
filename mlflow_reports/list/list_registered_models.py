@@ -6,6 +6,7 @@ import click
 from mlflow_reports.client.http_client import get_mlflow_client
 from . click_options import opt_max_description, opt_output_csv_file, opt_filter, opt_prefix
 from . import search_api
+from . import list_utils
 from tabulate import tabulate
 
 mlflow_client = get_mlflow_client()
@@ -13,7 +14,8 @@ mlflow_client = get_mlflow_client()
 
 def show(filter, prefix, max_description, output_csv_file):
     df = search_api.search_registered_models(filter, prefix, max_description)
-    #df = as_pandas_df(filter, prefix, max_description)
+    list_utils.mk_nice_datetime(df, "creation_timestamp")
+    list_utils.mk_nice_datetime(df, "last_updated_timestamp") 
     print(tabulate(df, headers="keys", tablefmt="psql", showindex=False))
     if output_csv_file:
         with open(output_csv_file, "w", encoding="utf-8") as f:

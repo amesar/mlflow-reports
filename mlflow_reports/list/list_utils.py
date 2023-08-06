@@ -16,6 +16,11 @@ def search_registered_models(filter=None, prefix=None):
     return models
 
 
-def mk_nice_timestamp(df, column):
+def to_datetime(df, column):
     df[column] = df[column] / 1000
-    df[column] = pd.to_datetime(df[column], unit='s').dt.strftime(TS_FORMAT)
+    df[column] = pd.to_datetime(df[column], unit='s')
+
+
+def mk_nice_datetime(df, column):
+    df[column] = df[column].dt.strftime(TS_FORMAT)
+
