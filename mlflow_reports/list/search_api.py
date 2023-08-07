@@ -6,14 +6,23 @@ import pandas as pd
 import numpy as np
 from . import list_utils
 
+from mlflow_reports.common.http_iterators import SearchRegisteredModelsIterator
+from mlflow_reports.client.http_client import get_mlflow_client
+mlflow_client = get_mlflow_client()
 
 def search_registered_models(filter=None, prefix=None, datetime_as_string=False, max_description=None):
-    models = list_utils.search_registered_models(filter, prefix)
+    models = SearchRegisteredModelsIterator(mlflow_client, filter=filter)
+    models = list(models)
+    if prefix:
+        models = [ m for m in models if m["name"].startswith(prefix)]
+    models = sorted(models, key=lambda x: x["name"])
+    print(f"Found {len(models)} registered models")
+
+    columns = ["name", "user_id", "creation_timestamp", "last_updated_timestamp" ]
     if len(models) == 0:
-        return
+        return pd.DataFrame(columns=columns)
 
     df = pd.DataFrame.from_dict(models)
-    columns = ["name", "user_id", "creation_timestamp", "last_updated_timestamp" ]
     if not "user_id" in df:
         columns.remove("user_id")
 
