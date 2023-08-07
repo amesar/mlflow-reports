@@ -39,3 +39,11 @@ def opt_filter(function):
         required=False
     )(function)
     return function
+
+def opt_datetime_as_string(function):
+    function = click.option("--datetime-as-string",
+        help="Convert Pandas datetime to string since Databricks display() ignores rounding of seconds.",
+        type=bool,
+        default=False
+    )(function)
+    return function
