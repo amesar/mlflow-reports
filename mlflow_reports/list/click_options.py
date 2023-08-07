@@ -47,3 +47,11 @@ def opt_datetime_as_string(function):
         default=False
     )(function)
     return function
+
+def opt_unity_catalog(function):
+    function = click.option("--unity-catalog",
+        help="Use Databricks Unity Catalog",
+        type=bool,
+        default=False
+    )(function)
+    return function

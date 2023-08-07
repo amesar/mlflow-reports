@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+import mlflow
 from mlflow.exceptions import RestException
 from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.common import MlflowReportsException
@@ -109,6 +110,11 @@ def mk_tags_dict(tags_array):
 
 def is_unity_catalog_model(model_name):
     return "." in model_name
+
+
+def use_unity_catalog():
+    mlflow.set_registry_uri("databricks-uc")
+    print("New mlflow.registry_uri:",mlflow.get_registry_uri())
 
 
 _is_calling_into_databricks = None

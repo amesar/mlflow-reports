@@ -8,9 +8,13 @@ from . import list_utils
 
 from mlflow_reports.common.http_iterators import SearchRegisteredModelsIterator
 from mlflow_reports.client.http_client import get_mlflow_client
-mlflow_client = get_mlflow_client()
+from mlflow_reports.common import mlflow_utils
 
-def search_registered_models(filter=None, prefix=None, datetime_as_string=False, max_description=None):
+
+def search_registered_models(filter=None, prefix=None, datetime_as_string=False, unity_catalog=False, max_description=None):
+    if unity_catalog:
+        mlflow_utils.use_unity_catalog()
+    mlflow_client = get_mlflow_client()
     models = SearchRegisteredModelsIterator(mlflow_client, filter=filter)
     models = list(models)
     if prefix:
