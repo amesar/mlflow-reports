@@ -1,5 +1,4 @@
 import pandas as pd
-from mlflow_reports.common.timestamp_utils import TS_FORMAT
 from mlflow_reports.common.http_iterators import SearchRegisteredModelsIterator
 from mlflow_reports.client.http_client import get_mlflow_client
 
@@ -17,10 +16,4 @@ def search_registered_models(filter=None, prefix=None):
 
 
 def to_datetime(df, column):
-    df[column] = df[column] / 1000
-    df[column] = pd.to_datetime(df[column], unit='s')
-
-
-def mk_nice_datetime(df, column):
-    df[column] = df[column].dt.strftime(TS_FORMAT)
-
+    df[column] = pd.to_datetime(df[column]/1000, unit="s").dt.round("1s")
