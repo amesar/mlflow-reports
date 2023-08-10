@@ -56,3 +56,7 @@ rsp = get_model_version.get(reg_model_name, version,
     get_raw = get_raw
 )
 dump_as_json(rsp)
+
+# COMMAND ----------
+
+

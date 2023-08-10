@@ -13,7 +13,10 @@
 # MAGIC * [Get_Experiment]($objects/Get_Experiment) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/experiments)
 # MAGIC * [Get_Run]($objects/Get_Run) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/runs)
 # MAGIC
-# MAGIC Other
+# MAGIC ##### MLflow list notebooks
+# MAGIC * [List_Registered_Models]($objects/List_Registered_Models)
+# MAGIC
+# MAGIC ##### Other
 # MAGIC * [Common]($Common)
 # MAGIC
-# MAGIC Last updated: 2023-07-10
+# MAGIC Last updated: 2023-08-10
