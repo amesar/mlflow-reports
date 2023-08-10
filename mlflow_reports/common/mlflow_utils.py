@@ -101,11 +101,24 @@ def _build_artifacts(run_id, artifact_path, artifact_max_level, level=0):
 
 def mk_tags_dict(tags_array):
     """
-    Transform a list of key/value elements to a dict.
+    Transform a list of key/value items to a dict.
     """
-    if tags_array is None:
+    return mk_key_value_array_dict(tags_array, "key", "value")
+
+def mk_aliases_dict(aliases_array):
+    """
+    Transform a list of alias/version items to a dict.
+    """
+    return mk_key_value_array_dict(aliases_array, "alias", "version")
+
+def mk_key_value_array_dict(kv_array, key_name, value_name):
+    """
+    Transforms a list of 2 item dicts to a dict.
+    Example:  [{'key': 'k1', 'value': 'v1'}, {'key': 'k2', 'value': 'v2'}] ==> {'k1': 'v1', 'k2': 'v2' } 
+    """
+    if kv_array is None:
         return {}
-    return { x["key"]:x["value"] for x in tags_array }
+    return { x[key_name]:x[value_name] for x in kv_array }
 
 
 def is_unity_catalog_model(model_name):

@@ -55,3 +55,19 @@ def opt_unity_catalog(function):
         default=False
     )(function)
     return function
+
+def opt_get_tags_and_aliases(function):
+    function = click.option("--get-tags-and-aliases",
+        help="Get tags and aliases attribute from registered model.",
+        type=bool,
+        default=False
+    )(function)
+    return function
+
+def opt_tags_and_aliases_as_string(function):
+    function = click.option("--tags-and-aliases-as-string",
+        help="Write tags and aliases as JSON string instead of dict. Needed for Pandas to Spark DataFrame conversion.",
+        type=bool,
+        default=False
+    )(function)
+    return function
