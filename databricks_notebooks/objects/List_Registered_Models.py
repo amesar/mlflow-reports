@@ -89,14 +89,15 @@ display(df)
 
 # COMMAND ----------
 
+df.createOrReplaceTempView("models")
+
+# COMMAND ----------
+
 # MAGIC %md #### Sort by `user_id`
 
 # COMMAND ----------
 
-from pyspark.sql.functions import *
-
-df2 = df.select("*").sort("user_id").sort("name")
-display(df2)
+# MAGIC %sql select * from models order by user_id, name
 
 # COMMAND ----------
 
@@ -104,8 +105,7 @@ display(df2)
 
 # COMMAND ----------
 
-df2 = df.select("*").sort(desc("creation_timestamp"))
-display(df2)
+# MAGIC %sql select * from models order by creation_timestamp desc
 
 # COMMAND ----------
 
@@ -113,5 +113,4 @@ display(df2)
 
 # COMMAND ----------
 
-df2 = df.select("*").sort(asc("creation_timestamp"))
-display(df2)
+# MAGIC %sql select * from models order by creation_timestamp
