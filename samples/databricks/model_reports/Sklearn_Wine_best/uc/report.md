@@ -36,22 +36,22 @@ Contents
 | :--- | :--- |
 |model_uri|models:/andre.ml_models2.sklearn_wine_best/1|
 |flavor|mlflow.sklearn|
-|flavor_version|1.2.2|
-|mlflow_version|2.4.1|
-|size_bytes|105,679|
+|flavor_version|1.1.1|
+|mlflow_version|2.5.0|
+|size_bytes|105,685|
 |databricks_runtime|13.2.x-cpu-ml-scala2.12|
 |is_unity_catalog|True|
-|time_created|2023-07-08 04:53:25|
-|report_time|2023-07-11 03:16:38|
+|time_created|2023-08-11 08:40:16|
+|report_time|2023-08-11 13:50:08|
   
 <b><font size="+1">MLflow Model URIs</font></b>  
 
 |URI type|URI|
 | :--- | :--- |
 |model_uri|models:/andre.ml_models2.sklearn_wine_best/1|
-|run_uri|runs:/7ee5e476cc964a99beec2f4269f8e811/model|
-|reg_model_download_uri|s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/2a88e828-a618-4a93-8491-d1d7bc645403/versions/33bf5aa4-9b93-4bc2-a554-8c8618dd22c9|
-|run_model_download_uri|dbfs:/databricks/mlflow-tracking/2668333326915882/7ee5e476cc964a99beec2f4269f8e811/artifacts/model|
+|run_uri|runs:/c62ccf932e0649a2b9247cc76d89b637/model|
+|reg_model_download_uri|s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/07ed8e06-e5d4-4015-85f7-3ac30b09a5d0/versions/0f245015-688a-4872-8831-a61c2f4b9d88|
+|run_model_download_uri|dbfs:/databricks/mlflow-tracking/2668333326915882/c62ccf932e0649a2b9247cc76d89b637/artifacts/model|
 
 # MLflow Model
 
@@ -62,10 +62,12 @@ Contents
 | :--- | :--- |
 |artifact_path|model|
 |databricks_runtime|13.2.x-cpu-ml-scala2.12|
-|mlflow_version|2.4.1|
-|model_uuid|3d22615565ae4f5f896d3a05072b552f|
-|run_id|7ee5e476cc964a99beec2f4269f8e811|
-|utc_time_created|2023-07-08 04:53:25.446742|
+|mlflow_version|2.5.0|
+|model_uuid|2daecace267f4de29ec73062a10e2036|
+|run_id|c62ccf932e0649a2b9247cc76d89b637|
+|utc_time_created|2023-08-11 08:40:16.227603|
+|model_flavor|sklearn|
+|model_size_bytes|105685|
 
 ### Flavors
 
@@ -88,7 +90,7 @@ Contents
 |code|None|
 |pickled_model|model.pkl|
 |serialization_format|cloudpickle|
-|sklearn_version|1.2.2|
+|sklearn_version|1.1.1|
 
 ## Signature
 
@@ -133,12 +135,12 @@ Contents
 |Name|Value|
 | :--- | :--- |
 |name|andre.ml_models2.sklearn_wine_best|
-|creation_timestamp|1688792012710|
-|last_updated_timestamp|1688872267895|
+|creation_timestamp|1691761329476|
+|last_updated_timestamp|1691761799340|
 |user_id|andre@mycompany.com|
-|description|My registered_model comment|
-|_creation_timestamp|2023-07-08 04:53:33|
-|_last_updated_timestamp|2023-07-09 03:11:08|
+|description|Best sklearn_wine registered model|
+|_creation_timestamp|2023-08-11 13:42:09|
+|_last_updated_timestamp|2023-08-11 13:49:59|
 |_is_unity_catalog|True|
 |_web_ui_link|https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models2.sklearn_wine_best|
 |_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=andre.ml_models2.sklearn_wine_best|
@@ -177,20 +179,20 @@ Contents
 | :--- | :--- |
 |name|andre.ml_models2.sklearn_wine_best|
 |version|1|
-|creation_timestamp|1688792018396|
-|last_updated_timestamp|1688872290474|
+|creation_timestamp|1691761332284|
+|last_updated_timestamp|1691761333569|
 |user_id|andre@mycompany.com|
-|description|My best sklearn_wine comment|
-|source|dbfs:/databricks/mlflow-tracking/2668333326915882/7ee5e476cc964a99beec2f4269f8e811/artifacts/model|
-|run_id|7ee5e476cc964a99beec2f4269f8e811|
+|description|Best sklearn_wine model version|
+|source|dbfs:/databricks/mlflow-tracking/2668333326915882/c62ccf932e0649a2b9247cc76d89b637/artifacts/model|
+|run_id|c62ccf932e0649a2b9247cc76d89b637|
 |run_tracking_server_id|2556758628403379|
 |status|READY|
-|storage_location|s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/2a88e828-a618-4a93-8491-d1d7bc645403/versions/33bf5aa4-9b93-4bc2-a554-8c8618dd22c9|
-|_creation_timestamp|2023-07-08 04:53:38|
-|_last_updated_timestamp|2023-07-09 03:11:30|
+|storage_location|s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/07ed8e06-e5d4-4015-85f7-3ac30b09a5d0/versions/0f245015-688a-4872-8831-a61c2f4b9d88|
+|_creation_timestamp|2023-08-11 13:42:12|
+|_last_updated_timestamp|2023-08-11 13:42:14|
 |_is_unity_catalog|True|
-|_reg_model_download_uri|s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/2a88e828-a618-4a93-8491-d1d7bc645403/versions/33bf5aa4-9b93-4bc2-a554-8c8618dd22c9|
-|_run_model_download_uri|dbfs:/databricks/mlflow-tracking/2668333326915882/7ee5e476cc964a99beec2f4269f8e811/artifacts/model|
+|_reg_model_download_uri|s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/07ed8e06-e5d4-4015-85f7-3ac30b09a5d0/versions/0f245015-688a-4872-8831-a61c2f4b9d88|
+|_run_model_download_uri|dbfs:/databricks/mlflow-tracking/2668333326915882/c62ccf932e0649a2b9247cc76d89b637/artifacts/model|
 |_web_ui_link|https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models2.sklearn_wine_best/version/1|
 |_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=andre.ml_models2.sklearn_wine_best&version=1|
 
@@ -204,21 +206,21 @@ Contents
 
 |Name|Value|
 | :--- | :--- |
-|run_id|7ee5e476cc964a99beec2f4269f8e811|
-|run_uuid|7ee5e476cc964a99beec2f4269f8e811|
+|run_id|c62ccf932e0649a2b9247cc76d89b637|
+|run_uuid|c62ccf932e0649a2b9247cc76d89b637|
 |experiment_id|2668333326915882|
-|run_name|Best_Reference_Run_UC|
+|run_name|2.5.0 run|
 |status|FINISHED|
-|start_time|1688792000629|
-|end_time|1688792019958|
-|artifact_uri|dbfs:/databricks/mlflow-tracking/2668333326915882/7ee5e476cc964a99beec2f4269f8e811/artifacts|
+|start_time|1691743215166|
+|end_time|1691743222776|
+|artifact_uri|dbfs:/databricks/mlflow-tracking/2668333326915882/c62ccf932e0649a2b9247cc76d89b637/artifacts|
 |lifecycle_stage|active|
-|_start_time|2023-07-08 04:53:21|
-|_end_time|2023-07-08 04:53:40|
-|_duration|19.329|
+|_start_time|2023-08-11 08:40:15|
+|_end_time|2023-08-11 08:40:23|
+|_duration|7.61|
 |_experiment_name|/Users/andre@mycompany.com/experiments/best/Sklearn_Wine_repo_uc|
-|_web_ui_link|https://e2-demo-west.cloud.databricks.com#mlflow/experiments/2668333326915882/runs/7ee5e476cc964a99beec2f4269f8e811|
-|_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=7ee5e476cc964a99beec2f4269f8e811|
+|_web_ui_link|https://e2-demo-west.cloud.databricks.com#mlflow/experiments/2668333326915882/runs/c62ccf932e0649a2b9247cc76d89b637|
+|_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=c62ccf932e0649a2b9247cc76d89b637|
 
 ## Params
   
@@ -244,11 +246,11 @@ Contents
 
 |Key|Value|
 | :--- | :--- |
-|mlflow.databricks.gitRepoCommit|8bc7a70e5c75acf20c368ee7b463b14a525236b4|
+|mlflow.databricks.gitRepoCommit|67797feab1c1635f5016d6c270e39dd85fcda586|
 |mlflow.databricks.gitRepoProvider|gitHub|
 |mlflow.databricks.gitRepoReference|master|
 |mlflow.databricks.gitRepoReferenceType|branch|
-|mlflow.databricks.gitRepoRelativePath|databricks/notebooks/basic/Sklearn_Wine|
+|mlflow.databricks.gitRepoRelativePath|databricks/notebooks/basic/Sklearn_Wine_UC|
 |mlflow.databricks.gitRepoStatus|unknown|
 |mlflow.databricks.gitRepoUrl|https://github.com/amesar/mlflow-examples|
 
@@ -257,10 +259,10 @@ Contents
 
 |Key|Value|
 | :--- | :--- |
-|mlflow.databricks.notebook.commandID|6785241734622852263_7667615984189449245_2df0651ed9d14281be1e96075526d35d|
-|mlflow.databricks.notebookID|3336498746241054|
-|mlflow.databricks.notebookPath|/Repos/andre@mycompany.com/public-mlflow-examples/databricks/notebooks/basic/Sklearn_Wine|
-|mlflow.databricks.notebookRevisionID|1688792020378|
+|mlflow.databricks.notebook.commandID|3501967853123166446_4677705746329230219_aa95aa9b74cc48edb952e0ce2693b969|
+|mlflow.databricks.notebookID|2520253095233459|
+|mlflow.databricks.notebookPath|/Repos/andre@mycompany.com/mlflow-examples/databricks/notebooks/basic/Sklearn_Wine_UC|
+|mlflow.databricks.notebookRevisionID|1691743223031|
 
 ### Cluster Tags
   
@@ -268,8 +270,8 @@ Contents
 |Key|Value|
 | :--- | :--- |
 |mlflow.databricks.cluster.id|0414-154233-qm0df4rx|
-|mlflow.databricks.cluster.info|{'cluster_name': 'andre_ML_13.1', 'spark_version': '13.2.x-cpu-ml-scala2.12', 'node_type_id': 'i3.xlarge', 'driver_node_type_id': 'i3.xlarge', 'autotermination_minutes': 120, 'disk_spec': {'disk_count': 0}, 'num_workers': 1}|
-|mlflow.databricks.cluster.libraries|{'installable': [{'jar': 'dbfs:/home/andre@mycompany.com/lib/jars/PrintArgs.jar'}, {'whl': 'dbfs:/home/andre@mycompany.com/work/jobs/sklearn_wine/mlflow_sklearn_wine-0.0.1-py3-none-any.whl'}], 'redacted': []}|
+|mlflow.databricks.cluster.info|{'cluster_name': 'andre_ML_13.2', 'spark_version': '13.2.x-cpu-ml-scala2.12', 'node_type_id': 'i3.xlarge', 'driver_node_type_id': 'i3.xlarge', 'autotermination_minutes': 120, 'disk_spec': {'disk_count': 0}, 'num_workers': 1}|
+|mlflow.databricks.cluster.libraries|{'installable': [{'pypi': {'package': 'mlflow[skinny]==2.5.0'}}], 'redacted': []}|
 
 ### Workspace Tags
   
@@ -285,7 +287,7 @@ Contents
 
 |Key|Value|
 | :--- | :--- |
-|mlflow.source.name|/Repos/andre@mycompany.com/public-mlflow-examples/databricks/notebooks/basic/Sklearn_Wine|
+|mlflow.source.name|/Repos/andre@mycompany.com/mlflow-examples/databricks/notebooks/basic/Sklearn_Wine_UC|
 |mlflow.source.type|NOTEBOOK|
 
 ### Other System Tags
@@ -293,8 +295,8 @@ Contents
 
 |Key|Value|
 | :--- | :--- |
-|mlflow.log-model.history|[{'artifact_path': 'model', 'saved_input_example_info': {'artifact_path': 'input_example.json', 'type': 'dataframe', 'pandas_orient': 'split'}, 'signature': {'inputs': [{'type': 'double', 'name': 'fixed_acidity'}, {'type': 'double', 'name': 'volatile_acidity'}, {'type': 'double', 'name': 'citric_acid'}, {'type': 'double', 'name': 'residual_sugar'}, {'type': 'double', 'name': 'chlorides'}, {'type': 'double', 'name': 'free_sulfur_dioxide'}, {'type': 'double', 'name': 'total_sulfur_dioxide'}, {'type': 'double', 'name': 'density'}, {'type': 'double', 'name': 'pH'}, {'type': 'double', 'name': 'sulphates'}, {'type': 'double', 'name': 'alcohol'}], 'outputs': [{'type': 'tensor', 'tensor-spec': {'dtype': 'float64', 'shape': [-1]}}]}, 'flavors': {'python_function': {'predict_fn': 'predict', 'model_path': 'model.pkl', 'loader_module': 'mlflow.sklearn', 'env': {'conda': 'conda.yaml', 'virtualenv': 'python_env.yaml'}, 'python_version': '3.10.6'}, 'sklearn': {'pickled_model': 'model.pkl', 'sklearn_version': '1.2.2', 'serialization_format': 'cloudpickle', 'code': None}}, 'run_id': '7ee5e476cc964a99beec2f4269f8e811', 'model_uuid': '3d22615565ae4f5f896d3a05072b552f', 'utc_time_created': '2023-07-08 04:53:25.446742', 'mlflow_version': '2.4.1', 'databricks_runtime': '13.2.x-cpu-ml-scala2.12'}]|
-|mlflow.runName|Best_Reference_Run_UC|
+|mlflow.log-model.history|[{'artifact_path': 'model', 'saved_input_example_info': {'artifact_path': 'input_example.json', 'type': 'dataframe', 'pandas_orient': 'split'}, 'signature': {'inputs': [{'type': 'double', 'name': 'fixed_acidity'}, {'type': 'double', 'name': 'volatile_acidity'}, {'type': 'double', 'name': 'citric_acid'}, {'type': 'double', 'name': 'residual_sugar'}, {'type': 'double', 'name': 'chlorides'}, {'type': 'double', 'name': 'free_sulfur_dioxide'}, {'type': 'double', 'name': 'total_sulfur_dioxide'}, {'type': 'double', 'name': 'density'}, {'type': 'double', 'name': 'pH'}, {'type': 'double', 'name': 'sulphates'}, {'type': 'double', 'name': 'alcohol'}], 'outputs': [{'type': 'tensor', 'tensor-spec': {'dtype': 'float64', 'shape': [-1]}}]}, 'flavors': {'python_function': {'predict_fn': 'predict', 'model_path': 'model.pkl', 'loader_module': 'mlflow.sklearn', 'env': {'conda': 'conda.yaml', 'virtualenv': 'python_env.yaml'}, 'python_version': '3.10.6'}, 'sklearn': {'pickled_model': 'model.pkl', 'sklearn_version': '1.1.1', 'serialization_format': 'cloudpickle', 'code': None}}, 'run_id': 'c62ccf932e0649a2b9247cc76d89b637', 'model_uuid': '2daecace267f4de29ec73062a10e2036', 'utc_time_created': '2023-08-11 08:40:16.227603', 'mlflow_version': '2.5.0', 'databricks_runtime': '13.2.x-cpu-ml-scala2.12'}]|
+|mlflow.runName|2.5.0 run|
 |mlflow.user|andre@mycompany.com|
 
 ### User Tags
@@ -304,16 +306,16 @@ Contents
 | :--- | :--- |
 |algorithm|<class 'sklearn.tree._classes.DecisionTreeRegressor'>|
 |data_source|andre.ml_data.winequality_white|
-|input_example|True|
-|log_input|True|
-|run_name|Best_Reference_Run_UC|
+|input_example|None|
+|log_input|False|
+|run_name|2.5.0 run|
 |save_signature|True|
 |sparkDatasourceInfo|[{'path': 's3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/tables/fb9f1fbf-156a-4a91-8ea3-4a8e58d7b1bf', 'version': '0', 'format': 'delta'}]|
-|timestamp|2023-07-08 04:53:16|
+|timestamp|2023-08-11 08:36:40|
 |version.DATABRICKS_RUNTIME_VERSION|13.2|
-|version.mlflow|2.4.1|
+|version.mlflow|2.5.0|
 |version.python|3.10.6|
-|version.sklearn|1.2.2|
+|version.sklearn|1.1.1|
 
 ### Exploded Tags
 
@@ -330,7 +332,7 @@ Contents
 |Key|Value|
 | :--- | :--- |
 |cluster_id|0414-154233-qm0df4rx|
-|cluster_name|andre_ML_13.1|
+|cluster_name|andre_ML_13.2|
 |spark_version|13.2.x-cpu-ml-scala2.12|
 |node_type_id|i3.xlarge|
 |driver_node_type_id|i3.xlarge|
@@ -345,8 +347,7 @@ Contents
 
 |Name|Value|
 | :--- | :--- |
-|jar|dbfs:/home/andre@mycompany.com/lib/jars/PrintArgs.jar|
-|whl|dbfs:/home/andre@mycompany.com/work/jobs/sklearn_wine/mlflow_sklearn_wine-0.0.1-py3-none-any.whl|
+|pypi|{'package': 'mlflow[skinny]==2.5.0'}|
 
 # Experiment
 
@@ -359,10 +360,10 @@ Contents
 |name|/Users/andre@mycompany.com/experiments/best/Sklearn_Wine_repo_uc|
 |artifact_location|dbfs:/databricks/mlflow-tracking/2668333326915882|
 |lifecycle_stage|active|
-|last_update_time|1688792000629|
+|last_update_time|1691743215166|
 |creation_time|1688789864922|
 |_creation_time|2023-07-08 04:17:45|
-|_last_update_time|2023-07-08 04:53:21|
+|_last_update_time|2023-08-11 08:40:15|
 |_tracking_uri|databricks://e2_demo|
 |_web_ui_link|https://e2-demo-west.cloud.databricks.com#mlflow/experiments/2668333326915882|
 |_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/experiments/get?experiment_id=2668333326915882|
@@ -384,8 +385,8 @@ Contents
 
 |Key|Value|
 | :--- | :--- |
-|timestamp|2023-07-08 04:53:16|
-|version_mlflow|2.4.1|
+|timestamp|2023-08-11 08:36:40|
+|version_mlflow|2.5.0|
 
 ## Permissions
   
@@ -419,6 +420,15 @@ Contents
             "inherited_from_object": [
               "/directories/"
             ]
+          }
+        ]
+      },
+      {
+        "group_name": "users",
+        "all_permissions": [
+          {
+            "permission_level": "CAN_READ",
+            "inherited": false
           }
         ]
       },
