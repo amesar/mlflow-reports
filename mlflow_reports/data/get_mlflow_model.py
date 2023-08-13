@@ -59,7 +59,7 @@ def _calc_model_size(model_info, model_uri):
         model_info["artifacts"] = artifacts
     except MlflowReportsException as e:
         msg = { "model_uri": model_uri, "run_id": model_info["run_id"] }
-        print(f"WARNING: Cannot calculate model size from run model: {msg}: {e}")
+        print(f"WARNING: Cannot calculate model size from run model: {msg}. EXCEPTION: {e}")
         model_info["model_size_bytes"] = -1
 
 

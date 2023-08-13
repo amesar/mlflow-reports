@@ -40,14 +40,6 @@ def opt_filter(function):
     )(function)
     return function
 
-def opt_datetime_as_string(function):
-    function = click.option("--datetime-as-string",
-        help="Convert Pandas datetime to string since Databricks display() ignores rounding of seconds.",
-        type=bool,
-        default=False
-    )(function)
-    return function
-
 def opt_unity_catalog(function):
     function = click.option("--unity-catalog",
         help="Use Databricks Unity Catalog",
@@ -67,6 +59,14 @@ def opt_get_tags_and_aliases(function):
 def opt_tags_and_aliases_as_string(function):
     function = click.option("--tags-and-aliases-as-string",
         help="Write tags and aliases as JSON string instead of dict. Needed for Pandas to Spark DataFrame conversion.",
+        type=bool,
+        default=False
+    )(function)
+    return function
+
+def opt_get_model_details(function):
+    function = click.option("--get-model-details",
+        help="Get MLflow model flavor and size",
         type=bool,
         default=False
     )(function)
