@@ -5,20 +5,19 @@ List model versions.
 import click
 from mlflow_reports.client.http_client import get_mlflow_client
 
-
 from . import list_utils
 from . click_options import (
-    opt_filter, 
+    opt_filter,
     opt_get_tags_and_aliases,
     opt_tags_and_aliases_as_string,
     opt_unity_catalog,
-    opt_max_description, 
+    opt_max_description,
     opt_output_csv_file,
 )
-from . import search_api
-
+from . import search_model_versions
 
 mlflow_client = get_mlflow_client()
+
 
 def show(filter,
         get_tags_and_aliases,
@@ -27,7 +26,7 @@ def show(filter,
         max_description,
         output_csv_file
     ):
-    df = search_api.search_model_versions(
+    df = search_model_versions.search(
         filter = filter,
         get_tags_and_aliases = get_tags_and_aliases,
         tags_and_aliases_as_string = tags_and_aliases_as_string,
