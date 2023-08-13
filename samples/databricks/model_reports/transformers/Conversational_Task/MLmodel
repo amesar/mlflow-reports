@@ -1,0 +1,33 @@
+artifact_path: chatbot
+databricks_runtime: 13.1.x-cpu-ml-scala2.12
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.transformers
+    model_binary: model
+    python_version: 3.10.6
+  transformers:
+    code: null
+    components:
+    - tokenizer
+    framework: pt
+    instance_type: ConversationalPipeline
+    model_binary: model
+    pipeline_model_type: GPT2LMHeadModel
+    source_model_name: microsoft/DialoGPT-medium
+    task: conversational
+    tokenizer_type: GPT2TokenizerFast
+    transformers_version: 4.28.1
+mlflow_version: 2.5.0
+model_uuid: 8fb957e95f094ca287187544b2e07088
+run_id: eb31972425fc4fd19fa6c30a30a53f5c
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  type: dataframe
+signature:
+  inputs: '[{"type": "string"}]'
+  outputs: '[{"type": "string"}]'
+utc_time_created: '2023-07-31 20:22:38.046197'
