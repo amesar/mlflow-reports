@@ -2,8 +2,9 @@
 Search for model versions and return Pandas DataFrame.
 """
 
-import mlflow
+import numpy as np
 import pandas as pd
+import mlflow
 
 from mlflow_reports.data import get_mlflow_model
 from mlflow_reports.client.http_client import get_mlflow_client
@@ -24,10 +25,13 @@ def search(filter=None,
         versions = _list_model_versions_databricks(mlflow_client, filter, get_tags_and_aliases)
     else:
         versions = _list_model_versions_open_source(mlflow_client, filter, get_tags_and_aliases)
+    if len(versions) == 0:
+        return pd.DataFrame()
     if tags_and_aliases_as_string:
         for vr in versions:
             list_utils.kv_list_to_dict(vr, "tags", mlflow_utils.mk_tags_dict, True)
     df = pd.DataFrame.from_dict(versions)
+    df = df.replace(np.nan, "", regex=True)
     list_utils.to_datetime(df, "creation_timestamp")
     list_utils.to_datetime(df, "last_updated_timestamp")
     return df
