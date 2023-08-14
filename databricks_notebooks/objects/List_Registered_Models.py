@@ -58,11 +58,11 @@ print("tags_and_aliases_as_string:", tags_and_aliases_as_string)
 from mlflow_reports.list import search_registered_models
 
 pandas_df = search_registered_models.search(
-    filter=filter, 
+    filter = filter, 
     unity_catalog = unity_catalog,
     prefix = model_prefix,
-    get_tags_and_aliases = True,
-    tags_and_aliases_as_string = True
+    get_tags_and_aliases = get_tags_and_aliases,
+    tags_and_aliases_as_string = tags_and_aliases_as_string
 )
 
 # COMMAND ----------

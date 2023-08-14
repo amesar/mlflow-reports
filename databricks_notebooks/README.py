@@ -15,6 +15,7 @@
 # MAGIC
 # MAGIC ##### MLflow list notebooks
 # MAGIC * [List_Registered_Models]($objects/List_Registered_Models)
+# MAGIC * [List_Model_Versions]($objects/List_Model_Versions)
 # MAGIC
 # MAGIC ##### Other
 # MAGIC * [Common]($Common)
