@@ -8,12 +8,11 @@
 # MAGIC * `1. Filter` - `filter_string` argument for for [MlflowClient.search_registered_models](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_registered_models). 
 # MAGIC   * `name like '%klearn%'`
 # MAGIC * `2. Unity Catalog` - Use Unity Catalog.
-# MAGIC * `3. Prefix` - Since UC implementation of `search_registered_models` doesn't support `LIKE` in a filter, show only models starting with this prefix.
+# MAGIC * `3. Model prefix` - Since UC implementation of `search_registered_models` doesn't support `LIKE` in a filter, show only models starting with this prefix.
 # MAGIC   * Note this is client-side logic. 
 # MAGIC   * You can just write an SQL query on the Pandas dataframe response as in example below.
-# MAGIC * `4. Datetime as string` - Since Spark doesn't honor Pandas datetime second rounding, for human readibility return as formatted string with rounded seconds
-# MAGIC * `5. Get tags and aliases` 
-# MAGIC * `6. Tags and aliases as string` - Return as string and not Pandas datetime
+# MAGIC * `4. Get tags and aliases` 
+# MAGIC * `5. Tags and aliases as string` - Return as string and not Pandas datetime
 
 # COMMAND ----------
 
@@ -25,27 +24,28 @@
 
 # COMMAND ----------
 
+dbutils.widgets.removeAll()
+
+# COMMAND ----------
+
 dbutils.widgets.text("1. Filter", "")
 dbutils.widgets.dropdown("2. Unity Catalog", "no", ["yes", "no"])
-dbutils.widgets.text("3. Prefix (for UC)", "")
-dbutils.widgets.dropdown("4. Datetime as string", "yes", ["yes", "no"])
-dbutils.widgets.dropdown("5. Get tags and aliases", "no", ["yes", "no"])
-dbutils.widgets.dropdown("6. Tags and aliases as string", "no", ["yes", "no"])
+dbutils.widgets.text("3. Model prefix (for UC)", "")
+dbutils.widgets.dropdown("4. Get tags and aliases", "no", ["yes", "no"])
+dbutils.widgets.dropdown("5. Tags and aliases as string", "no", ["yes", "no"])
 
 filter = dbutils.widgets.get("1. Filter")
 unity_catalog = dbutils.widgets.get("2. Unity Catalog") == "yes"
-prefix = dbutils.widgets.get("3. Prefix (for UC)")
-datetime_as_string = dbutils.widgets.get("4. Datetime as string") == "yes"
-get_tags_and_aliases = dbutils.widgets.get("5. Get tags and aliases") == "yes"
-tags_and_aliases_as_string = dbutils.widgets.get("6. Tags and aliases as string") == "yes"
+model_prefix = dbutils.widgets.get("3. Model prefix (for UC)")
+get_tags_and_aliases = dbutils.widgets.get("4. Get tags and aliases") == "yes"
+tags_and_aliases_as_string = dbutils.widgets.get("5. Tags and aliases as string") == "yes"
 
 filter = filter or None
-prefix = prefix or None
+model_prefix = model_prefix or None
 
 print("filter:", filter)
 print("unity_catalog:", unity_catalog)
-print("prefix:", prefix)
-print("datetime_as_string:", datetime_as_string)
+print("model_prefix:", model_prefix)
 print("get_tags_and_aliases:", get_tags_and_aliases)
 print("tags_and_aliases_as_string:", tags_and_aliases_as_string)
 
@@ -55,13 +55,12 @@ print("tags_and_aliases_as_string:", tags_and_aliases_as_string)
 
 # COMMAND ----------
 
-from mlflow_reports.list.search_api import search_registered_models
+from mlflow_reports.list import search_registered_models
 
-pandas_df = search_registered_models(
+pandas_df = search_registered_models.search(
     filter=filter, 
-    datetime_as_string = datetime_as_string,
     unity_catalog = unity_catalog,
-    prefix = prefix,
+    prefix = model_prefix,
     get_tags_and_aliases = True,
     tags_and_aliases_as_string = True
 )
