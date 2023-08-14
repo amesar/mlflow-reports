@@ -25,7 +25,7 @@ def search(filter=None,
     if mlflow_utils.is_calling_databricks():
         versions = _list_model_versions_databricks(mlflow_client, filter, get_tags_and_aliases, get_model_details)
     else:
-        versions = _list_model_versions_open_source(mlflow_client, filter, get_tags_and_aliases, get_model_details)
+        versions = _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details)
     if len(versions) == 0:
         return pd.DataFrame()
     if tags_and_aliases_as_string:
@@ -38,14 +38,9 @@ def search(filter=None,
     return df
 
 
-def _list_model_versions_open_source(mlflow_client, filter, get_tags_and_aliases, get_model_details):
-    versions = _list_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details)
-    return versions
-
-
 def _list_model_versions_databricks(mlflow_client, filter, get_tags_and_aliases, get_model_details):
     if filter:
-        return _list_model_versions_open_source(mlflow_client, filter, get_tags_and_aliases, get_model_details)
+        return _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details)
     models = SearchRegisteredModelsIterator(mlflow_client)
     models = list(models)   
     num_models = len(models)   
@@ -54,14 +49,14 @@ def _list_model_versions_databricks(mlflow_client, filter, get_tags_and_aliases,
     for j, model in enumerate(models):
         print(f"Processing {j+1}/{num_models} model '{model['name']}'")
         filter = f"name='{model['name']}'"
-        vrs = _list_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details)
+        vrs = _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details)
         if vrs:
             versions += vrs
     print(f"Found {len(versions)} model versions")
     return versions
 
 
-def _list_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details):
+def _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details):
     versions = SearchModelVersionsIterator(mlflow_client, filter=filter)
     versions = list(versions)
     if len(versions) == 0:
@@ -76,7 +71,8 @@ def _list_versions(mlflow_client, filter, get_tags_and_aliases, get_model_detail
             flavor, size = _get_model_details(vr)
             vr["model_flavor"] = flavor
             vr["model_size"] = size 
-    print(f"Found {len(versions)} model versions")
+    sfilter = f'for filter "{filter}"' if filter else ""
+    print(f"Found {len(versions)} model versions {sfilter}")
     return versions
 
 
