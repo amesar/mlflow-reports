@@ -8,7 +8,7 @@ def obj_to_dict(obj):
 
 
 def dict_to_json(dct):
-    return json.dumps(json.dumps(dct))
+    return json.dumps(dct)
 
 
 def dump_as_json(dct, sort_keys=None):
