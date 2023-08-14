@@ -2,7 +2,7 @@
 # MAGIC %md ## List Model Versions
 # MAGIC
 # MAGIC **Overview**
-# MAGIC * List registered models.
+# MAGIC * List model versions.
 # MAGIC
 # MAGIC **Widgets**
 # MAGIC * `1. Filter` - `filter_string` argument for for [MlflowClient.search_model_versions](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_model_versions). 

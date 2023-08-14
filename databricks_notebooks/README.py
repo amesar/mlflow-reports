@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %md ## README - mlflow-reports Databricks notebooks
+# MAGIC %md ## README - mlflow-reports - Databricks notebooks
 # MAGIC
 # MAGIC Model audit reports
 # MAGIC * [Detailed_Model_Report]($reports/Detailed_Model_Report) - full report of MLflow model and its related objects (run, model version, etc.) 
