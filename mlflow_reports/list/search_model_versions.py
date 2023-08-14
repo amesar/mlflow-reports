@@ -54,7 +54,7 @@ def _list_model_versions_databricks(mlflow_client, filter, get_tags_and_aliases,
     for j, model in enumerate(models):
         print(f"Processing {j+1}/{num_models} model '{model['name']}'")
         filter = f"name='{model['name']}'"
-        vrs = _list_versions(mlflow_client, filter, get_tags_and_aliases)
+        vrs = _list_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details)
         if vrs:
             versions += vrs
     print(f"Found {len(versions)} model versions")
