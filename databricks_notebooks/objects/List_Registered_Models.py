@@ -13,7 +13,6 @@
 # MAGIC   * Note this is client-side logic. 
 # MAGIC   * You can also write an SQL query on the response as in the examples below. 
 # MAGIC * `4. Get tags and aliases` 
-# MAGIC * `5. Tags and aliases as string` - Return as string and not Pandas datetime
 
 # COMMAND ----------
 
@@ -35,7 +34,6 @@ filter = dbutils.widgets.get("1. Filter")
 unity_catalog = dbutils.widgets.get("2. Unity Catalog") == "yes"
 model_prefix = dbutils.widgets.get("3. Model prefix (for UC)")
 get_tags_and_aliases = dbutils.widgets.get("4. Get tags and aliases") == "yes"
-tags_and_aliases_as_string = dbutils.widgets.get("5. Tags and aliases as string") == "yes"
 
 filter = filter or None
 model_prefix = model_prefix or None
@@ -44,7 +42,6 @@ print("filter:", filter)
 print("unity_catalog:", unity_catalog)
 print("model_prefix:", model_prefix)
 print("get_tags_and_aliases:", get_tags_and_aliases)
-print("tags_and_aliases_as_string:", tags_and_aliases_as_string)
 
 # COMMAND ----------
 
@@ -59,7 +56,7 @@ pandas_df = search_registered_models.search(
     unity_catalog = unity_catalog,
     prefix = model_prefix,
     get_tags_and_aliases = get_tags_and_aliases,
-    tags_and_aliases_as_string = tags_and_aliases_as_string
+    tags_and_aliases_as_string = True,
 )
 
 # COMMAND ----------
@@ -85,11 +82,26 @@ display(df)
 
 # COMMAND ----------
 
+# MAGIC %md #### Convert columns to desired format
+
+# COMMAND ----------
+
 from pyspark.sql.functions import *
 
 df2 = df\
   .withColumn("creation_timestamp",date_format("creation_timestamp", "yyyy-MM-dd hh:mm:ss")) \
   .withColumn("last_updated_timestamp",date_format("creation_timestamp", "yyyy-MM-dd hh:mm:ss"))
+
+if "tags" in df.columns:
+    from pyspark.sql.types import MapType, StringType
+    from pyspark.sql.functions import from_json
+    df2 = df2.withColumn("tags", from_json(df.tags, MapType(StringType(), StringType())))
+
+display(df2)
+
+# COMMAND ----------
+
+# MAGIC %md #### Set SQL table
 
 # COMMAND ----------
 

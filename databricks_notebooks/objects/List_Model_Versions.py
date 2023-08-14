@@ -10,8 +10,7 @@
 # MAGIC   * UC: only accepts this filter syntax: `name='andre_catalog.ml_models2.tmp`
 # MAGIC * `2. Unity Catalog` - Use Unity Catalog.
 # MAGIC * `3. Get tags and aliases` 
-# MAGIC * `4. Tags and aliases as string` - Return as string and not Pandas datetime.
-# MAGIC * `5. Get model details` - Get MLflow model flavor and size in bytes.
+# MAGIC * `4. Get model details` - Get MLflow model flavor and size in bytes.
 
 # COMMAND ----------
 
@@ -26,21 +25,18 @@
 dbutils.widgets.text("1. Filter", "")
 dbutils.widgets.dropdown("2. Unity Catalog", "no", ["yes", "no"])
 dbutils.widgets.dropdown("3. Get tags and aliases", "no", ["yes", "no"])
-dbutils.widgets.dropdown("4. Tags and aliases as string", "yes", ["yes", "no"])
-dbutils.widgets.dropdown("5. Get MLflow model details", "no", ["yes", "no"])
+dbutils.widgets.dropdown("4. Get MLflow model details", "no", ["yes", "no"])
 
 filter = dbutils.widgets.get("1. Filter")
 unity_catalog = dbutils.widgets.get("2. Unity Catalog") == "yes"
 get_tags_and_aliases = dbutils.widgets.get("3. Get tags and aliases") == "yes"
-tags_and_aliases_as_string = dbutils.widgets.get("4. Tags and aliases as string") == "yes"
-get_model_details = dbutils.widgets.get("5. Get MLflow model details") == "yes"
+get_model_details = dbutils.widgets.get("4. Get MLflow model details") == "yes"
 
 filter = filter or None
 
 print("filter:", filter)
 print("unity_catalog:", unity_catalog)
 print("get_tags_and_aliases:", get_tags_and_aliases)
-print("tags_and_aliases_as_string:", tags_and_aliases_as_string)
 print("get_model_details:", get_model_details)
 
 # COMMAND ----------
@@ -55,8 +51,8 @@ pandas_df = search_model_versions.search(
     filter = filter, 
     unity_catalog = unity_catalog,
     get_tags_and_aliases = get_tags_and_aliases,
-    tags_and_aliases_as_string = tags_and_aliases_as_string,
-    get_model_details = get_model_details
+    get_model_details = get_model_details,
+    tags_and_aliases_as_string = True
 )
 
 # COMMAND ----------
@@ -82,7 +78,7 @@ display(df)
 
 # COMMAND ----------
 
-# MAGIC %md #### Select desired columns
+# MAGIC %md #### Select desired columns and convert to desired format
 
 # COMMAND ----------
 
@@ -103,10 +99,19 @@ columns
 # COMMAND ----------
 
 from pyspark.sql.functions import *
+from pyspark.sql.types import MapType, StringType
 
 df2 = df.select(columns) \
   .withColumn("creation_timestamp",date_format("creation_timestamp", "yyyy-MM-dd hh:mm:ss"))
+
+if "tags" in columns:
+    df2 = df2.withColumn("tags", from_json(df.tags, MapType(StringType(), StringType())))
+
 display(df2)
+
+# COMMAND ----------
+
+# MAGIC %md #### Set SQL table
 
 # COMMAND ----------
 
