@@ -6,11 +6,12 @@
 # MAGIC
 # MAGIC **Widgets**
 # MAGIC * `1. Filter` - `filter_string` argument for for [MlflowClient.search_registered_models](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_registered_models). 
-# MAGIC   * `name like '%klearn%'`
+# MAGIC   * Non-UC example: `name like '%klearn%'`
+# MAGIC   * UC: Does not accept filter.
 # MAGIC * `2. Unity Catalog` - Use Unity Catalog.
-# MAGIC * `3. Model prefix` - Since UC implementation of `search_registered_models` doesn't support `LIKE` in a filter, show only models starting with this prefix.
+# MAGIC * `3. Model prefix` - Since UC implementation of `search_registered_models` filters, show only models starting with this prefix.
 # MAGIC   * Note this is client-side logic. 
-# MAGIC   * You can just write an SQL query on the Pandas dataframe response as in example below.
+# MAGIC   * You can also write an SQL query on the response as in the examples below. 
 # MAGIC * `4. Get tags and aliases` 
 # MAGIC * `5. Tags and aliases as string` - Return as string and not Pandas datetime
 
@@ -21,10 +22,6 @@
 # COMMAND ----------
 
 # MAGIC %run ../Common
-
-# COMMAND ----------
-
-dbutils.widgets.removeAll()
 
 # COMMAND ----------
 
@@ -88,7 +85,23 @@ display(df)
 
 # COMMAND ----------
 
-df.createOrReplaceTempView("models")
+from pyspark.sql.functions import *
+
+df2 = df\
+  .withColumn("creation_timestamp",date_format("creation_timestamp", "yyyy-MM-dd hh:mm:ss")) \
+  .withColumn("last_updated_timestamp",date_format("creation_timestamp", "yyyy-MM-dd hh:mm:ss"))
+
+# COMMAND ----------
+
+df2.createOrReplaceTempView("models")
+
+# COMMAND ----------
+
+# MAGIC %md #### Show number of models per user
+
+# COMMAND ----------
+
+# MAGIC %sql select user_id, count(*) as num_models from models group by user_id order by num_models desc
 
 # COMMAND ----------
 
@@ -96,7 +109,7 @@ df.createOrReplaceTempView("models")
 
 # COMMAND ----------
 
-# MAGIC %sql select * from models order by user_id, name
+# MAGIC %sql select user_id, * from models order by user_id, name
 
 # COMMAND ----------
 

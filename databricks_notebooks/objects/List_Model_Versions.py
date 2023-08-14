@@ -6,12 +6,12 @@
 # MAGIC
 # MAGIC **Widgets**
 # MAGIC * `1. Filter` - `filter_string` argument for for [MlflowClient.search_model_versions](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_model_versions). 
-# MAGIC   * Example: `name like '%klearn%'`
-# MAGIC   * UC: only accepts limited filter syntax: `name='andre_catalog.ml_models2.tmp'
+# MAGIC   * Non-UC example: `name like '%klearn%'`
+# MAGIC   * UC: only accepts this filter syntax: `name='andre_catalog.ml_models2.tmp`
 # MAGIC * `2. Unity Catalog` - Use Unity Catalog.
 # MAGIC * `3. Get tags and aliases` 
 # MAGIC * `4. Tags and aliases as string` - Return as string and not Pandas datetime.
-# MAGIC * `5. Get model details` - get MLflow model flavor and size in bytes.
+# MAGIC * `5. Get model details` - Get MLflow model flavor and size in bytes.
 
 # COMMAND ----------
 
@@ -102,9 +102,11 @@ columns
 
 # COMMAND ----------
 
+from pyspark.sql.functions import *
+
 df2 = df.select(columns) \
   .withColumn("creation_timestamp",date_format("creation_timestamp", "yyyy-MM-dd hh:mm:ss"))
-#display(df2)
+display(df2)
 
 # COMMAND ----------
 
