@@ -52,7 +52,7 @@ def opt_get_tags_and_aliases(function):
     function = click.option("--get-tags-and-aliases",
         help="Get tags and aliases attribute from registered model.",
         type=bool,
-        default=False
+        default=True
     )(function)
     return function
 

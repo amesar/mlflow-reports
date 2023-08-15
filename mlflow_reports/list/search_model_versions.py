@@ -14,7 +14,7 @@ from . import list_utils
 
 
 def search(filter=None,
-        get_tags_and_aliases = False,
+        get_tags_and_aliases = True,
         tags_and_aliases_as_string = False,
         get_model_details = False,
         unity_catalog = False
@@ -42,8 +42,8 @@ def _list_model_versions_databricks(mlflow_client, filter, get_tags_and_aliases,
     if filter:
         return _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details)
     models = SearchRegisteredModelsIterator(mlflow_client)
-    models = list(models)   
-    num_models = len(models)   
+    models = list(models)  
+    num_models = len(models)  
     print(f"Found {num_models} models")
     versions = []
     for j, model in enumerate(models):
@@ -70,7 +70,7 @@ def _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_
         if get_model_details:
             flavor, size = _get_model_details(vr)
             vr["model_flavor"] = flavor
-            vr["model_size"] = size 
+            vr["model_size"] = size
     sfilter = f'for filter "{filter}"' if filter else ""
     print(f"Found {len(versions)} model versions {sfilter}")
     return versions

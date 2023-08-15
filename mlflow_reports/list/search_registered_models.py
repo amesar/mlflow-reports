@@ -13,7 +13,7 @@ from . import list_utils
 
 def search(filter=None,
         prefix = None,
-        get_tags_and_aliases = False,
+        get_tags_and_aliases = True,
         tags_and_aliases_as_string = False,
         unity_catalog = False
     ):
