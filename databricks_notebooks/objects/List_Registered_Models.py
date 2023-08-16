@@ -27,13 +27,10 @@
 dbutils.widgets.text("1. Filter", "")
 dbutils.widgets.dropdown("2. Unity Catalog", "no", ["yes", "no"])
 dbutils.widgets.text("3. Model prefix (for UC)", "")
-dbutils.widgets.dropdown("4. Get tags and aliases", "no", ["yes", "no"])
-dbutils.widgets.dropdown("5. Tags and aliases as string", "no", ["yes", "no"])
 
 filter = dbutils.widgets.get("1. Filter")
 unity_catalog = dbutils.widgets.get("2. Unity Catalog") == "yes"
 model_prefix = dbutils.widgets.get("3. Model prefix (for UC)")
-get_tags_and_aliases = dbutils.widgets.get("4. Get tags and aliases") == "yes"
 
 filter = filter or None
 model_prefix = model_prefix or None
@@ -41,7 +38,7 @@ model_prefix = model_prefix or None
 print("filter:", filter)
 print("unity_catalog:", unity_catalog)
 print("model_prefix:", model_prefix)
-print("get_tags_and_aliases:", get_tags_and_aliases)
+
 
 # COMMAND ----------
 
@@ -53,10 +50,8 @@ from mlflow_reports.list import search_registered_models
 
 pandas_df = search_registered_models.search(
     filter = filter, 
-    unity_catalog = unity_catalog,
     prefix = model_prefix,
-    get_tags_and_aliases = get_tags_and_aliases,
-    tags_and_aliases_as_string = True,
+    unity_catalog = unity_catalog,
 )
 
 # COMMAND ----------

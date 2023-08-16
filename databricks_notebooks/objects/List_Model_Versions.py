@@ -24,19 +24,16 @@
 
 dbutils.widgets.text("1. Filter", "")
 dbutils.widgets.dropdown("2. Unity Catalog", "no", ["yes", "no"])
-dbutils.widgets.dropdown("3. Get tags and aliases", "no", ["yes", "no"])
-dbutils.widgets.dropdown("4. Get MLflow model details", "no", ["yes", "no"])
+dbutils.widgets.dropdown("3. Get MLflow model details", "no", ["yes", "no"])
 
 filter = dbutils.widgets.get("1. Filter")
 unity_catalog = dbutils.widgets.get("2. Unity Catalog") == "yes"
-get_tags_and_aliases = dbutils.widgets.get("3. Get tags and aliases") == "yes"
-get_model_details = dbutils.widgets.get("4. Get MLflow model details") == "yes"
+get_model_details = dbutils.widgets.get("3. Get MLflow model details") == "yes"
 
 filter = filter or None
 
 print("filter:", filter)
 print("unity_catalog:", unity_catalog)
-print("get_tags_and_aliases:", get_tags_and_aliases)
 print("get_model_details:", get_model_details)
 
 # COMMAND ----------
@@ -50,9 +47,7 @@ from mlflow_reports.list import search_model_versions
 pandas_df = search_model_versions.search(
     filter = filter, 
     unity_catalog = unity_catalog,
-    get_tags_and_aliases = get_tags_and_aliases,
-    get_model_details = get_model_details,
-    tags_and_aliases_as_string = True
+    get_model_details = get_model_details
 )
 
 # COMMAND ----------
