@@ -17,7 +17,10 @@
 # MAGIC * [List_Registered_Models]($objects/List_Registered_Models)
 # MAGIC * [List_Model_Versions]($objects/List_Model_Versions)
 # MAGIC
+# MAGIC ##### MLflow object table notebooks
+# MAGIC * [Create_Registered_Models_Table]($Create_Registered_Models_Table)
+# MAGIC
 # MAGIC ##### Other
 # MAGIC * [Common]($Common)
 # MAGIC
-# MAGIC Last updated: 2023-08-14
+# MAGIC Last updated: 2023-08-15
