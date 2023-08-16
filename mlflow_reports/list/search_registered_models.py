@@ -17,8 +17,7 @@ def search(filter=None,
         tags_and_aliases_as_string = False,
         unity_catalog = False
     ):
-    if unity_catalog:
-        mlflow_utils.use_unity_catalog()
+    mlflow_utils.use_unity_catalog(unity_catalog)
     mlflow_client = get_mlflow_client()
     models = SearchRegisteredModelsIterator(mlflow_client, filter=filter)
     models = list(models)

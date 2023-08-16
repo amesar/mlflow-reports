@@ -19,8 +19,7 @@ def search(filter=None,
         get_model_details = False,
         unity_catalog = False
     ):
-    if unity_catalog:
-        mlflow_utils.use_unity_catalog()
+    mlflow_utils.use_unity_catalog(unity_catalog)
     mlflow_client = get_mlflow_client()
     if mlflow_utils.is_calling_databricks():
         versions = _list_model_versions_databricks(mlflow_client, filter, get_tags_and_aliases, get_model_details)
