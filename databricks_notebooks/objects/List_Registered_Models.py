@@ -52,6 +52,7 @@ pandas_df = search_registered_models.search(
     filter = filter, 
     prefix = model_prefix,
     unity_catalog = unity_catalog,
+    tags_and_aliases_as_string = True
 )
 
 # COMMAND ----------
