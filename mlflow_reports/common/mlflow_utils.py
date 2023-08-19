@@ -126,11 +126,12 @@ def is_unity_catalog_model(model_name):
 
 
 def use_unity_catalog(_use_unity_catalog):
-    if _use_unity_catalog:
-        mlflow.set_registry_uri("databricks-uc")
-    else:
-        mlflow.set_registry_uri("databricks")
-    print("New mlflow.registry_uri:",mlflow.get_registry_uri())
+    if is_calling_databricks():
+        if _use_unity_catalog:
+            mlflow.set_registry_uri("databricks-uc")
+        else:
+            mlflow.set_registry_uri("databricks")
+    print("Current mlflow.registry_uri:",mlflow.get_registry_uri())
 
 
 _is_calling_into_databricks = None
