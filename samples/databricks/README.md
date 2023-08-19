@@ -20,7 +20,7 @@ Hugging Face transformer tasks:
   * [Translation_Task](model_reports/transformers/Translation_Task)
   * [Speech_Recognition_Task](model_reports/transformers/Speech_Recognition_Task)
   * [Feature_Extraction_Task](model_reports/transformers/Feature_Extraction_Task)
-  * [hugging-face-transformers-batch-nlp](model_reports/hugging-face-transformers-batch-nlp) - BartForConditionalGeneration - summarization task
+  * [Summarization Task](model_reports/transformers/hugging-face-transformers-batch-nlp) 
 
 Other:
   * [dolly3b](model_reports/dolly3b) - Dolly
