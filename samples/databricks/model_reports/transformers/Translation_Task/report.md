@@ -1,0 +1,456 @@
+
+MLflow Model: _models:/Translation_Task/1_
+==========================================
+
+Contents
+========
+
+* [Model Overview](#model-overview)
+* [MLflow Model](#mlflow-model)
+	* [Details](#details)
+	* [Signature](#signature)
+	* [Saved input example info](#saved-input-example-info)
+* [Registered Model](#registered-model)
+	* [Details](#details)
+	* [Tags](#tags)
+	* [Permissions](#permissions)
+* [Registered Model Version](#registered-model-version)
+	* [Details](#details)
+	* [Tags](#tags)
+* [Run](#run)
+	* [Info](#info)
+	* [Params](#params)
+	* [Metrics](#metrics)
+	* [Inputs](#inputs)
+	* [Tags](#tags)
+* [Experiment](#experiment)
+	* [Details](#details)
+	* [Tags](#tags)
+	* [Permissions](#permissions)
+
+# Model Overview
+  
+<b><font size="+1">MLflow Model</font></b>  
+
+|Name|Value|
+| :--- | :--- |
+|model_uri|models:/Translation_Task/1|
+|flavor|mlflow.transformers|
+|flavor_version|4.28.1|
+|mlflow_version|2.5.0|
+|size_bytes|245,300,319|
+|databricks_runtime|13.1.x-cpu-ml-scala2.12|
+|is_unity_catalog|False|
+|time_created|2023-07-30 21:32:38|
+|report_time|2023-08-19 17:09:40|
+  
+<b><font size="+1">MLflow Model URIs</font></b>  
+
+|URI type|URI|
+| :--- | :--- |
+|model_uri|models:/Translation_Task/1|
+|run_uri|runs:/127d9edd069b4f438e1e1596a03da3f8/french_translator|
+|reg_model_download_uri|dbfs:/databricks/mlflow-registry/4c097f67d40c4d8780b71c96f7766c70/models/french_translator|
+|run_model_download_uri|dbfs:/databricks/mlflow-tracking/bdbe61f5f192440ebce1e7fd9f2eac4e/127d9edd069b4f438e1e1596a03da3f8/artifacts/french_translator|
+
+# MLflow Model
+
+## Details
+  
+
+|Name|Value|
+| :--- | :--- |
+|artifact_path|french_translator|
+|databricks_runtime|13.1.x-cpu-ml-scala2.12|
+|mlflow_version|2.5.0|
+|model_uuid|7ae48f8170f84ac39b4d7a7d08251a3f|
+|run_id|127d9edd069b4f438e1e1596a03da3f8|
+|utc_time_created|2023-07-30 21:32:38.813877|
+|model_flavor|transformers|
+|model_size_bytes|245300319|
+
+### Flavors
+
+#### Flavor 'python_function'
+  
+
+|Name|Value|
+| :--- | :--- |
+|env|{'conda': 'conda.yaml', 'virtualenv': 'python_env.yaml'}|
+|loader_module|mlflow.transformers|
+|model_binary|model|
+|python_version|3.10.6|
+
+#### Flavor 'transformers'
+  
+
+|Name|Value|
+| :--- | :--- |
+|code|None|
+|components|['tokenizer']|
+|framework|pt|
+|instance_type|TranslationPipeline|
+|model_binary|model|
+|pipeline_model_type|T5ForConditionalGeneration|
+|source_model_name|t5-small|
+|task|translation_en_to_fr|
+|tokenizer_type|T5TokenizerFast|
+|transformers_version|4.28.1|
+
+## Signature
+
+### Inputs
+  
+
+|Column|Type|
+| :--- | :--- |
+|None|string|
+
+### Outputs
+  
+
+|Type name|Type value|
+| :--- | :--- |
+|string|None|
+
+## Saved input example info
+  
+**_<font color="red" size="+1">None found</font>_**
+# Registered Model
+
+## Details
+  
+
+|Name|Value|
+| :--- | :--- |
+|name|Translation_Task|
+|creation_timestamp|1690752769353|
+|last_updated_timestamp|1690834903890|
+|user_id|andre@mycompany.com|
+|id|5f7f4eb3c18d44d4bddc7da205ab50c8|
+|permission_level|CAN_MANAGE|
+|_creation_timestamp|2023-07-30 21:32:49|
+|_last_updated_timestamp|2023-07-31 20:21:44|
+|_is_unity_catalog|False|
+|_web_ui_link|https://e2-demo-west.cloud.databricks.com#mlflow/models/Translation_Task|
+|_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/registered-models/get?name=Translation_Task|
+
+## Tags
+  
+**_<font color="red" size="+1">None found</font>_**
+## Permissions
+  
+```
+{
+  "permission_levels": [
+    {
+      "permission_level": "CAN_READ",
+      "description": "Can view the details of the registered model and its model versions, and use the model versions."
+    },
+    {
+      "permission_level": "CAN_EDIT",
+      "description": "Can view and edit the details of a registered model and its model versions (except stage changes), and add new model versions."
+    },
+    {
+      "permission_level": "CAN_MANAGE_STAGING_VERSIONS",
+      "description": "Can view and edit the details of a registered model and its model versions, add new model versions, and manage stage transitions between non-Production stages."
+    },
+    {
+      "permission_level": "CAN_MANAGE_PRODUCTION_VERSIONS",
+      "description": "Can view and edit the details of a registered model and its model versions, add new model versions, and manage stage transitions between any stages."
+    },
+    {
+      "permission_level": "CAN_MANAGE",
+      "description": "Can manage permissions on, view all details of, and perform all actions on the registered model and its model versions."
+    }
+  ],
+  "permissions": {
+    "object_id": "/registered-models/5f7f4eb3c18d44d4bddc7da205ab50c8",
+    "object_type": "registered-model",
+    "access_control_list": [
+      {
+        "user_name": "andre@mycompany.com",
+        "display_name": "Andre",
+        "all_permissions": [
+          {
+            "permission_level": "CAN_MANAGE",
+            "inherited": false
+          }
+        ]
+      },
+      {
+        "group_name": "admins",
+        "all_permissions": [
+          {
+            "permission_level": "CAN_MANAGE",
+            "inherited": true,
+            "inherited_from_object": [
+              "/registered-models/"
+            ]
+          }
+        ]
+      },
+      {
+        "group_name": "users",
+        "all_permissions": [
+          {
+            "permission_level": "CAN_MANAGE",
+            "inherited": true,
+            "inherited_from_object": [
+              "/registered-models/"
+            ]
+          }
+        ]
+      },
+      {
+        "service_principal_name": "038455d4-e5ec-4544-b6cf-64d55b91fee1",
+        "display_name": "service-principal-e2-demo-west-ws-do-not-delete",
+        "all_permissions": [
+          {
+            "permission_level": "CAN_MANAGE",
+            "inherited": true,
+            "inherited_from_object": [
+              "/registered-models/"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+
+```
+# Registered Model Version
+
+## Details
+  
+
+|Name|Value|
+| :--- | :--- |
+|name|Translation_Task|
+|version|1|
+|creation_timestamp|1690752769512|
+|last_updated_timestamp|1690752777672|
+|user_id|andre@mycompany.com|
+|current_stage|None|
+|source|dbfs:/databricks/mlflow-tracking/bdbe61f5f192440ebce1e7fd9f2eac4e/127d9edd069b4f438e1e1596a03da3f8/artifacts/french_translator|
+|run_id|127d9edd069b4f438e1e1596a03da3f8|
+|status|READY|
+|_creation_timestamp|2023-07-30 21:32:50|
+|_last_updated_timestamp|2023-07-30 21:32:58|
+|_is_unity_catalog|False|
+|_reg_model_download_uri|dbfs:/databricks/mlflow-registry/4c097f67d40c4d8780b71c96f7766c70/models/french_translator|
+|_run_model_download_uri|dbfs:/databricks/mlflow-tracking/bdbe61f5f192440ebce1e7fd9f2eac4e/127d9edd069b4f438e1e1596a03da3f8/artifacts/french_translator|
+|_web_ui_link|https://e2-demo-west.cloud.databricks.com#mlflow/models/Translation_Task/versions/1|
+|_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/model-versions/get?name=Translation_Task&version=1|
+
+## Tags
+  
+
+|Name|Value|
+| :--- | :--- |
+|hf_code|None|
+|hf_components|['tokenizer']|
+|hf_framework|pt|
+|hf_instance_type|TranslationPipeline|
+|hf_model_binary|model|
+|hf_pipeline_model_type|T5ForConditionalGeneration|
+|hf_source_model_name|t5-small|
+|hf_task|translation_en_to_fr|
+|hf_tokenizer_type|T5TokenizerFast|
+|hf_transformers_version|4.28.1|
+
+# Run
+
+## Info
+  
+
+|Name|Value|
+| :--- | :--- |
+|run_id|127d9edd069b4f438e1e1596a03da3f8|
+|run_uuid|127d9edd069b4f438e1e1596a03da3f8|
+|experiment_id|bdbe61f5f192440ebce1e7fd9f2eac4e|
+|run_name|sneaky-snipe-941|
+|status|FINISHED|
+|start_time|1690752758652|
+|end_time|1690752768328|
+|artifact_uri|dbfs:/databricks/mlflow-tracking/bdbe61f5f192440ebce1e7fd9f2eac4e/127d9edd069b4f438e1e1596a03da3f8/artifacts|
+|lifecycle_stage|active|
+|_start_time|2023-07-30 21:32:39|
+|_end_time|2023-07-30 21:32:48|
+|_duration|9.676|
+|_experiment_name|/Repos/andre@mycompany.com/mlflow-examples/databricks/notebooks/transformers/Translation_Task|
+|_web_ui_link|https://e2-demo-west.cloud.databricks.com#mlflow/experiments/bdbe61f5f192440ebce1e7fd9f2eac4e/runs/127d9edd069b4f438e1e1596a03da3f8|
+|_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=127d9edd069b4f438e1e1596a03da3f8|
+
+## Params
+  
+**_<font color="red" size="+1">None found</font>_**
+## Metrics
+  
+**_<font color="red" size="+1">None found</font>_**
+## Inputs
+
+## Tags
+
+### Git Repo Tags
+  
+
+|Key|Value|
+| :--- | :--- |
+|mlflow.databricks.gitRepoCommit|1456c2304592ea88fdfcebf4496a3f8bf3f8dc30|
+|mlflow.databricks.gitRepoProvider|gitHub|
+|mlflow.databricks.gitRepoReference|master|
+|mlflow.databricks.gitRepoReferenceType|branch|
+|mlflow.databricks.gitRepoRelativePath|databricks/notebooks/llm_transformers/Translation_Task|
+|mlflow.databricks.gitRepoStatus|unknown|
+|mlflow.databricks.gitRepoUrl|https://github.com/amesar/mlflow-examples|
+
+### Notebook Tags
+  
+
+|Key|Value|
+| :--- | :--- |
+|mlflow.databricks.notebook.commandID|1558801066086017122_6378417983694883292_e2d06d37c7ac47819f0b99f217c24009|
+|mlflow.databricks.notebookID|3428923814203680|
+|mlflow.databricks.notebookPath|/Repos/andre@mycompany.com/mlflow-examples/databricks/notebooks/llm_transformers/Translation_Task|
+
+### Cluster Tags
+  
+
+|Key|Value|
+| :--- | :--- |
+|mlflow.databricks.cluster.id|0414-154233-qm0df4rx|
+|mlflow.databricks.cluster.info|{'cluster_name': 'andre_ML_13.2', 'spark_version': '13.1.x-cpu-ml-scala2.12', 'node_type_id': 'i3.xlarge', 'driver_node_type_id': 'i3.xlarge', 'autotermination_minutes': 120, 'disk_spec': {'disk_count': 0}, 'num_workers': 1}|
+|mlflow.databricks.cluster.libraries|{'installable': [{'jar': 'dbfs:/home/andre@mycompany.com/lib/jars/PrintArgs.jar'}, {'whl': 'dbfs:/home/andre@mycompany.com/work/jobs/sklearn_wine/mlflow_sklearn_wine-0.0.1-py3-none-any.whl'}], 'redacted': []}|
+
+### Workspace Tags
+  
+
+|Key|Value|
+| :--- | :--- |
+|mlflow.databricks.webappURL|https://oregon.cloud.databricks.com|
+|mlflow.databricks.workspaceID|2556758628403379|
+|mlflow.databricks.workspaceURL|e2-demo-west.cloud.databricks.com|
+
+### Source Tags
+  
+
+|Key|Value|
+| :--- | :--- |
+|mlflow.source.name|/Repos/andre@mycompany.com/mlflow-examples/databricks/notebooks/llm_transformers/Translation_Task|
+|mlflow.source.type|NOTEBOOK|
+
+### Other System Tags
+  
+
+|Key|Value|
+| :--- | :--- |
+|mlflow.log-model.history|[{'artifact_path': 'french_translator', 'signature': {'inputs': [{'type': 'string'}], 'outputs': [{'type': 'string'}]}, 'flavors': {'python_function': {'model_binary': 'model', 'loader_module': 'mlflow.transformers', 'python_version': '3.10.6', 'env': {'conda': 'conda.yaml', 'virtualenv': 'python_env.yaml'}}, 'transformers': {'task': 'translation_en_to_fr', 'framework': 'pt', 'source_model_name': 't5-small', 'components': ['tokenizer'], 'code': None, 'model_binary': 'model', 'tokenizer_type': 'T5TokenizerFast', 'pipeline_model_type': 'T5ForConditionalGeneration', 'instance_type': 'TranslationPipeline', 'transformers_version': '4.28.1'}}, 'run_id': '127d9edd069b4f438e1e1596a03da3f8', 'model_uuid': '7ae48f8170f84ac39b4d7a7d08251a3f', 'utc_time_created': '2023-07-30 21:32:38.813877', 'mlflow_version': '2.5.0', 'databricks_runtime': '13.1.x-cpu-ml-scala2.12'}]|
+|mlflow.runName|sneaky-snipe-941|
+|mlflow.user|andre@mycompany.com|
+
+### User Tags
+  
+
+|Key|Value|
+| :--- | :--- |
+|hf_code|None|
+|hf_components|['tokenizer']|
+|hf_framework|pt|
+|hf_instance_type|TranslationPipeline|
+|hf_model_binary|model|
+|hf_pipeline_model_type|T5ForConditionalGeneration|
+|hf_source_model_name|t5-small|
+|hf_task|translation_en_to_fr|
+|hf_tokenizer_type|T5TokenizerFast|
+|hf_transformers_version|4.28.1|
+
+### Exploded Tags
+
+#### Spark Datasources
+  
+**_<font color="red" size="+1">None found</font>_**
+#### Cluster Info
+  
+
+|Key|Value|
+| :--- | :--- |
+|cluster_id|0414-154233-qm0df4rx|
+|cluster_name|andre_ML_13.2|
+|spark_version|13.1.x-cpu-ml-scala2.12|
+|node_type_id|i3.xlarge|
+|driver_node_type_id|i3.xlarge|
+|autotermination_minutes|120|
+|disk_spec|{'disk_count': 0}|
+|num_workers|1|
+
+#### Cluster Libraries
+
+##### Installable Libraries
+  
+
+|Name|Value|
+| :--- | :--- |
+|jar|dbfs:/home/andre@mycompany.com/lib/jars/PrintArgs.jar|
+|whl|dbfs:/home/andre@mycompany.com/work/jobs/sklearn_wine/mlflow_sklearn_wine-0.0.1-py3-none-any.whl|
+
+# Experiment
+
+## Details
+  
+
+|Name|Value|
+| :--- | :--- |
+|experiment_id|bdbe61f5f192440ebce1e7fd9f2eac4e|
+|name|/Repos/andre@mycompany.com/mlflow-examples/databricks/notebooks/transformers/Translation_Task|
+|artifact_location|dbfs:/databricks/mlflow-tracking/bdbe61f5f192440ebce1e7fd9f2eac4e|
+|lifecycle_stage|active|
+|last_update_time|1690782855016|
+|creation_time|1690699014127|
+|_creation_time|2023-07-30 06:36:54|
+|_last_update_time|2023-07-31 05:54:15|
+|_tracking_uri|databricks://e2_demo|
+|_web_ui_link|https://e2-demo-west.cloud.databricks.com#mlflow/experiments/bdbe61f5f192440ebce1e7fd9f2eac4e|
+|_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/experiments/get?experiment_id=bdbe61f5f192440ebce1e7fd9f2eac4e|
+
+## Tags
+
+### MLflow System Tags
+  
+
+|Key|Value|
+| :--- | :--- |
+|mlflow.experiment.sourceType|REPO_NOTEBOOK|
+|mlflow.ownerId|4566812440727830|
+|mlflow.experiment.sourceName|/Repos/andre@mycompany.com/mlflow-examples/databricks/notebooks/transformers/Translation_Task|
+|mlflow.ownerEmail|andre@mycompany.com|
+|mlflow.experiment.sourceId|3428923814203680|
+
+### User Tags
+  
+**_<font color="red" size="+1">None found</font>_**
+## Permissions
+  
+```
+{
+  "permission_levels": [
+    {
+      "permission_level": "CAN_READ",
+      "description": "Can view the experiment"
+    },
+    {
+      "permission_level": "CAN_EDIT",
+      "description": "Can view, log runs, and edit the experiment"
+    },
+    {
+      "permission_level": "CAN_MANAGE",
+      "description": "Can view, log runs, edit, delete, and change permissions of the experiment"
+    }
+  ],
+  "permissions": {
+    "error": "{\"http_status_code\": 400, \"uri\": \"https://e2-demo-west.cloud.databricks.com/api/2.0/permissions/experiments/bdbe61f5f192440ebce1e7fd9f2eac4e\", \"params\": null, \"response\": \"{\\\"error_code\\\":\\\"INVALID_PARAMETER_VALUE\\\",\\\"message\\\":\\\"For input string: \\\\\\\"bdbe61f5f192440ebce1e7fd9f2eac4e\\\\\\\"\\\"}\"}"
+  }
+}
+
+```

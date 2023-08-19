@@ -13,10 +13,17 @@ Top-level directory of [model_reports](model_reports).
 * [cv_pytorch_final](model_reports/cv_pytorch_final) - PyTorch job
 
 **LLMs**
+
+Hugging Face transformer tasks:
+  * [Conversational_Task](model_reports/transformers/Conversational_Task)
+  * [Text_to_Text_Generation_Task](model_reports/transformers/Text_to_Text_Generation_Task)
+  * [Translation_Task](model_reports/transformers/Translation_Task)
+  * [Speech_Recognition_Task](model_reports/transformers/Speech_Recognition_Task)
+  * [Feature_Extraction_Task](model_reports/transformers/Feature_Extraction_Task)
+  * [hugging-face-transformers-batch-nlp](model_reports/hugging-face-transformers-batch-nlp) - BartForConditionalGeneration - summarization task
+
+Other:
   * [dolly3b](model_reports/dolly3b) - Dolly
-  * Hugging Face models:
-    * [hugging-face-transformers-batch-nlp](model_reports/hugging-face-transformers-batch-nlp)
-    * [Conversational_Task](model_reports/transformers/Conversational_Task)
 
 ### Unity Catalog Reports
 
