@@ -1,6 +1,11 @@
 import json
 import yaml
 
+# Fix for PyYaml bug where yaml.safe_load() automatically converts to datetime-like fields to Python datetime
+yaml.constructor.SafeConstructor.yaml_constructors[
+    "tag:yaml.org,2002:timestamp"] = yaml.constructor.SafeConstructor.yaml_constructors[u"tag:yaml.org,2002:str"
+]
+
 def mk_local_path(path):
     return path.replace("dbfs:","/dbfs")
 
