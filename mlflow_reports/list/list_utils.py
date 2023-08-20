@@ -1,5 +1,6 @@
 import pandas as pd
 from tabulate import tabulate
+
 from mlflow_reports.common.timestamp_utils import TS_FORMAT
 from mlflow_reports.common import object_utils
 
@@ -10,13 +11,15 @@ def to_datetime(df, column, datetime_as_string=False):
         df[column] = df[column].dt.strftime(TS_FORMAT)
 
 
-def show_and_write(df, output_csv_file):
+def show_and_write(df, columns=None, csv_file=None):
     """
     Display dataframe to stdout and write to file.
     """
+    if columns:
+        df = df[columns]
     print(tabulate(df, headers="keys", tablefmt="psql", showindex=False))
-    if output_csv_file:
-        with open(output_csv_file, "w", encoding="utf-8") as f:
+    if csv_file:
+        with open(csv_file, "w", encoding="utf-8") as f:
             df.to_csv(f, index=False)
 
 
