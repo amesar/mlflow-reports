@@ -40,8 +40,9 @@ Contents
 |mlflow_version|2.4.1|
 |size_bytes|1,637,529,598|
 |databricks_runtime|13.1.x-cpu-ml-scala2.12|
+|is_unity_catalog|False|
 |time_created|2023-06-12 20:47:29|
-|report_time|2023-07-06 05:14:34|
+|report_time|2023-08-20 16:32:44|
   
 <b><font size="+1">MLflow Model URIs</font></b>  
 
@@ -65,6 +66,8 @@ Contents
 |model_uuid|0d4a99f1bfe643aab0076b14d6361193|
 |run_id|38c0395ef5694d6aae3766cf3e1731e9|
 |utc_time_created|2023-06-12 20:47:29.862183|
+|model_flavor|transformers|
+|model_size_bytes|1637529598|
 
 ### Flavors
 
@@ -134,6 +137,7 @@ Contents
 |permission_level|CAN_MANAGE|
 |_creation_timestamp|2023-06-13 00:52:37|
 |_last_updated_timestamp|2023-06-13 01:34:42|
+|_is_unity_catalog|False|
 |_web_ui_link|https://e2-demo-west.cloud.databricks.com#mlflow/models/hugging-face-transformers-batch-nlp|
 |_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/registered-models/get?name=hugging-face-transformers-batch-nlp|
 
@@ -171,6 +175,16 @@ Contents
     "object_type": "registered-model",
     "access_control_list": [
       {
+        "user_name": "andre@mycompany.com",
+        "display_name": "Andre",
+        "all_permissions": [
+          {
+            "permission_level": "CAN_MANAGE",
+            "inherited": false
+          }
+        ]
+      },
+      {
         "group_name": "admins",
         "all_permissions": [
           {
@@ -206,16 +220,6 @@ Contents
             ]
           }
         ]
-      },
-      {
-        "user_name": "andre@mycompany.com",
-        "display_name": "Andre",
-        "all_permissions": [
-          {
-            "permission_level": "CAN_MANAGE",
-            "inherited": false
-          }
-        ]
       }
     ]
   }
@@ -240,6 +244,7 @@ Contents
 |status|READY|
 |_creation_timestamp|2023-06-13 00:52:38|
 |_last_updated_timestamp|2023-06-13 01:34:42|
+|_is_unity_catalog|False|
 |_reg_model_download_uri|dbfs:/databricks/mlflow-registry/e2855a52ab164fc08bdbac7407498e9e/models/pipeline|
 |_run_model_download_uri|dbfs:/databricks/mlflow-tracking/3336498746253572/38c0395ef5694d6aae3766cf3e1731e9/artifacts/pipeline|
 |_web_ui_link|https://e2-demo-west.cloud.databricks.com#mlflow/models/hugging-face-transformers-batch-nlp/versions/1|
@@ -267,7 +272,7 @@ Contents
 |_start_time|2023-06-12 20:47:30|
 |_end_time|2023-06-12 20:48:37|
 |_duration|67.392|
-|_experiment_name|/Users/andre@mycompany.com/mlflow/LLM/hugging-face-transformers-batch-nlp|
+|_experiment_name|/Users/andre@mycompany.com/mlflow/LLM/hugging_face_blog/hugging-face-transformers-batch-nlp|
 |_web_ui_link|https://e2-demo-west.cloud.databricks.com#mlflow/experiments/3336498746253572/runs/38c0395ef5694d6aae3766cf3e1731e9|
 |_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=38c0395ef5694d6aae3766cf3e1731e9|
 
@@ -374,7 +379,7 @@ Contents
 |Name|Value|
 | :--- | :--- |
 |experiment_id|3336498746253572|
-|name|/Users/andre@mycompany.com/mlflow/LLM/hugging-face-transformers-batch-nlp|
+|name|/Users/andre@mycompany.com/mlflow/LLM/hugging_face_blog/hugging-face-transformers-batch-nlp|
 |artifact_location|dbfs:/databricks/mlflow-tracking/3336498746253572|
 |lifecycle_stage|active|
 |last_update_time|1686602849523|
@@ -393,7 +398,7 @@ Contents
 |Key|Value|
 | :--- | :--- |
 |mlflow.ownerId|4566812440727830|
-|mlflow.experiment.sourceName|/Users/andre@mycompany.com/mlflow/LLM/hugging-face-transformers-batch-nlp|
+|mlflow.experiment.sourceName|/Users/andre@mycompany.com/mlflow/LLM/hugging_face_blog/hugging-face-transformers-batch-nlp|
 |mlflow.ownerEmail|andre@mycompany.com|
 |mlflow.experimentType|NOTEBOOK|
 
@@ -419,7 +424,7 @@ Contents
     }
   ],
   "permissions": {
-    "error": "HTTP status code: 400. Reason: Bad Request URL: https://e2-demo-west.cloud.databricks.com/api/2.0/permissions/experiments/3336498746253572. Params: None. Text: {\"error_code\":\"INVALID_PARAMETER_VALUE\",\"message\":\"Object 3336498746253572 not a experiment.\"}"
+    "error": "{\"http_status_code\": 400, \"uri\": \"https://e2-demo-west.cloud.databricks.com/api/2.0/permissions/experiments/3336498746253572\", \"params\": null, \"response\": \"{\\\"error_code\\\":\\\"INVALID_PARAMETER_VALUE\\\",\\\"message\\\":\\\"Object 3336498746253572 not a experiment.\\\"}\"}"
   }
 }
 

@@ -8,8 +8,8 @@
       "reg_model_download_uri": "dbfs:/databricks/mlflow-registry/e2855a52ab164fc08bdbac7407498e9e/models/pipeline",
       "run_model_download_uri": "dbfs:/databricks/mlflow-tracking/3336498746253572/38c0395ef5694d6aae3766cf3e1731e9/artifacts/pipeline"
     },
-    "mlflow_version": "2.4.1",
-    "timestamp": "2023-07-06 05:14:34"
+    "mlflow_version": "2.5.0",
+    "timestamp": "2023-08-20 16:32:44"
   },
   "mlflow_model": {
     "artifact_path": "pipeline",
@@ -59,7 +59,142 @@
         }
       ]
     },
-    "utc_time_created": "2023-06-12 20:47:29.862183"
+    "utc_time_created": "2023-06-12 20:47:29.862183",
+    "model_flavor": "transformers",
+    "model_size_bytes": 1637529598,
+    "artifacts": {
+      "summary": {
+        "artifact_max_level": 9223372036854775807,
+        "num_artifacts": 19,
+        "num_bytes": 1637529598,
+        "num_levels": 3
+      },
+      "root_uri": "dbfs:/databricks/mlflow-tracking/3336498746253572/38c0395ef5694d6aae3766cf3e1731e9/artifacts",
+      "files": [
+        {
+          "path": "pipeline/MLmodel",
+          "is_dir": false,
+          "file_size": 937
+        },
+        {
+          "path": "pipeline/conda.yaml",
+          "is_dir": false,
+          "file_size": 622
+        },
+        {
+          "path": "pipeline/input_example.json",
+          "is_dir": false,
+          "file_size": 25
+        },
+        {
+          "path": "pipeline/model_card.md",
+          "is_dir": false,
+          "file_size": 1536
+        },
+        {
+          "path": "pipeline/model_card_data.yaml",
+          "is_dir": false,
+          "file_size": 161
+        },
+        {
+          "path": "pipeline/python_env.yaml",
+          "is_dir": false,
+          "file_size": 122
+        },
+        {
+          "path": "pipeline/requirements.txt",
+          "is_dir": false,
+          "file_size": 429
+        },
+        {
+          "path": "pipeline/components",
+          "is_dir": true,
+          "artifacts": {
+            "root_uri": "dbfs:/databricks/mlflow-tracking/3336498746253572/38c0395ef5694d6aae3766cf3e1731e9/artifacts",
+            "files": [
+              {
+                "path": "pipeline/components/tokenizer",
+                "is_dir": true,
+                "artifacts": {
+                  "root_uri": "dbfs:/databricks/mlflow-tracking/3336498746253572/38c0395ef5694d6aae3766cf3e1731e9/artifacts",
+                  "files": [
+                    {
+                      "path": "pipeline/components/tokenizer/merges.txt",
+                      "is_dir": false,
+                      "file_size": 456318
+                    },
+                    {
+                      "path": "pipeline/components/tokenizer/special_tokens_map.json",
+                      "is_dir": false,
+                      "file_size": 957
+                    },
+                    {
+                      "path": "pipeline/components/tokenizer/tokenizer.json",
+                      "is_dir": false,
+                      "file_size": 2108614
+                    },
+                    {
+                      "path": "pipeline/components/tokenizer/tokenizer_config.json",
+                      "is_dir": false,
+                      "file_size": 1335
+                    },
+                    {
+                      "path": "pipeline/components/tokenizer/vocab.json",
+                      "is_dir": false,
+                      "file_size": 798293
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "path": "pipeline/model",
+          "is_dir": true,
+          "artifacts": {
+            "root_uri": "dbfs:/databricks/mlflow-tracking/3336498746253572/38c0395ef5694d6aae3766cf3e1731e9/artifacts",
+            "files": [
+              {
+                "path": "pipeline/model/config.json",
+                "is_dir": false,
+                "file_size": 1878
+              },
+              {
+                "path": "pipeline/model/generation_config.json",
+                "is_dir": false,
+                "file_size": 358
+              },
+              {
+                "path": "pipeline/model/pytorch_model-00001-of-00004.bin",
+                "is_dir": false,
+                "file_size": 277481369
+              },
+              {
+                "path": "pipeline/model/pytorch_model-00002-of-00004.bin",
+                "is_dir": false,
+                "file_size": 499695167
+              },
+              {
+                "path": "pipeline/model/pytorch_model-00003-of-00004.bin",
+                "is_dir": false,
+                "file_size": 499877729
+              },
+              {
+                "path": "pipeline/model/pytorch_model-00004-of-00004.bin",
+                "is_dir": false,
+                "file_size": 357072309
+              },
+              {
+                "path": "pipeline/model/pytorch_model.bin.index.json",
+                "is_dir": false,
+                "file_size": 31439
+              }
+            ]
+          }
+        }
+      ]
+    }
   },
   "run": {
     "info": {
@@ -75,7 +210,7 @@
       "_start_time": "2023-06-12 20:47:30",
       "_end_time": "2023-06-12 20:48:37",
       "_duration": 67.392,
-      "_experiment_name": "/Users/andre@mycompany.com/mlflow/LLM/hugging-face-transformers-batch-nlp",
+      "_experiment_name": "/Users/andre@mycompany.com/mlflow/LLM/hugging_face_blog/hugging-face-transformers-batch-nlp",
       "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/3336498746253572/runs/38c0395ef5694d6aae3766cf3e1731e9",
       "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=38c0395ef5694d6aae3766cf3e1731e9"
     },
@@ -179,14 +314,14 @@
   },
   "experiment": {
     "experiment_id": 3336498746253572,
-    "name": "/Users/andre@mycompany.com/mlflow/LLM/hugging-face-transformers-batch-nlp",
+    "name": "/Users/andre@mycompany.com/mlflow/LLM/hugging_face_blog/hugging-face-transformers-batch-nlp",
     "artifact_location": "dbfs:/databricks/mlflow-tracking/3336498746253572",
     "lifecycle_stage": "active",
     "last_update_time": 1686602849523,
     "creation_time": 1686598571971,
     "tags": {
       "mlflow.ownerId": 4566812440727830,
-      "mlflow.experiment.sourceName": "/Users/andre@mycompany.com/mlflow/LLM/hugging-face-transformers-batch-nlp",
+      "mlflow.experiment.sourceName": "/Users/andre@mycompany.com/mlflow/LLM/hugging_face_blog/hugging-face-transformers-batch-nlp",
       "mlflow.ownerEmail": "andre@mycompany.com",
       "mlflow.experimentType": "NOTEBOOK"
     },
@@ -211,7 +346,7 @@
         }
       ],
       "permissions": {
-        "error": "HTTP status code: 400. Reason: Bad Request URL: https://e2-demo-west.cloud.databricks.com/api/2.0/permissions/experiments/3336498746253572. Params: None. Text: {\"error_code\":\"INVALID_PARAMETER_VALUE\",\"message\":\"Object 3336498746253572 not a experiment.\"}"
+        "error": "{\"http_status_code\": 400, \"uri\": \"https://e2-demo-west.cloud.databricks.com/api/2.0/permissions/experiments/3336498746253572\", \"params\": null, \"response\": \"{\\\"error_code\\\":\\\"INVALID_PARAMETER_VALUE\\\",\\\"message\\\":\\\"Object 3336498746253572 not a experiment.\\\"}\"}"
       }
     }
   },
@@ -225,6 +360,7 @@
     "tags": {},
     "_creation_timestamp": "2023-06-13 00:52:37",
     "_last_updated_timestamp": "2023-06-13 01:34:42",
+    "_is_unity_catalog": false,
     "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/hugging-face-transformers-batch-nlp",
     "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/registered-models/get?name=hugging-face-transformers-batch-nlp",
     "permissions": {
@@ -254,6 +390,16 @@
         "object_id": "/registered-models/d29dd50e93124958a9baea4e70cbe4a5",
         "object_type": "registered-model",
         "access_control_list": [
+          {
+            "user_name": "andre@mycompany.com",
+            "display_name": "Andre",
+            "all_permissions": [
+              {
+                "permission_level": "CAN_MANAGE",
+                "inherited": false
+              }
+            ]
+          },
           {
             "group_name": "admins",
             "all_permissions": [
@@ -290,16 +436,6 @@
                 ]
               }
             ]
-          },
-          {
-            "user_name": "andre@mycompany.com",
-            "display_name": "Andre",
-            "all_permissions": [
-              {
-                "permission_level": "CAN_MANAGE",
-                "inherited": false
-              }
-            ]
           }
         ]
       }
@@ -317,6 +453,7 @@
     "status": "READY",
     "_creation_timestamp": "2023-06-13 00:52:38",
     "_last_updated_timestamp": "2023-06-13 01:34:42",
+    "_is_unity_catalog": false,
     "_reg_model_download_uri": "dbfs:/databricks/mlflow-registry/e2855a52ab164fc08bdbac7407498e9e/models/pipeline",
     "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/3336498746253572/38c0395ef5694d6aae3766cf3e1731e9/artifacts/pipeline",
     "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/hugging-face-transformers-batch-nlp/versions/1",
