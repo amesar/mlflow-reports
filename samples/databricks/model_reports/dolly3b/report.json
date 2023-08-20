@@ -8,8 +8,8 @@
       "reg_model_download_uri": "dbfs:/databricks/mlflow-registry/d672ee3b99134b6f8bc8a59b915d2950/models/dolly3b",
       "run_model_download_uri": "dbfs:/databricks/mlflow-tracking/3336498746257830/abbe441c4d9f4b69a9943e4beb71ce89/artifacts/dolly3b"
     },
-    "mlflow_version": "2.4.1",
-    "timestamp": "2023-07-06 05:11:21"
+    "mlflow_version": "2.5.0",
+    "timestamp": "2023-08-20 16:39:54"
   },
   "mlflow_model": {
     "artifact_path": "dolly3b",
@@ -58,7 +58,137 @@
         }
       ]
     },
-    "utc_time_created": "2023-06-13 06:53:44.178099"
+    "utc_time_created": "2023-06-13 06:53:44.178099",
+    "model_flavor": "transformers",
+    "model_size_bytes": 11239015445,
+    "artifacts": {
+      "summary": {
+        "artifact_max_level": 9223372036854775807,
+        "num_artifacts": 18,
+        "num_bytes": 11239015445,
+        "num_levels": 3
+      },
+      "root_uri": "dbfs:/databricks/mlflow-tracking/3336498746257830/abbe441c4d9f4b69a9943e4beb71ce89/artifacts",
+      "files": [
+        {
+          "path": "dolly3b/MLmodel",
+          "is_dir": false,
+          "file_size": 916
+        },
+        {
+          "path": "dolly3b/conda.yaml",
+          "is_dir": false,
+          "file_size": 470
+        },
+        {
+          "path": "dolly3b/input_example.json",
+          "is_dir": false,
+          "file_size": 29
+        },
+        {
+          "path": "dolly3b/model_card.md",
+          "is_dir": false,
+          "file_size": 10000
+        },
+        {
+          "path": "dolly3b/model_card_data.yaml",
+          "is_dir": false,
+          "file_size": 116
+        },
+        {
+          "path": "dolly3b/python_env.yaml",
+          "is_dir": false,
+          "file_size": 122
+        },
+        {
+          "path": "dolly3b/requirements.txt",
+          "is_dir": false,
+          "file_size": 309
+        },
+        {
+          "path": "dolly3b/components",
+          "is_dir": true,
+          "artifacts": {
+            "root_uri": "dbfs:/databricks/mlflow-tracking/3336498746257830/abbe441c4d9f4b69a9943e4beb71ce89/artifacts",
+            "files": [
+              {
+                "path": "dolly3b/components/tokenizer",
+                "is_dir": true,
+                "artifacts": {
+                  "root_uri": "dbfs:/databricks/mlflow-tracking/3336498746257830/abbe441c4d9f4b69a9943e4beb71ce89/artifacts",
+                  "files": [
+                    {
+                      "path": "dolly3b/components/tokenizer/special_tokens_map.json",
+                      "is_dir": false,
+                      "file_size": 228
+                    },
+                    {
+                      "path": "dolly3b/components/tokenizer/tokenizer.json",
+                      "is_dir": false,
+                      "file_size": 2114302
+                    },
+                    {
+                      "path": "dolly3b/components/tokenizer/tokenizer_config.json",
+                      "is_dir": false,
+                      "file_size": 264
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "path": "dolly3b/pipeline",
+          "is_dir": true,
+          "artifacts": {
+            "root_uri": "dbfs:/databricks/mlflow-tracking/3336498746257830/abbe441c4d9f4b69a9943e4beb71ce89/artifacts",
+            "files": [
+              {
+                "path": "dolly3b/pipeline/config.json",
+                "is_dir": false,
+                "file_size": 818
+              },
+              {
+                "path": "dolly3b/pipeline/generation_config.json",
+                "is_dir": false,
+                "file_size": 111
+              },
+              {
+                "path": "dolly3b/pipeline/pytorch_model-00001-of-00002.bin",
+                "is_dir": false,
+                "file_size": 10086269269
+              },
+              {
+                "path": "dolly3b/pipeline/pytorch_model-00002-of-00002.bin",
+                "is_dir": false,
+                "file_size": 1148461667
+              },
+              {
+                "path": "dolly3b/pipeline/pytorch_model.bin.index.json",
+                "is_dir": false,
+                "file_size": 42030
+              },
+              {
+                "path": "dolly3b/pipeline/special_tokens_map.json",
+                "is_dir": false,
+                "file_size": 228
+              },
+              {
+                "path": "dolly3b/pipeline/tokenizer.json",
+                "is_dir": false,
+                "file_size": 2114302
+              },
+              {
+                "path": "dolly3b/pipeline/tokenizer_config.json",
+                "is_dir": false,
+                "file_size": 264
+              }
+            ]
+          }
+        }
+      ]
+    }
   },
   "run": {
     "info": {
@@ -207,7 +337,7 @@
         }
       ],
       "permissions": {
-        "error": "HTTP status code: 400. Reason: Bad Request URL: https://e2-demo-west.cloud.databricks.com/api/2.0/permissions/experiments/3336498746257830. Params: None. Text: {\"error_code\":\"INVALID_PARAMETER_VALUE\",\"message\":\"Object 3336498746257830 not a experiment.\"}"
+        "error": "{\"http_status_code\": 400, \"uri\": \"https://e2-demo-west.cloud.databricks.com/api/2.0/permissions/experiments/3336498746257830\", \"params\": null, \"response\": \"{\\\"error_code\\\":\\\"INVALID_PARAMETER_VALUE\\\",\\\"message\\\":\\\"Object 3336498746257830 not a experiment.\\\"}\"}"
       }
     }
   },
@@ -224,6 +354,7 @@
     },
     "_creation_timestamp": "2023-06-13 06:59:50",
     "_last_updated_timestamp": "2023-06-21 06:22:26",
+    "_is_unity_catalog": false,
     "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/dolly3b",
     "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/registered-models/get?name=dolly3b",
     "permissions": {
@@ -317,6 +448,7 @@
     "status": "READY",
     "_creation_timestamp": "2023-06-13 06:59:50",
     "_last_updated_timestamp": "2023-06-21 06:22:59",
+    "_is_unity_catalog": false,
     "_reg_model_download_uri": "dbfs:/databricks/mlflow-registry/d672ee3b99134b6f8bc8a59b915d2950/models/dolly3b",
     "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/3336498746257830/abbe441c4d9f4b69a9943e4beb71ce89/artifacts/dolly3b",
     "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/dolly3b/versions/1",
