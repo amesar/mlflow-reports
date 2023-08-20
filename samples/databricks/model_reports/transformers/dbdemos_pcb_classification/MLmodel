@@ -1,0 +1,20 @@
+artifact_path: model
+databricks_runtime: 13.1.x-gpu-ml-scala2.12
+flavors:
+  transformers:
+    code: null
+    components:
+    - tokenizer
+    - image_processor
+    image_processor_type: ViTFeatureExtractor
+    instance_type: ImageClassificationPipeline
+    pipeline: pipeline
+    pipeline_model_type: ViTForImageClassification
+    source_model_name: /tmp/huggingface/pcb/vit-base-patch16-224-finetuned-leaf/checkpoint-2410
+    task: image-classification
+    tokenizer_type: ViTFeatureExtractor
+    transformers_version: 4.28.1
+mlflow_version: 2.3.1
+model_uuid: 3c21c7a008da4727b96a99b44fb72151
+run_id: 815123f2db9b49cdb9790c6a0371a4da
+utc_time_created: '2023-08-02 08:18:11.144619'
