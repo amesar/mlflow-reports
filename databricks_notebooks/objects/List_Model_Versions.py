@@ -9,8 +9,7 @@
 # MAGIC   * Non-UC example: `name like '%klearn%'`
 # MAGIC   * UC: only accepts this filter syntax: `name='andre_catalog.ml_models2.tmp`
 # MAGIC * `2. Unity Catalog` - Use Unity Catalog.
-# MAGIC * `3. Get tags and aliases` 
-# MAGIC * `4. Get model details` - Get MLflow model flavor and size in bytes.
+# MAGIC * `3. Get model details` - Get MLflow model flavor and size in bytes.
 
 # COMMAND ----------
 
@@ -47,6 +46,7 @@ from mlflow_reports.list import search_model_versions
 pandas_df = search_model_versions.search(
     filter = filter, 
     unity_catalog = unity_catalog,
+    tags_and_aliases_as_string = True,
     get_model_details = get_model_details
 )
 
@@ -57,6 +57,10 @@ pandas_df = search_model_versions.search(
 # COMMAND ----------
 
 pandas_df
+
+# COMMAND ----------
+
+display(pandas_df)
 
 # COMMAND ----------
 

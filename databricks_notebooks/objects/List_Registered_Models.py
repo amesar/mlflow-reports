@@ -12,7 +12,6 @@
 # MAGIC * `3. Model prefix` - Since UC implementation of `search_registered_models` filters, show only models starting with this prefix.
 # MAGIC   * Note this is client-side logic. 
 # MAGIC   * You can also write an SQL query on the response as in the examples below. 
-# MAGIC * `4. Get tags and aliases` 
 
 # COMMAND ----------
 
