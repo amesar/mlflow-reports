@@ -1,5 +1,5 @@
 from mlflow_reports.markdown.local_utils import newline_tweak
-from mlflow_reports.markdown.local_utils import escape_col
+from mlflow_reports.markdown.local_utils import escape_dict
 
 
 _TAG_COLUMNS = ["Key","Value"]
@@ -90,9 +90,9 @@ class WidgetFactory:
     # =====
     # Errors
 
-    def mk_error(self, dct):
-        escape_col(dct)
-        self.build_table(dct, title=self.mk_red("Error"), level=1, columns=None)
+    def mk_error(self, dct, level=1):
+        escape_dict(dct)
+        self.build_table(dct, title=self.mk_red("Error"), level=level, columns=None)
 
     def mk_red(self, msg):
         return f'**<font color="red">{msg}</font>**'

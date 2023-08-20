@@ -70,7 +70,7 @@ def _get_runs(dct, artifact_max_level):
             runs[vr["version"]] = get_run.get(vr["run_id"], artifact_max_level=artifact_max_level) 
         except MlflowReportsException as e:
             msg = { "model": vr["name"], "version": vr["version"], "run_id": vr["run_id"] }
-            print(f"ERROR: Cannot get run for {msg}. Exception: {e}")
+            print(f'ERROR: Cannot get version run: {msg}. Exception: {e}')
     dct["version_runs"] = runs
 
 

@@ -15,8 +15,8 @@ def newline_tweak(dct):
 def escape_str(str): 
     return f"```\n{str}\n```"
 
-def escape_col(col):
-    str = json.dumps(col, indent=2)+"\n"
+def escape_dict(dct):
+    str = json.dumps(dct, indent=2)+"\n"
     return escape_str(str)
 
 

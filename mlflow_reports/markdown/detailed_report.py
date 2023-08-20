@@ -3,14 +3,14 @@ import copy
 from mdutils.mdutils import MdUtils
 
 from mlflow_reports.mlflow_model import mlflow_model_manager as model_manager
-from mlflow_reports.common import mlflow_utils, io_utils, timestamp_utils
+from mlflow_reports.common import mlflow_utils, io_utils, timestamp_utils, object_utils
 from mlflow_reports.common.click_options import(
     opt_model_uri,
     opt_output_file,
     opt_get_permissions
 )
 from mlflow_reports.markdown.report_factory import ReportFactory, TAG_COLUMNS
-from mlflow_reports.markdown.local_utils import newline_tweak, is_primitive, escape_col
+from mlflow_reports.markdown.local_utils import newline_tweak, is_primitive, escape_dict
 from mlflow_reports.data import enriched_tags
 
 
@@ -155,7 +155,7 @@ def _build_model_info_raw(rf, fs_model_info, show_as_json=True, level=1, title="
 
     rf.wf.card.new_header(level=level+1, title="Feature Spec")
     fs_spec = fs_model_info.get("feature_spec")
-    rf.wf.card.new_line(escape_col(fs_spec))
+    rf.wf.card.new_line(escape_dict(fs_spec))
 
 
 def _build_model_info_details(wf, model_info, level):
@@ -189,14 +189,20 @@ def _build_model_version(wf, model_version):
     transition_requests = model_version.get("transition_requests")
     if transition_requests:
         wf.card.new_header(level=2, title="Transition Requests")
-        wf.card.new_line(escape_col(transition_requests))
+        wf.card.new_line(escape_dict(transition_requests))
 
 
 def _build_run(rf, run):
     """
-    Build run datasources
+    Build run 
     """
     rf.card.new_header(level=1, title="Run")
+
+    if "error" in run:
+        msg = object_utils.json_to_dict(run.get("error"))
+        rf.wf.mk_list_as_table(msg, title=rf.wf.mk_red("Error"), level=2)
+        return
+
     data = run.get("data")
     tags = data.get("tags")
 

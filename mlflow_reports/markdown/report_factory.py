@@ -1,4 +1,4 @@
-from mlflow_reports.markdown.local_utils import escape_col
+from mlflow_reports.markdown.local_utils import escape_dict
 from mlflow_reports.markdown.widget_factory import (
      WidgetFactory,
      TAG_COLUMNS,
@@ -48,7 +48,7 @@ class ReportFactory:
         if show_as_json:
             for k,v in flavors.items():
                 self.card.new_header(level=level+1, title=f"Flavor '{k}'")
-                self.card.new_line(escape_col(v))
+                self.card.new_line(escape_dict(v))
         else:
             for k,v in flavors.items():
                 self.wf.build_table(v, f"Flavor '{k}'", level+1)
@@ -141,7 +141,7 @@ class ReportFactory:
     def build_permissions(self, permissions, level):
         if permissions:
             self.card.new_header(level=level, title="Permissions")
-            self.card.new_line(escape_col(permissions))
+            self.card.new_line(escape_dict(permissions))
         else:
             #pass
             self.wf.mk_not_present_header("Permissions", level)

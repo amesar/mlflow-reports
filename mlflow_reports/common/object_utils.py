@@ -11,6 +11,10 @@ def dict_to_json(dct):
     return json.dumps(dct)
 
 
+def json_to_dict(json_str):
+    return json.loads(json_str)
+
+
 def dump_as_json(dct, sort_keys=None):
     print(json.dumps(dct, sort_keys=sort_keys, indent=2))
 
