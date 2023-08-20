@@ -51,9 +51,10 @@ def show(filter,
 
 def main(filter, get_tags_and_aliases, tags_and_aliases_as_string, get_model_details, unity_catalog, max_description, output_csv_file):
     print("Options:")
-    for k,v in locals().items():
+    args = locals()
+    for k,v in args.items():
         print(f"  {k}: {v}")
-    show(filter, get_tags_and_aliases, tags_and_aliases_as_string, get_model_details, unity_catalog, max_description, output_csv_file)
+    show(**args)
 
 
 if __name__ == "__main__":

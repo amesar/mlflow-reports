@@ -2,7 +2,7 @@ import click
 
 def opt_max_description(function):
     function = click.option("--max-description",
-        help="max_description",
+        help="max_description.",
         type=int,
         show_default=True
     )(function)
@@ -10,7 +10,7 @@ def opt_max_description(function):
 
 def opt_max_models(function):
     function = click.option("--max-models",
-        help="max_models",
+        help="Maximun models to show.",
         type=int,
         show_default=None
     )(function)
@@ -26,7 +26,7 @@ def opt_output_csv_file(function):
 
 def opt_prefix(function):
     function = click.option("--prefix",
-        help="Output CSV file.",
+        help="Model prefix to show.",
         type=str,
         required=False
     )(function)
@@ -34,15 +34,23 @@ def opt_prefix(function):
 
 def opt_filter(function):
     function = click.option("--filter",
-        help="Filter",
+        help="Model filter.",
         type=str,
         required=False
     )(function)
     return function
 
+def opt_columns(function):
+    function = click.option("--columns",
+        help="Columns to display. Comma delimited.",
+        type=str,
+        default=None
+    )(function)
+    return function
+
 def opt_unity_catalog(function):
     function = click.option("--unity-catalog",
-        help="Use Databricks Unity Catalog",
+        help="Use Databricks Unity Catalog.",
         type=bool,
         default=False
     )(function)
@@ -66,7 +74,7 @@ def opt_tags_and_aliases_as_string(function):
 
 def opt_get_model_details(function):
     function = click.option("--get-model-details",
-        help="Get MLflow model flavor and size",
+        help="Get MLflow model flavor and size.",
         type=bool,
         default=False
     )(function)
