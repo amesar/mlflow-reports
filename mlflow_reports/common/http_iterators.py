@@ -1,4 +1,6 @@
 from mlflow.store.entities.paged_list import PagedList
+from mlflow_reports.common import MlflowReportsException
+
 
 class BaseIterator():
     """
@@ -15,11 +17,13 @@ class BaseIterator():
         if max_results: self.kwargs["max_results"] = max_results
         self.http_method = http_method
 
+
     def _call_iter(self):
         return self._invoke()
 
     def _call_next(self):
         return self._invoke(self.paged_list.token)
+
 
     def _invoke(self, token=None):
         params = {}
@@ -39,10 +43,15 @@ class BaseIterator():
 
 
     def __iter__(self):
-        self.paged_list = self._call_iter()
+        try:
+            self.paged_list = self._call_iter()
+        except MlflowReportsException as e:
+            print(f"WARNING: Search failed. {e}")
         return self
 
     def __next__(self):
+        if not self.paged_list:
+            raise StopIteration
         if self.idx < len(self.paged_list):
             chunk = self.paged_list[self.idx]
             self.idx += 1

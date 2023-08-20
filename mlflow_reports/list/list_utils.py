@@ -15,9 +15,12 @@ def show_and_write(df, columns=None, csv_file=None):
     """
     Display dataframe to stdout and write to file.
     """
+    if df.empty:
+        print(f"WARNING: no search results")
+        return
     if columns:
         df = df[columns]
-    print(tabulate(df, headers="keys", tablefmt="psql", showindex=False))
+    print(tabulate(df, headers="keys", tablefmt="psql", numalign="right", showindex=False))
     if csv_file:
         with open(csv_file, "w", encoding="utf-8") as f:
             df.to_csv(f, index=False)
