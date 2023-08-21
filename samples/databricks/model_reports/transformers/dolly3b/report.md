@@ -40,8 +40,9 @@ Contents
 |mlflow_version|2.3.1|
 |size_bytes|11,239,015,445|
 |databricks_runtime|13.1.x-cpu-ml-scala2.12|
+|is_unity_catalog|False|
 |time_created|2023-06-13 06:53:44|
-|report_time|2023-07-06 05:11:21|
+|report_time|2023-08-20 16:39:54|
   
 <b><font size="+1">MLflow Model URIs</font></b>  
 
@@ -65,6 +66,8 @@ Contents
 |model_uuid|c47df0c7b78341f8b631374c6ef49946|
 |run_id|abbe441c4d9f4b69a9943e4beb71ce89|
 |utc_time_created|2023-06-13 06:53:44.178099|
+|model_flavor|transformers|
+|model_size_bytes|11239015445|
 
 ### Flavors
 
@@ -134,6 +137,7 @@ Contents
 |permission_level|CAN_MANAGE|
 |_creation_timestamp|2023-06-13 06:59:50|
 |_last_updated_timestamp|2023-06-21 06:22:26|
+|_is_unity_catalog|False|
 |_web_ui_link|https://e2-demo-west.cloud.databricks.com#mlflow/models/dolly3b|
 |_api_link|https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/registered-models/get?name=dolly3b|
 
@@ -245,6 +249,7 @@ Contents
 |status|READY|
 |_creation_timestamp|2023-06-13 06:59:50|
 |_last_updated_timestamp|2023-06-21 06:22:59|
+|_is_unity_catalog|False|
 |_reg_model_download_uri|dbfs:/databricks/mlflow-registry/d672ee3b99134b6f8bc8a59b915d2950/models/dolly3b|
 |_run_model_download_uri|dbfs:/databricks/mlflow-tracking/3336498746257830/abbe441c4d9f4b69a9943e4beb71ce89/artifacts/dolly3b|
 |_web_ui_link|https://e2-demo-west.cloud.databricks.com#mlflow/models/dolly3b/versions/1|
@@ -414,7 +419,7 @@ Contents
     }
   ],
   "permissions": {
-    "error": "HTTP status code: 400. Reason: Bad Request URL: https://e2-demo-west.cloud.databricks.com/api/2.0/permissions/experiments/3336498746257830. Params: None. Text: {\"error_code\":\"INVALID_PARAMETER_VALUE\",\"message\":\"Object 3336498746257830 not a experiment.\"}"
+    "error": "{\"http_status_code\": 400, \"uri\": \"https://e2-demo-west.cloud.databricks.com/api/2.0/permissions/experiments/3336498746257830\", \"params\": null, \"response\": \"{\\\"error_code\\\":\\\"INVALID_PARAMETER_VALUE\\\",\\\"message\\\":\\\"Object 3336498746257830 not a experiment.\\\"}\"}"
   }
 }
 
