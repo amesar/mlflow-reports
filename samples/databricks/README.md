@@ -12,18 +12,6 @@ Top-level directory of [model_reports](model_reports).
 * [AutoML_Wine_2023_05_21](model_reports/AutoML_Wine_2023_05_21) - AutoML model
 * [cv_pytorch_final](model_reports/cv_pytorch_final) - PyTorch job
 
-**LLMs**
-
-Hugging Face transformer tasks:
-  * [Conversational_Task](model_reports/transformers/Conversational_Task)
-  * [Text_to_Text_Generation_Task](model_reports/transformers/Text_to_Text_Generation_Task)
-  * [Translation_Task](model_reports/transformers/Translation_Task)
-  * [Speech_Recognition_Task](model_reports/transformers/Speech_Recognition_Task)
-  * [Feature_Extraction_Task](model_reports/transformers/Feature_Extraction_Task)
-  * [Summarization Task](model_reports/transformers/hugging-face-transformers-batch-nlp) 
-
-Other:
-  * [dolly3b](model_reports/dolly3b) - Dolly
 
 ### Unity Catalog Reports
 
@@ -31,6 +19,22 @@ Other:
 * [andre.ml_models2.sklearn_wine_best](model_reports/sklearn_wine_best/uc)
 * [andre.ml_models2.dolly3b](model_reports/unity_catalog/dolly3b)
 * [andre.transformer_models.Conversational_Task](model_reports/transformers/Conversational_Task/uc)
+
+### Transformer Model Reports
+
+Hugging Face model reports (non-UC).
+
+| Model JSON sample | Hugging Face Task | Hugging Face Model | Model GB|
+|-----|-----|-------|---|
+| [Text_to_Text_Generation_Task](model_reports/transformers/Text_to_Text_Generation_Task) | [text2text-generation](https://huggingface.co/tasks/text-generation) | [declare-lab/flan-alpaca-base](https://huggingface.co/declare-lab/flan-alpaca-base) | 1.092 |
+| [Translation_Task](model_reports/transformers/Translation_Task) | [translation_en_to_fr](https://huggingface.co/tasks/translation) | [t5-small](https://huggingface.co/t5-small) |  0.245 |
+| [Conversational_Task](model_reports/transformers/Conversational_Task) | [conversational](https://huggingface.co/tasks/conversational) | [microsoft/DialoGPT-medium](https://huggingface.co/microsoft/DialoGPT-medium) | 1.654 |
+| [Feature_Extraction_Task](model_reports/transformers/Feature_Extraction_Task) | [feature-extraction](https://huggingface.co/tasks/feature-extraction) | [sentence-transformers/all-MiniLM-L12-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L12-v2) | 0.134 |
+| [Speech_Recognition_Task](model_reports/transformers/Speech_Recognition_Task) | [automatic-speech-recognition](https://huggingface.co/tasks/automatic-speech-recognition) | [openai/whisper-tiny](https://huggingface.co/openai/whisper-tiny) |  0.154 |
+| [hugging-face-transformers-batch-nlp](model_reports/transformers/hugging-face-transformers-batch-nlp) | [summarization](https://huggingface.co/tasks/summarization) | [sshleifer/distilbart-cnn-12-6](https://huggingface.co/sshleifer/distilbart-cnn-12-6) | 1.636 |
+| [dolly3b](model_reports/transformers/dolly3b) | [text-generation](https://huggingface.co/tasks/text-generation) | [databricks/dolly-v2-3b](https://huggingface.co/databricks/dolly-v2-3b) |  11.239 |
+| [dbdemos_pcb_classification](dbdemos_pcb_classification) | [image-classification](https://huggingface.co/tasks/image-classification) | [vit-base-patch16-224](https://huggingface.co/google/vit-base-patch16-224) | .343 |
+
 
 ## MLflow Objects
 
