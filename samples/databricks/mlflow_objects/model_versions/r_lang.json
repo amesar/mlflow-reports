@@ -1,0 +1,106 @@
+{
+  "run": {
+    "info": {
+      "run_id": "6acb70ea93744405ae89444352dbf199",
+      "run_uuid": "6acb70ea93744405ae89444352dbf199",
+      "experiment_id": 3350558521995749,
+      "run_name": "learned-mare-692",
+      "status": "FINISHED",
+      "start_time": 1692417821720,
+      "end_time": 1692417830324,
+      "artifact_uri": "dbfs:/databricks/mlflow-tracking/3350558521995749/6acb70ea93744405ae89444352dbf199/artifacts",
+      "lifecycle_stage": "active",
+      "_start_time": "2023-08-19 04:03:42",
+      "_end_time": "2023-08-19 04:03:50",
+      "_duration": 8.604,
+      "_experiment_name": "/Users/andre@mycompany.com/mlflow/r_lang/mlflow-quick-start-r",
+      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/3350558521995749/runs/6acb70ea93744405ae89444352dbf199",
+      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=6acb70ea93744405ae89444352dbf199"
+    },
+    "data": {
+      "metrics": [
+        {
+          "key": "sensitivity",
+          "value": 0.860986547085202,
+          "timestamp": 1692417822605,
+          "step": 0
+        },
+        {
+          "key": "specificity",
+          "value": 0.568807339449541,
+          "timestamp": 1692417822689,
+          "step": 0
+        }
+      ],
+      "params": [
+        {
+          "key": "mtry",
+          "value": 3
+        },
+        {
+          "key": "ntree",
+          "value": 100
+        }
+      ],
+      "tags": {
+        "mlflow.databricks.notebookID": 3350558521995749,
+        "mlflow.databricks.notebookPath": "/Users/andre@mycompany.com/mlflow/r_lang/mlflow-quick-start-r",
+        "mlflow.databricks.notebookRevisionID": 1692417830571,
+        "mlflow.databricks.webappURL": "https://oregon.cloud.databricks.com",
+        "mlflow.log-model.history": [
+          {
+            "utc_time_created": "2023-08-19 04:03:42.857877",
+            "run_id": "6acb70ea93744405ae89444352dbf199",
+            "artifact_path": "model",
+            "flavors": {
+              "crate": {
+                "version": "0.1.0",
+                "model": "crate.bin"
+              }
+            }
+          }
+        ],
+        "mlflow.runName": "learned-mare-692",
+        "mlflow.source.name": "/Users/andre@mycompany.com/mlflow/r_lang/mlflow-quick-start-r",
+        "mlflow.source.type": "NOTEBOOK",
+        "mlflow.user": "andre@mycompany.com"
+      }
+    },
+    "inputs": {}
+  },
+  "artifacts": {
+    "summary": {
+      "artifact_max_level": 10,
+      "num_artifacts": 3,
+      "num_bytes": 4480,
+      "num_levels": 2
+    },
+    "root_uri": "dbfs:/databricks/mlflow-tracking/3350558521995749/6acb70ea93744405ae89444352dbf199/artifacts",
+    "files": [
+      {
+        "path": "confusion_matrix_plot.png",
+        "is_dir": false,
+        "file_size": 4185
+      },
+      {
+        "path": "model",
+        "is_dir": true,
+        "artifacts": {
+          "root_uri": "dbfs:/databricks/mlflow-tracking/3350558521995749/6acb70ea93744405ae89444352dbf199/artifacts",
+          "files": [
+            {
+              "path": "model/MLmodel",
+              "is_dir": false,
+              "file_size": 165
+            },
+            {
+              "path": "model/crate.bin",
+              "is_dir": false,
+              "file_size": 130
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
