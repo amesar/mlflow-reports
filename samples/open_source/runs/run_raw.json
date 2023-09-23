@@ -1,35 +1,35 @@
 {
   "run": {
     "info": {
-      "run_uuid": "acc51aff9bb4440e81744343cb680406",
+      "run_uuid": "42ef213547e5442fb66c0525abb05e10",
       "experiment_id": "2",
       "run_name": "all_options",
       "user_id": "andre",
       "status": "FINISHED",
-      "start_time": 1687205142417,
-      "end_time": 1687205147505,
-      "artifact_uri": "/opt/mlflow/server/mlruns/2/acc51aff9bb4440e81744343cb680406/artifacts",
+      "start_time": 1695434319419,
+      "end_time": 1695434326706,
+      "artifact_uri": "/opt/mlflow/mlruns/2/42ef213547e5442fb66c0525abb05e10/artifacts",
       "lifecycle_stage": "active",
-      "run_id": "acc51aff9bb4440e81744343cb680406"
+      "run_id": "42ef213547e5442fb66c0525abb05e10"
     },
     "data": {
       "metrics": [
         {
           "key": "rmse",
           "value": 0.7367947360663162,
-          "timestamp": 1687205142557,
+          "timestamp": 1695434320528,
           "step": 0
         },
         {
           "key": "r2",
           "value": 0.28100217442439346,
-          "timestamp": 1687205142565,
+          "timestamp": 1695434320540,
           "step": 0
         },
         {
           "key": "mae",
           "value": 0.5877424565761121,
-          "timestamp": 1687205142573,
+          "timestamp": 1695434320549,
           "step": 0
         }
       ],
@@ -58,7 +58,7 @@
         },
         {
           "key": "mlflow.source.git.commit",
-          "value": "69636ea8410052b052811c69510a0ded28bb9f91"
+          "value": "2af0aa6b355474e90b606ed81157ea482aeb86a2"
         },
         {
           "key": "mlflow.runName",
@@ -66,7 +66,7 @@
         },
         {
           "key": "run_id",
-          "value": "acc51aff9bb4440e81744343cb680406"
+          "value": "42ef213547e5442fb66c0525abb05e10"
         },
         {
           "key": "save_signature",
@@ -86,7 +86,7 @@
         },
         {
           "key": "uuid",
-          "value": "SXa8sC9UKKJFqxo3zRhQsr"
+          "value": "i8fjzSxBXzMU3tubJCjQAA"
         },
         {
           "key": "dataset",
@@ -98,11 +98,11 @@
         },
         {
           "key": "timestamp",
-          "value": "2023-06-19 16:05:42"
+          "value": "2023-09-22 21:58:37"
         },
         {
           "key": "version.mlflow",
-          "value": "2.4.1"
+          "value": "2.5.0"
         },
         {
           "key": "version.sklearn",
@@ -122,11 +122,11 @@
         },
         {
           "key": "mlflow.log-model.history",
-          "value": "[{\"run_id\": \"acc51aff9bb4440e81744343cb680406\", \"artifact_path\": \"model\", \"utc_time_created\": \"2023-06-19 20:05:42.610150\", \"flavors\": {\"python_function\": {\"model_path\": \"model.pkl\", \"predict_fn\": \"predict\", \"loader_module\": \"mlflow.sklearn\", \"python_version\": \"3.8.16\", \"env\": {\"conda\": \"conda.yaml\", \"virtualenv\": \"python_env.yaml\"}}, \"sklearn\": {\"pickled_model\": \"model.pkl\", \"sklearn_version\": \"1.2.2\", \"serialization_format\": \"cloudpickle\", \"code\": null}}, \"model_uuid\": \"fa27e8f20f0e4bbd9001dd7667ce3c0d\", \"mlflow_version\": \"2.4.1\", \"signature\": {\"inputs\": \"[{\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"fixed acidity\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"volatile acidity\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"citric acid\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"residual sugar\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"chlorides\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"free sulfur dioxide\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"total sulfur dioxide\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"density\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"pH\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"sulphates\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"alcohol\\\"}]\", \"outputs\": \"[{\\\"type\\\": \\\"tensor\\\", \\\"tensor-spec\\\": {\\\"dtype\\\": \\\"float64\\\", \\\"shape\\\": [-1]}}]\"}, \"saved_input_example_info\": {\"artifact_path\": \"input_example.json\", \"type\": \"dataframe\", \"pandas_orient\": \"split\"}}, {\"run_id\": \"acc51aff9bb4440e81744343cb680406\", \"artifact_path\": \"onnx-model\", \"utc_time_created\": \"2023-06-19 20:05:45.757951\", \"flavors\": {\"python_function\": {\"loader_module\": \"mlflow.onnx\", \"python_version\": \"3.8.16\", \"data\": \"model.onnx\", \"env\": {\"conda\": \"conda.yaml\", \"virtualenv\": \"python_env.yaml\"}}, \"onnx\": {\"onnx_version\": \"1.13.0\", \"data\": \"model.onnx\", \"providers\": [\"CUDAExecutionProvider\", \"CPUExecutionProvider\"], \"onnx_session_options\": null, \"code\": null}}, \"model_uuid\": \"464d6af5c8854b41b9fdb6e7814e5646\", \"mlflow_version\": \"2.4.1\", \"signature\": {\"inputs\": \"[{\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"fixed acidity\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"volatile acidity\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"citric acid\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"residual sugar\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"chlorides\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"free sulfur dioxide\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"total sulfur dioxide\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"density\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"pH\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"sulphates\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"alcohol\\\"}]\", \"outputs\": \"[{\\\"type\\\": \\\"tensor\\\", \\\"tensor-spec\\\": {\\\"dtype\\\": \\\"float64\\\", \\\"shape\\\": [-1]}}]\"}, \"saved_input_example_info\": {\"artifact_path\": \"input_example.json\", \"type\": \"dataframe\", \"pandas_orient\": \"split\"}}]"
+          "value": "[{\"run_id\": \"42ef213547e5442fb66c0525abb05e10\", \"artifact_path\": \"model\", \"utc_time_created\": \"2023-09-23 01:58:40.618290\", \"flavors\": {\"python_function\": {\"model_path\": \"model.pkl\", \"predict_fn\": \"predict\", \"loader_module\": \"mlflow.sklearn\", \"python_version\": \"3.8.16\", \"env\": {\"conda\": \"conda.yaml\", \"virtualenv\": \"python_env.yaml\"}}, \"sklearn\": {\"pickled_model\": \"model.pkl\", \"sklearn_version\": \"1.2.2\", \"serialization_format\": \"cloudpickle\", \"code\": null}}, \"model_uuid\": \"a1c1887806694123bb4857f9bb4018b3\", \"mlflow_version\": \"2.5.0\", \"signature\": {\"inputs\": \"[{\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"fixed_acidity\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"volatile_acidity\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"citric_acid\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"residual_sugar\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"chlorides\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"free_sulfur_dioxide\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"total_sulfur_dioxide\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"density\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"pH\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"sulphates\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"alcohol\\\"}]\", \"outputs\": \"[{\\\"type\\\": \\\"tensor\\\", \\\"tensor-spec\\\": {\\\"dtype\\\": \\\"float64\\\", \\\"shape\\\": [-1]}}]\"}, \"saved_input_example_info\": {\"artifact_path\": \"input_example.json\", \"type\": \"dataframe\", \"pandas_orient\": \"split\"}}, {\"run_id\": \"42ef213547e5442fb66c0525abb05e10\", \"artifact_path\": \"onnx-model\", \"utc_time_created\": \"2023-09-23 01:58:44.641531\", \"flavors\": {\"python_function\": {\"loader_module\": \"mlflow.onnx\", \"python_version\": \"3.8.16\", \"data\": \"model.onnx\", \"env\": {\"conda\": \"conda.yaml\", \"virtualenv\": \"python_env.yaml\"}}, \"onnx\": {\"onnx_version\": \"1.14.0\", \"data\": \"model.onnx\", \"providers\": [\"CUDAExecutionProvider\", \"CPUExecutionProvider\"], \"onnx_session_options\": null, \"code\": null}}, \"model_uuid\": \"d3052ef237b846c3a09016004021a533\", \"mlflow_version\": \"2.5.0\", \"signature\": {\"inputs\": \"[{\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"fixed_acidity\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"volatile_acidity\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"citric_acid\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"residual_sugar\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"chlorides\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"free_sulfur_dioxide\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"total_sulfur_dioxide\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"density\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"pH\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"sulphates\\\"}, {\\\"type\\\": \\\"double\\\", \\\"name\\\": \\\"alcohol\\\"}]\", \"outputs\": \"[{\\\"type\\\": \\\"tensor\\\", \\\"tensor-spec\\\": {\\\"dtype\\\": \\\"float64\\\", \\\"shape\\\": [-1]}}]\"}, \"saved_input_example_info\": {\"artifact_path\": \"input_example.json\", \"type\": \"dataframe\", \"pandas_orient\": \"split\"}}]"
         },
         {
           "key": "version.onnx",
-          "value": "1.13.0"
+          "value": "1.14.0"
         },
         {
           "key": "output_path",
@@ -134,19 +134,19 @@
         },
         {
           "key": "run.info.start_time",
-          "value": "1687205142417"
+          "value": "1695434319419"
         },
         {
           "key": "run.info.end_time",
-          "value": "1687205147505"
+          "value": "1695434326706"
         },
         {
           "key": "run.info._start_time",
-          "value": "2023-06-19 16:05:42"
+          "value": "2023-09-22 21:58:39"
         },
         {
           "key": "run.info._end_time",
-          "value": "2023-06-19 16:05:48"
+          "value": "2023-09-22 21:58:47"
         }
       ]
     },
@@ -161,10 +161,10 @@
           ],
           "dataset": {
             "name": "wine_quality_white",
-            "digest": "217f4949",
+            "digest": "0b40d4fa",
             "source_type": "http",
             "source": "{\"url\": \"https://raw.githubusercontent.com/mlflow/mlflow/master/examples/sklearn_elasticnet_wine/wine-quality.csv\"}",
-            "schema": "{\"mlflow_colspec\": [{\"type\": \"double\", \"name\": \"fixed acidity\"}, {\"type\": \"double\", \"name\": \"volatile acidity\"}, {\"type\": \"double\", \"name\": \"citric acid\"}, {\"type\": \"double\", \"name\": \"residual sugar\"}, {\"type\": \"double\", \"name\": \"chlorides\"}, {\"type\": \"double\", \"name\": \"free sulfur dioxide\"}, {\"type\": \"double\", \"name\": \"total sulfur dioxide\"}, {\"type\": \"double\", \"name\": \"density\"}, {\"type\": \"double\", \"name\": \"pH\"}, {\"type\": \"double\", \"name\": \"sulphates\"}, {\"type\": \"double\", \"name\": \"alcohol\"}]}",
+            "schema": "{\"mlflow_colspec\": [{\"type\": \"double\", \"name\": \"fixed_acidity\"}, {\"type\": \"double\", \"name\": \"volatile_acidity\"}, {\"type\": \"double\", \"name\": \"citric_acid\"}, {\"type\": \"double\", \"name\": \"residual_sugar\"}, {\"type\": \"double\", \"name\": \"chlorides\"}, {\"type\": \"double\", \"name\": \"free_sulfur_dioxide\"}, {\"type\": \"double\", \"name\": \"total_sulfur_dioxide\"}, {\"type\": \"double\", \"name\": \"density\"}, {\"type\": \"double\", \"name\": \"pH\"}, {\"type\": \"double\", \"name\": \"sulphates\"}, {\"type\": \"double\", \"name\": \"alcohol\"}]}",
             "profile": "{\"num_rows\": 3428, \"num_elements\": 37708}"
           }
         }
