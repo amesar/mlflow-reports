@@ -23,4 +23,7 @@
 # MAGIC ##### Other
 # MAGIC * [Common]($Common)
 # MAGIC
-# MAGIC Last updated: 2023-08-20
+# MAGIC ##### Git Repo
+# MAGIC * https://github.com/amesar/mlflow-reports
+# MAGIC
+# MAGIC Last updated: 2023-10-02
