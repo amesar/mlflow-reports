@@ -41,7 +41,7 @@ def get(
 
 
 def enrich(version):
-    if mlflow_utils.is_calling_databricks():
+    if mlflow_utils.is_calling_databricks() and not mlflow_utils.is_unity_catalog_model(version["name"]):
         try:
             rsp = http_client.get(f"transition-requests/list", {"name": version['name'], "version": version['version']} )
             if rsp:

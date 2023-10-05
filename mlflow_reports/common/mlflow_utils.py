@@ -32,7 +32,7 @@ def get_registered_model(model_name, get_permissions):
        2. databricks/registered-models/get - custom Databricks call that simply has an extra "id" field needed
           to subsequently call to get permissions
     """
-    if get_permissions:
+    if get_permissions and not is_unity_catalog_model(model_name):
         resource = "databricks/registered-models/get"
         try:
             model = http_client.get(resource, {"name": model_name} )
@@ -114,7 +114,7 @@ def mk_aliases_dict(aliases_array):
 def mk_key_value_array_dict(kv_array, key_name, value_name):
     """
     Transforms a list of 2 item dicts to a dict.
-    Example:  [{'key': 'k1', 'value': 'v1'}, {'key': 'k2', 'value': 'v2'}] ==> {'k1': 'v1', 'k2': 'v2' } 
+    Example:  [{'key': 'k1', 'value': 'v1'}, {'key': 'k2', 'value': 'v2'}] ==> {'k1': 'v1', 'k2': 'v2' }
     """
     if kv_array is None:
         return {}
@@ -135,13 +135,13 @@ def use_unity_catalog(_use_unity_catalog):
 
 
 _is_calling_into_databricks = None
-             
+
 def is_calling_databricks(dbx_client=None):
     """
     Are we calling Databricks MLflow? Check by making call to Databricks-specific API endpoint.
     """
     from mlflow_reports.client.http_client import DatabricksHttpClient
-    
+
     global _is_calling_into_databricks
     dbx_client = dbx_client or DatabricksHttpClient()
     if _is_calling_into_databricks is None:
