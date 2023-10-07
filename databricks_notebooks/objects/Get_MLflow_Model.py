@@ -5,9 +5,9 @@
 # MAGIC * Gets the metadata of an MLflow model from the MLmodel file.
 # MAGIC
 # MAGIC **Widgets**
-# MAGIC * `Model URI` - model URI such as `models:/my-model/1` or `runs:/18121205149219141865/model`
-# MAGIC * `Get run` - get run of the experiment
-# MAGIC * `Get raw` - get JSON as received from API request
+# MAGIC * `1. Model URI` - model URI such as `models:/my-model/1` or `runs:/18121205149219141865/model`
+# MAGIC * `2. Get run` - get run of the experiment
+# MAGIC * `3. Get raw` - get JSON as received from API request
 # MAGIC * `Unity Catalog` - use Unity Catalog
 
 # COMMAND ----------
@@ -19,12 +19,12 @@
 dbutils.widgets.text("1. Model URI", "")
 dbutils.widgets.dropdown("2. Get run", "no", ["yes","no"])
 dbutils.widgets.dropdown("3. Get raw", "no", ["yes","no"])
-dbutils.widgets.dropdown("3. Unity Catalog", "no", ["yes","no"])
+dbutils.widgets.dropdown("4. Unity Catalog", "no", ["yes","no"])
 
 model_uri = dbutils.widgets.get("1. Model URI")
 get_run = dbutils.widgets.get("2. Get run") == "yes"
 get_raw = dbutils.widgets.get("3. Get raw") == "yes"
-use_uc = dbutils.widgets.get("3. Unity Catalog") == "yes"
+use_uc = dbutils.widgets.get("4. Unity Catalog") == "yes"
 
 print("model_uri:", model_uri)
 print("get_run:", get_run)

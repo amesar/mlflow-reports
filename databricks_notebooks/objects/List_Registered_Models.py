@@ -2,7 +2,7 @@
 # MAGIC %md ## List Registered Models
 # MAGIC
 # MAGIC **Overview**
-# MAGIC * List registered models.
+# MAGIC * List registered models for either current Workspace Model Registry (classical) or Unity (UC) Model Registry.
 # MAGIC
 # MAGIC **Widgets**
 # MAGIC * `1. Filter` - `filter_string` argument for for [MlflowClient.search_registered_models](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_registered_models). 
@@ -11,7 +11,7 @@
 # MAGIC * `2. Unity Catalog` - Use Unity Catalog.
 # MAGIC * `3. Model prefix` - Since UC implementation of `search_registered_models` filters, show only models starting with this prefix.
 # MAGIC   * Note this is client-side logic. 
-# MAGIC   * You can also write an SQL query on the response as in the examples below. 
+# MAGIC   * You can also write an SQL query for the response as in the examples below. 
 
 # COMMAND ----------
 
