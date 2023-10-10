@@ -181,4 +181,4 @@ spark.sql(f"use {database_name}")
 
 # MAGIC %md ### See next notebook
 # MAGIC
-# MAGIC TO query tables, see the [SQL_Queries]($SQL_Queries) notebook.
+# MAGIC To query tables, see the [SQL_Queries]($SQL_Queries) notebook.

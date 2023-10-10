@@ -1,11 +1,12 @@
 # Databricks notebook source
 # MAGIC %md ## README - mlflow-reports - Databricks notebooks
 # MAGIC
-# MAGIC Model audit reports
-# MAGIC * [Detailed_Model_Report]($reports/Detailed_Model_Report) - full report of MLflow model and its related objects (run, experiment, registered model and model version, etc.) 
-# MAGIC   * [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/model_reports)
+# MAGIC #####  Model reports
+# MAGIC * [Detailed_Model_Report]($reports/Detailed_Model_Report) - full report of MLflow model and its related objects.
+# MAGIC   *  Run, experiment, registered model, model version and MLflow model objects. 
+# MAGIC   * [Samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/model_reports)
 # MAGIC
-# MAGIC MLflow object detailed (all attributes) dump notebooks.
+# MAGIC #####  MLflow object detailed (all attributes) dump notebooks.
 # MAGIC * [MLflow_Model_Manager]($objects/MLflow_Model_Manager) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/model_reports)
 # MAGIC * [Get_MLflow_Model]($objects/Get_MLflow_Model) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/mlflow_models) 
 # MAGIC * [Get_Registered_Model]($objects/Get_Registered_Model) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/registered_models)
@@ -17,8 +18,11 @@
 # MAGIC * [List_Registered_Models]($objects/List_Registered_Models)
 # MAGIC * [List_Model_Versions]($objects/List_Model_Versions)
 # MAGIC
-# MAGIC ##### MLflow object table notebooks
-# MAGIC * [Create_Registered_Models_Table]($objects/Create_Registered_Models_Table)
+# MAGIC ##### SQL queries for MLflow models and versions tables
+# MAGIC * Queries for a Databricks Spark database with tables for models and versions as returned by the MLflow API.
+# MAGIC * `select user_id, count(*) as num_models from models group by user_id order by num_models desc`
+# MAGIC * [SQL_Queries]($sql_analytics/SQL_Queries)
+# MAGIC * [Create_MLflow_Database]($sql_analytics/Create_MLflow_Database)
 # MAGIC
 # MAGIC ##### Other
 # MAGIC * [Common]($Common)
@@ -26,4 +30,4 @@
 # MAGIC ##### Git Repo
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC
-# MAGIC Last updated: 2023-10-06
+# MAGIC Last updated: 2023-10-09
