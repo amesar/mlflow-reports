@@ -21,7 +21,7 @@
 # MAGIC ##### SQL queries for MLflow models and versions tables
 # MAGIC * Queries for a Databricks Spark database with tables for models and versions as returned by the MLflow API.
 # MAGIC * `select user_id, count(*) as num_models from models group by user_id order by num_models desc`
-# MAGIC * [SQL_Queries]($sql_analytics/SQL_Queries)
+# MAGIC * [MLflow_SQL_Queries]($sql_analytics/MLflow_SQL_Queries)
 # MAGIC * [Create_MLflow_Database]($sql_analytics/Create_MLflow_Database)
 # MAGIC
 # MAGIC ##### Other
