@@ -30,4 +30,4 @@
 # MAGIC ##### Git Repo
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC
-# MAGIC Last updated: 2023-10-09
+# MAGIC Last updated: 2023-10-12

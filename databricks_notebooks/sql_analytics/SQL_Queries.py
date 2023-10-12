@@ -4,7 +4,7 @@
 # MAGIC ##### Overview
 # MAGIC
 # MAGIC * Analytics queries for the registed models and model versions database.
-# MAGIC * To create the database, see the [Populate_Database]($Populate_Database) notebook.
+# MAGIC * To create the database, see the [Create_MLflow_Database]($Create_MLflow_Database) notebook.
 # MAGIC
 # MAGIC ##### Widgets
 # MAGIC * `Database` - full path name such as `my_catalog.mlflow_uc`.
@@ -45,7 +45,19 @@ spark.sql(f"use {database_name}")
 
 # COMMAND ----------
 
-# MAGIC %md ### Some SQL queries for registered models
+# MAGIC %md ##### Counts
+
+# COMMAND ----------
+
+# MAGIC %sql select count(*) as num_models from models
+
+# COMMAND ----------
+
+# MAGIC %sql select count(*) as num_versions from versions
+
+# COMMAND ----------
+
+# MAGIC %md ### Registered models queires
 
 # COMMAND ----------
 
@@ -86,3 +98,23 @@ spark.sql(f"use {database_name}")
 # COMMAND ----------
 
 # MAGIC %sql select * from models order by creation_timestamp
+
+# COMMAND ----------
+
+# MAGIC %md ### Model versions queries
+
+# COMMAND ----------
+
+# MAGIC %sql select user_id, count(*) as num_versions from versions group by user_id order by num_versions desc
+
+# COMMAND ----------
+
+# MAGIC %sql select user_id, * from versions order by user_id, name
+
+# COMMAND ----------
+
+# MAGIC %sql select * from versions order by creation_timestamp desc
+
+# COMMAND ----------
+
+# MAGIC %sql select * from versions order by creation_timestamp
