@@ -28,7 +28,7 @@ You can import the notebooks into Databricks in two ways:
 
 See the [Workspace CLI](https://docs.databricks.com/dev-tools/cli/workspace-cli.html).
 ```
-git clone https://github.com/mlflow/mlflow-reports
+git clone https://github.com/amesar/mlflow-reports
 
 databricks workspace import_dir \
   databricks_notebooks \
@@ -53,7 +53,7 @@ curl \
   -H "Authorization: Bearer MY_TOKEN" \
   -X POST \
   -d ' {
-    "url": "https://github.com/mlflow/mlflow-reports",
+    "url": "https://github.com/amesar/mlflow-reports",
     "provider": "gitHub",
     "path": "/Repos/me@my.company.com/mlflow-reports",
     "sparse_checkout": {
