@@ -40,7 +40,8 @@ def show(filter,
     if "description" in df and max_description:
         df["description"] = df["description"].str[:max_description]
 
-    df = df.sort_values(["name", "version"], ascending=[True, False])
+    if not df.empty:
+        df = df.sort_values(["name", "version"], ascending=[True, False])
     list_utils.show_and_write(df, columns, output_csv_file)
 
 
@@ -55,13 +56,13 @@ def show(filter,
 @opt_output_csv_file
 
 def main(
-        filter, 
-        get_tags_and_aliases, 
-        tags_and_aliases_as_string, 
-        get_model_details, 
-        unity_catalog, 
-        columns, 
-        max_description, 
+        filter,
+        get_tags_and_aliases,
+        tags_and_aliases_as_string,
+        get_model_details,
+        unity_catalog,
+        columns,
+        max_description,
         output_csv_file
     ):
     print("Options:")
