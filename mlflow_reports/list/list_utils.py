@@ -18,8 +18,11 @@ def show_and_write(df, columns=None, csv_file=None):
     if df.empty:
         print(f"WARNING: no search results")
         return
+
     if columns:
+        columns = [c for c in columns if c in df.columns ]
         df = df[columns]
+
     print(tabulate(df, headers="keys", tablefmt="psql", numalign="right", showindex=False))
     if csv_file:
         with open(csv_file, "w", encoding="utf-8") as f:
