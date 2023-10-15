@@ -4,6 +4,7 @@ import mlflow
 from mlflow.exceptions import RestException
 from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.common import MlflowReportsException
+from mlflow_reports.common.http_iterators import SearchRegisteredModelsIterator
 
 http_client = get_mlflow_client()
 
@@ -44,6 +45,24 @@ def get_registered_model(model_name, get_permissions):
     else:
         model = http_client.get(f"registered-models/get", {"name": model_name} )
         return model["registered_model"]
+
+
+def search_registered_models(client, filter=None, get_search_object_again=False):
+    """
+    Search for registered models.
+    For Databricks UC, need to call 'registered-models/get' again for each
+    returned model since aliases and tags are not returned. This is much
+    slower obviously especially for a large number of models. For 328 models,
+    just the search takes 6 seconds and with the extra get call takes 178 seconds.
+    See JIRA ES-834105.
+    """
+    models = list(SearchRegisteredModelsIterator(client, filter=filter))
+    if not get_search_object_again:
+        return models
+
+    print(f"Calling get_registered_model() again for {len(models)} models")
+    models = [ client.get("registered-models/get", {"name": m["name"]}) for m in models ]
+    return [ m["registered_model"] for m in models]
 
 
 def build_artifacts(run_id, artifact_path, artifact_max_level, level=0):

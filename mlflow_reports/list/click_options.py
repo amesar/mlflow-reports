@@ -48,6 +48,14 @@ def opt_columns(function):
     )(function)
     return function
 
+def opt_get_search_object_again(function):
+    function = click.option("--get-search-object-again",
+        help="Call get() again for search object to return missing aliases and tag fields.",
+        type=bool,
+        default=False
+    )(function)
+    return function
+
 def opt_unity_catalog(function):
     function = click.option("--unity-catalog",
         help="Use Databricks Unity Catalog.",
