@@ -14,12 +14,12 @@ def search(filter=None,
         prefix = None,
         get_tags_and_aliases = True,
         tags_and_aliases_as_string = False,
-        call_search_object = False,
+        get_search_object_again = False,
         unity_catalog = False
     ):
     mlflow_utils.use_unity_catalog(unity_catalog)
     mlflow_client = get_mlflow_client()
-    models = mlflow_utils.search_registered_models(mlflow_client, filter, call_search_object)
+    models = mlflow_utils.search_registered_models(mlflow_client, filter, get_search_object_again)
     if prefix:
         models = [ m for m in models if m["name"].startswith(prefix)]
     models = sorted(models, key=lambda x: x["name"])

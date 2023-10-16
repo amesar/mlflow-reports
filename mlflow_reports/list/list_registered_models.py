@@ -40,6 +40,7 @@ def show(filter,
         df["description"] = df["description"].str[:max_description]
 
     list_utils.show_and_write(df, columns, output_csv_file)
+    print(f"Found {df.shape[0]} registered models")
 
 
 @click.command()

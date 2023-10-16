@@ -46,6 +46,7 @@ def show(filter,
     if not df.empty:
         df = df.sort_values(["name", "version"], ascending=[True, False])
     list_utils.show_and_write(df, columns, output_csv_file)
+    print(f"Found {df.shape[0]} model versions")
 
 
 @click.command()
