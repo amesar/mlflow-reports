@@ -2,14 +2,19 @@
 # MAGIC %md ## List Model Versions
 # MAGIC
 # MAGIC **Overview**
-# MAGIC * List model versions.
+# MAGIC * List model versions for either the Databricks Workspace (WS) Model Registry or Unity Catalog (UC) Model Registry.
 # MAGIC
 # MAGIC **Widgets**
 # MAGIC * `1. Filter` - `filter_string` argument for for [MlflowClient.search_model_versions](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_model_versions). 
-# MAGIC   * Non-UC example: `name like '%klearn%'`
-# MAGIC   * UC: only accepts this filter syntax: `name='andre_catalog.ml_models2.tmp`
+# MAGIC   * Non-UC example: `name like '%klearn%'`.
+# MAGIC   * UC: only accepts this filter syntax: `name='andre_catalog.ml_models2.tmp'`.
 # MAGIC * `2. Unity Catalog` - Use Unity Catalog.
-# MAGIC * `3. Get model details` - Get MLflow model flavor and size in bytes.
+# MAGIC * `3. Get MLflow model details` - Get MLflow model flavor and size in bytes by reading the run's [MLmodel](https://mlflow.org/docs/latest/models.html?highlight=mlmodel#mlflow-models) file and model artifact(s).
+# MAGIC * `4. Get model version again`. Since UC search_model_versions does not correctly return tags and aliases, call get_model_version (which does correctly return them) for every returned version.
+# MAGIC   * https://databricks.atlassian.net/browse/ES-834105
+# MAGIC     * UC-ML MLflow search_registered_models and search_model_versions do not return tags and aliases
+# MAGIC   * https://github.com/mlflow/mlflow/issues/9783
+# MAGIC     * MlflowClient.search_model_versions does not return aliases
 
 # COMMAND ----------
 
@@ -24,16 +29,19 @@
 dbutils.widgets.text("1. Filter", "")
 dbutils.widgets.dropdown("2. Unity Catalog", "no", ["yes", "no"])
 dbutils.widgets.dropdown("3. Get MLflow model details", "no", ["yes", "no"])
+dbutils.widgets.dropdown("4. Get model version again", "no", ["yes", "no"])
 
 filter = dbutils.widgets.get("1. Filter")
 unity_catalog = dbutils.widgets.get("2. Unity Catalog") == "yes"
 get_model_details = dbutils.widgets.get("3. Get MLflow model details") == "yes"
+get_search_object_again = dbutils.widgets.get("4. Get model version again") == "yes"
 
 filter = filter or None
 
 print("filter:", filter)
 print("unity_catalog:", unity_catalog)
 print("get_model_details:", get_model_details)
+print("get_search_object_again:", get_search_object_again)
 
 # COMMAND ----------
 
@@ -45,6 +53,7 @@ from mlflow_reports.list import search_model_versions
 
 pandas_df = search_model_versions.search(
     filter = filter, 
+    get_search_object_again = get_search_object_again,
     unity_catalog = unity_catalog,
     tags_and_aliases_as_string = True,
     get_model_details = get_model_details
@@ -57,10 +66,6 @@ pandas_df = search_model_versions.search(
 # COMMAND ----------
 
 pandas_df
-
-# COMMAND ----------
-
-display(pandas_df)
 
 # COMMAND ----------
 

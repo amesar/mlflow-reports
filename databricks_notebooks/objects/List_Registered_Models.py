@@ -2,16 +2,18 @@
 # MAGIC %md ## List Registered Models
 # MAGIC
 # MAGIC **Overview**
-# MAGIC * List registered models for either current Workspace Model Registry (classical) or Unity (UC) Model Registry.
+# MAGIC * List registered models for either the Databricks Workspace (WS) Model Registry or Unity Catalog (UC) Model Registry.
 # MAGIC
 # MAGIC **Widgets**
 # MAGIC * `1. Filter` - `filter_string` argument for for [MlflowClient.search_registered_models](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_registered_models). 
 # MAGIC   * Non-UC example: `name like '%klearn%'`
-# MAGIC   * UC: Does not accept filter.
+# MAGIC   * UC: Does not accept filter so is ignored by the MLflow API.
 # MAGIC * `2. Unity Catalog` - Use Unity Catalog.
-# MAGIC * `3. Model prefix` - Since UC implementation of `search_registered_models` filters, show only models starting with this prefix.
-# MAGIC   * Note this is client-side logic. 
-# MAGIC   * You can also write an SQL query for the response as in the examples below. 
+# MAGIC * `3. Get registered model again`. Since UC search_registered_models does not correctly return tags and aliases, call get_registered_model (which does correctly return them) for every returned model.
+# MAGIC   * https://databricks.atlassian.net/browse/ES-834105
+# MAGIC     * UC-ML MLflow search_registered_models and search_model_versions do not return tags and aliases
+# MAGIC   * https://github.com/mlflow/mlflow/issues/9783
+# MAGIC     * MlflowClient.search_model_versions does not return aliases
 
 # COMMAND ----------
 
@@ -25,19 +27,17 @@
 
 dbutils.widgets.text("1. Filter", "")
 dbutils.widgets.dropdown("2. Unity Catalog", "no", ["yes", "no"])
-dbutils.widgets.text("3. Model prefix (for UC)", "")
+dbutils.widgets.dropdown("3. Get registered model again", "no", ["yes", "no"])
 
 filter = dbutils.widgets.get("1. Filter")
 unity_catalog = dbutils.widgets.get("2. Unity Catalog") == "yes"
-model_prefix = dbutils.widgets.get("3. Model prefix (for UC)")
+get_search_object_again = dbutils.widgets.get("3. Get registered model again") == "yes"
 
 filter = filter or None
-model_prefix = model_prefix or None
 
 print("filter:", filter)
 print("unity_catalog:", unity_catalog)
-print("model_prefix:", model_prefix)
-
+print("get_search_object_again:", get_search_object_again)
 
 # COMMAND ----------
 
@@ -49,7 +49,7 @@ from mlflow_reports.list import search_registered_models
 
 pandas_df = search_registered_models.search(
     filter = filter, 
-    prefix = model_prefix,
+    get_search_object_again = get_search_object_again,
     unity_catalog = unity_catalog,
     tags_and_aliases_as_string = True
 )
