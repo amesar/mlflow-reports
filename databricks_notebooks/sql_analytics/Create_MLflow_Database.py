@@ -18,19 +18,30 @@
 
 # COMMAND ----------
 
-dbutils.widgets.text("Database", "")
-database_name = dbutils.widgets.get("Database")
+dbutils.widgets.text("1. Database", "")
+database_name = dbutils.widgets.get("1. Database")
+
+dbutils.widgets.dropdown("2. Unity Catalog", "no", ["yes", "no"])
+is_unity_catalog = dbutils.widgets.get("2. Unity Catalog") == "yes"
+
+dbutils.widgets.dropdown("3. Get registered model again", "no", ["yes", "no"])
+get_search_model_again = dbutils.widgets.get("3. Get registered model again") == "yes"
+
+dbutils.widgets.dropdown("4. Get model version again", "no", ["yes", "no"])
+get_search_version_again = dbutils.widgets.get("4. Get model version again") == "yes"
+
 print("database_name:", database_name)
+print("is_unity_catalog:", is_unity_catalog)
+print("get_search_model_again:", get_search_model_again)
+print("get_search_version_again:", get_search_version_again)
 
 # COMMAND ----------
 
-assert_widget(database_name, "Database")
+assert_widget(database_name, "1. Database")
 
-is_unity_catalog = len(database_name.split(".")) == 2
 models_table = f"{database_name}.models"
 versions_table = f"{database_name}.versions"
 
-print("is_unity_catalog:", is_unity_catalog)
 print("models_table:", models_table)
 print("versions_table:", versions_table)
 
@@ -48,6 +59,7 @@ from mlflow_reports.list import search_registered_models
 
 pdf = search_registered_models.search(
     unity_catalog = is_unity_catalog,
+    get_search_object_again = get_search_model_again,
     tags_and_aliases_as_string = True
 )
 df = spark.createDataFrame(pdf)
@@ -109,6 +121,7 @@ from mlflow_reports.list import search_model_versions
 
 pdf = search_model_versions.search(
     unity_catalog = is_unity_catalog,
+    get_search_object_again = get_search_version_again,
     tags_and_aliases_as_string = True,
     get_model_details = False
 )

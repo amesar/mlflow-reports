@@ -57,7 +57,7 @@ spark.sql(f"use {database_name}")
 
 # COMMAND ----------
 
-# MAGIC %md ### Registered models queires
+# MAGIC %md ### Registered models queries
 
 # COMMAND ----------
 
