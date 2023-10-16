@@ -5,6 +5,7 @@ from mlflow.exceptions import RestException
 from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.common import MlflowReportsException
 from mlflow_reports.common.http_iterators import SearchRegisteredModelsIterator
+from mlflow_reports.common.http_iterators import SearchModelVersionsIterator
 
 http_client = get_mlflow_client()
 
@@ -54,7 +55,9 @@ def search_registered_models(client, filter=None, get_search_object_again=False)
     returned model since aliases and tags are not returned. This is much
     slower obviously especially for a large number of models. For 328 models,
     just the search takes 6 seconds and with the extra get call takes 178 seconds.
-    See JIRA ES-834105.
+    
+    https://databricks.atlassian.net/browse/ES-834105
+    UC-ML MLflow search_registered_models and search_model_versions do not return tags and aliases
     """
     models = list(SearchRegisteredModelsIterator(client, filter=filter))
     if not get_search_object_again:
@@ -63,6 +66,29 @@ def search_registered_models(client, filter=None, get_search_object_again=False)
     print(f"Calling get_registered_model() again for {len(models)} models")
     models = [ client.get("registered-models/get", {"name": m["name"]}) for m in models ]
     return [ m["registered_model"] for m in models]
+
+
+def search_model_versions(client, filter=None, get_search_object_again=False):
+    """
+    Search for model versions.
+    See  https://github.com/mlflow/mlflow/issues/9783 (no alias)
+
+    https://databricks.atlassian.net/browse/ES-834105
+    UC-ML MLflow search_registered_models and search_model_versions do not return tags and aliases
+
+    https://github.com/mlflow/mlflow/issues/9783
+    MlflowClient.search_model_versions does not return aliases
+    """
+
+    versions = list(SearchModelVersionsIterator(client, filter=filter))
+    if not get_search_object_again:
+        return versions
+    print(f"Calling get_model_version() again for {len(versions)} versions")
+    versions = [ client.get( \
+            "model-versions/get", {"name": vr["name"], "version": vr["version"]}) \
+        for vr in versions \
+    ]
+    return [ vr["model_version"] for vr in versions]
 
 
 def build_artifacts(run_id, artifact_path, artifact_max_level, level=0):

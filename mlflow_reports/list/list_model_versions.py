@@ -12,6 +12,7 @@ from . click_options import (
     opt_get_tags_and_aliases,
     opt_tags_and_aliases_as_string,
     opt_get_model_details,
+    opt_get_search_object_again,
     opt_unity_catalog,
     opt_columns,
     opt_max_description,
@@ -25,6 +26,7 @@ def show(filter,
         get_tags_and_aliases,
         tags_and_aliases_as_string,
         get_model_details,
+        get_search_object_again,
         unity_catalog,
         columns,
         max_description,
@@ -35,6 +37,7 @@ def show(filter,
         get_tags_and_aliases = get_tags_and_aliases,
         tags_and_aliases_as_string = tags_and_aliases_as_string,
         get_model_details = get_model_details,
+        get_search_object_again = get_search_object_again,
         unity_catalog = unity_catalog
     )
     if "description" in df and max_description:
@@ -50,6 +53,7 @@ def show(filter,
 @opt_get_tags_and_aliases
 @opt_tags_and_aliases_as_string
 @opt_get_model_details
+@opt_get_search_object_again
 @opt_unity_catalog
 @opt_columns
 @opt_max_description
@@ -60,6 +64,7 @@ def main(
         get_tags_and_aliases,
         tags_and_aliases_as_string,
         get_model_details,
+        get_search_object_again,
         unity_catalog,
         columns,
         max_description,
