@@ -83,7 +83,7 @@ if "tags" in df.columns:
 
 # COMMAND ----------
 
-# MAGIC %md ##### Show registered models tables
+# MAGIC %md ##### Show enhanced registered models
 
 # COMMAND ----------
 
@@ -91,7 +91,7 @@ display(df)
 
 # COMMAND ----------
 
-# MAGIC %md ##### Write to table
+# MAGIC %md ##### Write table
 
 # COMMAND ----------
 
@@ -144,9 +144,15 @@ if "tags" in df.columns:
 
 # COMMAND ----------
 
-# MAGIC %md ##### Show model versions table
-# MAGIC
-# MAGIC display(df)
+# MAGIC %md ##### Show enhanced model versions
+
+# COMMAND ----------
+
+display(df)
+
+# COMMAND ----------
+
+# MAGIC %md ##### Write table
 
 # COMMAND ----------
 
