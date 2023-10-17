@@ -9,7 +9,7 @@ import mlflow
 from mlflow_reports.data import get_mlflow_model
 from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.common.http_iterators import SearchRegisteredModelsIterator
-from mlflow_reports.common import mlflow_utils
+from mlflow_reports.common import mlflow_utils, object_utils
 from . import list_utils
 
 
@@ -31,6 +31,9 @@ def search(filter=None,
     if tags_and_aliases_as_string:
         for vr in versions:
             list_utils.kv_list_to_dict(vr, "tags", mlflow_utils.mk_tags_dict, True)
+            aliases = vr.get("aliases")
+            if aliases:
+                vr["aliases"] = object_utils.dict_to_json(aliases)
     df = pd.DataFrame.from_dict(versions)
     df = df.replace(np.nan, "", regex=True)
     list_utils.to_datetime(df, "creation_timestamp")
