@@ -83,12 +83,24 @@ def search_model_versions(client, filter=None, get_search_object_again=False):
     versions = list(SearchModelVersionsIterator(client, filter=filter))
     if not get_search_object_again:
         return versions
+
     print(f"Calling get_model_version() again for {len(versions)} versions")
-    versions = [ client.get( \
-            "model-versions/get", {"name": vr["name"], "version": vr["version"]}) \
-        for vr in versions \
-    ]
-    return [ vr["model_version"] for vr in versions]
+    versions2 = []
+    failed = []
+    for vr in versions:
+        try:
+            vr2 = client.get("model-versions/get", {"name": vr["name"], "version": vr["version"]})
+            versions2.append(vr2)
+        except MlflowReportsException as e:
+            # NOTE: Failing for: Unsupported function securable kind FUNCTION_REGISTERED_MODEL_DELTASHARING"
+            print(f"ERROR: 'model-versions/get' failed. Ex: {e}")
+            failed.append(vr)
+    if len(failed) > 0:
+        print(f"WARNING: {len(failed)} calls to 'model-versions/get' failed")
+        for vr in failed:
+            msg = { "name": vr["name"], "version": vr["version"] }
+            print(f"  WARNING: {msg} call to 'model-versions/get' failed")
+    return [ vr["model_version"] for vr in versions2]
 
 
 def build_artifacts(run_id, artifact_path, artifact_max_level, level=0):
