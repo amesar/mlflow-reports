@@ -1,0 +1,156 @@
+{
+  "model_version": {
+    "name": "jayp_uc_catalog.llm_schema.llama2-7b",
+    "version": "1",
+    "creation_timestamp": 1696918846975,
+    "last_updated_timestamp": 1696918875716,
+    "user_id": "first.last@mycompany.com",
+    "source": "dbfs:/databricks/mlflow-tracking/78f4abb1826f42c09e63a7e25e52b3dc/a15d322cc11c43569ef8443a8efc9a7e/artifacts/model",
+    "run_id": "a15d322cc11c43569ef8443a8efc9a7e",
+    "run_tracking_server_id": "1444828305810485",
+    "status": "READY",
+    "storage_location": "s3://one-env-uc-external-location/jayp/jayp_uc_catalog/models/afa7a9a8-b82a-4e8c-9bf8-0451de4c66bf/versions/399b8a42-cafd-47e9-8664-f94288fff2d4",
+    "_creation_timestamp": "2023-10-10 06:20:47",
+    "_last_updated_timestamp": "2023-10-10 06:21:16",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://one-env-uc-external-location/jayp/jayp_uc_catalog/models/afa7a9a8-b82a-4e8c-9bf8-0451de4c66bf/versions/399b8a42-cafd-47e9-8664-f94288fff2d4",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/78f4abb1826f42c09e63a7e25e52b3dc/a15d322cc11c43569ef8443a8efc9a7e/artifacts/model",
+    "_web_ui_link": "https://e2-demo-field-eng.cloud.databricks.com/explore/data/models/jayp_uc_catalog.llm_schema.llama2-7b/version/1",
+    "_api_link": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=jayp_uc_catalog.llm_schema.llama2-7b&version=1"
+  },
+  "run": {
+    "run": {
+      "info": {
+        "run_id": "a15d322cc11c43569ef8443a8efc9a7e",
+        "run_uuid": "a15d322cc11c43569ef8443a8efc9a7e",
+        "experiment_id": "78f4abb1826f42c09e63a7e25e52b3dc",
+        "run_name": "big-toad-814",
+        "status": "FINISHED",
+        "start_time": 1696918744895,
+        "end_time": 1696918876911,
+        "artifact_uri": "dbfs:/databricks/mlflow-tracking/78f4abb1826f42c09e63a7e25e52b3dc/a15d322cc11c43569ef8443a8efc9a7e/artifacts",
+        "lifecycle_stage": "active",
+        "_start_time": "2023-10-10 06:19:05",
+        "_end_time": "2023-10-10 06:21:17",
+        "_duration": 132.016,
+        "_experiment_name": "/Repos/first.last@mycompany.com/ml-ws/ML/llm/optimized-llama-serving-uc-jayp",
+        "_web_ui_link": "https://e2-demo-field-eng.cloud.databricks.com#mlflow/experiments/78f4abb1826f42c09e63a7e25e52b3dc/runs/a15d322cc11c43569ef8443a8efc9a7e",
+        "_api_link": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=a15d322cc11c43569ef8443a8efc9a7e"
+      },
+      "data": {
+        "tags": {
+          "mlflow.databricks.cluster.id": "1010-051048-bp4ph58k",
+          "mlflow.databricks.cluster.info": {
+            "cluster_name": "JayP Spark Connect Single Node ML Cluster",
+            "spark_version": "13.3.x-gpu-ml-scala2.12",
+            "node_type_id": "g5.4xlarge",
+            "driver_node_type_id": "g5.4xlarge",
+            "autotermination_minutes": 120,
+            "disk_spec": {},
+            "num_workers": 0
+          },
+          "mlflow.databricks.cluster.libraries": {
+            "installable": [],
+            "redacted": []
+          },
+          "mlflow.databricks.gitRepoCommit": "a1d07cf201ae1d651845e6c632d02b8285e0edf1",
+          "mlflow.databricks.gitRepoProvider": "gitHub",
+          "mlflow.databricks.gitRepoReference": "master",
+          "mlflow.databricks.gitRepoReferenceType": "branch",
+          "mlflow.databricks.gitRepoRelativePath": "ML/llm/optimized-llama-serving-jayp",
+          "mlflow.databricks.gitRepoStatus": "unknown",
+          "mlflow.databricks.gitRepoUrl": "https://github.com/jpdatabricks/ml-ws",
+          "mlflow.databricks.notebook.commandID": "6869665991266220507_6612308178965426736_41684650e32a4d438dee5cd76e0c6e6e",
+          "mlflow.databricks.notebookID": 3441860794586987,
+          "mlflow.databricks.notebookPath": "/Repos/first.last@mycompany.com/ml-ws/ML/llm/optimized-llama-serving-jayp",
+          "mlflow.databricks.webappURL": "https://oregon.cloud.databricks.com",
+          "mlflow.databricks.workspaceID": 1444828305810485,
+          "mlflow.databricks.workspaceURL": "e2-demo-field-eng.cloud.databricks.com",
+          "mlflow.log-model.history": [
+            {
+              "artifact_path": "model",
+              "saved_input_example_info": {
+                "artifact_path": "input_example.json",
+                "type": "ndarray",
+                "format": "tf-serving"
+              },
+              "signature": {
+                "inputs": [
+                  {
+                    "type": "string",
+                    "name": "prompt"
+                  },
+                  {
+                    "type": "double",
+                    "name": "temperature",
+                    "optional": true
+                  },
+                  {
+                    "type": "integer",
+                    "name": "max_tokens",
+                    "optional": true
+                  },
+                  {
+                    "type": "string",
+                    "name": "stop",
+                    "optional": true
+                  },
+                  {
+                    "type": "integer",
+                    "name": "candidate_count",
+                    "optional": true
+                  }
+                ],
+                "outputs": [
+                  {
+                    "type": "string",
+                    "name": "predictions"
+                  }
+                ],
+                "params": null
+              },
+              "flavors": {
+                "python_function": {
+                  "model_binary": "model",
+                  "loader_module": "mlflow.transformers",
+                  "python_version": "3.10.12",
+                  "env": {
+                    "conda": "conda.yaml",
+                    "virtualenv": "python_env.yaml"
+                  }
+                },
+                "transformers": {
+                  "task": "text-generation",
+                  "framework": "pt",
+                  "source_model_name": "meta-llama/Llama-2-7b-chat-hf",
+                  "components": [
+                    "tokenizer"
+                  ],
+                  "code": null,
+                  "model_binary": "model",
+                  "tokenizer_type": "LlamaTokenizerFast",
+                  "pipeline_model_type": "LlamaForCausalLM",
+                  "instance_type": "TextGenerationPipeline",
+                  "transformers_version": "4.34.0"
+                }
+              },
+              "run_id": "a15d322cc11c43569ef8443a8efc9a7e",
+              "model_uuid": "354b66f67efa4204bed843f6aac2d40b",
+              "metadata": {
+                "task": "llm/v1/completions"
+              },
+              "utc_time_created": "2023-10-10 06:19:05.479605",
+              "mlflow_version": "2.7.1",
+              "databricks_runtime": "13.3.x-gpu-ml-scala2.12"
+            }
+          ],
+          "mlflow.runName": "big-toad-814",
+          "mlflow.source.name": "/Repos/first.last@mycompany.com/ml-ws/ML/llm/optimized-llama-serving-jayp",
+          "mlflow.source.type": "NOTEBOOK",
+          "mlflow.user": "first.last@mycompany.com"
+        }
+      },
+      "inputs": {}
+    }
+  }
+}

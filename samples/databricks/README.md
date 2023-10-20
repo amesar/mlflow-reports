@@ -44,9 +44,12 @@ Top-level directory of [mlflow_objects](mlflow_objects).
 
 **MLflow objects**
 * [registered_models](mlflow_objects/registered_models)
-* [model_versions](mlflow_objects/model_versions)
 * [experiments](mlflow_objects/experiments)
 * [runs](mlflow_objects/runs)
+
+**Model Versions**
+* [model_versions](mlflow_objects/model_versions)
+* [Llama2-7B](mlflow_objects/model_versions/llama2_7b.json)
 
 **MLflow models**
 * [mlflow_models](mlflow_objects/mlflow_models)
