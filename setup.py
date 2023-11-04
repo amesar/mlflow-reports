@@ -38,7 +38,9 @@ setup(
             "get-model-version = mlflow_reports.data.get_model_version:main",
             "get-registered-model = mlflow_reports.data.get_registered_model:main",
             "get-mlflow-model = mlflow_reports.data.get_mlflow_model:main",
-            "get-mlflow-model-wide = mlflow_reports.mlflow_model.mlflow_model_manager:main"
+            "get-mlflow-model-wide = mlflow_reports.mlflow_model.mlflow_model_manager:main",
+            "list-registered-models = mlflow_reports.list.list_registered_models:main",
+            "list-model-versions = mlflow_reports.list.list_model_versions:main"
         ]
     }
 )
