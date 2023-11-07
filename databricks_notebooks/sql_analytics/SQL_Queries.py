@@ -69,14 +69,6 @@ spark.sql(f"use {database_name}")
 
 # COMMAND ----------
 
-# MAGIC %md #### Show number of models per user
-
-# COMMAND ----------
-
-# MAGIC %sql select user_id, count(*) as num_models from models group by user_id order by num_models desc
-
-# COMMAND ----------
-
 # MAGIC %md #### Sort by `user_id`
 
 # COMMAND ----------

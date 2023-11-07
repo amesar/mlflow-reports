@@ -96,7 +96,7 @@ display(df)
 # COMMAND ----------
 
 spark.sql(f"drop table if exists {models_table}")
-df.write.mode("overwrite").saveAsTable(f"{models_table}")
+df.write.mode("overwrite").saveAsTable(models_table)
 
 # COMMAND ----------
 
@@ -135,7 +135,7 @@ df_versions = spark.createDataFrame(pdf)
 
 df = df_versions
 
-df = df\
+df = df \
   .withColumn("creation_timestamp",date_format("creation_timestamp", "yyyy-MM-dd hh:mm:ss")) \
   .withColumn("creation_timestamp",date_format("creation_timestamp", "yyyy-MM-dd hh:mm:ss"))
 
