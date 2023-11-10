@@ -50,9 +50,9 @@ activate_unity_catalog(use_uc)
 
 from mlflow_reports.data import get_model_version
 
-rsp = get_model_version.get(reg_model_name, version,
+version = get_model_version.get(reg_model_name, version,
     get_run = get_run,
     artifact_max_level = artifact_max_level,
     get_raw = get_raw
 )
-dump_as_json(rsp)
+dump_as_json(version)
