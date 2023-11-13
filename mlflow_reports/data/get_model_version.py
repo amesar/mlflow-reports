@@ -60,9 +60,15 @@ def enrich(version):
 def _get_vr_run(dct, artifact_max_level):
     vr = dct["model_version"]
     try:
-        dct["run"] = _get_run.get(vr["run_id"], artifact_max_level=artifact_max_level)
+        run_id = vr.get("run_id")
+        if run_id:
+            dct["run"] = _get_run.get(run_id, artifact_max_level=artifact_max_level)
+        else: # NOTE: Some LLM models don't have a run_id. Not documented.
+            msg = f'Model version \'{vr["name"]}/{vr["version"]}\' has no run_id'
+            dct["run"] = { "warning": msg }
+            print(f"WARNING: {msg}")
     except Exception as e:
-        print(f'ERROR: Cannot get run {vr["run_id"]} for version {vr["version"]}. Exception: {e}')
+        print(f'ERROR: Failed to get run for model version \'{vr["name"]}/{vr["version"]}\'. Ex: {e}')
 
 
 @click.command()
