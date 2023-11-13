@@ -1,0 +1,21 @@
+{
+  "model_version": {
+    "name": "ap.llm.mistral-7b",
+    "version": "1",
+    "creation_timestamp": 1696354862069,
+    "last_updated_timestamp": 1696354891550,
+    "user_id": "first.last@mycompany.com",
+    "source": "dbfs:/databricks/mlflow-tracking/a5b9f04fafc9404cb7176a7c65378acb/c2f93026f9944b49aa5b1b202e1f5a18/artifacts/model",
+    "run_id": "c2f93026f9944b49aa5b1b202e1f5a18",
+    "run_tracking_server_id": "6051921418418893",
+    "status": "READY",
+    "storage_location": "s3://v9-prod-managed-catalog-test-bucket-1/19a85dee-54bc-43a2-87ab-023d0ec16013/models/a78729b3-d4b7-4959-8820-92d1f6cb29a1/versions/973905c1-b4cb-4fa0-b088-f4aa8a1f9937",
+    "_creation_timestamp": "2023-10-03 17:41:02",
+    "_last_updated_timestamp": "2023-10-03 17:41:32",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://v9-prod-managed-catalog-test-bucket-1/19a85dee-54bc-43a2-87ab-023d0ec16013/models/a78729b3-d4b7-4959-8820-92d1f6cb29a1/versions/973905c1-b4cb-4fa0-b088-f4aa8a1f9937",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/a5b9f04fafc9404cb7176a7c65378acb/c2f93026f9944b49aa5b1b202e1f5a18/artifacts/model",
+    "_web_ui_link": "https://v9-antfood.mycompany.com/explore/data/models/ap.llm.mistral-7b/version/1",
+    "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=ap.llm.mistral-7b&version=1"
+  }
+}

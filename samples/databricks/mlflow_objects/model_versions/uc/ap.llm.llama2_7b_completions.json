@@ -1,0 +1,30 @@
+{
+  "model_version": {
+    "name": "ap.llm.llama2_7b_completions",
+    "version": "1",
+    "creation_timestamp": 1699356528751,
+    "last_updated_timestamp": 1699356557830,
+    "user_id": "first.last@mycompany.com",
+    "source": "dbfs:/databricks/mlflow-tracking/6d8cad2cf170491294984857e4d8182f/f4f4c74eccd94545ba66ea10348a176f/artifacts/model",
+    "run_id": "f4f4c74eccd94545ba66ea10348a176f",
+    "run_tracking_server_id": "6051921418418893",
+    "status": "READY",
+    "storage_location": "s3://v9-prod-managed-catalog-test-bucket-1/19a85dee-54bc-43a2-87ab-023d0ec16013/models/f7d87003-5a29-433c-9304-6f0d5732f3bc/versions/c2036074-1d5f-43a3-81bd-8b1e98902b00",
+    "aliases": [
+      {
+        "alias": "champion",
+        "version": "1"
+      }
+    ],
+    "_creation_timestamp": "2023-11-07 11:28:49",
+    "_last_updated_timestamp": "2023-11-07 11:29:18",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://v9-prod-managed-catalog-test-bucket-1/19a85dee-54bc-43a2-87ab-023d0ec16013/models/f7d87003-5a29-433c-9304-6f0d5732f3bc/versions/c2036074-1d5f-43a3-81bd-8b1e98902b00",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/6d8cad2cf170491294984857e4d8182f/f4f4c74eccd94545ba66ea10348a176f/artifacts/model",
+    "_web_ui_link": "https://v9-antfood.mycompany.com/explore/data/models/ap.llm.llama2_7b_completions/version/1",
+    "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=ap.llm.llama2_7b_completions&version=1"
+  },
+  "run": {
+    "warning": "Failed to get run_id 'f4f4c74eccd94545ba66ea10348a176f' for model version 'ap.llm.llama2_7b_completions/1'. Exception: {\"http_status_code\": 404, \"uri\": \"https://v9-antfood.mycompany.com/api/2.0/mlflow/runs/get\", \"params\": {\"run_id\": \"f4f4c74eccd94545ba66ea10348a176f\"}, \"response\": \"{\\\"error_code\\\":\\\"RESOURCE_DOES_NOT_EXIST\\\",\\\"message\\\":\\\"Node ID 566507028394507 does not exist.\\\"}\"}"
+  }
+}

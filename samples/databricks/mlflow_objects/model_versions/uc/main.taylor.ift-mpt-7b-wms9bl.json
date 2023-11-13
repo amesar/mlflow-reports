@@ -1,0 +1,22 @@
+{
+  "model_version": {
+    "name": "main.taylor.ift-mpt-7b-wms9bl",
+    "version": "1",
+    "creation_timestamp": 1699576242392,
+    "last_updated_timestamp": 1699576298456,
+    "user_id": "first.last@mycompany.com",
+    "source": "/tmp/tmpvhjj61dl/mlflow_save_0",
+    "status": "READY",
+    "storage_location": "s3://v9-prod-managed-catalog-test-bucket-1/19a85dee-54bc-43a2-87ab-023d0ec16013/models/8613a6d8-fab5-4127-8160-a7c11ca1c337/versions/397f6fe3-ed4f-4157-97a0-a15f2f65f204",
+    "_creation_timestamp": "2023-11-10 00:30:42",
+    "_last_updated_timestamp": "2023-11-10 00:31:38",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://v9-prod-managed-catalog-test-bucket-1/19a85dee-54bc-43a2-87ab-023d0ec16013/models/8613a6d8-fab5-4127-8160-a7c11ca1c337/versions/397f6fe3-ed4f-4157-97a0-a15f2f65f204",
+    "_run_model_download_uri": "/tmp/tmpvhjj61dl/mlflow_save_0",
+    "_web_ui_link": "https://v9-antfood.mycompany.com/explore/data/models/main.taylor.ift-mpt-7b-wms9bl/version/1",
+    "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=main.taylor.ift-mpt-7b-wms9bl&version=1"
+  },
+  "run": {
+    "warning": "Model version 'main.taylor.ift-mpt-7b-wms9bl/1' has no run_id"
+  }
+}
