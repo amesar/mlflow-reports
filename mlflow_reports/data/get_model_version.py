@@ -68,7 +68,9 @@ def _get_vr_run(dct, artifact_max_level):
             dct["run"] = { "warning": msg }
             print(f"WARNING: {msg}")
     except Exception as e:
-        print(f'ERROR: Failed to get run for model version \'{vr["name"]}/{vr["version"]}\'. Ex: {e}')
+        msg = f'Failed to get run_id \'{run_id}\' for model version \'{vr["name"]}/{vr["version"]}\'. Exception: {e}' 
+        dct["run"] = { "warning": msg }
+        print(f"WARNING: {msg}")
 
 
 @click.command()
