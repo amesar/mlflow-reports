@@ -191,6 +191,10 @@ def use_unity_catalog(_use_unity_catalog):
     print("Current mlflow.registry_uri:",mlflow.get_registry_uri())
 
 
+def has_error(dct):
+    return "warning" in dct or "error" in dct
+
+
 _is_calling_into_databricks = None
 
 def is_calling_databricks(dbx_client=None):

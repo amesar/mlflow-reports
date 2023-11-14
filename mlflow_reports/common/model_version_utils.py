@@ -19,8 +19,8 @@ def split_model_uri(model_uri):
 
 
 def get_model_and_version(model_uri, get_permissions=False):
-    """ 
-    Get model and version number for a model version URI  
+    """
+    Get model and version number for a model version URI
     """
     model_name, version_or_stage = split_model_uri(model_uri)
     version = _get_version(model_name, version_or_stage)
@@ -29,8 +29,8 @@ def get_model_and_version(model_uri, get_permissions=False):
 
 
 def _get_version(model_name, version_or_stage):
-    """ 
-    Get version number for a version_or_stage 
+    """
+    Get version number for a version_or_stage
     """
     if version_or_stage.isdigit():
         rsp = http_client.get(f"model-versions/get", {"name": model_name, "version": version_or_stage} )

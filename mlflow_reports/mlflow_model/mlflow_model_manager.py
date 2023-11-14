@@ -19,15 +19,15 @@ from mlflow_reports.data import (
     get_registered_model,
     get_model_version,
     get_experiment ,
-    get_run 
+    get_run
 )
 from mlflow_reports.data import data_utils
 from . mlflow_model_utils import mk_run_uri, mk_run_download_uri
 
 
 def get(
-        model_uri, 
-        get_permissions = False, 
+        model_uri,
+        get_permissions = False,
         get_raw = False,
     ):
     """
@@ -49,8 +49,8 @@ def _get_data_from_api(model_uri, get_permissions=False, get_raw=False):
 
     run_id = mlflow_model.get("run_id")
     run_uri = mk_run_uri(run_id, mlflow_model.get("artifact_path"))
-    
-    model_uris = { 
+
+    model_uris = {
         "model_uri": model_uri,
         "run_uri": run_uri,
     }
@@ -59,8 +59,6 @@ def _get_data_from_api(model_uri, get_permissions=False, get_raw=False):
         get_registered_model.enrich(registered_model, get_permissions=get_permissions, enrich_versions=False)
         registered_model.pop("latest_versions", None) # NOTE: don't need this for our current purposes
         get_model_version.enrich(model_version)
-        _run_id = model_version["run_id"]
-        assert run_id == _run_id 
         model_uris["reg_model_download_uri"] = model_version.get("_reg_model_download_uri")
         #model_uris["run_model_download_uri"] = model_version.get("_run_model_download_uri")
     else:

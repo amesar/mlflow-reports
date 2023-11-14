@@ -17,14 +17,14 @@ from mlflow_reports.data import data_utils
 
 
 def get(
-        model_uri, 
-        get_run = False, 
-        get_raw = False, 
+        model_uri,
+        get_run = False,
+        get_raw = False,
     ):
     model_info = mlflow_model_utils.get_model_info(model_uri)
     if not isinstance(model_info, dict):
         # NOTE: maybe raise exception instead of return
-        return { 
+        return {
             "error": f"Failed to parse MLmodel file of '{model_uri}'",
             "contents": str(model_info)
         }
@@ -36,11 +36,15 @@ def get(
     _calc_model_size(model_info, model_uri)
 
     if get_run:
-        rsp = _get_run.get(model_info["run_id"], get_raw=get_raw)
-        run = rsp["run"]
-        dct["run"] = run
-        rsp = _get_experiment.get(run["info"]["experiment_id"], get_raw=get_raw)
-        dct["experiment"] = rsp["experiment"]
+        run_id = model_info.get("run_id")
+        if run_id:
+            rsp = _get_run.get(run_id, get_raw=get_raw)
+            run = rsp["run"]
+            dct["run"] = run
+            rsp = _get_experiment.get(run["info"]["experiment_id"], get_raw=get_raw)
+            dct["experiment"] = rsp["experiment"]
+        else:
+            dct["run"] = { "warning": f"No run_id for model version '{model_uri}'" }
     return dct
 
 
@@ -50,17 +54,22 @@ def _calc_model_size(model_info, model_uri):
     Sum up the artifact sizes in the run MLflow model artifact directory.
     Get not-so-clear error message if don't have permissions to read the run's artifacts.
     """
-    try:
-        artifacts = mlflow_utils.build_artifacts(
-            model_info["run_id"], 
-            model_info["artifact_path"],  
-            sys.maxsize)
-        model_info["model_size_bytes"] = artifacts["summary"]["num_bytes"]
-        model_info["artifacts"] = artifacts
-    except MlflowReportsException as e:
-        msg = { "model_uri": model_uri, "run_id": model_info["run_id"] }
-        print(f"WARNING: Cannot calculate model size from run model: {msg}. EXCEPTION: {e}")
+    run_id = model_info.get("run_id")
+    if not run_id:
+        print(f"WARNING: Cannot calculate model size since run_id is not set for model version: {model_uri}.")
         model_info["model_size_bytes"] = -1
+    else:
+        try:
+            artifacts = mlflow_utils.build_artifacts(
+                run_id,
+                model_info["artifact_path"],
+                sys.maxsize)
+            model_info["model_size_bytes"] = artifacts["summary"]["num_bytes"]
+            model_info["artifacts"] = artifacts
+        except MlflowReportsException as e:
+            msg = { "model_uri": model_uri, "run_id": model_info["run_id"] }
+            print(f"WARNING: Cannot calculate model size from run model: {msg}. EXCEPTION: {e}")
+            model_info["model_size_bytes"] = -1
 
 
 def _get_raw_model(model_uri, model_info):
@@ -68,7 +77,7 @@ def _get_raw_model(model_uri, model_info):
     If this is a feature store model, then we process data/feature_store/raw_model/MLmodel.
     """
     flavors = model_info.get("flavors")
-    if len(flavors) > 1:
+    if len(flavors) > 1 or mlflow_utils.has_error(flavors):
         return None
     pyfunc = flavors.get("python_function")
     if pyfunc is None:

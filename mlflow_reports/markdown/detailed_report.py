@@ -51,28 +51,29 @@ def build_report(model_uri, get_permissions, output_file, output_data_file=None,
 def _build_overview_model(wf, data, show_manifest):
     wf.card.new_header(level=1, title="Model Overview")
 
-    mlflow_model = data.get("mlflow_model")
-    flavor = get_native_flavor_adjusted(mlflow_model.get("flavors"))
-    utc_time = mlflow_model.get("utc_time_created")
-    utc_time_created = utc_time.split(".")[0]
     manifest = data.get("manifest")
-    reg_model = data.get("registered_model")
-    model_size_bytes = mlflow_model.get("model_size_bytes")
-    is_unity_catalog = reg_model.get(enriched_tags.TAG_IS_UNITY_CATALOG) if reg_model else ""
-    dct_mlflow_model = {
-        "model_uri": manifest.get("model_uri"),
-        "flavor": flavor.get("flavor"),
-        "flavor_version": flavor.get("version"),
-        "mlflow_version": mlflow_model.get("mlflow_version"),
-        "size_bytes": f"{model_size_bytes:,}",
-        "databricks_runtime": mlflow_model.get("databricks_runtime",""),
-        "is_unity_catalog": is_unity_catalog,
-        "time_created": utc_time_created,
-        "report_time": timestamp_utils.ts_now_fmt_utc
-    }
-
+    mlflow_model = data.get("mlflow_model")
+    if mlflow_utils.has_error(mlflow_model):
+        dct_mlflow_model = mlflow_model
+    else:
+        flavor = get_native_flavor_adjusted(mlflow_model.get("flavors"))
+        utc_time = mlflow_model.get("utc_time_created")
+        utc_time_created = utc_time.split(".")[0]
+        reg_model = data.get("registered_model")
+        model_size_bytes = mlflow_model.get("model_size_bytes")
+        is_unity_catalog = reg_model.get(enriched_tags.TAG_IS_UNITY_CATALOG) if reg_model else ""
+        dct_mlflow_model = {
+            "model_uri": manifest.get("model_uri"),
+            "flavor": flavor.get("flavor"),
+            "flavor_version": flavor.get("version"),
+            "mlflow_version": mlflow_model.get("mlflow_version"),
+            "size_bytes": f"{model_size_bytes:,}",
+            "databricks_runtime": mlflow_model.get("databricks_runtime",""),
+            "is_unity_catalog": is_unity_catalog,
+            "time_created": utc_time_created,
+            "report_time": timestamp_utils.ts_now_fmt_utc
+        }
     wf.build_table(dct_mlflow_model, "MLflow Model", level=0)
-
     _build_mlflow_model_uris(wf, manifest)
 
     if show_manifest:
@@ -81,7 +82,7 @@ def _build_overview_model(wf, data, show_manifest):
         wf.build_table(dct, "Manifest", level=0)
 
 
-def _build_mlflow_model_uris(wf, manifest): 
+def _build_mlflow_model_uris(wf, manifest):
     dct = manifest.get("model_uris")
     wf.build_table(dct, "MLflow Model URIs", level=0, columns=["URI type","URI"])
 
@@ -95,40 +96,43 @@ def get_native_flavor_adjusted(flavors):
 
 
 def get_native_flavor_adjusted_fs(flavors):
-    """ 
+    """
     Process the raw feature store MLmodel.
     """
-    keys = list(flavors.keys())
-    flavor = flavors.get(keys[0])
-    dct = { 
-        "flavor": flavor.get("loader_module"),
-        "version": ""
-    }
-    return dct
+    if mlflow_utils.has_error(flavors):
+        return {}
+    else:
+        keys = list(flavors.keys())
+        flavor = flavors.get(keys[0])
+        dct = {
+            "flavor": flavor.get("loader_module"),
+            "version": ""
+        }
+        return dct
 
 
 def get_native_flavor_adjusted_std(flavors):
-    """ 
-    If standard model with one MLmodel file. 
+    """
+    If standard model with one MLmodel file.
     """
     keys = list(flavors.keys())
     pyfunc, native = flavors.get(keys[0]), flavors.get(keys[1])
     keys = list(flavors.keys())
     if keys[1] == "python_function":
-        tmp = pyfunc  
+        tmp = pyfunc
         pyfunc = native
         native = tmp
-    
+
     native = copy.deepcopy(native)
-    
+
     matches = [ (k,v) for k,v in native.items() if k.endswith("_version") ]
     kv = matches[0]
     version = native.pop(kv[0], None)
-        
+
     flavor_name = pyfunc.get("loader_module")
-        
+
     flavor = { **{ "flavor": flavor_name, "version": version }, **native }
-    return flavor 
+    return flavor
 
 
 def _build_model_info(rf, model_info, show_as_json=True, level=1, title="MLflow Model"):
@@ -139,7 +143,7 @@ def _build_model_info(rf, model_info, show_as_json=True, level=1, title="MLflow 
     _build_model_info_details(rf.wf, model_info, level+1)
 
     rf.build_flavors(model_info.get("flavors"), level=level+2, show_as_json=show_as_json)
-    
+
     rf.build_signature(model_info.get("signature"), level=level+1)
     rf.build_saved_input_example_info(model_info.get("saved_input_example_info"), level=level+1)
 
@@ -165,14 +169,14 @@ def _build_model_info_details(wf, model_info, level):
 
 def _build_registered_model(rf, registered_model):
     rf.card.new_header(level=1, title="Registered Model")
-        
+
     dct = { k:v for k,v in registered_model.items() if is_primitive(v) }
-    newline_tweak(dct) 
+    newline_tweak(dct)
     rf.wf.build_table(dct, "Details", level=2)
-    
+
     tags = registered_model.get("tags")
     rf.wf.build_table(tags, "Tags", level=2)
-        
+
     rf.build_permissions(registered_model.get("permissions"), 2)
 
 
@@ -182,7 +186,7 @@ def _build_model_version(wf, model_version):
     dct = { k:v for k,v in model_version.items() if is_primitive(v) }
     newline_tweak(dct)
     wf.build_table(dct, "Details", level=2)
-    
+
     tags = model_version.get("tags")
     wf.build_table(tags, "Tags", level=2)
 
@@ -194,7 +198,7 @@ def _build_model_version(wf, model_version):
 
 def _build_run(rf, run):
     """
-    Build run 
+    Build run
     """
     rf.card.new_header(level=1, title="Run")
 
@@ -284,10 +288,10 @@ def _build_experiment(rf, experiment):
         exp_info = experiment
     dct = { k:v for k,v in exp_info.items() if is_primitive(v) }
     rf.wf.build_table(dct, "Details", level=2)
-    
+
     tags = exp_info.get("tags")
     _build_tags(rf.wf, tags, level=2)
-            
+
     rf.build_permissions(experiment.get("permissions"), 2)
 
 
@@ -313,20 +317,20 @@ def _build_tags(wf, tags, level):
      type=bool,
      default=False,
      show_default=True
-)   
+)
 @click.option("--show-manifest",
      help="Show manifest stanza",
      type=bool,
      default=False,
      show_default=True
-)   
+)
 @opt_output_file
 @click.option("--output-data-file",
      help="Output JSON data file",
      type=str,
      default=None,
      show_default=True
-)   
+)
 @opt_get_permissions
 
 def main(model_uri, show_as_json, show_manifest, output_file, output_data_file, get_permissions):
