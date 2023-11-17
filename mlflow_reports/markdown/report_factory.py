@@ -54,7 +54,7 @@ class ReportFactory:
                 self.wf.build_table(v, f"Flavor '{k}'", level+1)
 
 
-    # ==== 
+    # ====
     # Run widgets
 
     def build_sparkDatasourceInfo(self, ds_info, level):
@@ -126,8 +126,12 @@ class ReportFactory:
 
             self.card.new_header(level=level, title="Cluster Libraries")
             cluster_libs = tags.get("mlflow.databricks.cluster.libraries")
-            _build_libs(cluster_libs, "installable")
-            _build_libs(cluster_libs, "redacted")
+            if cluster_libs:
+                _build_libs(cluster_libs, "installable")
+                _build_libs(cluster_libs, "redacted")
+            cluster_libs_error = tags.get("mlflow.databricks.cluster.libraries.error")
+            if cluster_libs_error:
+                self.card.new_line(escape_dict(cluster_libs_error))
 
 
         if tags.get("mlflow.databricks.cluster.id"):
