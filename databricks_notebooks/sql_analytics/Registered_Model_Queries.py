@@ -15,7 +15,7 @@
 
 # COMMAND ----------
 
-dbutils.widgets.text("Database", "")
+dbutils.widgets.text("Database", "andre_m.mlflow_uc")
 database_name = dbutils.widgets.get("Database")
 print("database_name:", database_name)
 
@@ -25,7 +25,7 @@ spark.sql(f"use {database_name}")
 
 # COMMAND ----------
 
-# MAGIC %md ### Describe and Count
+# MAGIC %md ### Describe table
 
 # COMMAND ----------
 
@@ -37,15 +37,19 @@ spark.sql(f"use {database_name}")
 
 # COMMAND ----------
 
-# MAGIC %md ##### Count
-
-# COMMAND ----------
-
-# MAGIC %sql select count(*) as num_versions from versions
+# MAGIC %sql describe history models
 
 # COMMAND ----------
 
 # MAGIC %md ### Queries
+
+# COMMAND ----------
+
+# MAGIC %md #### Count
+
+# COMMAND ----------
+
+# MAGIC %sql select count(*) as num_models from models
 
 # COMMAND ----------
 

@@ -25,7 +25,7 @@ spark.sql(f"use {database_name}")
 
 # COMMAND ----------
 
-# MAGIC %md ### Describe and Count
+# MAGIC %md ### Describe table
 
 # COMMAND ----------
 
@@ -37,15 +37,19 @@ spark.sql(f"use {database_name}")
 
 # COMMAND ----------
 
-# MAGIC %md ##### Count
-
-# COMMAND ----------
-
-# MAGIC %sql select count(*) as num_versions from versions
+# MAGIC %sql describe history versions
 
 # COMMAND ----------
 
 # MAGIC %md ### Queries
+
+# COMMAND ----------
+
+# MAGIC %md #### Count
+
+# COMMAND ----------
+
+# MAGIC %sql select count(*) as num_versions from versions
 
 # COMMAND ----------
 
@@ -61,10 +65,6 @@ spark.sql(f"use {database_name}")
 
 # COMMAND ----------
 
-
-
-# COMMAND ----------
-
 # MAGIC %sql select user_id, * from versions order by user_id, name
 
 # COMMAND ----------
@@ -77,7 +77,7 @@ spark.sql(f"use {database_name}")
 
 # COMMAND ----------
 
-# MAGIC %md #### Show versions by latest creation_timestamp
+# MAGIC %md #### Show versions by earliest creation_timestamp
 
 # COMMAND ----------
 

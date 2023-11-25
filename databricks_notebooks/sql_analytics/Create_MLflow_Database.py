@@ -62,6 +62,9 @@ pdf = search_registered_models.search(
     get_search_object_again = get_search_model_again,
     tags_and_aliases_as_string = True
 )
+
+# COMMAND ----------
+
 df = spark.createDataFrame(pdf)
 
 # COMMAND ----------
@@ -95,8 +98,7 @@ display(df)
 
 # COMMAND ----------
 
-spark.sql(f"drop table if exists {models_table}")
-df.write.mode("overwrite").saveAsTable(models_table)
+df.write.mode("overwrite").option("mergeSchema", "true").saveAsTable(models_table)
 
 # COMMAND ----------
 
@@ -156,8 +158,7 @@ display(df)
 
 # COMMAND ----------
 
-spark.sql(f"drop table if exists {versions_table}")
-df.write.mode("overwrite").saveAsTable(f"{versions_table}")
+df.write.mode("overwrite").option("mergeSchema", "true").saveAsTable(versions_table)
 
 # COMMAND ----------
 
