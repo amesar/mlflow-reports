@@ -34,7 +34,7 @@ def get_registered_model(model_name, get_permissions):
        2. databricks/registered-models/get - custom Databricks call that simply has an extra "id" field needed
           to subsequently call to get permissions
     """
-    if get_permissions and not is_unity_catalog_model(model_name):
+    if is_calling_databricks() and get_permissions and not is_unity_catalog_model(model_name):
         resource = "databricks/registered-models/get"
         try:
             model = http_client.get(resource, {"name": model_name} )

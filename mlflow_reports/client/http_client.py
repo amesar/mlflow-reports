@@ -88,11 +88,8 @@ class HttpClient(BaseHttpClient):
         else:
             (host, token) = mlflow_auth_utils.get_mlflow_host_token()
 
-        if host is None:
-            raise MlflowReportsException(
-                "MLflow tracking URI (MLFLOW_TRACKING_URI environment variable) is not configured correctly",
-                http_status_code=401
-            )
+        if not host:
+            raise MlflowReportsException(message="MLflow tracking URI (MLFLOW_TRACKING_URI environment variable) is not configured correctly")
         self.api_uri = os.path.join(host, api_name)
         self.token = token
         
@@ -187,8 +184,7 @@ class HttpClient(BaseHttpClient):
 
     def _check_response(self, rsp, params=None):
         if rsp.status_code < 200 or rsp.status_code > 299:
-            msg = { "http_status_code": rsp.status_code, "uri": rsp.url, "params": params, "response": rsp.text }
-            raise MlflowReportsException(json.dumps(msg), http_status_code = rsp.status_code)
+            raise MlflowReportsException(rsp.status_code, rsp.url, params, rsp.text)
         return rsp
 
     def __repr__(self):
