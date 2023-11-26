@@ -16,7 +16,7 @@ class MlflowReportsException(Exception):
 
 
     def __str__(self):
-        return json.dumps(self.args_dict)
+        return json.dumps(self.error)
 
 
 def _to_dict(msg):
