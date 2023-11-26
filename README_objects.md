@@ -371,7 +371,8 @@ Get registered model details.
 
 ```
 get-registered-model \
-  --registered-model credit_adjudication
+  --registered-model credit_adjudication \
+  --get-versions
 ```
 ```
 {
@@ -380,11 +381,11 @@ get-registered-model \
     "creation_timestamp": 1686870883318,
     "last_updated_timestamp": 1686872073462,
     "user_id": "antoine.amend@databricks.com",
-    "latest_versions": [
+    "versions": [
       {
         "name": "credit_adjudication",
         "version": "2",
-        "creation_timest
+        "creation_timestamp": 1686871509181,
 ```
 
 **Usage**
@@ -393,15 +394,17 @@ get-registered-model \
 get-registered-model --help
 
 Options:
-  --registered-model TEXT       Registered model name.  [required]
-  --get-run BOOLEAN             Get run.  [default: False]
-  --artifact-max-level INTEGER  Number of artifact levels to recurse for run
-                                artifacts.  [default: -1]
-  --get-permissions BOOLEAN     Get Databricks permissions.  [default: False]
-  --get-raw BOOLEAN             Preserve raw JSON as received from API call.
-                                [default: False]
-  --silent BOOLEAN              Do not display to stdout.  [default: False]
-  --output-file TEXT            JSON output file.
+  --registered-model TEXT        Registered model name.  [required]
+  --get-run BOOLEAN              Get run.  [default: False]
+  --artifact-max-level INTEGER   Number of artifact levels to recurse for run
+                                 artifacts.  [default: -1]
+  --get-versions BOOLEAN         Get model versions.  [default: False]
+  --get-latest-versions BOOLEAN  Get model latest versions.  [default: False]
+  --get-permissions BOOLEAN      Get Databricks permissions.  [default: False]
+  --get-raw BOOLEAN              Preserve raw JSON as received from API call.
+                                 [default: False]
+  --silent BOOLEAN               Do not display to stdout.  [default: False]
+  --output-file TEXT             JSON output file.
 ```
 
 

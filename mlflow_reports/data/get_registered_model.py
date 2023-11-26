@@ -7,6 +7,7 @@ from mlflow_reports.common import permissions_utils
 from mlflow_reports.common.click_options import(
     opt_registered_model,
     opt_get_versions,
+    opt_get_latest_versions,
     opt_get_run,
     opt_get_permissions,
     opt_artifact_max_level,
@@ -25,6 +26,7 @@ def get(
         get_run = False, 
         artifact_max_level = -1,
         get_versions = False, 
+        get_latest_versions = False, 
         get_permissions = False, 
         get_raw = False, 
     ):
@@ -37,6 +39,8 @@ def get(
         dct["versions"] = enrich(reg_model, get_permissions)
         if get_run:
             _get_runs(dct, artifact_max_level)
+    if not get_latest_versions:
+        reg_model.pop("latest_versions", None)
     return dct
 
 
@@ -79,15 +83,27 @@ def _get_runs(dct, artifact_max_level):
 @opt_get_run
 @opt_artifact_max_level 
 @opt_get_versions
+@opt_get_latest_versions
 @opt_get_permissions
 @opt_get_raw
 @opt_silent
 @opt_output_file
-def main(registered_model, get_run, artifact_max_level, get_versions, get_permissions, get_raw, silent, output_file):
+def main(registered_model, 
+        get_run, 
+        artifact_max_level, 
+        get_versions, 
+        get_latest_versions, 
+        get_permissions, 
+        get_raw, 
+        silent, 
+        output_file
+    ):
     print("Options:")
     for k,v in locals().items():
         print(f"  {k}: {v}")
-    dct = get(registered_model, get_run, artifact_max_level, get_versions, get_permissions, get_raw)
+    dct = get(registered_model, get_run, artifact_max_level,
+        get_versions, get_latest_versions, get_permissions, get_raw
+    )
     data_utils.dump_object(dct, output_file, silent)
 
 

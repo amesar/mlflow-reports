@@ -78,6 +78,15 @@ def opt_get_versions(function):
     )(function)
     return function
 
+def opt_get_latest_versions(function):
+    function = click.option("--get-latest-versions",
+        help="Get model latest versions.",
+        type=bool,
+        default=False,
+        show_default=True
+    )(function)
+    return function
+
 def opt_get_runs(function):
     function = click.option("--get-runs",
         help="Get runs.",
@@ -109,6 +118,15 @@ def opt_artifact_max_level(function):
 def opt_get_raw(function):
     function = click.option("--get-raw",
         help="Preserve raw JSON as received from API call.",
+        type=bool,
+        default=False,
+        show_default=True
+    )(function)
+    return function
+
+def opt_get_expanded(function):
+    function = click.option("--get-expanded",
+        help="Get all objects associated with model version",
         type=bool,
         default=False,
         show_default=True
