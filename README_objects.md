@@ -1,65 +1,28 @@
-# MLflow Object Retrieval
+# Display and List MLflow Objects
 
 ## Overview
 
-A set of Python scripts and [Databricks notebooks](databricks_notebooks/README.md) 
-to retrieve MLflow objects in JSON format.
+Python scripts and [Databricks notebooks](databricks_notebooks/README.md) 
+to display and list MLflow objects.
+
+Last updated: _2023-11-26_.
 
 ### Commands
 
-**[MLflow model commands](#mlflow-model-commands)**
+#### [MLflow model commands](#mlflow-model-commands)
 *  [get-mlflow-model](#get-mlflow-model) - returns the contents of an MLflow model's [MLmodel](samples/databricks/model_reports/credit_adjudication/MLmodel) artifact.
 *  [get-mlflow-model-wide](#get-mlflow-model-wide) - same as above plus  with all of the model's  related objects (run, experiment, model version and registered model).
 
-**[MLflow object commands](#mlflow-object-commands)**
+#### [MLflow object commands](#mlflow-object-commands)
+Get object:
 *  [get-run](#get-run) - returns a run
 *  [get-experiment](#get-experiment) - returns an experiment
 *  [get-model-version](#get-model-version) - returns a model version
 *  [get-registered-model](#get-registered-model) - returns a registered model
 
-
-### Response format
-
-The returned format is an "enriched" format of the original raw JSON response.
-Enhanced attribute details can be found in the [Enriched Objects](#enriched-objects) section at the end.
-
-The enriched object has the following enhancements:
-- Adds enhanced attributes starting with an underscore such as `_start_time`.
-- Explodes tags containing a stringified JSON value (such as run tag `mlflow.log-model.history`) into the actual JSON reprentation.
-
-There are two types of enhanced attributes:
-* Formatted versions of the original attribute. For example:
-  * `"_start_time": "2023-06-15 23:34:12"` represents `"start_time": 1686872052388`.
-  * All formatted times are UTC.
-* Derived attributes. New attributes of interest such as `_duration` (for Run Info) or `_web_ui_link`.
-
-Each enhanced object returns the target MLflow object as a sub-object of the top-level JSON document.
-This is consistent with the MLflow API response format.
-For example, the response for a run is:
-```
-{
-  "run": {
-    "info": {
-      "run_id": "76031d22c5464dd99431e426b939e800",
-      "start_time": 1686872052388,
-      "_start_time": "2023-06-15 23:34:12" ,
-      "_duration": 3.823,
-      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/bf024d57582f4c8cbf816151cc6e1bac/runs/76031d22c5464dd99431e426b939e800",
-      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=76031d22c5464dd99431e426b939e800"
-    },   
-    }
-  }
-}
-```
-This also allows you to return associated objects such as:
-```
-{
-  "run": {
-  },
-  "experiment": {
-  }
-}
-```
+List objects:
+*  [list-registered-models](#list-registered-models) - lists registered models
+*  [list-model-versions](#list-model-versions) - lists model versions
 
 
 ## MLflow Model Commands
@@ -407,6 +370,97 @@ Options:
   --output-file TEXT             JSON output file.
 ```
 
+## List Objects
+
+### List Registered Models
+
+List registered models.
+
+```
+list-registered-models \
+  --columns name,user_id,creation_timestamp
+
++-----------------------------------------+--------------------------+----------------------+
+| name                                    | user_id                  | creation_timestamp   |
++-----------------------------------------+--------------------------+----------------------+
+| andre.basic_models.copy_test            | sagarmatha@mycompany.com | 2023-10-09 20:48:51  |
+| andre.basic_models.mini_mlops_pipeline  | k2@mycompany.com         | 2023-10-06 06:14:27  |
+| andre.basic_models.xgboost_wine_best    | karakoram@mycompany.com  | 2023-08-16 05:34:57  |
+| andre.basic_models.sklearn_wine_champ   | denali@mycompany.com     | 2023-09-19 23:01:56  |
+| andre.basic_models.sklearn_wine_test_fs | chimborazo@mycompany.com | 2023-08-17 14:55:30  |
+| market.llm_models.mistral7b_instruct    | huascaran@mycompany.com  | 2023-08-16 06:38:53  |
+| market.llm_models.codellama-7b          | denali@mycompany.com     | 2023-08-11 14:38:18  |
++-----------------------------------------+--------------------------+----------------------+
+```
+
+##### Usage
+```
+list-registered-models --help
+
+Options:
+  --filter TEXT                   Model filter.
+  --get-tags-and-aliases BOOLEAN  Get tags and aliases attribute from
+                                  registered model.
+  --tags-and-aliases-as-string BOOLEAN
+                                  Write tags and aliases as JSON string
+                                  instead of dict. Needed for Pandas to Spark
+                                  DataFrame conversion.
+  --get-search-object-again BOOLEAN
+                                  Call get() again for search object to return
+                                  missing aliases and tag fields.
+  --unity-catalog BOOLEAN         Use Databricks Unity Catalog.
+  --prefix TEXT                   Model prefix to show.
+  --columns TEXT                  Columns to display. Comma delimited.
+  --max-description INTEGER       max_description.
+```
+
+
+### List Model Versions
+
+List model versions.
+
+```
+list-model-model-versions \
+  --columns name,version,user_id,creation_timestamp
+
++-----------------------------------------+-----------+--------------------------+----------------------+
+| name                                    |   version | user_id                  | creation_timestamp   |
++-----------------------------------------+-----------+--------------------------+----------------------+
+| andre.basic_models.copy_test            |         1 | sagarmatha@mycompany.com | 2023-10-09 20:48:51  |
+| andre.basic_models.mini_mlops_pipeline  |         1 | k2@mycompany.com         | 2023-10-06 06:14:27  |
+| andre.basic_models.xgboost_wine_best    |         1 | karakoram@mycompany.com  | 2023-08-16 05:34:57  |
+| andre.basic_models.sklearn_wine_champ   |         1 | denali@mycompany.com     | 2023-09-19 23:01:56  |
+| andre.basic_models.sklearn_wine_champ   |         9 | denali@mycompany.com     | 2023-11-26 20:01:56  |
+| andre.basic_models.sklearn_wine_test_fs |         1 | chimborazo@mycompany.com | 2023-08-17 14:55:30  |
+| market.llm_models.mistral7b_instruct    |         1 | huascaran@mycompany.com  | 2023-08-16 06:38:53  |
+| market.llm_models.codellama-7b          |         1 | denali@mycompany.com     | 2023-08-11 14:38:18  |
++-----------------------------------------+-----------+--------------------------+----------------------+
+```
+
+##### Usage
+```
+list-model-versions  --help
+```
+```
+Options:
+  --filter TEXT                   Model filter.
+  --get-tags-and-aliases BOOLEAN  Get tags and aliases attribute from
+                                  registered model.
+  --tags-and-aliases-as-string BOOLEAN
+                                  Write tags and aliases as JSON string
+                                  instead of dict. Needed for Pandas to Spark
+                                  DataFrame conversion.
+  --get-model-details BOOLEAN     Get MLflow model flavor and size.
+  --get-search-object-again BOOLEAN
+                                  Call get() again for search object to return
+                                  missing aliases and tag fields.
+  --unity-catalog BOOLEAN         Use Databricks Unity Catalog.
+  --columns TEXT                  Columns to display. Comma delimited.
+  --max-description INTEGER       max_description.
+  --output-csv-file TEXT          Output CSV file.
+```
+
+
 
 ## Enriched Objects
 
@@ -451,3 +505,45 @@ Options:
 | _web_ui_link            | Link to the web UI object                                      |
 | _api_link               | Link to the API object                                         |
 
+## Response format
+
+The returned format is an "enriched" format of the original raw JSON response.
+Enhanced attribute details can be found in the [Enriched Objects](#enriched-objects) section at the end.
+
+The enriched object has the following enhancements:
+- Adds enhanced attributes starting with an underscore such as `_start_time`.
+- Explodes tags containing a stringified JSON value (such as run tag `mlflow.log-model.history`) into the actual JSON reprentation.
+
+There are two types of enhanced attributes:
+* Formatted versions of the original attribute. For example:
+  * `"_start_time": "2023-06-15 23:34:12"` represents `"start_time": 1686872052388`.
+  * All formatted times are UTC.
+* Derived attributes. New attributes of interest such as `_duration` (for Run Info) or `_web_ui_link`.
+
+Each enhanced object returns the target MLflow object as a sub-object of the top-level JSON document.
+This is consistent with the MLflow API response format.
+For example, the response for a run is:
+```
+{
+  "run": {
+    "info": {
+      "run_id": "76031d22c5464dd99431e426b939e800",
+      "start_time": 1686872052388,
+      "_start_time": "2023-06-15 23:34:12" ,
+      "_duration": 3.823,
+      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/bf024d57582f4c8cbf816151cc6e1bac/runs/76031d22c5464dd99431e426b939e800",
+      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=76031d22c5464dd99431e426b939e800"
+    },   
+    }
+  }
+}
+```
+This also allows you to return associated objects such as:
+```
+{
+  "run": {
+  },
+  "experiment": {
+  }
+}
+```
