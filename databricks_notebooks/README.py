@@ -21,6 +21,7 @@
 # MAGIC
 # MAGIC ##### MLflow MLmodel notebooks
 # MAGIC * [Download_MLmodel]($objects/Download_MLmodel) - Download and display a model version's MLmodel artifact.
+# MAGIC * [Download_MLmodels]($objects/Download_MLmodels) - Download a list of MLmodels.
 # MAGIC
 # MAGIC ##### SQL queries for MLflow models and versions tables
 # MAGIC * Queries for a Databricks Spark database with tables for models and versions as returned by the MLflow API.

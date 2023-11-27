@@ -1,5 +1,17 @@
 # Databricks notebook source
-# MAGIC %md ## Download MLmodel artifact for model version
+# MAGIC %md ### Download the MLmodel artifact of a model version
+# MAGIC
+# MAGIC Downloads the MLmodel file of the "cached" registry MLflow model, not from the runs's MLflow model.
+# MAGIC
+# MAGIC ```
+# MAGIC ├── model
+# MAGIC │   ├── MLmodel
+# MAGIC │   ├── conda.yaml
+# MAGIC │   ├── input_example.json
+# MAGIC │   ├── model.pkl
+# MAGIC │   ├── python_env.yaml
+# MAGIC │   └── requirements.txt
+# MAGIC ```
 
 # COMMAND ----------
 
