@@ -3,6 +3,10 @@
 
 # COMMAND ----------
 
+# MAGIC %run ../_Common
+
+# COMMAND ----------
+
 dbutils.widgets.text("1. Model name", "")
 dbutils.widgets.text("2. Model version", "")
 dbutils.widgets.text("3. Output directory", "")
@@ -19,11 +23,8 @@ print("output_dir:", output_dir)
 
 # COMMAND ----------
 
-def assert_widget(value, name):
-    if len(value.rstrip())==0:
-        raise RuntimeError(f"ERROR: '{name}' widget is required")
 assert_widget(model_name, "1. Model name")
-assert_widget(model_name, "2. Model version")
+assert_widget(version, "2. Model version")
 
 # COMMAND ----------
 
