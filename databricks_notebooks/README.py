@@ -17,6 +17,7 @@
 # MAGIC ##### MLflow list notebooks
 # MAGIC * [List_Registered_Models]($objects/List_Registered_Models)
 # MAGIC * [List_Model_Versions]($objects/List_Model_Versions)
+# MAGIC * [List_Gateway_Routes]($objects/List_Gateway_Routes) - SQL queries for routes
 # MAGIC
 # MAGIC ##### SQL queries for MLflow models and versions tables
 # MAGIC * Queries for a Databricks Spark database with tables for models and versions as returned by the MLflow API.
@@ -32,4 +33,4 @@
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC Last updated: 2023-11-23
+# MAGIC Last updated: 2023-11-26
