@@ -11,7 +11,6 @@
 
 import pandas as pd
 import mlflow
-import mlflow.gateway
 mlflow.__version__, mlflow.gateway.get_gateway_uri() 
 
 # COMMAND ----------

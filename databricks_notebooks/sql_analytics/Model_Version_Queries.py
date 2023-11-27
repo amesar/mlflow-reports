@@ -15,7 +15,7 @@
 
 # COMMAND ----------
 
-dbutils.widgets.text("Database", "")
+dbutils.widgets.text("Database", "andre_m.mlflow_uc")
 database_name = dbutils.widgets.get("Database")
 print("database_name:", database_name)
 
