@@ -31,7 +31,32 @@ def show_mlflow_uris(msg):
 
 # COMMAND ----------
 
-def activate_unity_catalog(activate):
-    if activate:
+
+
+# COMMAND ----------
+
+def split_model_uri(model_uri):  
+    toks = model_uri.split("/")
+    return toks[1], toks[2]
+
+# COMMAND ----------
+
+
+def is_unity_catalog_model(model_name):
+    return "." in model_name
+    
+def activate_unity_catalog(model_name):
+    if model_name.startswith("models:/"):
+        model_name = split_model_uri(model_name)[0]
+    if is_unity_catalog_model(model_name):
         mlflow.set_registry_uri("databricks-uc")
         show_mlflow_uris("After Unity Catalog activation")
+    else:
+        mlflow.set_registry_uri("databricks")
+
+# COMMAND ----------
+
+def old_activate_unity_catalog(activate):
+    if activate:
+        mlflow.set_registry_uri("databricks-uc")
+        show_mlflow_uris("After Unity Catalog activation - OLD")

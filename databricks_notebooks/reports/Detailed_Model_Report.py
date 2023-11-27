@@ -9,7 +9,6 @@
 # MAGIC * `Get permissions` - dump run data if showing runs
 # MAGIC * `Output file` - output markdown file such as `model.md`
 # MAGIC * `Output data file` - output JSON file (e.g. `model.json`) of API data used to build the report
-# MAGIC * `Unity Catalog` - use Unity Catalog
 # MAGIC
 # MAGIC **Sample files**
 # MAGIC
@@ -35,13 +34,11 @@ dbutils.widgets.text("1. Model URI", "")
 dbutils.widgets.dropdown("2. Get permissions", "yes", ["yes","no"])
 dbutils.widgets.text("3. Output file", "model.md")
 dbutils.widgets.text("4. Output data file", "")
-dbutils.widgets.dropdown("5. Unity Catalog", "no", ["yes","no"])
 
 model_uri = dbutils.widgets.get("1. Model URI")
 get_permissions = dbutils.widgets.get("2. Get permissions") == "yes"
 output_file = dbutils.widgets.get("3. Output file")
 output_data_file = dbutils.widgets.get("4. Output data file")
-use_uc = dbutils.widgets.get("5. Unity Catalog") == "yes"
 
 import os
 os.environ["OUTPUT_FILE"] = output_file
@@ -51,14 +48,13 @@ print("model_uri:", model_uri)
 print("get_permissions:", get_permissions)
 print("output_file:", output_file)
 print("output_data_file:", output_data_file)
-print("use_uc:", use_uc)
 
 # COMMAND ----------
 
 assert_widget(model_uri, "1. Model URI")
 assert_widget(output_file, "2. Output file")
 
-activate_unity_catalog(use_uc)
+activate_unity_catalog(model_uri)
 
 # COMMAND ----------
 
