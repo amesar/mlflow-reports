@@ -17,7 +17,7 @@ setup(
     packages=find_packages(exclude=["tests", "tests.*"]),
     zip_safe=False,
     install_requires=[
-        "mlflow-skinny>=2.4.0",
+        "mlflow-skinny>=2.8.1",
         "pandas>=2.0.3",
         "mdutils",
         "wheel"
@@ -40,7 +40,8 @@ setup(
             "get-mlflow-model = mlflow_reports.data.get_mlflow_model:main",
             "get-mlflow-model-wide = mlflow_reports.mlflow_model.mlflow_model_manager:main",
             "list-registered-models = mlflow_reports.list.list_registered_models:main",
-            "list-model-versions = mlflow_reports.list.list_model_versions:main"
+            "list-model-versions = mlflow_reports.list.list_model_versions:main",
+            "list-gateway-routes = mlflow_reports.list.list_gateway_routes:main"
         ]
     }
 )

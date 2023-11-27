@@ -23,6 +23,7 @@ Get object:
 List objects:
 *  [list-registered-models](#list-registered-models) - lists registered models
 *  [list-model-versions](#list-model-versions) - lists model versions
+*  [list-gateway-routes](#list-gateway-routes) - lists Gateway routes
 
 
 ## MLflow Model Commands
@@ -420,7 +421,7 @@ Options:
 List model versions.
 
 ```
-list-model-model-versions \
+list-model-versions \
   --columns name,version,user_id,creation_timestamp
 
 +-----------------------------------------+-----------+--------------------------+----------------------+
@@ -440,8 +441,7 @@ list-model-model-versions \
 ##### Usage
 ```
 list-model-versions  --help
-```
-```
+
 Options:
   --filter TEXT                   Model filter.
   --get-tags-and-aliases BOOLEAN  Get tags and aliases attribute from
@@ -460,6 +460,68 @@ Options:
   --output-csv-file TEXT          Output CSV file.
 ```
 
+
+### List Gateway Routes
+
+List Gateway routes.
+
+See Databricks notebook [List_Gateway_Routes](databricks_notebooks/objects/List_Gateway_Routes.py).
+
+```
+export MLFLOW_GATEWAY_URI=databricks://v8-catfood
+list-gateway-routes
+
++--------------------------------------+--------------------+--------------------------+--------------------------+
+| name                                 | route_type         | model_name               | model_provider           |
++--------------------------------------+--------------------+--------------------------+--------------------------+
+| abes_chat_route_gpt_3.5_turbo        | llm/v1/chat        | gpt-4                    | openai                   |
+| abes_complete_route_gpt_3.5_turbo    | llm/v1/completions | gpt-35-turbo             | openai                   |
+| abs-dolly-v2-3b-completions          | llm/v1/completions | abs-dolly-v2-3b          | databricks-model-serving |
+| abs-gpt-chat                         | llm/v1/chat        | gpt-3.5-turbo            | openai                   |
+| abs-gpt-completions                  | llm/v1/completions | gpt-3.5-turbo            | openai                   |
+| abs-mpt-7b-completions               | llm/v1/completions | abs-mpt-7b-instruct      | databricks-model-serving |
+| abs-mpt7b-chat                       | llm/v1/chat        | abs-mpt-7b-instruct      | databricks-model-serving |
+| abs-openai-embeddings                | llm/v1/embeddings  | text-embedding-ada-002   | openai                   |
+| andre-gpt35-completions              | llm/v1/completions | gpt-35-turbo             | openai                   |
+| andre-openai-model-serving           | llm/v1/completions | andre-gateway-model      | databricks-model-serving |
+| andrew_c_completions-mpt-7b-instruct | llm/v1/completions | andrew_c_mpt-7b-instruct | databricks-model-serving |
+| andrew_c_mosaicml-llama-completions  | llm/v1/completions | llama2-70b-chat          | mosaicml                 |
+| andrew_c_mosaicml-llama2-completions | llm/v1/completions | llama2-70b-chat          | mosaicml                 |
+| andrew_c_mosaicml-mpt30b-completions | llm/v1/completions | mpt-30b-instruct         | mosaicml                 |
+| andrew_c_mosaicml-mpt7b-completions  | llm/v1/completions | mpt-7b-instruct          | mosaicml                 |
+| ann-openai-chat                      | llm/v1/chat        | text-davinci-003         | openai                   |
+| ann-openai-chat-2                    | llm/v1/embeddings  | random-thing             | openai                   |
+| ann-openai-completions               | llm/v1/completions | text-davinci-003         | openai                   |
+| ann-openai-embeddings                | llm/v1/embeddings  | text-davinci-003         | openai                   |
+| ann-openai-embeddings-2              | llm/v1/embeddings  | random-thing             | openai                   |
+| anthropic-claude                     | llm/v1/completions | claude-2                 | anthropic                |
+| anthropic-demo                       | llm/v1/completions | claude-2                 | anthropic                |
+| acantar-gpt-4-completions            | llm/v1/completions | gpt-4                    | openai                   |
+| az-gpt-35                            | llm/v1/completions | az-gpt-35                | openai                   |
+| azureopenai_completions_example      | llm/v1/completions | gpt-3.5-turbo            | openai                   |
+| azureopenai_completions_example_ap   | llm/v1/completions | gpt-3.5-turbo            | openai                   |
+| azureopenai_completions_example_v2   | llm/v1/completions | gpt-3.5-turbo            | openai                   |
+| ben-gpt4                             | llm/v1/completions | gpt-4                    | openai                   |
+| ben-gpt4-test                        | llm/v1/completions | gpt-4                    | openai                   |
+| berk_chat1                           | llm/v1/chat        | gpt-3.5-turbo            | openai                   |
+| berk_completions                     | llm/v1/completions | gpt-3.5-turbo            | openai                   |
+| bilal-mistral-7b                     | llm/v1/completions | mistral-7b               | databricks-model-serving |
+| bilal-mistral-7b-chat                | llm/v1/chat        | mistral-7b               | databricks-model-serving |
+| chat                                 | llm/v1/chat        | gpt-35-turbo             | openai                   |
+| chat-haru                            | llm/v1/chat        | gpt-3.5-turbo            | openai                   |
+| claude-2                             | llm/v1/completions | claude-2                 | anthropic                |
++--------------------------------------+--------------------+--------------------------+--------------------------+
+
+```
+
+##### Usage
+```
+list-gateway-routes --help
+
+Options:
+  --columns TEXT          Columns to display. Comma delimited.
+  --output-csv-file TEXT  Output CSV file.
+```
 
 
 ## Enriched Objects
