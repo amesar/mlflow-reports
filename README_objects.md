@@ -317,8 +317,9 @@ get-model-version --help
 
 Options:
   --registered-model TEXT       Registered model name.  [required]
-  --version TEXT                Registered model version.  [required]
-  --get-run BOOLEAN             Get run.  [default: False]
+  --version TEXT                Model version.  [required]
+  --get-expanded BOOLEAN        Get all objects associated with model version
+                                [default: False]
   --artifact-max-level INTEGER  Number of artifact levels to recurse for run
                                 artifacts.  [default: -1]
   --get-raw BOOLEAN             Preserve raw JSON as received from API call.
