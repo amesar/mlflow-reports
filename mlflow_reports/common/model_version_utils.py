@@ -12,10 +12,8 @@ def split_model_uri(model_uri):
     :param: Models URI.
     :return: Tuple of model name and stage/version or tuple of run ID and relative model path.
     """
-    idx = model_uri.find("/")
-    path = model_uri[idx+1:]
-    idx = path.find("/")
-    return path[:idx], path[idx+1:]
+    toks = model_uri.split("/")
+    return toks[1], toks[2]
 
 
 def get_model_and_version(model_uri, get_permissions=False):
