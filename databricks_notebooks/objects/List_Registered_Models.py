@@ -1,15 +1,15 @@
 # Databricks notebook source
 # MAGIC %md ## List Registered Models
 # MAGIC
-# MAGIC **Overview**
-# MAGIC * List registered models for either the Databricks Workspace (WS) Model Registry or Unity Catalog (UC) Model Registry.
+# MAGIC ##### Overview
+# MAGIC * List registered models for either the Workspace (WS) Model Registry or Unity Catalog (UC) Model Registry.
 # MAGIC
-# MAGIC **Widgets**
+# MAGIC ##### Widgets
 # MAGIC * `1. Filter` - `filter_string` argument for for [MlflowClient.search_registered_models](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_registered_models). 
-# MAGIC   * Non-UC example: `name like '%klearn%'`
-# MAGIC   * UC: Does not accept filter so is ignored by the MLflow API.
+# MAGIC   * Non-UC example: `name like 'Sklearn%'`
+# MAGIC   * UC: Does not accept filter so this field is ignored by the MLflow API.
 # MAGIC * `2. Unity Catalog` - Use Unity Catalog.
-# MAGIC * `3. Get registered model again`. Since UC search_registered_models does not correctly return tags and aliases, call get_registered_model (which does correctly return them) for every returned model.
+# MAGIC * `3. Get tags and aliases (UC)`. Since UC search_registered_models does not correctly return tags and aliases, call get_registered_model (which does correctly return them) for every returned model.
 # MAGIC   * https://databricks.atlassian.net/browse/ES-834105
 # MAGIC     * UC-ML MLflow search_registered_models and search_model_versions do not return tags and aliases
 # MAGIC   * https://github.com/mlflow/mlflow/issues/9783
@@ -27,17 +27,17 @@
 
 dbutils.widgets.text("1. Filter", "")
 dbutils.widgets.dropdown("2. Unity Catalog", "no", ["yes", "no"])
-dbutils.widgets.dropdown("3. Get registered model again", "no", ["yes", "no"])
+dbutils.widgets.dropdown("3. Get tags and aliases (UC)", "no", ["yes", "no"])
 
 filter = dbutils.widgets.get("1. Filter")
 unity_catalog = dbutils.widgets.get("2. Unity Catalog") == "yes"
-get_search_object_again = dbutils.widgets.get("3. Get registered model again") == "yes"
+get_tags_and_aliases = dbutils.widgets.get("3. Get tags and aliases (UC)") == "yes"
 
 filter = filter or None
 
 print("filter:", filter)
 print("unity_catalog:", unity_catalog)
-print("get_search_object_again:", get_search_object_again)
+print("get_tags_and_aliases:", get_tags_and_aliases)
 
 # COMMAND ----------
 
@@ -47,33 +47,28 @@ print("get_search_object_again:", get_search_object_again)
 
 from mlflow_reports.list import search_registered_models
 
-pandas_df = search_registered_models.search(
-    filter = filter, 
-    get_search_object_again = get_search_object_again,
-    unity_catalog = unity_catalog,
-    tags_and_aliases_as_string = True
-)
+models = search_registered_models.search(filter, get_tags_and_aliases, unity_catalog)
+len(models)
 
 # COMMAND ----------
 
-# MAGIC %md ### Display Pandas DataFrame
+# MAGIC %md ### Create Spark DataFrame from list of JSON models
 
 # COMMAND ----------
 
-pandas_df
+# Preserve original order of columns
+
+columns = get_columns(models)
+columns
 
 # COMMAND ----------
 
-# MAGIC %md ### Display as Spark DataFrame
-
-# COMMAND ----------
-
-df = spark.createDataFrame(pandas_df)
+df = spark.read.json(sc.parallelize(models)).select(columns)
 display(df)
 
 # COMMAND ----------
 
-# MAGIC %md ### Some SQL queries for registered models
+# MAGIC %md ### Prep SQL queries
 
 # COMMAND ----------
 
@@ -81,17 +76,7 @@ display(df)
 
 # COMMAND ----------
 
-from pyspark.sql.functions import *
-
-df2 = df\
-  .withColumn("creation_timestamp",date_format("creation_timestamp", "yyyy-MM-dd hh:mm:ss")) \
-  .withColumn("last_updated_timestamp",date_format("creation_timestamp", "yyyy-MM-dd hh:mm:ss"))
-
-if "tags" in df.columns:
-    from pyspark.sql.types import MapType, StringType
-    from pyspark.sql.functions import from_json
-    df2 = df2.withColumn("tags", from_json(df.tags, MapType(StringType(), StringType())))
-
+df2 = adjust_timestamps(df)
 display(df2)
 
 # COMMAND ----------
@@ -101,6 +86,10 @@ display(df2)
 # COMMAND ----------
 
 df2.createOrReplaceTempView("models")
+
+# COMMAND ----------
+
+# MAGIC %md ### Some SQL queries for registered models
 
 # COMMAND ----------
 

@@ -49,3 +49,22 @@ def activate_unity_catalog(model_name):
         show_mlflow_uris("After Unity Catalog activation")
     else:
         mlflow.set_registry_uri("databricks")
+
+# COMMAND ----------
+
+def get_columns(lst):
+    mx, idx = 0, 0
+    for j,m in enumerate(lst): 
+        if len(m.keys()) > mx:
+            mx = len(m.keys())
+            idx = j
+    return list(models[idx].keys())
+
+# COMMAND ----------
+
+from pyspark.sql.functions import *
+
+def adjust_timestamps(df):
+    return df \
+        .withColumn("creation_timestamp",from_unixtime(col("creation_timestamp")/1000, "yyyy-MM-dd hh:mm:ss")) \
+        .withColumn("last_updated_timestamp",from_unixtime(col("last_updated_timestamp")/1000, "yyyy-MM-dd hh:mm:ss"))
