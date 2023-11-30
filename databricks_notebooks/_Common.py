@@ -1,4 +1,8 @@
 # Databricks notebook source
+# Common utilities
+
+# COMMAND ----------
+
 def assert_widget(value, name):
     if len(value.rstrip())==0:
         raise RuntimeError(f"ERROR: '{name}' widget is required")
@@ -53,12 +57,14 @@ def activate_unity_catalog(model_name):
 # COMMAND ----------
 
 def get_columns(lst):
+    if len(lst) == 0:
+        return 0
     mx, idx = 0, 0
     for j,m in enumerate(lst): 
         if len(m.keys()) > mx:
             mx = len(m.keys())
             idx = j
-    return list(models[idx].keys())
+    return list(lst[idx].keys())
 
 # COMMAND ----------
 

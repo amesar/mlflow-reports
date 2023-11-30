@@ -1,20 +1,43 @@
 # Databricks notebook source
 # MAGIC %md ## List Model Versions
 # MAGIC
-# MAGIC **Overview**
+# MAGIC #### Overview
 # MAGIC * List model versions for either the Databricks Workspace (WS) Model Registry or Unity Catalog (UC) Model Registry.
 # MAGIC
-# MAGIC **Widgets**
-# MAGIC * `1. Filter` - `filter_string` argument for for [MlflowClient.search_model_versions](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_model_versions). 
+# MAGIC #### Widgets
+# MAGIC * `1. Unity Catalog` - Use Unity Catalog.
+# MAGIC * `2. Filter` - `filter_string` argument for for [MlflowClient.search_model_versions](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_model_versions). 
 # MAGIC   * Non-UC example: `name like '%klearn%'`.
-# MAGIC   * UC: only accepts this filter syntax: `name='andre_catalog.ml_models2.tmp'`.
-# MAGIC * `2. Unity Catalog` - Use Unity Catalog.
+# MAGIC   * UC: only accepts this filter syntax: `name='andre_catalog.ml_models2.sklearn_wine_best'`.
 # MAGIC * `3. Get MLflow model details` - Get MLflow model flavor and size in bytes by reading the run's [MLmodel](https://mlflow.org/docs/latest/models.html?highlight=mlmodel#mlflow-models) file and model artifact(s).
-# MAGIC * `4. Get model version again`. Since UC search_model_versions does not correctly return tags and aliases, call get_model_version (which does correctly return them) for every returned version.
+# MAGIC * `4. Get tags and aliases`. Since search_registered_models (for both WS and UC models) does not return tags and aliases (bug), call get_model_version (which does correctly return them) for each returned version.
+# MAGIC   * Slows retrieval substantially.
 # MAGIC   * https://databricks.atlassian.net/browse/ES-834105
 # MAGIC     * UC-ML MLflow search_registered_models and search_model_versions do not return tags and aliases
 # MAGIC   * https://github.com/mlflow/mlflow/issues/9783
 # MAGIC     * MlflowClient.search_model_versions does not return aliases
+# MAGIC
+# MAGIC #### Sample Performance Benchmarks
+# MAGIC
+# MAGIC ##### Non-UC 
+# MAGIC
+# MAGIC * Number of versions: 3219
+# MAGIC * Ratio: 5.53x or 18% 
+# MAGIC
+# MAGIC |Tags/Aliases | Seconds | Cell |
+# MAGIC |-----|-------|---|
+# MAGIC | No | 110 | 1.84 minutes |
+# MAGIC | Yes | 597 | 9.95 minutes |
+# MAGIC
+# MAGIC ##### UC 
+# MAGIC
+# MAGIC * Number of versions: 1120
+# MAGIC * Ratio: 2.26x or 44% 
+# MAGIC
+# MAGIC |Tags/Aliases | Seconds | Cell |
+# MAGIC |-----|-------|---|
+# MAGIC | No | 152 | 2.50 minutes |
+# MAGIC | Yes | 345 | 5.75 minutes |
 
 # COMMAND ----------
 
@@ -26,22 +49,22 @@
 
 # COMMAND ----------
 
-dbutils.widgets.text("1. Filter", "")
-dbutils.widgets.dropdown("2. Unity Catalog", "no", ["yes", "no"])
+dbutils.widgets.dropdown("1. Unity Catalog", "no", ["yes", "no"])
+dbutils.widgets.text("2. Filter", "")
 dbutils.widgets.dropdown("3. Get MLflow model details", "no", ["yes", "no"])
-dbutils.widgets.dropdown("4. Get model version again", "no", ["yes", "no"])
+dbutils.widgets.dropdown("4. Get tags and aliases", "no", ["yes", "no"])
 
-filter = dbutils.widgets.get("1. Filter")
-unity_catalog = dbutils.widgets.get("2. Unity Catalog") == "yes"
+unity_catalog = dbutils.widgets.get("1. Unity Catalog") == "yes"
+filter = dbutils.widgets.get("2. Filter")
 get_model_details = dbutils.widgets.get("3. Get MLflow model details") == "yes"
-get_search_object_again = dbutils.widgets.get("4. Get model version again") == "yes"
+get_tags_and_aliases = dbutils.widgets.get("4. Get tags and aliases") == "yes"
 
 filter = filter or None
 
-print("filter:", filter)
 print("unity_catalog:", unity_catalog)
+print("filter:", filter)
 print("get_model_details:", get_model_details)
-print("get_search_object_again:", get_search_object_again)
+print("get_tags_and_aliases:", get_tags_and_aliases)
 
 # COMMAND ----------
 
@@ -51,75 +74,55 @@ print("get_search_object_again:", get_search_object_again)
 
 from mlflow_reports.list import search_model_versions
 
-pandas_df = search_model_versions.search(
+versions = search_model_versions.search(
     filter = filter, 
-    get_search_object_again = get_search_object_again,
-    unity_catalog = unity_catalog,
-    tags_and_aliases_as_string = True,
-    get_model_details = get_model_details
+    get_tags_and_aliases = get_tags_and_aliases,
+    get_model_details = get_model_details,
+    unity_catalog = unity_catalog
 )
+print(f"Model versions: {len(versions)}")
+len(versions)
 
 # COMMAND ----------
 
-# MAGIC %md ### Display Pandas DataFrame
+# MAGIC %md ### Create Spark DataFrame
 
 # COMMAND ----------
 
-pandas_df
+# Preserve original order of columns
 
-# COMMAND ----------
-
-# MAGIC %md ### Display as Spark DataFrame
-
-# COMMAND ----------
-
-df = spark.createDataFrame(pandas_df)
-display(df)
-
-# COMMAND ----------
-
-# MAGIC %md ### Some SQL queries for registered models
-
-# COMMAND ----------
-
-# MAGIC %md #### Select desired columns and convert to desired format
-
-# COMMAND ----------
-
-
-columns = [ "name", "version", "user_id", "creation_timestamp" ]
-
-if "model_flavor" in df.columns and "model_size" in df.columns:
-    columns.append("model_flavor")
-    columns.append("model_size")
-    
-if "tags" in df.columns:
-    columns.append("tags")
-if "aliases" in df.columns:
-    columns.append("aliases")
-
+columns = get_columns(versions)
 columns
 
 # COMMAND ----------
 
-from pyspark.sql.functions import *
-from pyspark.sql.types import MapType, StringType
+df = spark.read.json(sc.parallelize(versions)).select(columns)
+display(df)
 
-df2 = df.select(columns) \
-  .withColumn("creation_timestamp",date_format("creation_timestamp", "yyyy-MM-dd hh:mm:ss"))
+# COMMAND ----------
 
-if "tags" in columns:
-    df2 = df2.withColumn("tags", from_json(df.tags, MapType(StringType(), StringType())))
+# MAGIC %md ### Prep the queries
 
+# COMMAND ----------
+
+# MAGIC %md ##### Convert columns to desired format
+
+# COMMAND ----------
+
+df2 = adjust_timestamps(df)
 display(df2)
 
 # COMMAND ----------
 
-# MAGIC %md #### Set SQL table
+# MAGIC %md ##### Set SQL table
 
 # COMMAND ----------
 
 df2.createOrReplaceTempView("versions")
+
+# COMMAND ----------
+
+# MAGIC %md ### SQL queries
 
 # COMMAND ----------
 
