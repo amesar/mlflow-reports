@@ -3,10 +3,12 @@
 # MAGIC
 # MAGIC ##### Overview
 # MAGIC
-# MAGIC Create a database for registered models and model versions as returned by the MLflow API.
+# MAGIC Creates a database with two tables:
+# MAGIC * `models`: All registered models by calling API endpoint `2.0/mlflow/registered-models/search`
+# MAGIC * `versions`: All model verfsions by calling API endpoint `2.0/mlflow/model-versions/search`
 # MAGIC
 # MAGIC ##### Widgets
-# MAGIC * `Database` - full path name such as `my_catalog.mlflow_uc`.
+# MAGIC * `Database` - full path name such as `my_catalog.mlflow_ws` or `my_catalog.mlflow_uc`.
 
 # COMMAND ----------
 
@@ -22,18 +24,18 @@ dbutils.widgets.text("1. Database", "")
 database_name = dbutils.widgets.get("1. Database")
 
 dbutils.widgets.dropdown("2. Unity Catalog", "no", ["yes", "no"])
-is_unity_catalog = dbutils.widgets.get("2. Unity Catalog") == "yes"
+unity_catalog = dbutils.widgets.get("2. Unity Catalog") == "yes"
 
-dbutils.widgets.dropdown("3. Get registered model again", "no", ["yes", "no"])
-get_search_model_again = dbutils.widgets.get("3. Get registered model again") == "yes"
+dbutils.widgets.dropdown("3. Get model tags and aliases", "yes", ["yes", "no"])
+get_tags_and_aliases_models = dbutils.widgets.get("3. Get model tags and aliases") == "yes"
 
-dbutils.widgets.dropdown("4. Get model version again", "no", ["yes", "no"])
-get_search_version_again = dbutils.widgets.get("4. Get model version again") == "yes"
+dbutils.widgets.dropdown("4. Get version tags and aliases", "yes", ["yes", "no"])
+get_tags_and_aliases_versions = dbutils.widgets.get("4. Get version tags and aliases") == "yes"
 
 print("database_name:", database_name)
-print("is_unity_catalog:", is_unity_catalog)
-print("get_search_model_again:", get_search_model_again)
-print("get_search_version_again:", get_search_version_again)
+print("unity_catalog:", unity_catalog)
+print("get_tags_and_aliases_models:", get_tags_and_aliases_models)
+print("get_tags_and_aliases_versions:", get_tags_and_aliases_versions)
 
 # COMMAND ----------
 
@@ -57,39 +59,12 @@ print("versions_table:", versions_table)
 
 from mlflow_reports.list import search_registered_models
 
-pdf = search_registered_models.search(
-    unity_catalog = is_unity_catalog,
-    get_search_object_again = get_search_model_again,
-    tags_and_aliases_as_string = True
-)
+models = search_registered_models.search(None, get_tags_and_aliases_models, unity_catalog)
+len(models)
 
 # COMMAND ----------
 
-df = spark.createDataFrame(pdf)
-
-# COMMAND ----------
-
-# MAGIC %md ##### Tweak columns
-
-# COMMAND ----------
-
-from pyspark.sql.functions import *
-
-df = df\
-  .withColumn("creation_timestamp",date_format("creation_timestamp", "yyyy-MM-dd hh:mm:ss")) \
-  .withColumn("last_updated_timestamp",date_format("creation_timestamp", "yyyy-MM-dd hh:mm:ss"))
-
-if "tags" in df.columns:
-    from pyspark.sql.types import MapType, StringType
-    from pyspark.sql.functions import from_json
-    df = df.withColumn("tags", from_json(df.tags, MapType(StringType(), StringType())))
-
-# COMMAND ----------
-
-# MAGIC %md ##### Show enhanced registered models
-
-# COMMAND ----------
-
+df = to_dataframe(models)
 display(df)
 
 # COMMAND ----------
@@ -121,35 +96,16 @@ display(df)
 
 from mlflow_reports.list import search_model_versions
 
-pdf = search_model_versions.search(
-    unity_catalog = is_unity_catalog,
-    get_search_object_again = get_search_version_again,
-    tags_and_aliases_as_string = True,
-    get_model_details = False
+versions = search_model_versions.search(
+    get_tags_and_aliases = get_tags_and_aliases_versions,
+    unity_catalog = unity_catalog
 )
-df_versions = spark.createDataFrame(pdf)
+print(f"Model versions: {len(versions)}")
+len(versions)
 
 # COMMAND ----------
 
-# MAGIC %md ##### Tweak columns
-
-# COMMAND ----------
-
-df = df_versions
-
-df = df \
-  .withColumn("creation_timestamp",date_format("creation_timestamp", "yyyy-MM-dd hh:mm:ss")) \
-  .withColumn("creation_timestamp",date_format("creation_timestamp", "yyyy-MM-dd hh:mm:ss"))
-
-if "tags" in df.columns:
-    df = df.withColumn("tags", from_json(df.tags, MapType(StringType(), StringType())))
-
-# COMMAND ----------
-
-# MAGIC %md ##### Show enhanced model versions
-
-# COMMAND ----------
-
+df = to_dataframe(versions)
 display(df)
 
 # COMMAND ----------
@@ -191,7 +147,7 @@ spark.sql(f"use {database_name}")
 
 # COMMAND ----------
 
-# MAGIC %md ##### Show number of models per user
+# MAGIC %md ##### Show number of models/versions per user
 
 # COMMAND ----------
 
@@ -199,6 +155,11 @@ spark.sql(f"use {database_name}")
 
 # COMMAND ----------
 
-# MAGIC %md ### See next notebook
+# MAGIC %sql select user_id, count(*) as num_versions from versions group by user_id order by num_versions desc
+
+# COMMAND ----------
+
+# MAGIC %md ### See query notebooks
 # MAGIC
-# MAGIC To query tables, see the [SQL_Queries]($SQL_Queries) notebook.
+# MAGIC For more queries see 
+# MAGIC [Registered_Model_Queries]($Registered_Model_Queries) and [Model_Version_Queries]($Model_Version_Queries) notebooks.
