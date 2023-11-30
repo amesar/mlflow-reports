@@ -19,6 +19,12 @@
 # MAGIC
 # MAGIC #### Sample Performance Benchmarks
 # MAGIC
+# MAGIC ##### Notes
+# MAGIC * Date: 2023-11-29
+# MAGIC * Workspace: e2-demo-west
+# MAGIC * MLflow version: 2.5.0
+# MAGIC * DBR version: 14.1 ML
+# MAGIC
 # MAGIC ##### Non-UC 
 # MAGIC
 # MAGIC * Number of versions: 3219
@@ -89,36 +95,7 @@ len(versions)
 
 # COMMAND ----------
 
-# Preserve original order of columns
-
-columns = get_columns(versions)
-columns
-
-# COMMAND ----------
-
-df = spark.read.json(sc.parallelize(versions)).select(columns)
-display(df)
-
-# COMMAND ----------
-
-# MAGIC %md ### Prep the queries
-
-# COMMAND ----------
-
-# MAGIC %md ##### Convert columns to desired format
-
-# COMMAND ----------
-
-df2 = adjust_timestamps(df)
-display(df2)
-
-# COMMAND ----------
-
-# MAGIC %md ##### Set SQL table
-
-# COMMAND ----------
-
-df2.createOrReplaceTempView("versions")
+df = to_dataframe(versions)
 
 # COMMAND ----------
 
@@ -126,7 +103,11 @@ df2.createOrReplaceTempView("versions")
 
 # COMMAND ----------
 
-# MAGIC %md #### Show number of versions per user
+df.createOrReplaceTempView("versions")
+
+# COMMAND ----------
+
+# MAGIC %md ##### Show number of versions per user
 
 # COMMAND ----------
 
@@ -134,7 +115,7 @@ df2.createOrReplaceTempView("versions")
 
 # COMMAND ----------
 
-# MAGIC %md #### Show number of versions per model
+# MAGIC %md ##### Show number of versions per model
 
 # COMMAND ----------
 
@@ -142,7 +123,7 @@ df2.createOrReplaceTempView("versions")
 
 # COMMAND ----------
 
-# MAGIC %md #### Sort by `user_id`
+# MAGIC %md ##### Sort by `user_id`
 
 # COMMAND ----------
 
@@ -150,7 +131,7 @@ df2.createOrReplaceTempView("versions")
 
 # COMMAND ----------
 
-# MAGIC %md #### Sort by latest `creation_timestamp`
+# MAGIC %md ##### Sort by latest `creation_timestamp`
 
 # COMMAND ----------
 
@@ -158,7 +139,7 @@ df2.createOrReplaceTempView("versions")
 
 # COMMAND ----------
 
-# MAGIC %md #### Sort by earliest `creation_timestamp`
+# MAGIC %md ##### Sort by earliest `creation_timestamp`
 
 # COMMAND ----------
 

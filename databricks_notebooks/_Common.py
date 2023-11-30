@@ -74,3 +74,18 @@ def adjust_timestamps(df):
     return df \
         .withColumn("creation_timestamp",from_unixtime(col("creation_timestamp")/1000, "yyyy-MM-dd hh:mm:ss")) \
         .withColumn("last_updated_timestamp",from_unixtime(col("last_updated_timestamp")/1000, "yyyy-MM-dd hh:mm:ss"))
+
+# COMMAND ----------
+
+def to_dataframe(lst):
+    columns = get_columns(lst)
+    print(f"Columns: {columns}")
+    df = spark.read.json(sc.parallelize(lst)).select(columns)
+    return adjust_timestamps(df)
+
+# COMMAND ----------
+
+import os
+print("Versions:")
+print(f"  MLflow version: {mlflow.__version__}")
+print(f"  DBR version: {os.environ.get('DATABRICKS_RUNTIME_VERSION')}")

@@ -14,7 +14,7 @@
 # MAGIC * [MLflow_Model_Manager]($objects/MLflow_Model_Manager) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/model_reports)
 # MAGIC * [Get_MLflow_Model]($objects/Get_MLflow_Model) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/mlflow_models) 
 # MAGIC
-# MAGIC ##### MLflow list notebooks
+# MAGIC ##### MLflow list objects notebooks
 # MAGIC * [List_Registered_Models]($objects/List_Registered_Models)
 # MAGIC * [List_Model_Versions]($objects/List_Model_Versions)
 # MAGIC * [List_Gateway_Routes]($objects/List_Gateway_Routes) - SQL queries for routes
@@ -24,8 +24,8 @@
 # MAGIC * [Download_MLmodels]($objects/Download_MLmodels) - Download a list of MLmodels.
 # MAGIC
 # MAGIC ##### SQL queries for MLflow models and versions tables
-# MAGIC * Queries for a Databricks Spark database with tables for models and versions as returned by the MLflow API.
-# MAGIC * `select user_id, count(*) as num_models from models group by user_id order by num_models desc`
+# MAGIC * Queries for a Databricks tables for models and versions as returned by the MLflow API.
+# MAGIC   * Example:`select user_id, count(*) as num_models from models group by user_id order by num_models desc`
 # MAGIC * [Registered_Model_Queries]($sql_analytics/Registered_Model_Queries)
 # MAGIC * [Model_Version_Queries]($sql_analytics/Model_Version_Queries)
 # MAGIC * [Create_MLflow_Database]($sql_analytics/Create_MLflow_Database) - Create the `models` and `versions` tables.
@@ -37,4 +37,4 @@
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC Last updated: 2023-11-29
+# MAGIC Last updated: 2023-11-30
