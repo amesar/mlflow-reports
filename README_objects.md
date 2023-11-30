@@ -23,7 +23,7 @@ Get object:
 List objects:
 *  [list-registered-models](#list-registered-models) - lists registered models
 *  [list-model-versions](#list-model-versions) - lists model versions
-*  [list-gateway-routes](#list-gateway-routes) - lists Gateway routes
+*  [list-gateway-routes](#list-gateway-routes) - lists AI Gateway routes
 
 
 ## MLflow Model Commands
@@ -36,7 +36,7 @@ Sample:
   * [mlflow_model.json](samples/databricks/mlflow_objects/mlflow_models/credit_adjudication.json)
   * [MLmodel](samples/databricks/model_reports/credit_adjudication/MLmodel)
 
-**Example**
+##### Example
 ```
 get-mlflow-model \
   --model-uri models:/credit_adjudication/3 
@@ -67,7 +67,7 @@ get-mlflow-model \
     },  
 ```
 
-**Usage**
+##### Usage
 
 ```
 get-mlflow-model --help
@@ -90,7 +90,7 @@ Sample:
   * [MLmodel](samples/databricks/model_reports/credit_adjudication/MLmodel)
   * [credit_adjudication.json](samples/databricks/model_reports/credit_adjudication/report.json)
 
-**Example**
+##### Example
 ```
 get-mlflow-model \
   --model-uri models:/credit_adjudication/3 
@@ -127,7 +127,7 @@ get-mlflow-model \
 ```
 
 
-**Usage**
+##### Usage
 
 ```
 get-mlflow-model-wide --help
@@ -152,7 +152,7 @@ Get run.
 * Gets info, params, metrics and tags of a run.
 * Recursively lists run artifacts up to the specified level.
 
-**Example**
+##### Example
 
 ```
 get-run \
@@ -177,7 +177,7 @@ get-run \
 . . .
 ```
 
-**Usage**
+##### Usage
 
 ```
 get-run --help
@@ -249,7 +249,7 @@ Response:
    . . .
 ```
 
-**Usage**
+##### Usage
 
 ```
 get-experiment --help
@@ -270,13 +270,13 @@ Options:
 
 Get model version.
 * Get model version details and optionally its run.
-* [Sample JSON](samples/databricks/mlflow_objects/model_versions/credit_adjudication.json).
 
 
 Of interest are the derived enriched attributes:
 * _reg_model_download_uri - Download URI for registry MLflow model
 * _run_model_download_uri - Download URI for run MLflow model
 
+Workspace Registry version - [sample](samples/databricks/mlflow_objects/model_versions/credit_adjudication.json).
 
 ```
 get-model-version \
@@ -310,7 +310,40 @@ get-model-version \
     "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac/76031d22c5464dd99431e426b939e800/artifacts/model"
   },
 ```
-**Usage**
+
+Unity Catalog Registry version [sample](samples/databricks/mlflow_objects/model_versions/uc/credit_adjudication.json).
+```
+get-model-version \
+  --registered-model andre.ml_models.credit_adjudication \
+  --version 1
+```
+```
+{
+  "model_version": {
+    "name": "andre.ml_models2.credit_adjudication",
+    "version": "1",
+    "creation_timestamp": 1689279694436,
+    "last_updated_timestamp": 1689279695182,
+    "user_id": "andre@mycompany.com",
+    "description": "This version of credit adjudication model was built for the purpose of DAIS summit demo. \nModel was co-developped between EY and Databricks, finding XGBClassifier as best fit model trained against 50 different experiments.\nAll experiments are tracked and available on MLFlow experiment tracker.",
+    "source": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac/76031d22c5464dd99431e426b939e800/artifacts/model",
+    "run_id": "76031d22c5464dd99431e426b939e800",
+    "run_tracking_server_id": "2556758628403379",
+    "status": "READY",
+    "storage_location": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/117583dc-67c2-483e-b862-8191b6f38519/versions/5099810b-e591-436a-949d-141d729da9b0",
+    "_creation_timestamp": "2023-07-13 20:21:34",
+    "_last_updated_timestamp": "2023-07-13 20:21:35",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/117583dc-67c2-483e-b862-8191b6f38519/versions/5099810b-e591-436a-949d-141d729da9b0",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac/76031d22c5464dd99431e426b939e800/artifacts/model",
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models2.credit_adjudication/version/1",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=andre.ml_models2.credit_adjudication&version=1"
+  }
+}
+```
+
+
+##### Usage
 
 ```
 get-model-version --help
@@ -353,7 +386,7 @@ get-registered-model \
         "creation_timestamp": 1686871509181,
 ```
 
-**Usage**
+##### Usage
 
 ```
 get-registered-model --help
@@ -403,17 +436,11 @@ Options:
   --filter TEXT                   Model filter.
   --get-tags-and-aliases BOOLEAN  Get tags and aliases attribute from
                                   registered model.
-  --tags-and-aliases-as-string BOOLEAN
-                                  Write tags and aliases as JSON string
-                                  instead of dict. Needed for Pandas to Spark
-                                  DataFrame conversion.
-  --get-search-object-again BOOLEAN
-                                  Call get() again for search object to return
-                                  missing aliases and tag fields.
   --unity-catalog BOOLEAN         Use Databricks Unity Catalog.
   --prefix TEXT                   Model prefix to show.
   --columns TEXT                  Columns to display. Comma delimited.
   --max-description INTEGER       max_description.
+  --output-csv-file TEXT          Output CSV file.
 ```
 
 
@@ -447,14 +474,7 @@ Options:
   --filter TEXT                   Model filter.
   --get-tags-and-aliases BOOLEAN  Get tags and aliases attribute from
                                   registered model.
-  --tags-and-aliases-as-string BOOLEAN
-                                  Write tags and aliases as JSON string
-                                  instead of dict. Needed for Pandas to Spark
-                                  DataFrame conversion.
   --get-model-details BOOLEAN     Get MLflow model flavor and size.
-  --get-search-object-again BOOLEAN
-                                  Call get() again for search object to return
-                                  missing aliases and tag fields.
   --unity-catalog BOOLEAN         Use Databricks Unity Catalog.
   --columns TEXT                  Columns to display. Comma delimited.
   --max-description INTEGER       max_description.

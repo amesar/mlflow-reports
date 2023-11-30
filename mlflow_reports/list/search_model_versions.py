@@ -9,31 +9,34 @@ import mlflow
 from mlflow_reports.data import get_mlflow_model
 from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.common.http_iterators import SearchRegisteredModelsIterator
-from mlflow_reports.common import mlflow_utils, object_utils
+from mlflow_reports.common import mlflow_utils
 from . import list_utils
 
 
-def search(filter=None,
-        get_tags_and_aliases = True,
-        tags_and_aliases_as_string = False,
+def search(
+        filter = None,
+        get_tags_and_aliases = False,
         get_model_details = False,
-        get_search_object_again = False,
         unity_catalog = False
     ):
     mlflow_utils.use_unity_catalog(unity_catalog)
     mlflow_client = get_mlflow_client()
     if mlflow_utils.is_calling_databricks():
-        versions = _list_model_versions_databricks(mlflow_client, filter, get_tags_and_aliases, get_model_details, get_search_object_again)
+        versions = _list_model_versions_databricks(mlflow_client, filter, get_tags_and_aliases, get_model_details)
     else:
-        versions = _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details, get_search_object_again)
+        versions = _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details)
+    return versions
+
+
+def search_as_pandas_df(
+        filter = None,
+        get_tags_and_aliases = True,
+        get_model_details = False,
+        unity_catalog = False
+    ):
+    versions = search(filter, get_tags_and_aliases, get_model_details, unity_catalog)
     if len(versions) == 0:
         return pd.DataFrame()
-    if tags_and_aliases_as_string:
-        for vr in versions:
-            list_utils.kv_list_to_dict(vr, "tags", mlflow_utils.mk_tags_dict, True)
-            aliases = vr.get("aliases")
-            if aliases:
-                vr["aliases"] = object_utils.dict_to_json(aliases)
     df = pd.DataFrame.from_dict(versions)
     df = df.replace(np.nan, "", regex=True)
     list_utils.to_datetime(df, "creation_timestamp")
@@ -41,7 +44,7 @@ def search(filter=None,
     return df
 
 
-def _list_model_versions_databricks(mlflow_client, filter, get_tags_and_aliases, get_model_details, get_search_object_again):
+def _list_model_versions_databricks(mlflow_client, filter, get_tags_and_aliases, get_model_details):
     """
     Databricks search_model_version differs from OSS one in that it requires a filter.
     So to fetch all versions of all models, we have to loop over all models first.
@@ -54,7 +57,7 @@ def _list_model_versions_databricks(mlflow_client, filter, get_tags_and_aliases,
     """
 
     if filter:
-        return _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details, get_search_object_again)
+        return _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details)
     models = SearchRegisteredModelsIterator(mlflow_client)
     models = list(models)
     num_models = len(models)
@@ -63,18 +66,18 @@ def _list_model_versions_databricks(mlflow_client, filter, get_tags_and_aliases,
     for j, model in enumerate(models):
         print(f"Processing {j+1}/{num_models} model '{model['name']}'")
         filter = f"name='{model['name']}'"
-        vrs = _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details, get_search_object_again)
+        vrs = _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details)
         if vrs:
             versions += vrs
     print(f"Found {len(versions)} model versions")
     return versions
 
 
-def _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details, get_search_object_again):
+def _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details):
     """
     Standard OSS search_model_version documented filter.
     """
-    versions = mlflow_utils.search_model_versions(mlflow_client, filter, get_search_object_again)
+    versions = mlflow_utils.search_model_versions(mlflow_client, filter, get_tags_and_aliases)
     if len(versions) == 0:
         print(f"WARNING: No model versions. Filter: '{filter}'")
         return []
@@ -96,8 +99,9 @@ def _get_model_details(vr):
     model_uri = f"models:/{vr['name']}/{vr['version']}"
     try:
         mlflow_model = get_mlflow_model.get(model_uri)
-        mlflow_model = mlflow_model["mlflow_model"]
-        return mlflow_model["model_flavor"], mlflow_model["model_size_bytes"]
+        mlflow_model = mlflow_model.get("mlflow_model")
+        #return mlflow_model["model_flavor"], mlflow_model["model_size_bytes"]
+        return mlflow_model.get("model_flavor"), mlflow_model.get("model_size_bytes")
     except mlflow.exceptions.MlflowException as e:
         print(f"WARNING: Cannot get MLflow model for {model_uri}: {e}")
         return "?", -1

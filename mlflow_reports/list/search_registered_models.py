@@ -28,7 +28,7 @@ def search(
     return models
 
 
-def search_as_panda_df(filter=None,
+def search_as_pandas_df(filter=None,
         prefix = None,
         get_tags_and_aliases = False,
         tags_and_aliases_as_string = False,

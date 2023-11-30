@@ -29,7 +29,7 @@ def show(filter,
     ):
     if isinstance(columns, str):
         columns = columns.split(",")
-    df = search_registered_models.search_as_panda_df(filter, prefix, get_tags_and_aliases, unity_catalog)
+    df = search_registered_models.search_as_pandas_df(filter, prefix, get_tags_and_aliases, unity_catalog)
     if "description" in df and max_description:
         df["description"] = df["description"].str[:max_description]
 
