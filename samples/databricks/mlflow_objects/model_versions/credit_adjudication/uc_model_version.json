@@ -1,27 +1,137 @@
 {
   "model_version": {
-    "name": "credit_adjudication",
-    "version": "3",
-    "creation_timestamp": 1686872066253,
-    "last_updated_timestamp": 1686872073462,
-    "user_id": "antoine.amend@databricks.com",
-    "current_stage": "Production",
+    "name": "andre.ml_models2.credit_adjudication",
+    "version": "1",
+    "creation_timestamp": 1689279694436,
+    "last_updated_timestamp": 1689279695182,
+    "user_id": "andre@mycompany.com",
     "description": "This version of credit adjudication model was built for the purpose of DAIS summit demo. \nModel was co-developped between EY and Databricks, finding XGBClassifier as best fit model trained against 50 different experiments.\nAll experiments are tracked and available on MLFlow experiment tracker.",
     "source": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac/76031d22c5464dd99431e426b939e800/artifacts/model",
     "run_id": "76031d22c5464dd99431e426b939e800",
+    "run_tracking_server_id": "2556758628403379",
     "status": "READY",
+    "storage_location": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/117583dc-67c2-483e-b862-8191b6f38519/versions/5099810b-e591-436a-949d-141d729da9b0",
     "tags": {
-      "Model complexity": "MEDIUM",
-      "Model explainability": "MEDIUM",
-      "Model selection": "HYPEROPT",
-      "Model type": "XGBClassifier"
+      "info": "Per github example for Antoine et al blog of 2023-05-25: https://www.databricks.com/blog/model-risk-management-true-accelerator-corporate-ai"
     },
-    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/credit_adjudication/versions/3",
-    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/model-versions/get?name=credit_adjudication&version=3",
-    "_creation_timestamp": "2023-06-15 23:34:26",
-    "_last_updated_timestamp": "2023-06-15 23:34:33",
-    "_reg_model_download_uri": "dbfs:/databricks/mlflow-registry/417e414731e74e03b731fb3a63a3b4e4/models/model",
-    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac/76031d22c5464dd99431e426b939e800/artifacts/model"
+    "_creation_timestamp": "2023-07-13 20:21:34",
+    "_last_updated_timestamp": "2023-07-13 20:21:35",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/117583dc-67c2-483e-b862-8191b6f38519/versions/5099810b-e591-436a-949d-141d729da9b0",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac/76031d22c5464dd99431e426b939e800/artifacts/model",
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models2.credit_adjudication/version/1",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=andre.ml_models2.credit_adjudication&version=1"
+  },
+  "mlflow_model": {
+    "artifact_path": "model",
+    "databricks_runtime": "12.2.x-cpu-ml-scala2.12",
+    "flavors": {
+      "python_function": {
+        "env": {
+          "conda": "conda.yaml",
+          "virtualenv": "python_env.yaml"
+        },
+        "loader_module": "mlflow.sklearn",
+        "model_path": "model.pkl",
+        "predict_fn": "predict",
+        "python_version": "3.9.5"
+      },
+      "sklearn": {
+        "code": null,
+        "pickled_model": "model.pkl",
+        "serialization_format": "cloudpickle",
+        "sklearn_version": "1.0.2"
+      }
+    },
+    "mlflow_version": "2.1.1",
+    "model_uuid": "e38b5fefce844b31be8e371430557cfc",
+    "run_id": "76031d22c5464dd99431e426b939e800",
+    "signature": {
+      "inputs": [
+        {
+          "name": "AGE",
+          "type": "long"
+        },
+        {
+          "name": "CREDIT_AMOUNT",
+          "type": "long"
+        },
+        {
+          "name": "DURATION",
+          "type": "long"
+        },
+        {
+          "name": "PURPOSE_domestic appliances",
+          "type": "integer"
+        },
+        {
+          "name": "PURPOSE_furniture/equipment",
+          "type": "integer"
+        },
+        {
+          "name": "PURPOSE_vacation/others",
+          "type": "integer"
+        },
+        {
+          "name": "SEX_male",
+          "type": "integer"
+        },
+        {
+          "name": "HOUSING_own",
+          "type": "integer"
+        },
+        {
+          "name": "SAVING_moderate",
+          "type": "integer"
+        },
+        {
+          "name": "SAVING_no_inf",
+          "type": "integer"
+        },
+        {
+          "name": "SAVING_quite rich",
+          "type": "integer"
+        },
+        {
+          "name": "SAVING_rich",
+          "type": "integer"
+        },
+        {
+          "name": "CHECK_moderate",
+          "type": "integer"
+        },
+        {
+          "name": "CHECK_no_inf",
+          "type": "integer"
+        },
+        {
+          "name": "AGE_CAT_Young",
+          "type": "integer"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "RISK_EN",
+          "type": "double"
+        }
+      ]
+    },
+    "utc_time_created": "2023-06-15 23:34:12.981982"
+  },
+  "registered_model": {
+    "registered_model": {
+      "name": "andre.ml_models2.credit_adjudication",
+      "creation_timestamp": 1689279691424,
+      "last_updated_timestamp": 1701541443145,
+      "user_id": "andre@mycompany.com",
+      "description": "Co-developped with EY, This model is a simple example of how organisations could standardize their approach to AI by defining a series of steps that any data science team ought to address prior to a model validation. Although not exhaustive, this shows that most of the questions required by IVU process for a given use case (Credit adjudication) could be addressed upfront to reduce the friction between regulatory imposed silos, increase model validation success rate and drammatically reduce time from exploration to productionization of AI use cases.",
+      "tags": [
+        {
+          "key": "info",
+          "value": "Per github example for Antoine et al blog of 2023-05-25: https://www.databricks.com/blog/model-risk-management-true-accelerator-corporate-ai"
+        }
+      ]
+    }
   },
   "run": {
     "run": {
@@ -386,6 +496,57 @@
         }
       },
       "inputs": {}
+    }
+  },
+  "experiment": {
+    "experiment": {
+      "experiment_id": "bf024d57582f4c8cbf816151cc6e1bac",
+      "name": "/Repos/antoine.amend@databricks.com/mrm-generation/templates/Credit Adjudication - Example",
+      "artifact_location": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac",
+      "lifecycle_stage": "active",
+      "last_update_time": 1686872052388,
+      "creation_time": 1686761701458,
+      "tags": {
+        "mlflow.experiment.sourceType": "REPO_NOTEBOOK",
+        "mlflow.ownerId": 3658755248564160,
+        "mlflow.experiment.sourceName": "/Repos/antoine.amend@databricks.com/mrm-generation/templates/Credit Adjudication - Example",
+        "mlflow.ownerEmail": "antoine.amend@databricks.com",
+        "mlflow.experiment.sourceId": 3022585156450040
+      },
+      "_creation_time": "2023-06-14 16:55:01",
+      "_last_update_time": "2023-06-15 23:34:12",
+      "_tracking_uri": "databricks://e2_demo",
+      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/bf024d57582f4c8cbf816151cc6e1bac",
+      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/experiments/get?experiment_id=bf024d57582f4c8cbf816151cc6e1bac",
+      "permissions": {
+        "permission_levels": [
+          {
+            "permission_level": "CAN_READ",
+            "description": "Can view the experiment"
+          },
+          {
+            "permission_level": "CAN_EDIT",
+            "description": "Can view, log runs, and edit the experiment"
+          },
+          {
+            "permission_level": "CAN_MANAGE",
+            "description": "Can view, log runs, edit, delete, and change permissions of the experiment"
+          }
+        ],
+        "permissions": {
+          "error": {
+            "message": "Databricks permissions API call failed",
+            "MlflowReportsException": {
+              "http_status_code": 400,
+              "uri": "https://e2-demo-west.cloud.databricks.com/api/2.0/permissions/experiments/bf024d57582f4c8cbf816151cc6e1bac",
+              "response": {
+                "error_code": "INVALID_PARAMETER_VALUE",
+                "message": "For input string: \"bf024d57582f4c8cbf816151cc6e1bac\""
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

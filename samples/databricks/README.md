@@ -84,11 +84,11 @@ _**MLflow Model Report**_
 _**MLflow Objects**_
 | Object | Enriched | Original |
 |-----|-------|---|
+| UC Model Version| [enriched json](mlflow_objects/model_versions/credit_adjudication/uc_model_version.json) | [raw json](mlflow_objects/model_versions/credit_adjudication/raw/uc_model_version.json) 
+| Non-UC Model Version| [enriched json](mlflow_objects/model_versions/credit_adjudication/ws_model_version.json) | [raw json](mlflow_objects/model_versions/credit_adjudication/raw/ws_model_version.json)
+| Non-UC Registered Model | [enriched json](mlflow_objects/registered_models/credit_adjudication.json) | [raw json](mlflow_objects/registered_models/raw/credit_adjudication.json) |
 | Run | [enriched json](mlflow_objects/runs/credit_adjudication/run.json) | [raw json](mlflow_objects/runs/credit_adjudication/run_raw.json) |
 | Experiment | [enriched json](mlflow_objects/experiments/credit_adjudication.json) | [raw json](mlflow_objects/experiments/raw/credit_adjudication.json) |
-| Registered Model | [enriched json](mlflow_objects/registered_models/credit_adjudication.json) | [raw json](mlflow_objects/registered_models/raw/credit_adjudication.json) |
-| Model Version| [enriched json](mlflow_objects/model_versions/credit_adjudication.json) | [raw json](mlflow_objects/model_versions/raw/credit_adjudication.json) |
-| UC Model Version| [enriched json](mlflow_objects/model_versions/uc/credit_adjudication.json) | [raw json](mlflow_objects/model_versions/raw/uc_credit_adjudication.json) |
 
 
 ### Model: Sklearn_Wine_best
