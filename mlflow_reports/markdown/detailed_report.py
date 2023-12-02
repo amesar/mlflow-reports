@@ -33,10 +33,10 @@ def build_report(model_uri, get_permissions, output_file, output_data_file=None,
     _build_overview_model(rf.wf, data, show_manifest)
     _build_model_info(rf, data.get("mlflow_model"), show_as_json, 1)
     _build_model_info_raw(rf, data.get("mlflow_model_raw"), show_as_json, 1)
-    if data.get("registered_model"):
-        _build_registered_model(rf, data.get("registered_model"))
     if data.get("model_version"):
         _build_model_version(rf.wf, data.get("model_version"))
+    if data.get("registered_model"):
+        _build_registered_model(rf, data.get("registered_model"))
     if data.get("run"):
         _build_run(rf, data.get("run"))
     if data.get("experiment"):
