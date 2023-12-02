@@ -104,9 +104,9 @@ _**MLflow Model Report**_
 _**MLflow Objects**_
 | Object | Enriched | Original |
 |-----|-------|---|
+| Non-UC Model Version | [enriched json](mlflow_objects/model_versions/Sklearn_Wine_best/ws_model_version.json) | [raw json](mlflow_objects/model_versions/Sklearn_Wine_best/raw/ws_model_version.json) |
+| UC Model Version | [enriched json](mlflow_objects/model_versions/Sklearn_Wine_best/uc_model_version.json) | [raw json](mlflow_objects/model_versions/Sklearn_Wine_best/raw/uc_model_version.json) |
 | Run | [enriched json](mlflow_objects/runs/Sklearn_Wine_best/run.json) | [raw json](mlflow_objects/runs/Sklearn_Wine_best/run_raw.json) |
 | Experiment | [enriched json](mlflow_objects/experiments/Sklearn_Wine_best.json) | [raw json](mlflow_objects/experiments/raw/Sklearn_Wine_best.json) |
 | Registered Model | [enriched json](mlflow_objects/registered_models/Sklearn_Wine_best.json) | [raw json](mlflow_objects/registered_models/raw/Sklearn_Wine_best.json) |
-| Model Version | [enriched json](mlflow_objects/model_versions/Sklearn_Wine_best/model_version.json) | [raw json](mlflow_objects/model_versions/Sklearn_Wine_best/raw/model_version.json) |
-| UC Model Version | [enriched json](mlflow_objects/model_versions/Sklearn_Wine_best/uc_model_version.json) | [raw json](mlflow_objects/model_versions/Sklearn_Wine_best/raw/uc_model_version.json) |
 
