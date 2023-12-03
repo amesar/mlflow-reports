@@ -130,16 +130,15 @@
       "description": "Co-developped with EY, This model is a simple example of how organisations could standardize their approach to AI by defining a series of steps that any data science team ought to address prior to a model validation. Although not exhaustive, this shows that most of the questions required by IVU process for a given use case (Credit adjudication) could be addressed upfront to reduce the friction between regulatory imposed silos, increase model validation success rate and drammatically reduce time from exploration to productionization of AI use cases.",
       "id": "1a2b2ee32d83487cb86188b4e75cd482",
       "permission_level": "CAN_MANAGE",
-      "tags": [
-        {
-          "key": "Model materiality",
-          "value": "HIGH"
-        },
-        {
-          "key": "Model review",
-          "value": "REQUESTED"
-        }
-      ]
+      "tags": {
+        "Model materiality": "HIGH",
+        "Model review": "REQUESTED"
+      },
+      "_creation_timestamp": "2023-06-15 23:14:43",
+      "_last_updated_timestamp": "2023-06-15 23:34:33",
+      "_is_unity_catalog": false,
+      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/credit_adjudication",
+      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/registered-models/get?name=credit_adjudication"
     }
   },
   "run": {
@@ -396,7 +395,7 @@
           "mlflow.databricks.notebook.commandID": "1630835003914618246_5442231573309100337_8e188548453f4c8e9188dda502e74938",
           "mlflow.databricks.notebookID": 3022585156450040,
           "mlflow.databricks.notebookPath": "/Repos/antoine.amend@databricks.com/mrm-generation/templates/Credit Adjudication - Example",
-          "mlflow.databricks.webappURL": "https://oregon.cloud.databricks.com",
+          "mlflow.databricks.webappURL": "https://denali.staging.mycompany.com",
           "mlflow.databricks.workspaceID": 2556758628403379,
           "mlflow.databricks.workspaceURL": "e2-demo-west.cloud.databricks.com",
           "mlflow.log-model.history": [

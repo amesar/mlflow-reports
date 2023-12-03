@@ -121,16 +121,15 @@
       "description": "<html><h1>Best sklearn_wine model</h1></html>\n",
       "id": "94abcb7b9c49465f92a5fb459c26898a",
       "permission_level": "CAN_MANAGE",
-      "tags": [
-        {
-          "key": "info",
-          "value": "hello model"
-        },
-        {
-          "key": "rich",
-          "value": "<html><h1>Hi</h1></html>"
-        }
-      ]
+      "tags": {
+        "info": "hello model",
+        "rich": "<html><h1>Hi</h1></html>"
+      },
+      "_creation_timestamp": "2023-08-08 19:56:31",
+      "_last_updated_timestamp": "2023-12-02 21:48:06",
+      "_is_unity_catalog": false,
+      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/Sklearn_Wine_best",
+      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/registered-models/get?name=Sklearn_Wine_best"
     }
   },
   "run": {
@@ -212,7 +211,7 @@
           "mlflow.databricks.notebookID": 1280664374379229,
           "mlflow.databricks.notebookPath": "/Repos/andre@mycompany.com/mlflow-examples/databricks/notebooks/basic/Sklearn_Wine",
           "mlflow.databricks.notebookRevisionID": 1691524590319,
-          "mlflow.databricks.webappURL": "https://oregon.cloud.databricks.com",
+          "mlflow.databricks.webappURL": "https://denali.staging.mycompany.com",
           "mlflow.databricks.workspaceID": 2556758628403379,
           "mlflow.databricks.workspaceURL": "e2-demo-west.cloud.databricks.com",
           "mlflow.log-model.history": [

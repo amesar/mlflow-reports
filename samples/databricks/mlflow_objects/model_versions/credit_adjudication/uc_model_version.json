@@ -1,6 +1,6 @@
 {
   "model_version": {
-    "name": "andre.ml_models2.credit_adjudication",
+    "name": "andre.ml_models.credit_adjudication",
     "version": "1",
     "creation_timestamp": 1689279694436,
     "last_updated_timestamp": 1689279695182,
@@ -19,8 +19,8 @@
     "_is_unity_catalog": true,
     "_reg_model_download_uri": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/117583dc-67c2-483e-b862-8191b6f38519/versions/5099810b-e591-436a-949d-141d729da9b0",
     "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/bf024d57582f4c8cbf816151cc6e1bac/76031d22c5464dd99431e426b939e800/artifacts/model",
-    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models2.credit_adjudication/version/1",
-    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=andre.ml_models2.credit_adjudication&version=1"
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models.credit_adjudication/version/1",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=andre.ml_models.credit_adjudication&version=1"
   },
   "mlflow_model": {
     "artifact_path": "model",
@@ -120,17 +120,19 @@
   },
   "registered_model": {
     "registered_model": {
-      "name": "andre.ml_models2.credit_adjudication",
+      "name": "andre.ml_models.credit_adjudication",
       "creation_timestamp": 1689279691424,
       "last_updated_timestamp": 1701541443145,
       "user_id": "andre@mycompany.com",
       "description": "Co-developped with EY, This model is a simple example of how organisations could standardize their approach to AI by defining a series of steps that any data science team ought to address prior to a model validation. Although not exhaustive, this shows that most of the questions required by IVU process for a given use case (Credit adjudication) could be addressed upfront to reduce the friction between regulatory imposed silos, increase model validation success rate and drammatically reduce time from exploration to productionization of AI use cases.",
-      "tags": [
-        {
-          "key": "info",
-          "value": "Per github example for Antoine et al blog of 2023-05-25: https://www.databricks.com/blog/model-risk-management-true-accelerator-corporate-ai"
-        }
-      ]
+      "tags": {
+        "info": "Per github example for Antoine et al blog of 2023-05-25: https://www.databricks.com/blog/model-risk-management-true-accelerator-corporate-ai"
+      },
+      "_creation_timestamp": "2023-07-13 20:21:31",
+      "_last_updated_timestamp": "2023-12-02 18:24:03",
+      "_is_unity_catalog": true,
+      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models.credit_adjudication",
+      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=andre.ml_models.credit_adjudication"
     }
   },
   "run": {
@@ -387,7 +389,7 @@
           "mlflow.databricks.notebook.commandID": "1630835003914618246_5442231573309100337_8e188548453f4c8e9188dda502e74938",
           "mlflow.databricks.notebookID": 3022585156450040,
           "mlflow.databricks.notebookPath": "/Repos/antoine.amend@databricks.com/mrm-generation/templates/Credit Adjudication - Example",
-          "mlflow.databricks.webappURL": "https://oregon.cloud.databricks.com",
+          "mlflow.databricks.webappURL": "https://denali.staging.mycompany.com",
           "mlflow.databricks.workspaceID": 2556758628403379,
           "mlflow.databricks.workspaceURL": "e2-demo-west.cloud.databricks.com",
           "mlflow.log-model.history": [

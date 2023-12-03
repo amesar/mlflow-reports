@@ -139,12 +139,14 @@
           "version": "1"
         }
       ],
-      "tags": [
-        {
-          "key": "info",
-          "value": "Hi best model"
-        }
-      ]
+      "tags": {
+        "info": "Hi best model"
+      },
+      "_creation_timestamp": "2023-08-11 13:42:09",
+      "_last_updated_timestamp": "2023-08-11 13:49:59",
+      "_is_unity_catalog": true,
+      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models.sklearn_wine_best",
+      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=andre.ml_models.sklearn_wine_best"
     }
   },
   "run": {
@@ -225,7 +227,7 @@
           "mlflow.databricks.notebookID": 2520253095233459,
           "mlflow.databricks.notebookPath": "/Repos/andre@mycompany.com/mlflow-examples/databricks/notebooks/basic/Sklearn_Wine_UC",
           "mlflow.databricks.notebookRevisionID": 1691743223031,
-          "mlflow.databricks.webappURL": "https://oregon.cloud.databricks.com",
+          "mlflow.databricks.webappURL": "https://denali.staging.mycompany.com",
           "mlflow.databricks.workspaceID": 2556758628403379,
           "mlflow.databricks.workspaceURL": "e2-demo-west.cloud.databricks.com",
           "mlflow.log-model.history": [
