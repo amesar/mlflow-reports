@@ -1,0 +1,52 @@
+{
+  "model_version": {
+    "name": "models.default.falconsai-qa",
+    "version": "2",
+    "creation_timestamp": 1700475550685,
+    "last_updated_timestamp": 1700475556791,
+    "user_id": "first.last@mycompany.com",
+    "source": "dbfs:/databricks/mlflow-tracking/419104227098165/3bbc9a51e4d94317b213261f6f4763c1/artifacts/falcons",
+    "run_id": "3bbc9a51e4d94317b213261f6f4763c1",
+    "run_tracking_server_id": "6051921418418893",
+    "status": "READY",
+    "storage_location": "s3://v9-prod-managed-catalog-test-bucket-1/19a85dee-54bc-43a2-87ab-023d0ec16013/models/e9c5941e-71df-4ed9-8c1d-c3f46aa171b0/versions/0f514225-fd88-48e5-9bbc-5aaacebc62a3",
+    "_creation_timestamp": "2023-11-20 10:19:11",
+    "_last_updated_timestamp": "2023-11-20 10:19:17",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://v9-prod-managed-catalog-test-bucket-1/19a85dee-54bc-43a2-87ab-023d0ec16013/models/e9c5941e-71df-4ed9-8c1d-c3f46aa171b0/versions/0f514225-fd88-48e5-9bbc-5aaacebc62a3",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/419104227098165/3bbc9a51e4d94317b213261f6f4763c1/artifacts/falcons",
+    "_web_ui_link": "https://v9-antfood.mycompany.com/explore/data/models/models.default.falconsai-qa/version/2",
+    "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=models.default.falconsai-qa&version=2"
+  },
+  "mlflow_model": {
+    "warning": "Cannot download artifact 'models:/models.default.falconsai-qa/2/MLmodel'. Exception: PERMISSION_DENIED: User does not have EXECUTE on Function or Model 'models.default.falconsai-qa'..",
+    "flavors": {
+      "warning": "No flavors"
+    },
+    "model_size_bytes": -1
+  },
+  "registered_model": {
+    "registered_model": {
+      "name": "models.default.falconsai-qa",
+      "creation_timestamp": 1700473842563,
+      "last_updated_timestamp": 1700475550687,
+      "user_id": "first.last@mycompany.com"
+    }
+  },
+  "run": {
+    "error": {
+      "message": "Cannot get run_id '3bbc9a51e4d94317b213261f6f4763c1' for model version 'models.default.falconsai-qa/2'",
+      "MlflowReportsException": {
+        "http_status_code": 404,
+        "uri": "https://v9-antfood.mycompany.com/api/2.0/mlflow/runs/get",
+        "params": {
+          "run_id": "3bbc9a51e4d94317b213261f6f4763c1"
+        },
+        "response": {
+          "error_code": "RESOURCE_DOES_NOT_EXIST",
+          "message": "Node ID 419104227098165 does not exist."
+        }
+      }
+    }
+  }
+}

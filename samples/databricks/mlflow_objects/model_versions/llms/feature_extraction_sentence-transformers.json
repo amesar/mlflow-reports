@@ -1,0 +1,370 @@
+{
+  "model_version": {
+    "name": "andre_m.transformer_models.feature_extraction_task",
+    "version": "1",
+    "creation_timestamp": 1692580381100,
+    "last_updated_timestamp": 1692580385054,
+    "user_id": "andre@mycompany.com",
+    "source": "dbfs:/databricks/mlflow-tracking/744efa27f7af4a0d91382c86c1ea2a68/641e7443bb784de392c665cd942ba61d/artifacts/sentence_transformer",
+    "run_id": "641e7443bb784de392c665cd942ba61d",
+    "run_tracking_server_id": "6051921418418893",
+    "status": "READY",
+    "storage_location": "s3://v9-prod-managed-catalog-test-bucket-1/19a85dee-54bc-43a2-87ab-023d0ec16013/models/20a0a3aa-5c67-42dc-97e7-803958f9679c/versions/d4a0297c-8ae4-4580-97d6-f075ba5643a7",
+    "tags": {
+      "hf_code": "None",
+      "hf_components": "['tokenizer']",
+      "hf_framework": "pt",
+      "hf_instance_type": "FeatureExtractionPipeline",
+      "hf_model_binary": "model",
+      "hf_pipeline_model_type": "BertModel",
+      "hf_source_model_name": "sentence-transformers/all-MiniLM-L12-v2",
+      "hf_task": "feature-extraction",
+      "hf_tokenizer_type": "BertTokenizerFast",
+      "hf_transformers_version": "4.30.2"
+    },
+    "_creation_timestamp": "2023-08-21 01:13:01",
+    "_last_updated_timestamp": "2023-08-21 01:13:05",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://v9-prod-managed-catalog-test-bucket-1/19a85dee-54bc-43a2-87ab-023d0ec16013/models/20a0a3aa-5c67-42dc-97e7-803958f9679c/versions/d4a0297c-8ae4-4580-97d6-f075ba5643a7",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/744efa27f7af4a0d91382c86c1ea2a68/641e7443bb784de392c665cd942ba61d/artifacts/sentence_transformer",
+    "_web_ui_link": "https://v9-antfood.mycompany.com/explore/data/models/andre_m.transformer_models.feature_extraction_task/version/1",
+    "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=andre_m.transformer_models.feature_extraction_task&version=1"
+  },
+  "mlflow_model": {
+    "artifact_path": "sentence_transformer",
+    "databricks_runtime": "13.3.x-cpu-ml-scala2.12",
+    "flavors": {
+      "python_function": {
+        "env": {
+          "conda": "conda.yaml",
+          "virtualenv": "python_env.yaml"
+        },
+        "loader_module": "mlflow.transformers",
+        "model_binary": "model",
+        "python_version": "3.10.6"
+      },
+      "transformers": {
+        "code": null,
+        "components": [
+          "tokenizer"
+        ],
+        "framework": "pt",
+        "instance_type": "FeatureExtractionPipeline",
+        "model_binary": "model",
+        "pipeline_model_type": "BertModel",
+        "source_model_name": "sentence-transformers/all-MiniLM-L12-v2",
+        "task": "feature-extraction",
+        "tokenizer_type": "BertTokenizerFast",
+        "transformers_version": "4.30.2"
+      }
+    },
+    "mlflow_version": "2.5.0",
+    "model_uuid": "8b95ee1caf684d08b23cff926229c5bc",
+    "run_id": "641e7443bb784de392c665cd942ba61d",
+    "signature": {
+      "inputs": [
+        {
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "double",
+          "type": "tensor",
+          "tensor-spec": {
+            "dtype": "float64",
+            "shape": [
+              -1
+            ]
+          }
+        }
+      ]
+    },
+    "utc_time_created": "2023-08-21 01:12:40.980799",
+    "model_flavor": "transformers",
+    "model_size_bytes": 134465246,
+    "artifacts": {
+      "summary": {
+        "artifact_max_level": 9223372036854775807,
+        "num_artifacts": 12,
+        "num_bytes": 134465246,
+        "num_levels": 3
+      },
+      "root_uri": "dbfs:/databricks/mlflow-tracking/744efa27f7af4a0d91382c86c1ea2a68/641e7443bb784de392c665cd942ba61d/artifacts",
+      "files": [
+        {
+          "path": "sentence_transformer/MLmodel",
+          "is_dir": false,
+          "file_size": 920
+        },
+        {
+          "path": "sentence_transformer/conda.yaml",
+          "is_dir": false,
+          "file_size": 511
+        },
+        {
+          "path": "sentence_transformer/model_card.md",
+          "is_dir": false,
+          "file_size": 10042
+        },
+        {
+          "path": "sentence_transformer/model_card_data.yaml",
+          "is_dir": false,
+          "file_size": 572
+        },
+        {
+          "path": "sentence_transformer/python_env.yaml",
+          "is_dir": false,
+          "file_size": 122
+        },
+        {
+          "path": "sentence_transformer/requirements.txt",
+          "is_dir": false,
+          "file_size": 342
+        },
+        {
+          "path": "sentence_transformer/components",
+          "is_dir": true,
+          "artifacts": {
+            "root_uri": "dbfs:/databricks/mlflow-tracking/744efa27f7af4a0d91382c86c1ea2a68/641e7443bb784de392c665cd942ba61d/artifacts",
+            "files": [
+              {
+                "path": "sentence_transformer/components/tokenizer",
+                "is_dir": true,
+                "artifacts": {
+                  "root_uri": "dbfs:/databricks/mlflow-tracking/744efa27f7af4a0d91382c86c1ea2a68/641e7443bb784de392c665cd942ba61d/artifacts",
+                  "files": [
+                    {
+                      "path": "sentence_transformer/components/tokenizer/special_tokens_map.json",
+                      "is_dir": false,
+                      "file_size": 125
+                    },
+                    {
+                      "path": "sentence_transformer/components/tokenizer/tokenizer.json",
+                      "is_dir": false,
+                      "file_size": 711661
+                    },
+                    {
+                      "path": "sentence_transformer/components/tokenizer/tokenizer_config.json",
+                      "is_dir": false,
+                      "file_size": 366
+                    },
+                    {
+                      "path": "sentence_transformer/components/tokenizer/vocab.txt",
+                      "is_dir": false,
+                      "file_size": 231508
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "path": "sentence_transformer/model",
+          "is_dir": true,
+          "artifacts": {
+            "root_uri": "dbfs:/databricks/mlflow-tracking/744efa27f7af4a0d91382c86c1ea2a68/641e7443bb784de392c665cd942ba61d/artifacts",
+            "files": [
+              {
+                "path": "sentence_transformer/model/config.json",
+                "is_dir": false,
+                "file_size": 680
+              },
+              {
+                "path": "sentence_transformer/model/pytorch_model.bin",
+                "is_dir": false,
+                "file_size": 133508397
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "registered_model": {
+    "registered_model": {
+      "name": "andre_m.transformer_models.feature_extraction_task",
+      "creation_timestamp": 1692580376450,
+      "last_updated_timestamp": 1692580376450,
+      "user_id": "andre@mycompany.com"
+    }
+  },
+  "run": {
+    "run": {
+      "info": {
+        "run_id": "641e7443bb784de392c665cd942ba61d",
+        "run_uuid": "641e7443bb784de392c665cd942ba61d",
+        "experiment_id": "744efa27f7af4a0d91382c86c1ea2a68",
+        "run_name": "skittish-shrike-798",
+        "status": "FINISHED",
+        "start_time": 1692580360680,
+        "end_time": 1692580375548,
+        "artifact_uri": "dbfs:/databricks/mlflow-tracking/744efa27f7af4a0d91382c86c1ea2a68/641e7443bb784de392c665cd942ba61d/artifacts",
+        "lifecycle_stage": "active",
+        "_start_time": "2023-08-21 01:12:41",
+        "_end_time": "2023-08-21 01:12:56",
+        "_duration": 14.868,
+        "_experiment_name": "/Repos/andre@mycompany.com/work-mlflow-examples/databricks/notebooks/transformers/Run_Task_Notebooks",
+        "_web_ui_link": "https://v9-antfood.mycompany.com#mlflow/experiments/744efa27f7af4a0d91382c86c1ea2a68/runs/641e7443bb784de392c665cd942ba61d",
+        "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/runs/get?run_id=641e7443bb784de392c665cd942ba61d"
+      },
+      "data": {
+        "tags": {
+          "hf_code": "None",
+          "hf_components": "['tokenizer']",
+          "hf_framework": "pt",
+          "hf_instance_type": "FeatureExtractionPipeline",
+          "hf_model_binary": "model",
+          "hf_pipeline_model_type": "BertModel",
+          "hf_source_model_name": "sentence-transformers/all-MiniLM-L12-v2",
+          "hf_task": "feature-extraction",
+          "hf_tokenizer_type": "BertTokenizerFast",
+          "hf_transformers_version": "4.30.2",
+          "mlflow.databricks.cluster.id": "0821-000006-dzmauxxw",
+          "mlflow.databricks.cluster.info": {
+            "cluster_name": "andre_ML_13.3",
+            "spark_version": "13.3.x-cpu-ml-scala2.12",
+            "node_type_id": "i3.xlarge",
+            "driver_node_type_id": "i3.xlarge",
+            "autotermination_minutes": 120,
+            "disk_spec": {
+              "disk_count": 0
+            },
+            "num_workers": 1
+          },
+          "mlflow.databricks.cluster.libraries": {
+            "installable": [],
+            "redacted": []
+          },
+          "mlflow.databricks.gitRepoCommit": "0bebfe85c84eac77154d3cdde16917dfdd3e602d",
+          "mlflow.databricks.gitRepoProvider": "gitHub",
+          "mlflow.databricks.gitRepoReference": "master",
+          "mlflow.databricks.gitRepoReferenceType": "branch",
+          "mlflow.databricks.gitRepoRelativePath": "databricks/notebooks/transformers/Feature_Extraction_Task",
+          "mlflow.databricks.gitRepoStatus": "unknown",
+          "mlflow.databricks.gitRepoUrl": "https://github.com/amesar/mlflow-examples",
+          "mlflow.databricks.jobID": 734206609899100,
+          "mlflow.databricks.jobRunID": 1,
+          "mlflow.databricks.jobType": "notebook",
+          "mlflow.databricks.notebook.commandID": "1164033351489703278_9221064244079428958_job-734206609899100-run-1-action-4982521691784268",
+          "mlflow.databricks.notebookID": 4359422076356854,
+          "mlflow.databricks.notebookPath": "/Repos/andre@mycompany.com/public-mlflow-examples/databricks/notebooks/transformers/Feature_Extraction_Task",
+          "mlflow.databricks.webappURL": "https://denali.staging.mycompany.com",
+          "mlflow.databricks.workspaceID": 6051921418418893,
+          "mlflow.databricks.workspaceURL": "v9-antfood.mycompany.com",
+          "mlflow.log-model.history": [
+            {
+              "artifact_path": "sentence_transformer",
+              "signature": {
+                "inputs": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "double",
+                    "type": "tensor",
+                    "tensor-spec": {
+                      "dtype": "float64",
+                      "shape": [
+                        -1
+                      ]
+                    }
+                  }
+                ]
+              },
+              "flavors": {
+                "python_function": {
+                  "model_binary": "model",
+                  "loader_module": "mlflow.transformers",
+                  "python_version": "3.10.6",
+                  "env": {
+                    "conda": "conda.yaml",
+                    "virtualenv": "python_env.yaml"
+                  }
+                },
+                "transformers": {
+                  "task": "feature-extraction",
+                  "framework": "pt",
+                  "source_model_name": "sentence-transformers/all-MiniLM-L12-v2",
+                  "components": [
+                    "tokenizer"
+                  ],
+                  "code": null,
+                  "model_binary": "model",
+                  "tokenizer_type": "BertTokenizerFast",
+                  "pipeline_model_type": "BertModel",
+                  "instance_type": "FeatureExtractionPipeline",
+                  "transformers_version": "4.30.2"
+                }
+              },
+              "run_id": "641e7443bb784de392c665cd942ba61d",
+              "model_uuid": "8b95ee1caf684d08b23cff926229c5bc",
+              "utc_time_created": "2023-08-21 01:12:40.980799",
+              "mlflow_version": "2.5.0",
+              "databricks_runtime": "13.3.x-cpu-ml-scala2.12"
+            }
+          ],
+          "mlflow.runName": "skittish-shrike-798",
+          "mlflow.source.name": "jobs/734206609899100/run/1",
+          "mlflow.source.type": "JOB",
+          "mlflow.user": "andre@mycompany.com"
+        }
+      },
+      "inputs": {}
+    }
+  },
+  "experiment": {
+    "experiment": {
+      "experiment_id": "744efa27f7af4a0d91382c86c1ea2a68",
+      "name": "/Repos/andre@mycompany.com/work-mlflow-examples/databricks/notebooks/transformers/Run_Task_Notebooks",
+      "artifact_location": "dbfs:/databricks/mlflow-tracking/744efa27f7af4a0d91382c86c1ea2a68",
+      "lifecycle_stage": "active",
+      "last_update_time": 1692580413968,
+      "creation_time": 1692579671169,
+      "tags": {
+        "mlflow.experiment.sourceType": "REPO_NOTEBOOK",
+        "mlflow.ownerId": 8213140281737290,
+        "mlflow.experiment.sourceName": "/Repos/andre@mycompany.com/work-mlflow-examples/databricks/notebooks/transformers/Run_Task_Notebooks",
+        "mlflow.ownerEmail": "andre@mycompany.com",
+        "mlflow.experiment.sourceId": 4359422076356854
+      },
+      "_creation_time": "2023-08-21 01:01:11",
+      "_last_update_time": "2023-08-21 01:13:34",
+      "_tracking_uri": "databricks://e2_dogfood",
+      "_web_ui_link": "https://v9-antfood.mycompany.com#mlflow/experiments/744efa27f7af4a0d91382c86c1ea2a68",
+      "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/experiments/get?experiment_id=744efa27f7af4a0d91382c86c1ea2a68",
+      "permissions": {
+        "permission_levels": [
+          {
+            "permission_level": "CAN_READ",
+            "description": "Can view the experiment"
+          },
+          {
+            "permission_level": "CAN_EDIT",
+            "description": "Can view, log runs, and edit the experiment"
+          },
+          {
+            "permission_level": "CAN_MANAGE",
+            "description": "Can view, log runs, edit, delete, and change permissions of the experiment"
+          }
+        ],
+        "permissions": {
+          "error": {
+            "message": "Databricks permissions API call failed",
+            "MlflowReportsException": {
+              "http_status_code": 400,
+              "uri": "https://v9-antfood.mycompany.com/api/2.0/permissions/experiments/744efa27f7af4a0d91382c86c1ea2a68",
+              "response": {
+                "error_code": "INVALID_PARAMETER_VALUE",
+                "message": "For input string: \"744efa27f7af4a0d91382c86c1ea2a68\""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "model_version": {
+    "name": "ml.llm-catalog.bilal-mpt-30b",
+    "version": "1",
+    "creation_timestamp": 1695095694379,
+    "last_updated_timestamp": 1695095745037,
+    "user_id": "first.last@mycompany.com",
+    "source": "dbfs:/databricks/mlflow-tracking/1775888270762651/c28f70595564422ba90357cc25a35a6b/artifacts/model",
+    "run_id": "c28f70595564422ba90357cc25a35a6b",
+    "run_tracking_server_id": "6051921418418893",
+    "status": "READY",
+    "storage_location": "s3://v9-prod-managed-catalog-test-bucket-1/19a85dee-54bc-43a2-87ab-023d0ec16013/models/44056373-5e62-4d9b-b1d0-d7e47d2aada5/versions/fb75f80e-0bbd-47e4-a344-d18f66740d15",
+    "_creation_timestamp": "2023-09-19 03:54:54",
+    "_last_updated_timestamp": "2023-09-19 03:55:45",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://v9-prod-managed-catalog-test-bucket-1/19a85dee-54bc-43a2-87ab-023d0ec16013/models/44056373-5e62-4d9b-b1d0-d7e47d2aada5/versions/fb75f80e-0bbd-47e4-a344-d18f66740d15",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/1775888270762651/c28f70595564422ba90357cc25a35a6b/artifacts/model",
+    "_web_ui_link": "https://v9-antfood.mycompany.com/explore/data/models/ml.llm-catalog.bilal-mpt-30b/version/1",
+    "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=ml.llm-catalog.bilal-mpt-30b&version=1"
+  },
+  "mlflow_model": {
+    "artifact_path": "model",
+    "databricks_runtime": "13.3.x-gpu-ml-scala2.12",
+    "flavors": {
+      "python_function": {
+        "env": {
+          "conda": "conda.yaml",
+          "virtualenv": "python_env.yaml"
+        },
+        "loader_module": "mlflow.transformers",
+        "model_binary": "model",
+        "python_version": "3.10.12"
+      },
+      "transformers": {
+        "code": null,
+        "components": [
+          "tokenizer"
+        ],
+        "framework": "pt",
+        "instance_type": "TextGenerationPipeline",
+        "model_binary": "model",
+        "pipeline_model_type": "MPTForCausalLM",
+        "source_model_name": "mosaicml/mpt-30b",
+        "task": "text-generation",
+        "tokenizer_type": "GPTNeoXTokenizerFast",
+        "transformers_version": "4.30.2"
+      }
+    },
+    "metadata": {
+      "task": "llm/v1/completions"
+    },
+    "mlflow_version": "2.7.1",
+    "model_uuid": "8083354a0b2b45d68112682e1398fe97",
+    "run_id": "c28f70595564422ba90357cc25a35a6b",
+    "saved_input_example_info": {
+      "artifact_path": "input_example.json",
+      "format": "tf-serving",
+      "type": "ndarray"
+    },
+    "signature": {
+      "inputs": [
+        {
+          "type": "double",
+          "name": "sepal length (cm)"
+        },
+        {
+          "type": "double",
+          "name": "sepal width (cm)"
+        },
+        {
+          "type": "double",
+          "name": "petal length (cm)"
+        },
+        {
+          "type": "double",
+          "name": "petal width (cm)"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "long"
+        }
+      ],
+      "params": null
+    },
+    "utc_time_created": "2023-09-19 03:53:12.076371",
+    "model_flavor": "transformers",
+    "model_size_bytes": -1
+  },
+  "registered_model": {
+    "registered_model": {
+      "name": "ml.llm-catalog.bilal-mpt-30b",
+      "creation_timestamp": 1695095694170,
+      "last_updated_timestamp": 1695095694170,
+      "user_id": "first.last@mycompany.com"
+    }
+  },
+  "run": {
+    "error": {
+      "message": "Cannot get run_id 'c28f70595564422ba90357cc25a35a6b' for model version 'ml.llm-catalog.bilal-mpt-30b/1'",
+      "MlflowReportsException": {
+        "http_status_code": 404,
+        "uri": "https://v9-antfood.mycompany.com/api/2.0/mlflow/runs/get",
+        "params": {
+          "run_id": "c28f70595564422ba90357cc25a35a6b"
+        },
+        "response": {
+          "error_code": "RESOURCE_DOES_NOT_EXIST",
+          "message": "Node ID 1775888270762651 does not exist."
+        }
+      }
+    }
+  }
+}

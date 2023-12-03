@@ -1,0 +1,342 @@
+{
+  "model_version": {
+    "name": "ml.llm-catalog.bert-sentiment-classifier",
+    "version": "1",
+    "creation_timestamp": 1685247237723,
+    "last_updated_timestamp": 1685247250507,
+    "user_id": "first.last@mycompany.com",
+    "description": "",
+    "source": "dbfs:/databricks/mlflow-tracking/592592fae9ed4353b539a69c228b322f/1a2bcbe7071b4f2d9eef578fe1236c34/artifacts/model",
+    "run_id": "1a2bcbe7071b4f2d9eef578fe1236c34",
+    "run_tracking_server_id": "6051921418418893",
+    "status": "READY",
+    "storage_location": "s3://v9-prod-managed-catalog-test-bucket-1/19a85dee-54bc-43a2-87ab-023d0ec16013/models/257ab6d3-1800-4c11-b421-532dfdc63aef/versions/8d4162bd-4bc0-4668-9149-fc5f2132a714",
+    "_creation_timestamp": "2023-05-28 04:13:58",
+    "_last_updated_timestamp": "2023-05-28 04:14:11",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://v9-prod-managed-catalog-test-bucket-1/19a85dee-54bc-43a2-87ab-023d0ec16013/models/257ab6d3-1800-4c11-b421-532dfdc63aef/versions/8d4162bd-4bc0-4668-9149-fc5f2132a714",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/592592fae9ed4353b539a69c228b322f/1a2bcbe7071b4f2d9eef578fe1236c34/artifacts/model",
+    "_web_ui_link": "https://v9-antfood.mycompany.com/explore/data/models/ml.llm-catalog.bert-sentiment-classifier/version/1",
+    "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=ml.llm-catalog.bert-sentiment-classifier&version=1"
+  },
+  "mlflow_model": {
+    "artifact_path": "model",
+    "databricks_runtime": "13.x-snapshot-gpu-ml-scala2.12",
+    "flavors": {
+      "python_function": {
+        "artifacts": {
+          "repository": {
+            "path": "artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39",
+            "uri": "/root/.cache/huggingface/hub/models--textattack--bert-base-uncased-imdb/snapshots/c70b9f391af2067f7eff69a03940218bba9b8d39"
+          }
+        },
+        "cloudpickle_version": "2.0.0",
+        "env": {
+          "conda": "conda.yaml",
+          "virtualenv": "python_env.yaml"
+        },
+        "loader_module": "mlflow.pyfunc.model",
+        "python_model": "python_model.pkl",
+        "python_version": "3.10.6"
+      }
+    },
+    "mlflow_version": "2.3.1",
+    "model_uuid": "714495abb5e341e0bc71d5088bbdb33f",
+    "run_id": "1a2bcbe7071b4f2d9eef578fe1236c34",
+    "saved_input_example_info": {
+      "artifact_path": "input_example.json",
+      "pandas_orient": "split",
+      "type": "dataframe"
+    },
+    "signature": {
+      "inputs": [
+        {
+          "name": "review",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "label",
+          "type": "string"
+        }
+      ]
+    },
+    "utc_time_created": "2023-05-28 03:51:30.950911",
+    "model_flavor": "python_function",
+    "model_size_bytes": 876246008,
+    "artifacts": {
+      "summary": {
+        "artifact_max_level": 9223372036854775807,
+        "num_artifacts": 16,
+        "num_bytes": 876246008,
+        "num_levels": 3
+      },
+      "root_uri": "dbfs:/databricks/mlflow-tracking/592592fae9ed4353b539a69c228b322f/1a2bcbe7071b4f2d9eef578fe1236c34/artifacts",
+      "files": [
+        {
+          "path": "model/MLmodel",
+          "is_dir": false,
+          "file_size": 904
+        },
+        {
+          "path": "model/conda.yaml",
+          "is_dir": false,
+          "file_size": 138
+        },
+        {
+          "path": "model/input_example.json",
+          "is_dir": false,
+          "file_size": 57
+        },
+        {
+          "path": "model/python_env.yaml",
+          "is_dir": false,
+          "file_size": 122
+        },
+        {
+          "path": "model/python_model.pkl",
+          "is_dir": false,
+          "file_size": 81403
+        },
+        {
+          "path": "model/requirements.txt",
+          "is_dir": false,
+          "file_size": 33
+        },
+        {
+          "path": "model/artifacts",
+          "is_dir": true,
+          "artifacts": {
+            "root_uri": "dbfs:/databricks/mlflow-tracking/592592fae9ed4353b539a69c228b322f/1a2bcbe7071b4f2d9eef578fe1236c34/artifacts",
+            "files": [
+              {
+                "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39",
+                "is_dir": true,
+                "artifacts": {
+                  "root_uri": "dbfs:/databricks/mlflow-tracking/592592fae9ed4353b539a69c228b322f/1a2bcbe7071b4f2d9eef578fe1236c34/artifacts",
+                  "files": [
+                    {
+                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/.gitattributes",
+                      "is_dir": false,
+                      "file_size": 391
+                    },
+                    {
+                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/README.md",
+                      "is_dir": false,
+                      "file_size": 612
+                    },
+                    {
+                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/config.json",
+                      "is_dir": false,
+                      "file_size": 511
+                    },
+                    {
+                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/flax_model.msgpack",
+                      "is_dir": false,
+                      "file_size": 437942328
+                    },
+                    {
+                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/log.txt",
+                      "is_dir": false,
+                      "file_size": 1707
+                    },
+                    {
+                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/pytorch_model.bin",
+                      "is_dir": false,
+                      "file_size": 437985387
+                    },
+                    {
+                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/special_tokens_map.json",
+                      "is_dir": false,
+                      "file_size": 112
+                    },
+                    {
+                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/tokenizer_config.json",
+                      "is_dir": false,
+                      "file_size": 48
+                    },
+                    {
+                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/train_args.json",
+                      "is_dir": false,
+                      "file_size": 747
+                    },
+                    {
+                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/vocab.txt",
+                      "is_dir": false,
+                      "file_size": 231508
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "registered_model": {
+    "registered_model": {
+      "name": "ml.llm-catalog.bert-sentiment-classifier",
+      "creation_timestamp": 1685247219977,
+      "last_updated_timestamp": 1685349793574,
+      "user_id": "first.last@mycompany.com",
+      "description": "[bert-sentiment Model Card](https://huggingface.co/textattack/bert-base-uncased-imdb)\n\n# input example\n{\n  \"dataframe_split\": {\n    \"columns\": [\"review\"],\n    \"data\": [[\"I love this movie.\"]]\n  }\n}\n"
+    }
+  },
+  "run": {
+    "run": {
+      "info": {
+        "run_id": "1a2bcbe7071b4f2d9eef578fe1236c34",
+        "run_uuid": "1a2bcbe7071b4f2d9eef578fe1236c34",
+        "experiment_id": "592592fae9ed4353b539a69c228b322f",
+        "run_name": "capricious-snipe-527",
+        "status": "FINISHED",
+        "start_time": 1685245890330,
+        "end_time": 1685245901329,
+        "artifact_uri": "dbfs:/databricks/mlflow-tracking/592592fae9ed4353b539a69c228b322f/1a2bcbe7071b4f2d9eef578fe1236c34/artifacts",
+        "lifecycle_stage": "active",
+        "_start_time": "2023-05-28 03:51:30",
+        "_end_time": "2023-05-28 03:51:41",
+        "_duration": 10.999,
+        "_experiment_name": "/Repos/first.last@mycompany.com/db-gpu-serving-examples/examples/bert-sentiment(pyfunc)",
+        "_web_ui_link": "https://v9-antfood.mycompany.com#mlflow/experiments/592592fae9ed4353b539a69c228b322f/runs/1a2bcbe7071b4f2d9eef578fe1236c34",
+        "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/runs/get?run_id=1a2bcbe7071b4f2d9eef578fe1236c34"
+      },
+      "data": {
+        "tags": {
+          "mlflow.databricks.cluster.id": "0427-032507-fj9lj7u3",
+          "mlflow.databricks.cluster.info": {
+            "cluster_name": "First Last's GPU Cluster",
+            "spark_version": "13.x-snapshot-gpu-ml-scala2.12",
+            "node_type_id": "g5.8xlarge",
+            "driver_node_type_id": "g5.8xlarge",
+            "autotermination_minutes": 120,
+            "disk_spec": {},
+            "num_workers": 0
+          },
+          "mlflow.databricks.cluster.libraries": {
+            "installable": [],
+            "redacted": []
+          },
+          "mlflow.databricks.gitRepoCommit": "564a5459279f87af2a5869b903b6393ba50224ee",
+          "mlflow.databricks.gitRepoProvider": "gitHub",
+          "mlflow.databricks.gitRepoReference": "main",
+          "mlflow.databricks.gitRepoReferenceType": "branch",
+          "mlflow.databricks.gitRepoRelativePath": "examples/bert-sentiment(pyfunc)",
+          "mlflow.databricks.gitRepoStatus": "unknown",
+          "mlflow.databricks.gitRepoUrl": "https://github.com/ahdbilal/db-gpu-serving-examples",
+          "mlflow.databricks.notebook.commandID": "5465785108922960137_7475205332222411135_41e2423242034e798455b7baf601e426",
+          "mlflow.databricks.notebookID": 1958633236811734,
+          "mlflow.databricks.notebookPath": "/Repos/first.last@mycompany.com/db-gpu-serving-examples/examples/bert-sentiment(pyfunc)",
+          "mlflow.databricks.webappURL": "https://denali.staging.mycompany.com",
+          "mlflow.databricks.workspaceID": 6051921418418893,
+          "mlflow.databricks.workspaceURL": "v9-antfood.mycompany.com",
+          "mlflow.log-model.history": [
+            {
+              "artifact_path": "model",
+              "saved_input_example_info": {
+                "artifact_path": "input_example.json",
+                "type": "dataframe",
+                "pandas_orient": "split"
+              },
+              "signature": {
+                "inputs": [
+                  {
+                    "name": "review",
+                    "type": "string"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "label",
+                    "type": "string"
+                  }
+                ]
+              },
+              "flavors": {
+                "python_function": {
+                  "cloudpickle_version": "2.0.0",
+                  "artifacts": {
+                    "repository": {
+                      "path": "artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39",
+                      "uri": "/root/.cache/huggingface/hub/models--textattack--bert-base-uncased-imdb/snapshots/c70b9f391af2067f7eff69a03940218bba9b8d39"
+                    }
+                  },
+                  "loader_module": "mlflow.pyfunc.model",
+                  "python_model": "python_model.pkl",
+                  "env": {
+                    "conda": "conda.yaml",
+                    "virtualenv": "python_env.yaml"
+                  },
+                  "python_version": "3.10.6"
+                }
+              },
+              "run_id": "1a2bcbe7071b4f2d9eef578fe1236c34",
+              "model_uuid": "714495abb5e341e0bc71d5088bbdb33f",
+              "utc_time_created": "2023-05-28 03:51:30.950911",
+              "mlflow_version": "2.3.1",
+              "databricks_runtime": "13.x-snapshot-gpu-ml-scala2.12"
+            }
+          ],
+          "mlflow.runName": "capricious-snipe-527",
+          "mlflow.source.name": "/Repos/first.last@mycompany.com/db-gpu-serving-examples/examples/bert-sentiment(pyfunc)",
+          "mlflow.source.type": "NOTEBOOK",
+          "mlflow.user": "first.last@mycompany.com"
+        }
+      },
+      "inputs": {}
+    }
+  },
+  "experiment": {
+    "experiment": {
+      "experiment_id": "592592fae9ed4353b539a69c228b322f",
+      "name": "/Repos/first.last@mycompany.com/db-gpu-serving-examples/examples/bert-sentiment(pyfunc)",
+      "artifact_location": "dbfs:/databricks/mlflow-tracking/592592fae9ed4353b539a69c228b322f",
+      "lifecycle_stage": "active",
+      "last_update_time": 1685245890330,
+      "creation_time": 1685222919674,
+      "tags": {
+        "mlflow.experiment.sourceType": "REPO_NOTEBOOK",
+        "mlflow.ownerId": 7810669888313401,
+        "mlflow.experiment.sourceName": "/Repos/first.last@mycompany.com/db-gpu-serving-examples/examples/bert-sentiment(pyfunc)",
+        "mlflow.ownerEmail": "first.last@mycompany.com",
+        "mlflow.experiment.sourceId": 1958633236811734
+      },
+      "_creation_time": "2023-05-27 21:28:40",
+      "_last_update_time": "2023-05-28 03:51:30",
+      "_tracking_uri": "databricks://e2_dogfood",
+      "_web_ui_link": "https://v9-antfood.mycompany.com#mlflow/experiments/592592fae9ed4353b539a69c228b322f",
+      "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/experiments/get?experiment_id=592592fae9ed4353b539a69c228b322f",
+      "permissions": {
+        "permission_levels": [
+          {
+            "permission_level": "CAN_READ",
+            "description": "Can view the experiment"
+          },
+          {
+            "permission_level": "CAN_EDIT",
+            "description": "Can view, log runs, and edit the experiment"
+          },
+          {
+            "permission_level": "CAN_MANAGE",
+            "description": "Can view, log runs, edit, delete, and change permissions of the experiment"
+          }
+        ],
+        "permissions": {
+          "error": {
+            "message": "Databricks permissions API call failed",
+            "MlflowReportsException": {
+              "http_status_code": 400,
+              "uri": "https://v9-antfood.mycompany.com/api/2.0/permissions/experiments/592592fae9ed4353b539a69c228b322f",
+              "response": {
+                "error_code": "INVALID_PARAMETER_VALUE",
+                "message": "For input string: \"592592fae9ed4353b539a69c228b322f\""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

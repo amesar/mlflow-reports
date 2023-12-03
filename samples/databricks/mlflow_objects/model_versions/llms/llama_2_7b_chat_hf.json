@@ -63,7 +63,7 @@
           "mlflow.databricks.notebook.commandID": "6869665991266220507_6612308178965426736_41684650e32a4d438dee5cd76e0c6e6e",
           "mlflow.databricks.notebookID": 3441860794586987,
           "mlflow.databricks.notebookPath": "/Repos/first.last@mycompany.com/ml-ws/ML/llm/optimized-llama-serving-jayp",
-          "mlflow.databricks.webappURL": "https://oregon.cloud.databricks.com",
+          "mlflow.databricks.webappURL": "https://denali.staging.mycompany.com",
           "mlflow.databricks.workspaceID": 1444828305810485,
           "mlflow.databricks.workspaceURL": "e2-demo-field-eng.cloud.databricks.com",
           "mlflow.log-model.history": [

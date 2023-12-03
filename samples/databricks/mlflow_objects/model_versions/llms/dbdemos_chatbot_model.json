@@ -1,0 +1,312 @@
+{
+  "model_version": {
+    "name": "dbdemos.chatbot.dbdemos_chatbot_model",
+    "version": "1",
+    "creation_timestamp": 1699689417477,
+    "last_updated_timestamp": 1699689419966,
+    "user_id": "first.last@mycompany.com",
+    "source": "dbfs:/databricks/mlflow-tracking/1464623800493558/a5f8e90b9255403992684860a5bbe7e7/artifacts/model",
+    "run_id": "a5f8e90b9255403992684860a5bbe7e7",
+    "run_tracking_server_id": "6051921418418893",
+    "status": "READY",
+    "storage_location": "s3://v9-prod-managed-catalog-test-bucket-1/19a85dee-54bc-43a2-87ab-023d0ec16013/models/fb853e66-04bc-4adb-a183-065bc10c8eb4/versions/02b34fe3-c798-42a1-8637-4c05e2213087",
+    "aliases": [
+      {
+        "alias": "prod",
+        "version": "1"
+      }
+    ],
+    "_creation_timestamp": "2023-11-11 07:56:57",
+    "_last_updated_timestamp": "2023-11-11 07:57:00",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://v9-prod-managed-catalog-test-bucket-1/19a85dee-54bc-43a2-87ab-023d0ec16013/models/fb853e66-04bc-4adb-a183-065bc10c8eb4/versions/02b34fe3-c798-42a1-8637-4c05e2213087",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/1464623800493558/a5f8e90b9255403992684860a5bbe7e7/artifacts/model",
+    "_web_ui_link": "https://v9-antfood.mycompany.com/explore/data/models/dbdemos.chatbot.dbdemos_chatbot_model/version/1",
+    "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=dbdemos.chatbot.dbdemos_chatbot_model&version=1"
+  },
+  "mlflow_model": {
+    "artifact_path": "model",
+    "databricks_runtime": "13.3.x-cpu-ml-scala2.12",
+    "flavors": {
+      "python_function": {
+        "cloudpickle_version": "2.0.0",
+        "env": {
+          "conda": "conda.yaml",
+          "virtualenv": "python_env.yaml"
+        },
+        "loader_module": "mlflow.pyfunc.model",
+        "python_model": "python_model.pkl",
+        "python_version": "3.10.12"
+      }
+    },
+    "mlflow_version": "2.8.0",
+    "model_size_bytes": 4253,
+    "model_uuid": "c8948dc60245421fb145d4c4c48e545a",
+    "run_id": "a5f8e90b9255403992684860a5bbe7e7",
+    "signature": {
+      "inputs": [
+        {
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "string",
+          "name": "answer"
+        },
+        {
+          "type": "string",
+          "name": "prompt"
+        }
+      ],
+      "params": null
+    },
+    "utc_time_created": "2023-11-11 07:56:32.187074",
+    "model_flavor": "python_function",
+    "artifacts": {
+      "summary": {
+        "artifact_max_level": 9223372036854775807,
+        "num_artifacts": 5,
+        "num_bytes": 4253,
+        "num_levels": 1
+      },
+      "root_uri": "dbfs:/databricks/mlflow-tracking/1464623800493558/a5f8e90b9255403992684860a5bbe7e7/artifacts",
+      "files": [
+        {
+          "path": "model/MLmodel",
+          "is_dir": false,
+          "file_size": 620
+        },
+        {
+          "path": "model/conda.yaml",
+          "is_dir": false,
+          "file_size": 201
+        },
+        {
+          "path": "model/python_env.yaml",
+          "is_dir": false,
+          "file_size": 123
+        },
+        {
+          "path": "model/python_model.pkl",
+          "is_dir": false,
+          "file_size": 3222
+        },
+        {
+          "path": "model/requirements.txt",
+          "is_dir": false,
+          "file_size": 87
+        }
+      ]
+    }
+  },
+  "registered_model": {
+    "registered_model": {
+      "name": "dbdemos.chatbot.dbdemos_chatbot_model",
+      "creation_timestamp": 1699689414854,
+      "last_updated_timestamp": 1700087631590,
+      "user_id": "first.last@mycompany.com",
+      "aliases": [
+        {
+          "alias": "challenger",
+          "version": "2"
+        },
+        {
+          "alias": "prod",
+          "version": "1"
+        }
+      ]
+    }
+  },
+  "run": {
+    "run": {
+      "info": {
+        "run_id": "a5f8e90b9255403992684860a5bbe7e7",
+        "run_uuid": "a5f8e90b9255403992684860a5bbe7e7",
+        "experiment_id": 1464623800493558,
+        "run_name": "chatbot_rag",
+        "status": "FINISHED",
+        "start_time": 1699689391552,
+        "end_time": 1699689394198,
+        "artifact_uri": "dbfs:/databricks/mlflow-tracking/1464623800493558/a5f8e90b9255403992684860a5bbe7e7/artifacts",
+        "lifecycle_stage": "active",
+        "_start_time": "2023-11-11 07:56:32",
+        "_end_time": "2023-11-11 07:56:34",
+        "_duration": 2.646,
+        "_experiment_name": "/Shared/dbdemos/experiments/llm-chatbot-rag/rag-model",
+        "_web_ui_link": "https://v9-antfood.mycompany.com#mlflow/experiments/1464623800493558/runs/a5f8e90b9255403992684860a5bbe7e7",
+        "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/runs/get?run_id=a5f8e90b9255403992684860a5bbe7e7"
+      },
+      "data": {
+        "tags": {
+          "mlflow.databricks.cluster.id": "1111-000431-cd368gbb",
+          "mlflow.databricks.cluster.info": {
+            "cluster_name": "dbdemos-llm-rag-chatbot-yuanchao_ma",
+            "spark_version": "13.3.x-cpu-ml-scala2.12",
+            "node_type_id": "i3.xlarge",
+            "driver_node_type_id": "i3.xlarge",
+            "autotermination_minutes": 120,
+            "disk_spec": {
+              "disk_count": 0
+            },
+            "autoscale": {
+              "min_workers": 1,
+              "max_workers": 1,
+              "target_workers": 1
+            }
+          },
+          "mlflow.databricks.cluster.libraries.error": "This message class grpc_shaded.com.databricks.api.proto.managedLibraries.ClusterStatus DID NOT match any methods in the stub class grpc_shaded.com.databricks.api.proto.cluster.ClusterServiceGrpc$ClusterServiceBlockingStub",
+          "mlflow.databricks.notebook.commandID": "856555416743023443_9016243961407913975_758e04ac1ee141e195138232aba05d5d",
+          "mlflow.databricks.notebookID": 53437549854100,
+          "mlflow.databricks.notebookPath": "/Users/first.last@mycompany.com/llm-rag-chatbot/03-Deploy-RAG-Chatbot-Model",
+          "mlflow.databricks.notebookRevisionID": 1699689394536,
+          "mlflow.databricks.webappURL": "https://denali.staging.mycompany.com",
+          "mlflow.databricks.workspaceID": 6051921418418893,
+          "mlflow.databricks.workspaceURL": "v9-antfood.mycompany.com",
+          "mlflow.log-model.history": [
+            {
+              "artifact_path": "model",
+              "signature": {
+                "inputs": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "type": "string",
+                    "name": "answer"
+                  },
+                  {
+                    "type": "string",
+                    "name": "prompt"
+                  }
+                ],
+                "params": null
+              },
+              "flavors": {
+                "python_function": {
+                  "cloudpickle_version": "2.0.0",
+                  "loader_module": "mlflow.pyfunc.model",
+                  "python_model": "python_model.pkl",
+                  "env": {
+                    "conda": "conda.yaml",
+                    "virtualenv": "python_env.yaml"
+                  },
+                  "python_version": "3.10.12"
+                }
+              },
+              "run_id": "a5f8e90b9255403992684860a5bbe7e7",
+              "model_uuid": "c8948dc60245421fb145d4c4c48e545a",
+              "model_size_bytes": 3222,
+              "utc_time_created": "2023-11-11 07:56:32.187074",
+              "mlflow_version": "2.8.0",
+              "databricks_runtime": "13.3.x-cpu-ml-scala2.12"
+            }
+          ],
+          "mlflow.runName": "chatbot_rag",
+          "mlflow.source.name": "/Users/first.last@mycompany.com/llm-rag-chatbot/03-Deploy-RAG-Chatbot-Model",
+          "mlflow.source.type": "NOTEBOOK",
+          "mlflow.user": "first.last@mycompany.com"
+        }
+      },
+      "inputs": {}
+    }
+  },
+  "experiment": {
+    "experiment": {
+      "experiment_id": 1464623800493558,
+      "name": "/Shared/dbdemos/experiments/llm-chatbot-rag/rag-model",
+      "artifact_location": "dbfs:/databricks/mlflow-tracking/1464623800493558",
+      "lifecycle_stage": "active",
+      "last_update_time": 1700756881859,
+      "creation_time": 1696619057509,
+      "tags": {
+        "mlflow.ownerId": 2306910634309712,
+        "mlflow.experiment.sourceName": "/Shared/dbdemos/experiments/llm-chatbot-rag/rag-model",
+        "mlflow.ownerEmail": "first.last@mycompany.com",
+        "mlflow.experimentType": "MLFLOW_EXPERIMENT"
+      },
+      "_creation_time": "2023-10-06 19:04:18",
+      "_last_update_time": "2023-11-23 16:28:02",
+      "_tracking_uri": "databricks://e2_dogfood",
+      "_web_ui_link": "https://v9-antfood.mycompany.com#mlflow/experiments/1464623800493558",
+      "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/experiments/get?experiment_id=1464623800493558",
+      "permissions": {
+        "permission_levels": [
+          {
+            "permission_level": "CAN_READ",
+            "description": "Can view the experiment"
+          },
+          {
+            "permission_level": "CAN_EDIT",
+            "description": "Can view, log runs, and edit the experiment"
+          },
+          {
+            "permission_level": "CAN_MANAGE",
+            "description": "Can view, log runs, edit, delete, and change permissions of the experiment"
+          }
+        ],
+        "permissions": {
+          "object_id": "/experiments/1464623800493558",
+          "object_type": "mlflowExperiment",
+          "access_control_list": [
+            {
+              "user_name": "first.last@mycompany.com",
+              "display_name": "First Last",
+              "all_permissions": [
+                {
+                  "permission_level": "CAN_EDIT",
+                  "inherited": true,
+                  "inherited_from_object": [
+                    "/directories/580504741154457"
+                  ]
+                }
+              ]
+            },
+            {
+              "user_name": "first.last@mycompany.com",
+              "all_permissions": [
+                {
+                  "permission_level": "CAN_MANAGE",
+                  "inherited": true,
+                  "inherited_from_object": [
+                    "/directories/"
+                  ]
+                }
+              ]
+            },
+            {
+              "group_name": "admins",
+              "all_permissions": [
+                {
+                  "permission_level": "CAN_MANAGE",
+                  "inherited": true,
+                  "inherited_from_object": [
+                    "/directories/"
+                  ]
+                }
+              ]
+            },
+            {
+              "group_name": "users",
+              "all_permissions": [
+                {
+                  "permission_level": "CAN_MANAGE",
+                  "inherited": false
+                },
+                {
+                  "permission_level": "CAN_MANAGE",
+                  "inherited": true,
+                  "inherited_from_object": [
+                    "/directories/580504741154457"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

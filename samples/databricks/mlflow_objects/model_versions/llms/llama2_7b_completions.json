@@ -24,7 +24,41 @@
     "_web_ui_link": "https://v9-antfood.mycompany.com/explore/data/models/ap.llm.llama2_7b_completions/version/1",
     "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=ap.llm.llama2_7b_completions&version=1"
   },
+  "mlflow_model": {
+    "warning": "Cannot download artifact 'models:/ap.llm.llama2_7b_completions/1/MLmodel'. Exception: PERMISSION_DENIED: User does not have USE SCHEMA on Schema 'ap.llm'..",
+    "flavors": {
+      "warning": "No flavors"
+    },
+    "model_size_bytes": -1
+  },
+  "registered_model": {
+    "registered_model": {
+      "name": "ap.llm.llama2_7b_completions",
+      "creation_timestamp": 1699356513952,
+      "last_updated_timestamp": 1699356528755,
+      "user_id": "first.last@mycompany.com",
+      "aliases": [
+        {
+          "alias": "champion",
+          "version": "1"
+        }
+      ]
+    }
+  },
   "run": {
-    "warning": "Failed to get run_id 'f4f4c74eccd94545ba66ea10348a176f' for model version 'ap.llm.llama2_7b_completions/1'. Exception: {\"http_status_code\": 404, \"uri\": \"https://v9-antfood.mycompany.com/api/2.0/mlflow/runs/get\", \"params\": {\"run_id\": \"f4f4c74eccd94545ba66ea10348a176f\"}, \"response\": \"{\\\"error_code\\\":\\\"RESOURCE_DOES_NOT_EXIST\\\",\\\"message\\\":\\\"Node ID 566507028394507 does not exist.\\\"}\"}"
+    "error": {
+      "message": "Cannot get run_id 'f4f4c74eccd94545ba66ea10348a176f' for model version 'ap.llm.llama2_7b_completions/1'",
+      "MlflowReportsException": {
+        "http_status_code": 404,
+        "uri": "https://v9-antfood.mycompany.com/api/2.0/mlflow/runs/get",
+        "params": {
+          "run_id": "f4f4c74eccd94545ba66ea10348a176f"
+        },
+        "response": {
+          "error_code": "RESOURCE_DOES_NOT_EXIST",
+          "message": "Node ID 566507028394507 does not exist."
+        }
+      }
+    }
   }
 }
