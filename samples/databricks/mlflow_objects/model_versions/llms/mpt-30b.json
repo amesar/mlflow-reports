@@ -83,17 +83,19 @@
       ],
       "params": null
     },
-    "utc_time_created": "2023-09-19 03:53:12.076371",
-    "model_flavor": "transformers",
-    "model_size_bytes": -1
+    "utc_time_created": "2023-09-19 03:53:12.076371"
   },
   "registered_model": {
-    "registered_model": {
-      "name": "ml.llm-catalog.bilal-mpt-30b",
-      "creation_timestamp": 1695095694170,
-      "last_updated_timestamp": 1695095694170,
-      "user_id": "first.last@mycompany.com"
-    }
+    "name": "ml.llm-catalog.bilal-mpt-30b",
+    "creation_timestamp": 1695095694170,
+    "last_updated_timestamp": 1695095694170,
+    "user_id": "first.last@mycompany.com",
+    "tags": {},
+    "_creation_timestamp": "2023-09-19 03:54:54",
+    "_last_updated_timestamp": "2023-09-19 03:54:54",
+    "_is_unity_catalog": true,
+    "_web_ui_link": "https://v9-antfood.mycompany.com/explore/data/models/ml.llm-catalog.bilal-mpt-30b",
+    "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=ml.llm-catalog.bilal-mpt-30b"
   },
   "run": {
     "error": {

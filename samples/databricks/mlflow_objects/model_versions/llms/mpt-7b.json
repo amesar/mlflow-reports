@@ -60,17 +60,19 @@
       ],
       "params": null
     },
-    "utc_time_created": "2023-11-10 00:30:26.241737",
-    "model_flavor": "transformers",
-    "model_size_bytes": -1
+    "utc_time_created": "2023-11-10 00:30:26.241737"
   },
   "registered_model": {
-    "registered_model": {
-      "name": "main.taylor.ift-mpt-7b-wms9bl",
-      "creation_timestamp": 1699576242184,
-      "last_updated_timestamp": 1699576242395,
-      "user_id": "first.last@mycompany.com"
-    }
+    "name": "main.taylor.ift-mpt-7b-wms9bl",
+    "creation_timestamp": 1699576242184,
+    "last_updated_timestamp": 1699576242395,
+    "user_id": "first.last@mycompany.com",
+    "tags": {},
+    "_creation_timestamp": "2023-11-10 00:30:42",
+    "_last_updated_timestamp": "2023-11-10 00:30:42",
+    "_is_unity_catalog": true,
+    "_web_ui_link": "https://v9-antfood.mycompany.com/explore/data/models/main.taylor.ift-mpt-7b-wms9bl",
+    "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=main.taylor.ift-mpt-7b-wms9bl"
   },
   "run": {
     "warning": "Model version 'main.taylor.ift-mpt-7b-wms9bl/1' has no run_id"

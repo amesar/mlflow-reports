@@ -45,8 +45,10 @@ def get(
     dct = { "model_version": vr }
     if get_expanded:
         dct["mlflow_model"] = _get_mlmodel(registered_model_name, version)
-        dct["registered_model"] = get_registered_model.get(registered_model_name, get_permissions=True)
-        get_registered_model.enrich(dct["registered_model"]["registered_model"])
+        reg_model = get_registered_model.get(registered_model_name, get_permissions=True)
+        reg_model = reg_model["registered_model"]
+        get_registered_model.enrich(reg_model)
+        dct["registered_model"] = reg_model
         _get_vr_run(dct, artifact_max_level)
     return dct
 

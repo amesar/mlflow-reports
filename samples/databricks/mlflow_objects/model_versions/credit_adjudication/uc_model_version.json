@@ -119,21 +119,19 @@
     "utc_time_created": "2023-06-15 23:34:12.981982"
   },
   "registered_model": {
-    "registered_model": {
-      "name": "andre.ml_models.credit_adjudication",
-      "creation_timestamp": 1689279691424,
-      "last_updated_timestamp": 1701541443145,
-      "user_id": "andre@mycompany.com",
-      "description": "Co-developped with EY, This model is a simple example of how organisations could standardize their approach to AI by defining a series of steps that any data science team ought to address prior to a model validation. Although not exhaustive, this shows that most of the questions required by IVU process for a given use case (Credit adjudication) could be addressed upfront to reduce the friction between regulatory imposed silos, increase model validation success rate and drammatically reduce time from exploration to productionization of AI use cases.",
-      "tags": {
-        "info": "Per github example for Antoine et al blog of 2023-05-25: https://www.databricks.com/blog/model-risk-management-true-accelerator-corporate-ai"
-      },
-      "_creation_timestamp": "2023-07-13 20:21:31",
-      "_last_updated_timestamp": "2023-12-02 18:24:03",
-      "_is_unity_catalog": true,
-      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models.credit_adjudication",
-      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=andre.ml_models.credit_adjudication"
-    }
+    "name": "andre.ml_models.credit_adjudication",
+    "creation_timestamp": 1689279691424,
+    "last_updated_timestamp": 1701541443145,
+    "user_id": "andre@mycompany.com",
+    "description": "Co-developped with EY, This model is a simple example of how organisations could standardize their approach to AI by defining a series of steps that any data science team ought to address prior to a model validation. Although not exhaustive, this shows that most of the questions required by IVU process for a given use case (Credit adjudication) could be addressed upfront to reduce the friction between regulatory imposed silos, increase model validation success rate and drammatically reduce time from exploration to productionization of AI use cases.",
+    "tags": {
+      "info": "Per github example for Antoine et al blog of 2023-05-25: https://www.databricks.com/blog/model-risk-management-true-accelerator-corporate-ai"
+    },
+    "_creation_timestamp": "2023-07-13 20:21:31",
+    "_last_updated_timestamp": "2023-12-02 18:24:03",
+    "_is_unity_catalog": true,
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models.credit_adjudication",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=andre.ml_models.credit_adjudication"
   },
   "run": {
     "run": {

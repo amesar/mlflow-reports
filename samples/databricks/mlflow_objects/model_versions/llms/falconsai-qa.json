@@ -19,19 +19,19 @@
     "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=models.default.falconsai-qa&version=2"
   },
   "mlflow_model": {
-    "warning": "Cannot download artifact 'models:/models.default.falconsai-qa/2/MLmodel'. Exception: PERMISSION_DENIED: User does not have EXECUTE on Function or Model 'models.default.falconsai-qa'..",
-    "flavors": {
-      "warning": "No flavors"
-    },
-    "model_size_bytes": -1
+    "warning": "Cannot download artifact 'models:/models.default.falconsai-qa/2/MLmodel'. Exception: PERMISSION_DENIED: User does not have EXECUTE on Function or Model 'models.default.falconsai-qa'.."
   },
   "registered_model": {
-    "registered_model": {
-      "name": "models.default.falconsai-qa",
-      "creation_timestamp": 1700473842563,
-      "last_updated_timestamp": 1700475550687,
-      "user_id": "first.last@mycompany.com"
-    }
+    "name": "models.default.falconsai-qa",
+    "creation_timestamp": 1700473842563,
+    "last_updated_timestamp": 1700475550687,
+    "user_id": "first.last@mycompany.com",
+    "tags": {},
+    "_creation_timestamp": "2023-11-20 09:50:43",
+    "_last_updated_timestamp": "2023-11-20 10:19:11",
+    "_is_unity_catalog": true,
+    "_web_ui_link": "https://v9-antfood.mycompany.com/explore/data/models/models.default.falconsai-qa",
+    "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=models.default.falconsai-qa"
   },
   "run": {
     "error": {

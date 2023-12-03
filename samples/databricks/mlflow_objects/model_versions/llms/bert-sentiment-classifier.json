@@ -62,127 +62,20 @@
         }
       ]
     },
-    "utc_time_created": "2023-05-28 03:51:30.950911",
-    "model_flavor": "python_function",
-    "model_size_bytes": 876246008,
-    "artifacts": {
-      "summary": {
-        "artifact_max_level": 9223372036854775807,
-        "num_artifacts": 16,
-        "num_bytes": 876246008,
-        "num_levels": 3
-      },
-      "root_uri": "dbfs:/databricks/mlflow-tracking/592592fae9ed4353b539a69c228b322f/1a2bcbe7071b4f2d9eef578fe1236c34/artifacts",
-      "files": [
-        {
-          "path": "model/MLmodel",
-          "is_dir": false,
-          "file_size": 904
-        },
-        {
-          "path": "model/conda.yaml",
-          "is_dir": false,
-          "file_size": 138
-        },
-        {
-          "path": "model/input_example.json",
-          "is_dir": false,
-          "file_size": 57
-        },
-        {
-          "path": "model/python_env.yaml",
-          "is_dir": false,
-          "file_size": 122
-        },
-        {
-          "path": "model/python_model.pkl",
-          "is_dir": false,
-          "file_size": 81403
-        },
-        {
-          "path": "model/requirements.txt",
-          "is_dir": false,
-          "file_size": 33
-        },
-        {
-          "path": "model/artifacts",
-          "is_dir": true,
-          "artifacts": {
-            "root_uri": "dbfs:/databricks/mlflow-tracking/592592fae9ed4353b539a69c228b322f/1a2bcbe7071b4f2d9eef578fe1236c34/artifacts",
-            "files": [
-              {
-                "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39",
-                "is_dir": true,
-                "artifacts": {
-                  "root_uri": "dbfs:/databricks/mlflow-tracking/592592fae9ed4353b539a69c228b322f/1a2bcbe7071b4f2d9eef578fe1236c34/artifacts",
-                  "files": [
-                    {
-                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/.gitattributes",
-                      "is_dir": false,
-                      "file_size": 391
-                    },
-                    {
-                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/README.md",
-                      "is_dir": false,
-                      "file_size": 612
-                    },
-                    {
-                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/config.json",
-                      "is_dir": false,
-                      "file_size": 511
-                    },
-                    {
-                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/flax_model.msgpack",
-                      "is_dir": false,
-                      "file_size": 437942328
-                    },
-                    {
-                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/log.txt",
-                      "is_dir": false,
-                      "file_size": 1707
-                    },
-                    {
-                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/pytorch_model.bin",
-                      "is_dir": false,
-                      "file_size": 437985387
-                    },
-                    {
-                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/special_tokens_map.json",
-                      "is_dir": false,
-                      "file_size": 112
-                    },
-                    {
-                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/tokenizer_config.json",
-                      "is_dir": false,
-                      "file_size": 48
-                    },
-                    {
-                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/train_args.json",
-                      "is_dir": false,
-                      "file_size": 747
-                    },
-                    {
-                      "path": "model/artifacts/c70b9f391af2067f7eff69a03940218bba9b8d39/vocab.txt",
-                      "is_dir": false,
-                      "file_size": 231508
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        }
-      ]
-    }
+    "utc_time_created": "2023-05-28 03:51:30.950911"
   },
   "registered_model": {
-    "registered_model": {
-      "name": "ml.llm-catalog.bert-sentiment-classifier",
-      "creation_timestamp": 1685247219977,
-      "last_updated_timestamp": 1685349793574,
-      "user_id": "first.last@mycompany.com",
-      "description": "[bert-sentiment Model Card](https://huggingface.co/textattack/bert-base-uncased-imdb)\n\n# input example\n{\n  \"dataframe_split\": {\n    \"columns\": [\"review\"],\n    \"data\": [[\"I love this movie.\"]]\n  }\n}\n"
-    }
+    "name": "ml.llm-catalog.bert-sentiment-classifier",
+    "creation_timestamp": 1685247219977,
+    "last_updated_timestamp": 1685349793574,
+    "user_id": "first.last@mycompany.com",
+    "description": "[bert-sentiment Model Card](https://huggingface.co/textattack/bert-base-uncased-imdb)\n\n# input example\n{\n  \"dataframe_split\": {\n    \"columns\": [\"review\"],\n    \"data\": [[\"I love this movie.\"]]\n  }\n}\n",
+    "tags": {},
+    "_creation_timestamp": "2023-05-28 04:13:40",
+    "_last_updated_timestamp": "2023-05-29 08:43:14",
+    "_is_unity_catalog": true,
+    "_web_ui_link": "https://v9-antfood.mycompany.com/explore/data/models/ml.llm-catalog.bert-sentiment-classifier",
+    "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=ml.llm-catalog.bert-sentiment-classifier"
   },
   "run": {
     "run": {

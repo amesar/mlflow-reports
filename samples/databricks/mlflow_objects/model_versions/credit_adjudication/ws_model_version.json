@@ -122,24 +122,22 @@
     "utc_time_created": "2023-06-15 23:34:12.981982"
   },
   "registered_model": {
-    "registered_model": {
-      "name": "credit_adjudication",
-      "creation_timestamp": 1686870883318,
-      "last_updated_timestamp": 1686872073462,
-      "user_id": "antoine.amend@databricks.com",
-      "description": "Co-developped with EY, This model is a simple example of how organisations could standardize their approach to AI by defining a series of steps that any data science team ought to address prior to a model validation. Although not exhaustive, this shows that most of the questions required by IVU process for a given use case (Credit adjudication) could be addressed upfront to reduce the friction between regulatory imposed silos, increase model validation success rate and drammatically reduce time from exploration to productionization of AI use cases.",
-      "id": "1a2b2ee32d83487cb86188b4e75cd482",
-      "permission_level": "CAN_MANAGE",
-      "tags": {
-        "Model materiality": "HIGH",
-        "Model review": "REQUESTED"
-      },
-      "_creation_timestamp": "2023-06-15 23:14:43",
-      "_last_updated_timestamp": "2023-06-15 23:34:33",
-      "_is_unity_catalog": false,
-      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/credit_adjudication",
-      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/registered-models/get?name=credit_adjudication"
-    }
+    "name": "credit_adjudication",
+    "creation_timestamp": 1686870883318,
+    "last_updated_timestamp": 1686872073462,
+    "user_id": "antoine.amend@databricks.com",
+    "description": "Co-developped with EY, This model is a simple example of how organisations could standardize their approach to AI by defining a series of steps that any data science team ought to address prior to a model validation. Although not exhaustive, this shows that most of the questions required by IVU process for a given use case (Credit adjudication) could be addressed upfront to reduce the friction between regulatory imposed silos, increase model validation success rate and drammatically reduce time from exploration to productionization of AI use cases.",
+    "id": "1a2b2ee32d83487cb86188b4e75cd482",
+    "permission_level": "CAN_MANAGE",
+    "tags": {
+      "Model materiality": "HIGH",
+      "Model review": "REQUESTED"
+    },
+    "_creation_timestamp": "2023-06-15 23:14:43",
+    "_last_updated_timestamp": "2023-06-15 23:34:33",
+    "_is_unity_catalog": false,
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/credit_adjudication",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/registered-models/get?name=credit_adjudication"
   },
   "run": {
     "run": {

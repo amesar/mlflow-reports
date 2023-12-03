@@ -19,19 +19,19 @@
     "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=ap.llm.mistral-7b&version=1"
   },
   "mlflow_model": {
-    "warning": "Cannot download artifact 'models:/ap.llm.mistral-7b/1/MLmodel'. Exception: PERMISSION_DENIED: User does not have USE SCHEMA on Schema 'ap.llm'..",
-    "flavors": {
-      "warning": "No flavors"
-    },
-    "model_size_bytes": -1
+    "warning": "Cannot download artifact 'models:/ap.llm.mistral-7b/1/MLmodel'. Exception: PERMISSION_DENIED: User does not have USE SCHEMA on Schema 'ap.llm'.."
   },
   "registered_model": {
-    "registered_model": {
-      "name": "ap.llm.mistral-7b",
-      "creation_timestamp": 1696354861833,
-      "last_updated_timestamp": 1696354862072,
-      "user_id": "first.last@mycompany.com"
-    }
+    "name": "ap.llm.mistral-7b",
+    "creation_timestamp": 1696354861833,
+    "last_updated_timestamp": 1696354862072,
+    "user_id": "first.last@mycompany.com",
+    "tags": {},
+    "_creation_timestamp": "2023-10-03 17:41:02",
+    "_last_updated_timestamp": "2023-10-03 17:41:02",
+    "_is_unity_catalog": true,
+    "_web_ui_link": "https://v9-antfood.mycompany.com/explore/data/models/ap.llm.mistral-7b",
+    "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=ap.llm.mistral-7b"
   },
   "run": {
     "error": {

@@ -40,7 +40,7 @@
       }
     },
     "mlflow_version": "2.8.0",
-    "model_size_bytes": 4253,
+    "model_size_bytes": 3222,
     "model_uuid": "c8948dc60245421fb145d4c4c48e545a",
     "run_id": "a5f8e90b9255403992684860a5bbe7e7",
     "signature": {
@@ -61,62 +61,29 @@
       ],
       "params": null
     },
-    "utc_time_created": "2023-11-11 07:56:32.187074",
-    "model_flavor": "python_function",
-    "artifacts": {
-      "summary": {
-        "artifact_max_level": 9223372036854775807,
-        "num_artifacts": 5,
-        "num_bytes": 4253,
-        "num_levels": 1
-      },
-      "root_uri": "dbfs:/databricks/mlflow-tracking/1464623800493558/a5f8e90b9255403992684860a5bbe7e7/artifacts",
-      "files": [
-        {
-          "path": "model/MLmodel",
-          "is_dir": false,
-          "file_size": 620
-        },
-        {
-          "path": "model/conda.yaml",
-          "is_dir": false,
-          "file_size": 201
-        },
-        {
-          "path": "model/python_env.yaml",
-          "is_dir": false,
-          "file_size": 123
-        },
-        {
-          "path": "model/python_model.pkl",
-          "is_dir": false,
-          "file_size": 3222
-        },
-        {
-          "path": "model/requirements.txt",
-          "is_dir": false,
-          "file_size": 87
-        }
-      ]
-    }
+    "utc_time_created": "2023-11-11 07:56:32.187074"
   },
   "registered_model": {
-    "registered_model": {
-      "name": "dbdemos.chatbot.dbdemos_chatbot_model",
-      "creation_timestamp": 1699689414854,
-      "last_updated_timestamp": 1700087631590,
-      "user_id": "first.last@mycompany.com",
-      "aliases": [
-        {
-          "alias": "challenger",
-          "version": "2"
-        },
-        {
-          "alias": "prod",
-          "version": "1"
-        }
-      ]
-    }
+    "name": "dbdemos.chatbot.dbdemos_chatbot_model",
+    "creation_timestamp": 1699689414854,
+    "last_updated_timestamp": 1700087631590,
+    "user_id": "first.last@mycompany.com",
+    "aliases": [
+      {
+        "alias": "challenger",
+        "version": "2"
+      },
+      {
+        "alias": "prod",
+        "version": "1"
+      }
+    ],
+    "tags": {},
+    "_creation_timestamp": "2023-11-11 07:56:55",
+    "_last_updated_timestamp": "2023-11-15 22:33:52",
+    "_is_unity_catalog": true,
+    "_web_ui_link": "https://v9-antfood.mycompany.com/explore/data/models/dbdemos.chatbot.dbdemos_chatbot_model",
+    "_api_link": "https://v9-antfood.mycompany.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=dbdemos.chatbot.dbdemos_chatbot_model"
   },
   "run": {
     "run": {

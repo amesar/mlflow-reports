@@ -123,31 +123,29 @@
     "utc_time_created": "2023-08-11 08:40:16.227603"
   },
   "registered_model": {
-    "registered_model": {
-      "name": "andre.ml_models.sklearn_wine_best",
-      "creation_timestamp": 1691761329476,
-      "last_updated_timestamp": 1691761799340,
-      "user_id": "andre@mycompany.com",
-      "description": "Best sklearn_wine registered model",
-      "aliases": [
-        {
-          "alias": "champ",
-          "version": "1"
-        },
-        {
-          "alias": "prod",
-          "version": "1"
-        }
-      ],
-      "tags": {
-        "info": "Hi best model"
+    "name": "andre.ml_models.sklearn_wine_best",
+    "creation_timestamp": 1691761329476,
+    "last_updated_timestamp": 1691761799340,
+    "user_id": "andre@mycompany.com",
+    "description": "Best sklearn_wine registered model",
+    "aliases": [
+      {
+        "alias": "champ",
+        "version": "1"
       },
-      "_creation_timestamp": "2023-08-11 13:42:09",
-      "_last_updated_timestamp": "2023-08-11 13:49:59",
-      "_is_unity_catalog": true,
-      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models.sklearn_wine_best",
-      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=andre.ml_models.sklearn_wine_best"
-    }
+      {
+        "alias": "prod",
+        "version": "1"
+      }
+    ],
+    "tags": {
+      "info": "Hi best model"
+    },
+    "_creation_timestamp": "2023-08-11 13:42:09",
+    "_last_updated_timestamp": "2023-08-11 13:49:59",
+    "_is_unity_catalog": true,
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models.sklearn_wine_best",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=andre.ml_models.sklearn_wine_best"
   },
   "run": {
     "run": {

@@ -113,24 +113,22 @@
     "utc_time_created": "2023-08-08 19:56:25.131172"
   },
   "registered_model": {
-    "registered_model": {
-      "name": "Sklearn_Wine_best",
-      "creation_timestamp": 1691524590716,
-      "last_updated_timestamp": 1701553685755,
-      "user_id": "andre@mycompany.com",
-      "description": "<html><h1>Best sklearn_wine model</h1></html>\n",
-      "id": "94abcb7b9c49465f92a5fb459c26898a",
-      "permission_level": "CAN_MANAGE",
-      "tags": {
-        "info": "hello model",
-        "rich": "<html><h1>Hi</h1></html>"
-      },
-      "_creation_timestamp": "2023-08-08 19:56:31",
-      "_last_updated_timestamp": "2023-12-02 21:48:06",
-      "_is_unity_catalog": false,
-      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/Sklearn_Wine_best",
-      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/registered-models/get?name=Sklearn_Wine_best"
-    }
+    "name": "Sklearn_Wine_best",
+    "creation_timestamp": 1691524590716,
+    "last_updated_timestamp": 1701553685755,
+    "user_id": "andre@mycompany.com",
+    "description": "<html><h1>Best sklearn_wine model</h1></html>\n",
+    "id": "94abcb7b9c49465f92a5fb459c26898a",
+    "permission_level": "CAN_MANAGE",
+    "tags": {
+      "info": "hello model",
+      "rich": "<html><h1>Hi</h1></html>"
+    },
+    "_creation_timestamp": "2023-08-08 19:56:31",
+    "_last_updated_timestamp": "2023-12-02 21:48:06",
+    "_is_unity_catalog": false,
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/models/Sklearn_Wine_best",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/registered-models/get?name=Sklearn_Wine_best"
   },
   "run": {
     "run": {
