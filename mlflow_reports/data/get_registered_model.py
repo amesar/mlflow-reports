@@ -22,17 +22,17 @@ mlflow_client = get_mlflow_client()
 
 
 def get(
-        model_name, 
-        get_run = False, 
+        model_name,
+        get_run = False,
         artifact_max_level = -1,
-        get_versions = False, 
-        get_latest_versions = False, 
-        get_permissions = False, 
-        get_raw = False, 
+        get_versions = False,
+        get_latest_versions = False,
+        get_permissions = False,
+        get_raw = False,
     ):
     if get_raw:
         return mlflow_client.get("registered-models/get", { "name": model_name })
-    
+
     reg_model = mlflow_utils.get_registered_model(model_name, get_permissions)
     dct = { "registered_model": reg_model }
     if get_versions:
@@ -60,7 +60,7 @@ def enrich(reg_model, get_permissions=False, enrich_versions=False):
             get_model_version.enrich(vr)
 
     if not mlflow_utils.is_unity_catalog_model(model_name):
-        for vr in reg_model.get("latest_versions"):
+        for vr in reg_model.get("latest_versions",[]):
             get_model_version.enrich(vr)
     if get_permissions and mlflow_utils.is_calling_databricks():
         permissions_utils.add_model_permissions(reg_model)
@@ -71,7 +71,7 @@ def _get_runs(dct, artifact_max_level):
     runs = {}
     for vr in dct.get("versions"):
         try:
-            runs[vr["version"]] = get_run.get(vr["run_id"], artifact_max_level=artifact_max_level) 
+            runs[vr["version"]] = get_run.get(vr["run_id"], artifact_max_level=artifact_max_level)
         except MlflowReportsException as e:
             msg = { "model": vr["name"], "version": vr["version"], "run_id": vr["run_id"] }
             print(f'ERROR: Cannot get version run: {msg}. Exception: {e}')
@@ -81,21 +81,21 @@ def _get_runs(dct, artifact_max_level):
 @click.command()
 @opt_registered_model
 @opt_get_run
-@opt_artifact_max_level 
+@opt_artifact_max_level
 @opt_get_versions
 @opt_get_latest_versions
 @opt_get_permissions
 @opt_get_raw
 @opt_silent
 @opt_output_file
-def main(registered_model, 
-        get_run, 
-        artifact_max_level, 
-        get_versions, 
-        get_latest_versions, 
-        get_permissions, 
-        get_raw, 
-        silent, 
+def main(registered_model,
+        get_run,
+        artifact_max_level,
+        get_versions,
+        get_latest_versions,
+        get_permissions,
+        get_raw,
+        silent,
         output_file
     ):
     print("Options:")
