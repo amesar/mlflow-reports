@@ -1,0 +1,18 @@
+artifact_path: fs_packaged_model
+databricks_runtime: 14.1.x-cpu-ml-scala2.12
+flavors:
+  python_function:
+    data: data/feature_store
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: databricks.feature_store.mlflow_model
+    python_version: 3.10.12
+mlflow_version: 2.5.0
+model_uuid: 3809b31697ca4d778b7a6297f09c5327
+run_id: cb52c4758d9e407080ae1150652f9eee
+signature:
+  inputs: '[{"type": "string", "name": "json_blob"}, {"type": "float", "name": "on_demand_output",
+    "optional": true}]'
+  outputs: '[{"type": "boolean", "name": "label"}]'
+utc_time_created: '2023-11-22 21:54:46.727695'

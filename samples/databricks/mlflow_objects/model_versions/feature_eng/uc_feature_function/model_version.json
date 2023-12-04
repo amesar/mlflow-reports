@@ -1,0 +1,218 @@
+{
+  "model_version": {
+    "name": "main.on_demand_demo.simple_model_andre",
+    "version": "1",
+    "creation_timestamp": 1700690091198,
+    "last_updated_timestamp": 1700690092332,
+    "user_id": "andre@mycompany.com",
+    "source": "dbfs:/databricks/mlflow-tracking/4252283423162165/cb52c4758d9e407080ae1150652f9eee/artifacts/fs_packaged_model",
+    "run_id": "cb52c4758d9e407080ae1150652f9eee",
+    "run_tracking_server_id": "2556758628403379",
+    "status": "READY",
+    "storage_location": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/f2910923-4192-4f09-a5a0-910a5f514f33/versions/b39287f7-e7ed-4c30-8134-f85f5625ecdd",
+    "_creation_timestamp": "2023-11-22 21:54:51",
+    "_last_updated_timestamp": "2023-11-22 21:54:52",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/f2910923-4192-4f09-a5a0-910a5f514f33/versions/b39287f7-e7ed-4c30-8134-f85f5625ecdd",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/4252283423162165/cb52c4758d9e407080ae1150652f9eee/artifacts/fs_packaged_model",
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/main.on_demand_demo.simple_model_andre/version/1",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=main.on_demand_demo.simple_model_andre&version=1"
+  },
+  "mlflow_model": {
+    "artifact_path": "fs_packaged_model",
+    "databricks_runtime": "14.1.x-cpu-ml-scala2.12",
+    "flavors": {
+      "python_function": {
+        "data": "data/feature_store",
+        "env": {
+          "conda": "conda.yaml",
+          "virtualenv": "python_env.yaml"
+        },
+        "loader_module": "databricks.feature_store.mlflow_model",
+        "python_version": "3.10.12"
+      }
+    },
+    "mlflow_version": "2.5.0",
+    "model_uuid": "3809b31697ca4d778b7a6297f09c5327",
+    "run_id": "cb52c4758d9e407080ae1150652f9eee",
+    "signature": {
+      "inputs": [
+        {
+          "type": "string",
+          "name": "json_blob"
+        },
+        {
+          "type": "float",
+          "name": "on_demand_output",
+          "optional": true
+        }
+      ],
+      "outputs": [
+        {
+          "type": "boolean",
+          "name": "label"
+        }
+      ]
+    },
+    "utc_time_created": "2023-11-22 21:54:46.727695"
+  },
+  "registered_model": {
+    "name": "main.on_demand_demo.simple_model_andre",
+    "creation_timestamp": 1700690089190,
+    "last_updated_timestamp": 1700690091225,
+    "user_id": "andre@mycompany.com",
+    "tags": {},
+    "_creation_timestamp": "2023-11-22 21:54:49",
+    "_last_updated_timestamp": "2023-11-22 21:54:51",
+    "_is_unity_catalog": true,
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/main.on_demand_demo.simple_model_andre",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=main.on_demand_demo.simple_model_andre"
+  },
+  "run": {
+    "run": {
+      "info": {
+        "run_id": "cb52c4758d9e407080ae1150652f9eee",
+        "run_uuid": "cb52c4758d9e407080ae1150652f9eee",
+        "experiment_id": 4252283423162165,
+        "run_name": "merciful-smelt-285",
+        "status": "RUNNING",
+        "start_time": 1700690086130,
+        "end_time": 0,
+        "artifact_uri": "dbfs:/databricks/mlflow-tracking/4252283423162165/cb52c4758d9e407080ae1150652f9eee/artifacts",
+        "lifecycle_stage": "active",
+        "_start_time": "2023-11-22 21:54:46",
+        "_experiment_name": "/Users/andre@mycompany.com/mlflow/Feature_Store/clone_feature_functions_2023_11/on-demand-basic-demo",
+        "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/4252283423162165/runs/cb52c4758d9e407080ae1150652f9eee",
+        "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=cb52c4758d9e407080ae1150652f9eee"
+      },
+      "data": {
+        "tags": {
+          "mlflow.databricks.cluster.id": "0414-154233-qm0df4rx",
+          "mlflow.databricks.cluster.info": {
+            "cluster_name": "andre_ML_14.1",
+            "spark_version": "14.1.x-cpu-ml-scala2.12",
+            "node_type_id": "i3.xlarge",
+            "driver_node_type_id": "i3.xlarge",
+            "autotermination_minutes": 120,
+            "disk_spec": {
+              "disk_count": 0
+            },
+            "num_workers": 1
+          },
+          "mlflow.databricks.cluster.libraries.error": "This message class grpc_shaded.com.databricks.api.proto.managedLibraries.ClusterStatus DID NOT match any methods in the stub class grpc_shaded.com.databricks.api.proto.cluster.ClusterServiceGrpc$ClusterServiceBlockingStub",
+          "mlflow.databricks.notebook.commandID": "2769527480257581454_5512844386689252008_98d097c165b24bfb9988de9977df8240",
+          "mlflow.databricks.notebookID": 4252283423162165,
+          "mlflow.databricks.notebookPath": "/Users/andre@mycompany.com/mlflow/Feature_Store/on-demand-basic-demo",
+          "mlflow.databricks.webappURL": "https://denali.staging.mycompany.com",
+          "mlflow.databricks.workspaceID": 2556758628403379,
+          "mlflow.databricks.workspaceURL": "e2-demo-west.cloud.databricks.com",
+          "mlflow.log-model.history": [
+            {
+              "artifact_path": "fs_packaged_model",
+              "signature": {
+                "inputs": [
+                  {
+                    "type": "string",
+                    "name": "json_blob"
+                  },
+                  {
+                    "type": "float",
+                    "name": "on_demand_output",
+                    "optional": true
+                  }
+                ],
+                "outputs": [
+                  {
+                    "type": "boolean",
+                    "name": "label"
+                  }
+                ]
+              },
+              "flavors": {
+                "python_function": {
+                  "loader_module": "databricks.feature_store.mlflow_model",
+                  "python_version": "3.10.12",
+                  "data": "data/feature_store",
+                  "env": {
+                    "conda": "conda.yaml",
+                    "virtualenv": "python_env.yaml"
+                  }
+                }
+              },
+              "run_id": "cb52c4758d9e407080ae1150652f9eee",
+              "model_uuid": "3809b31697ca4d778b7a6297f09c5327",
+              "utc_time_created": "2023-11-22 21:54:46.727695",
+              "mlflow_version": "2.5.0",
+              "databricks_runtime": "14.1.x-cpu-ml-scala2.12"
+            }
+          ],
+          "mlflow.runName": "merciful-smelt-285",
+          "mlflow.source.name": "/Users/andre@mycompany.com/mlflow/Feature_Store/on-demand-basic-demo",
+          "mlflow.source.type": "NOTEBOOK",
+          "mlflow.user": "andre@mycompany.com",
+          "sparkDatasourceInfo": [
+            {
+              "path": "system.information_schema.routines",
+              "format": "unknown"
+            },
+            {
+              "path": "system.information_schema.parameters",
+              "format": "unknown"
+            }
+          ]
+        }
+      },
+      "inputs": {}
+    }
+  },
+  "experiment": {
+    "experiment": {
+      "experiment_id": 4252283423162165,
+      "name": "/Users/andre@mycompany.com/mlflow/Feature_Store/clone_feature_functions_2023_11/on-demand-basic-demo",
+      "artifact_location": "dbfs:/databricks/mlflow-tracking/4252283423162165",
+      "lifecycle_stage": "active",
+      "last_update_time": 1700690086130,
+      "creation_time": 1700690085685,
+      "tags": {
+        "mlflow.ownerId": 4566812440727830,
+        "mlflow.experiment.sourceName": "/Users/andre@mycompany.com/mlflow/Feature_Store/clone_feature_functions_2023_11/on-demand-basic-demo",
+        "mlflow.ownerEmail": "andre@mycompany.com",
+        "mlflow.experimentType": "NOTEBOOK"
+      },
+      "_creation_time": "2023-11-22 21:54:46",
+      "_last_update_time": "2023-11-22 21:54:46",
+      "_tracking_uri": "databricks://e2_demo",
+      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/4252283423162165",
+      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/experiments/get?experiment_id=4252283423162165",
+      "permissions": {
+        "permission_levels": [
+          {
+            "permission_level": "CAN_READ",
+            "description": "Can view the experiment"
+          },
+          {
+            "permission_level": "CAN_EDIT",
+            "description": "Can view, log runs, and edit the experiment"
+          },
+          {
+            "permission_level": "CAN_MANAGE",
+            "description": "Can view, log runs, edit, delete, and change permissions of the experiment"
+          }
+        ],
+        "permissions": {
+          "error": {
+            "message": "Databricks permissions API call failed",
+            "MlflowReportsException": {
+              "http_status_code": 400,
+              "uri": "https://e2-demo-west.cloud.databricks.com/api/2.0/permissions/experiments/4252283423162165",
+              "response": {
+                "error_code": "INVALID_PARAMETER_VALUE",
+                "message": "Object 4252283423162165 not a experiment."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

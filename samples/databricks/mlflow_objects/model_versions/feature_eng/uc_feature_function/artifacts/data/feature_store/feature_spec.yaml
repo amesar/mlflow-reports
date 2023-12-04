@@ -1,0 +1,17 @@
+input_columns:
+- json_blob:
+    data_type: string
+    topological_ordering: 0
+    source: training_data
+- on_demand_output:
+    udf_name: main.on_demand_demo.avg_hover_time
+    input_bindings:
+      blob: json_blob
+    data_type: float
+    topological_ordering: 1
+    source: on_demand_feature
+workspace_id: '2556758628403379'
+feature_store_client_version: 0.15.2
+input_functions:
+- main.on_demand_demo.avg_hover_time: {}
+serialization_version: 9

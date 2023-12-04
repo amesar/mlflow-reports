@@ -1,0 +1,104 @@
+input_columns:
+- wine_id:
+    data_type: bigint
+    include: false
+    topological_ordering: 1
+    source: training_data
+- real_time_measurement:
+    data_type: double
+    topological_ordering: 0
+    source: training_data
+- alcohol:
+    table_name: andre_fs_wine.wine_features
+    feature_name: alcohol
+    lookup_key:
+    - wine_id
+    data_type: double
+    topological_ordering: 2
+    source: feature_store
+- chlorides:
+    table_name: andre_fs_wine.wine_features
+    feature_name: chlorides
+    lookup_key:
+    - wine_id
+    data_type: double
+    topological_ordering: 3
+    source: feature_store
+- citric_acid:
+    table_name: andre_fs_wine.wine_features
+    feature_name: citric_acid
+    lookup_key:
+    - wine_id
+    data_type: double
+    topological_ordering: 4
+    source: feature_store
+- density:
+    table_name: andre_fs_wine.wine_features
+    feature_name: density
+    lookup_key:
+    - wine_id
+    data_type: double
+    topological_ordering: 5
+    source: feature_store
+- fixed_acidity:
+    table_name: andre_fs_wine.wine_features
+    feature_name: fixed_acidity
+    lookup_key:
+    - wine_id
+    data_type: double
+    topological_ordering: 6
+    source: feature_store
+- free_sulfur_dioxide:
+    table_name: andre_fs_wine.wine_features
+    feature_name: free_sulfur_dioxide
+    lookup_key:
+    - wine_id
+    data_type: double
+    topological_ordering: 7
+    source: feature_store
+- pH:
+    table_name: andre_fs_wine.wine_features
+    feature_name: pH
+    lookup_key:
+    - wine_id
+    data_type: double
+    topological_ordering: 8
+    source: feature_store
+- residual_sugar:
+    table_name: andre_fs_wine.wine_features
+    feature_name: residual_sugar
+    lookup_key:
+    - wine_id
+    data_type: double
+    topological_ordering: 9
+    source: feature_store
+- sulphates:
+    table_name: andre_fs_wine.wine_features
+    feature_name: sulphates
+    lookup_key:
+    - wine_id
+    data_type: double
+    topological_ordering: 10
+    source: feature_store
+- total_sulfur_dioxide:
+    table_name: andre_fs_wine.wine_features
+    feature_name: total_sulfur_dioxide
+    lookup_key:
+    - wine_id
+    data_type: double
+    topological_ordering: 11
+    source: feature_store
+- volatile_acidity:
+    table_name: andre_fs_wine.wine_features
+    feature_name: volatile_acidity
+    lookup_key:
+    - wine_id
+    data_type: double
+    topological_ordering: 12
+    source: feature_store
+workspace_id: '2556758628403379'
+feature_store_client_version: 0.15.2
+input_tables:
+- andre_fs_wine.wine_features:
+    table_id: e1d837006c264b8584b01e2d87c53bdc
+serialization_version: 9
