@@ -5,13 +5,22 @@
 
 # COMMAND ----------
 
-# MAGIC %md #### Create routes dataframe
+# MAGIC %md #### Setup
+
+# COMMAND ----------
+
+# MAGIC %pip install mlflow[skinny]
+# MAGIC dbutils.library.restartPython()
 
 # COMMAND ----------
 
 import pandas as pd
 import mlflow
-mlflow.__version__, mlflow.gateway.get_gateway_uri() 
+mlflow.__version__,  mlflow.gateway.get_gateway_uri() 
+
+# COMMAND ----------
+
+# MAGIC %md #### Create routes dataframe
 
 # COMMAND ----------
 
