@@ -17,7 +17,8 @@
 # MAGIC ##### MLflow list objects notebooks
 # MAGIC * [List_Registered_Models]($objects/List_Registered_Models)
 # MAGIC * [List_Model_Versions]($objects/List_Model_Versions)
-# MAGIC * [List_Gateway_Routes]($objects/List_Gateway_Routes) - SQL queries for routes
+# MAGIC * [List_Vector_Search_Endpoints]($objects/List_Vector_Search_Endpoints) - SQL queries for Vector Search endpoints
+# MAGIC * [List_Gateway_Routes]($objects/List_Gateway_Routes) - SQL queries for AI Gateway routes
 # MAGIC
 # MAGIC ##### MLflow MLmodel notebooks
 # MAGIC * [Download_MLmodel]($objects/Download_MLmodel) - Download and display a model version's MLmodel artifact.
@@ -37,4 +38,4 @@
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC Last updated: 2023-11-30
+# MAGIC Last updated: 2023-12-05
