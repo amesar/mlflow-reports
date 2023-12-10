@@ -14,7 +14,7 @@
 
 # COMMAND ----------
 
-# MAGIC %md #### Create routes dataframe
+# MAGIC %md #### Create endpoints dataframe
 
 # COMMAND ----------
 
