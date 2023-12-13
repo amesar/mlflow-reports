@@ -17,7 +17,7 @@
 # MAGIC ##### MLflow list objects notebooks
 # MAGIC * [List_Registered_Models]($objects/List_Registered_Models)
 # MAGIC * [List_Model_Versions]($objects/List_Model_Versions)
-# MAGIC * [List_Model_Serving_Endpoints]($List_Model_Serving_Endpoints) - List and query model serving endpoints
+# MAGIC * [List_Model_Serving_Endpoints]($objects/List_Model_Serving_Endpoints) - List and query model serving endpoints
 # MAGIC * [List_Vector_Search_Endpoints]($objects/List_Vector_Search_Endpoints) - List and query Vector Search endpoints
 # MAGIC * [List_Gateway_Routes]($objects/List_Gateway_Routes) - List and query AI Gateway routes
 # MAGIC
