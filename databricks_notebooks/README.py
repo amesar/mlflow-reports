@@ -14,12 +14,15 @@
 # MAGIC * [MLflow_Model_Manager]($objects/MLflow_Model_Manager) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/model_reports)
 # MAGIC * [Get_MLflow_Model]($objects/Get_MLflow_Model) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/mlflow_models) 
 # MAGIC
-# MAGIC ##### MLflow list objects notebooks
+# MAGIC ##### List MLflow objects notebooks
 # MAGIC * [List_Registered_Models]($objects/List_Registered_Models)
 # MAGIC * [List_Model_Versions]($objects/List_Model_Versions)
+# MAGIC
+# MAGIC ##### List endpoints notebooks
 # MAGIC * [List_Model_Serving_Endpoints]($objects/List_Model_Serving_Endpoints) - List and query model serving endpoints
+# MAGIC * [List_Deployment_Endpoints](objects/list/List_Deployment_Endpoints) - List and query deployment endpoints
 # MAGIC * [List_Vector_Search_Endpoints]($objects/List_Vector_Search_Endpoints) - List and query Vector Search endpoints
-# MAGIC * [List_Gateway_Routes]($objects/List_Gateway_Routes) - List and query AI Gateway routes
+# MAGIC * [List_Gateway_Routes]($objects/List_Gateway_Routes) - List and query AI Gateway routes (deprecated)
 # MAGIC
 # MAGIC ##### MLflow MLmodel notebooks
 # MAGIC * [Download_MLmodel]($objects/Download_MLmodel) - Download and display a model version's MLmodel artifact.
