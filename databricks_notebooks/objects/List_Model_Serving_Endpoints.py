@@ -43,3 +43,11 @@ df.createOrReplaceTempView("endpoints")
 # COMMAND ----------
 
 # MAGIC %sql select name, creator, creation_timestamp from endpoints order by creation_timestamp desc
+
+# COMMAND ----------
+
+# MAGIC %md ##### Group by creator
+
+# COMMAND ----------
+
+# MAGIC %sql select creator, count(*) as count from endpoints group by creator order by count desc

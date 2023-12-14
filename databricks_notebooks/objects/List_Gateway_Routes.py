@@ -1,7 +1,9 @@
 # Databricks notebook source
 # MAGIC %md ## List and Query AI Gateway Routes
-# MAGIC
-# MAGIC * https://mlflow.org/docs/latest/python_api/mlflow.gateway.html
+# MAGIC * AI Gateway is deprecated. See [MLflow AI Gateway Migration Guide
+# MAGIC ](https://mlflow.org/docs/latest/llms/gateway/migration.html#gateway-migration)
+# MAGIC * Use the [List_Model_Serving_Endpoints]($List_Model_Serving_Endpoints) notebook
+# MAGIC * Docs: [mlflow.gateway](https://mlflow.org/docs/latest/python_api/mlflow.gateway.html)
 
 # COMMAND ----------
 
@@ -24,15 +26,14 @@ mlflow.__version__,  mlflow.gateway.get_gateway_uri()
 
 # COMMAND ----------
 
-def create_pandas_df():
-    routes = mlflow.gateway.search_routes()
-    data = [ (rt.name, rt.route_type, rt.model.name, rt.model.provider) for rt in routes ]
-    return pd.DataFrame(data, columns = ["name","route_type", "model_name", "model_provider"])
+routes = mlflow.gateway.search_routes()
+len(routes)
 
 # COMMAND ----------
 
-df = spark.createDataFrame(create_pandas_df())
-print("Routes:", df.count())
+data = [ (rt.name, rt.route_type, rt.model.name, rt.model.provider) for rt in routes ]
+df = spark.createDataFrame(data, ["name","route_type", "model_name", "model_provider"])
+display(df)
 
 # COMMAND ----------
 
@@ -41,6 +42,7 @@ print("Routes:", df.count())
 # COMMAND ----------
 
 df.createOrReplaceTempView("routes") 
+df.count()
 
 # COMMAND ----------
 

@@ -20,7 +20,7 @@
 # MAGIC
 # MAGIC ##### List endpoints notebooks
 # MAGIC * [List_Model_Serving_Endpoints]($objects/List_Model_Serving_Endpoints) - List and query model serving endpoints
-# MAGIC * [List_Deployment_Endpoints](objects/list/List_Deployment_Endpoints) - List and query deployment endpoints
+# MAGIC * [List_Deployment_Endpoints]($objects/List_Deployment_Endpoints) - List and query deployment endpoints
 # MAGIC * [List_Vector_Search_Endpoints]($objects/List_Vector_Search_Endpoints) - List and query Vector Search endpoints
 # MAGIC * [List_Gateway_Routes]($objects/List_Gateway_Routes) - List and query AI Gateway routes (deprecated)
 # MAGIC
