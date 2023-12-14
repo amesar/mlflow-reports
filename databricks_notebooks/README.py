@@ -15,14 +15,14 @@
 # MAGIC * [Get_MLflow_Model]($objects/Get_MLflow_Model) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/mlflow_models) 
 # MAGIC
 # MAGIC ##### List MLflow objects notebooks
-# MAGIC * [List_Registered_Models]($objects/List_Registered_Models)
-# MAGIC * [List_Model_Versions]($objects/List_Model_Versions)
+# MAGIC * [List_Registered_Models]($list/List_Registered_Models)
+# MAGIC * [List_Model_Versions]($list/List_Model_Versions)
 # MAGIC
 # MAGIC ##### List endpoints notebooks
-# MAGIC * [List_Model_Serving_Endpoints]($objects/List_Model_Serving_Endpoints) - List and query model serving endpoints
-# MAGIC * [List_Deployment_Endpoints]($objects/List_Deployment_Endpoints) - List and query deployment endpoints
-# MAGIC * [List_Vector_Search_Endpoints]($objects/List_Vector_Search_Endpoints) - List and query Vector Search endpoints
-# MAGIC * [List_Gateway_Routes]($objects/List_Gateway_Routes) - List and query AI Gateway routes (deprecated)
+# MAGIC * [List_Model_Serving_Endpoints]($list/List_Model_Serving_Endpoints) - List and query model serving endpoints
+# MAGIC * [List_Deployment_Endpoints]($list/List_Deployment_Endpoints) - List and query deployment endpoints
+# MAGIC * [List_Vector_Search_Endpoints]($list/List_Vector_Search_Endpoints) - List and query Vector Search endpoints
+# MAGIC * [List_Gateway_Routes]($list/List_Gateway_Routes) - List and query AI Gateway routes (deprecated)
 # MAGIC
 # MAGIC ##### MLflow MLmodel notebooks
 # MAGIC * [Download_MLmodel]($objects/Download_MLmodel) - Download and display a model version's MLmodel artifact.
@@ -42,4 +42,4 @@
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC Last updated: 2023-12-13
+# MAGIC Last updated: 2023-12-14

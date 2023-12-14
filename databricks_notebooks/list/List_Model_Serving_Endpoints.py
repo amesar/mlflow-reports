@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %md ## List Model Serving Endpoints
+# MAGIC %md ## List and Query Model Serving Endpoints
 # MAGIC * https://docs.databricks.com/api/workspace/servingendpoints
 # MAGIC * [api/2.0/serving-endpoints](https://docs.databricks.com/api/workspace/servingendpoints/list)
 

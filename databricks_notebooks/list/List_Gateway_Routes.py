@@ -1,8 +1,8 @@
 # Databricks notebook source
-# MAGIC %md ## List and Query AI Gateway Routes
+# MAGIC %md ## List and Query AI Gateway Routes - Deprecated
 # MAGIC * AI Gateway is deprecated. See [MLflow AI Gateway Migration Guide
 # MAGIC ](https://mlflow.org/docs/latest/llms/gateway/migration.html#gateway-migration)
-# MAGIC * Use the [List_Model_Serving_Endpoints]($List_Model_Serving_Endpoints) notebook
+# MAGIC * Use the [List_Model_Serving_Endpoints]($List_Model_Serving_Endpoints) notebook instead
 # MAGIC * Docs: [mlflow.gateway](https://mlflow.org/docs/latest/python_api/mlflow.gateway.html)
 
 # COMMAND ----------

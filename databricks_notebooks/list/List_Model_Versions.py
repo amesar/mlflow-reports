@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %md ## List Model Versions
+# MAGIC %md ## List and Query Model Versions
 # MAGIC
 # MAGIC #### Overview
 # MAGIC * List model versions for either the Databricks Workspace (WS) Model Registry or Unity Catalog (UC) Model Registry.
