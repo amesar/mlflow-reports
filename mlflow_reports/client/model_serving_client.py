@@ -11,13 +11,7 @@ class ModelServingClient:
         self.databricks_client = DatabricksHttpClient()
 
     def get_endpoint(self, endpoint_name):
-        try:
-            endpoint = self.databricks_client.get(f"serving-endpoints/{endpoint_name}")
-            return endpoint
-        except MlflowReportsException as e:
-            if e.http_status_code != 404:
-                raise e
-        return None
+        return self.databricks_client.get(f"serving-endpoints/{endpoint_name}")
 
     def list_endpoints(self):
         return self.databricks_client.get("serving-endpoints")
