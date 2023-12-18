@@ -4,7 +4,7 @@
 
 # COMMAND ----------
 
-# MAGIC %pip install -U mlflow[skinny]=>2.9.2
+# MAGIC %pip install -U mlflow[skinny]>=2.9.2
 # MAGIC dbutils.library.restartPython()
 
 # COMMAND ----------
