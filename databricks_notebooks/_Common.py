@@ -70,18 +70,22 @@ def get_columns(lst):
 
 from pyspark.sql.functions import *
 
-def adjust_timestamps(df):
+def adjust_timestamps(df, create_ts, update_ts):
     return df \
-        .withColumn("creation_timestamp",from_unixtime(col("creation_timestamp")/1000, "yyyy-MM-dd hh:mm:ss")) \
-        .withColumn("last_updated_timestamp",from_unixtime(col("last_updated_timestamp")/1000, "yyyy-MM-dd hh:mm:ss"))
+        .withColumn(create_ts,from_unixtime(col(create_ts)/1000, "yyyy-MM-dd hh:mm:ss")) \
+        .withColumn(update_ts,from_unixtime(col(update_ts)/1000, "yyyy-MM-dd hh:mm:ss"))
 
 # COMMAND ----------
 
-def to_dataframe(lst):
+def to_dataframe(lst, create_ts="creation_timestamp", update_ts="last_updated_timestamp"):
+    """ 
+    Default '_ts' arguments are for registered models and model versions. 
+    For experiments they are: 'creation_time' and 'last_update_time'. :(
+    """
     columns = get_columns(lst)
     print(f"Columns: {columns}")
     df = spark.read.json(sc.parallelize(lst)).select(columns)
-    return adjust_timestamps(df)
+    return adjust_timestamps(df, create_ts, update_ts)
 
 # COMMAND ----------
 
