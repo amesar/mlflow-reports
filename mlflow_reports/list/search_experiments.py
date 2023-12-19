@@ -11,7 +11,7 @@ from mlflow_reports.common import mlflow_utils
 from . import list_utils
 
 
-def search(filter=None, view_type="ACTIVE_ONLY", max_results=None, tags_and_aliases_as_string=False):
+def search(filter=None, view_type=None, max_results=None, tags_and_aliases_as_string=False):
     mlflow_client = get_mlflow_client()
     experiments = SearchExperimentsIterator(mlflow_client, filter=filter, view_type=view_type, max_results=max_results)
     experiments = list(experiments)
@@ -21,7 +21,7 @@ def search(filter=None, view_type="ACTIVE_ONLY", max_results=None, tags_and_alia
     return experiments
 
 
-def search_as_pandas_df(filter=None, view_type="ACTIVE", max_results=None, tags_and_aliases_as_string=False):
+def search_as_pandas_df(filter=None, view_type=None, max_results=None, tags_and_aliases_as_string=False):
     experiments =  search(filter, view_type, max_results, tags_and_aliases_as_string)
     if len(experiments) == 0:
         return pd.DataFrame()

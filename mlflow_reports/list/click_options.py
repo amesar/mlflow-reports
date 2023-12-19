@@ -93,8 +93,6 @@ def opt_view_type(function):
         help="Experiment view type: ACTIVE_ONLY|DELETED_ONLY|ALL.",
         type=str,
         default=None
-        #default="ACTIVE_ONLY",
-        #show_default=True
     )(function)
     return function
 
