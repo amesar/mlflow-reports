@@ -92,7 +92,16 @@ def opt_view_type(function):
     function = click.option("--view-type",
         help="Experiment view type: ACTIVE_ONLY|DELETED_ONLY|ALL.",
         type=str,
-        default="ACTIVE_ONLY",
-        show_default=True
+        default=None
+        #default="ACTIVE_ONLY",
+        #show_default=True
+    )(function)
+    return function
+
+def opt_max_results(function):
+    function = click.option("--max-results",
+        help="Max results for search query",
+        type=int,
+        default=None
     )(function)
     return function
