@@ -87,3 +87,12 @@ def opt_get_model_details(function):
         default=False
     )(function)
     return function
+
+def opt_view_type(function):
+    function = click.option("--view-type",
+        help="Experiment view type: ACTIVE|ALL|DELETED_ONLY.",
+        type=str,
+        default="ACTIVE",
+        show_default=True
+    )(function)
+    return function
