@@ -11,9 +11,9 @@ from mlflow_reports.common import mlflow_utils
 from . import list_utils
 
 
-def search(filter=None, view_type="ACTIVE_ONLY", tags_and_aliases_as_string=False):
+def search(filter=None, view_type="ACTIVE_ONLY", tags_and_aliases_as_string=False, max_results=1000):
     mlflow_client = get_mlflow_client()
-    experiments = SearchExperimentsIterator(mlflow_client, filter=filter, view_type=view_type, max_results=5000)
+    experiments = SearchExperimentsIterator(mlflow_client, filter=filter, view_type=view_type, max_results=max_results)
     experiments = list(experiments)
     print(f"Found {len(experiments)} experiments")
     for exp in experiments:
