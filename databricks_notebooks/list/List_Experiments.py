@@ -39,19 +39,19 @@ max_results = dbutils.widgets.get("3. Max results")
 max_results = int(max_results) if max_results else None
 
 print("filter:", filter)
-print("view_types:", view_type)
+print("view_type:", view_type)
 print("max_results:", max_results)
 
 # COMMAND ----------
 
 from mlflow_reports.list import search_experiments
 
-experiments = search_experiments.search(filter, view_type, max_results=max_results)
+experiments = search_experiments.search(filter, view_type, max_results)
 len(experiments)
 
 # COMMAND ----------
 
-# MAGIC %md ##### Show full sample experiment as JSON
+# MAGIC %md ##### Show sample API call result
 
 # COMMAND ----------
 
@@ -77,7 +77,7 @@ df.createOrReplaceTempView("experiments")
 
 # COMMAND ----------
 
-# MAGIC %md ##### Sort by latest `creation_timestamp`
+# MAGIC %md ##### Sort by latest `creation_timestamp` - all columns
 
 # COMMAND ----------
 
@@ -85,7 +85,7 @@ df.createOrReplaceTempView("experiments")
 
 # COMMAND ----------
 
-# MAGIC %md ##### Sort by latest `creation_timestamp`- nicer
+# MAGIC %md ##### Sort by latest `creation_timestamp`- select columns
 
 # COMMAND ----------
 
@@ -93,11 +93,7 @@ df.createOrReplaceTempView("experiments")
 
 # COMMAND ----------
 
-# MAGIC %md ##### Sort by latest `creation_timestamp` - Repo notebooks
-
-# COMMAND ----------
-
-# MAGIC %sql select name, creation_time, lifecycle_stage from experiments where name like '/Repos%' order by creation_time desc
+# MAGIC %md #### Repo notebook queries
 
 # COMMAND ----------
 
@@ -105,15 +101,35 @@ df.createOrReplaceTempView("experiments")
 
 # COMMAND ----------
 
-# MAGIC %sql select lifecycle_stage, count(*) as count from experiments 
+# MAGIC %sql 
+# MAGIC select lifecycle_stage, count(*) as count from experiments 
 # MAGIC group by lifecycle_stage order by count desc
 
 # COMMAND ----------
 
-# MAGIC %md ##### Show all deleted experiments
-# MAGIC * For use with `view_type = DELETED_ONLY`
+# MAGIC %md ##### Sort by latest `creation_timestamp` - Repo notebooks
 
 # COMMAND ----------
 
-# MAGIC %sql select experiment_id, name, creation_time, last_update_time from experiments 
-# MAGIC where lifecycle_stage='DELETED_ONLY' order by creation_time desc
+# MAGIC %sql
+# MAGIC select name, creation_time, lifecycle_stage from experiments 
+# MAGIC where name like '/Repos%' order by creation_time desc
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select name, creation_time, lifecycle_stage from experiments 
+# MAGIC where name like '/Repos/andre.mesar%' 
+# MAGIC order by creation_time desc
+
+# COMMAND ----------
+
+# MAGIC %md ##### Try to show deleted Repo experiments
+# MAGIC * Note: Apparently they're not tombstoned as 'deleted' in the MLflow database but live somewhere else.
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select name, creation_time from experiments 
+# MAGIC where name like '/Repos%' and lifecycle_stage <> 'active'
+# MAGIC order by creation_time desc
