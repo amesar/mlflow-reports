@@ -7,7 +7,7 @@
 # MAGIC * To create the database, see the [Create_MLflow_Database]($Create_MLflow_Database) notebook.
 # MAGIC
 # MAGIC ##### Widgets
-# MAGIC * `Database` - full path name such as `my_catalog.mlflow_uc` or `my_catalog.mlflow_ws`.
+# MAGIC * `Database` - full path name such as `andre_m.mlflow_uc` or `andre_m.mlflow_ws`.
 
 # COMMAND ----------
 

@@ -8,7 +8,7 @@
 # MAGIC * `versions`: All model verfsions by calling API endpoint `2.0/mlflow/model-versions/search`
 # MAGIC
 # MAGIC ##### Widgets
-# MAGIC * `Database` - full path name such as `my_catalog.mlflow_ws` or `my_catalog.mlflow_uc`.
+# MAGIC * `Database` - full path name such as `andre_m.mlflow_ws` or `andre_m.mlflow_uc`.
 
 # COMMAND ----------
 
@@ -23,7 +23,7 @@
 dbutils.widgets.text("1. Database", "")
 database_name = dbutils.widgets.get("1. Database")
 
-dbutils.widgets.dropdown("2. Unity Catalog", "no", ["yes", "no"])
+dbutils.widgets.dropdown("2. Unity Catalog", "yes", ["yes", "no"])
 unity_catalog = dbutils.widgets.get("2. Unity Catalog") == "yes"
 
 dbutils.widgets.dropdown("3. Get model tags and aliases", "yes", ["yes", "no"])
@@ -44,7 +44,7 @@ assert_widget(database_name, "1. Database")
 models_table = f"{database_name}.models"
 versions_table = f"{database_name}.versions"
 
-print("models_table:", models_table)
+print("models_table:  ", models_table)
 print("versions_table:", versions_table)
 
 # COMMAND ----------

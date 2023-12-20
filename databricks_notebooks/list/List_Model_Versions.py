@@ -55,7 +55,7 @@
 
 # COMMAND ----------
 
-dbutils.widgets.dropdown("1. Unity Catalog", "no", ["yes", "no"])
+dbutils.widgets.dropdown("1. Unity Catalog", "yes", ["yes", "no"])
 dbutils.widgets.text("2. Filter", "")
 dbutils.widgets.dropdown("3. Get MLflow model details", "no", ["yes", "no"])
 dbutils.widgets.dropdown("4. Get tags and aliases", "no", ["yes", "no"])

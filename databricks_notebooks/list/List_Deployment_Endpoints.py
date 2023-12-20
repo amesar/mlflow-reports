@@ -9,11 +9,15 @@
 
 # COMMAND ----------
 
+# MAGIC %md #### Setup
+
+# COMMAND ----------
+
 # MAGIC %run ../_Common
 
 # COMMAND ----------
 
-# MAGIC %md #### Create endpoints dataframe
+# MAGIC %md #### Create endpoints dataframe from API call
 
 # COMMAND ----------
 
@@ -41,19 +45,19 @@ df.createOrReplaceTempView("endpoints")
 
 # COMMAND ----------
 
+# MAGIC %md ##### Describe
+
+# COMMAND ----------
+
+# MAGIC %sql describe endpoints
+
+# COMMAND ----------
+
 # MAGIC %md ##### Summary
 
 # COMMAND ----------
 
-# MAGIC %sql select name, creator, creation_timestamp, endpoint_type from endpoints order by creation_timestamp desc
-
-# COMMAND ----------
-
-# MAGIC %md ##### Group by endpoint_type
-
-# COMMAND ----------
-
-# MAGIC %sql select endpoint_type, count(*) as count from endpoints group by endpoint_type order by count desc
+# MAGIC  %sql select name, creator, creation_timestamp from endpoints order by creation_timestamp desc
 
 # COMMAND ----------
 
