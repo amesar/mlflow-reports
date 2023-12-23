@@ -1,10 +1,10 @@
 {
   "model_version": {
-    "name": "andre_catalog.ml_models2.sklearn_wine_best",
+    "name": "andre.ml_models.sklearn_wine_best",
     "version": "4",
     "creation_timestamp": 1703291776610,
     "last_updated_timestamp": 1703292274182,
-    "user_id": "andre.mesarovic@databricks.com",
+    "user_id": "andre@mycompany.com",
     "description": "Latest and greatest",
     "source": "dbfs:/databricks/mlflow-tracking/2668333326915882/8217f29c1e5f4488a8fddaf9245d33bb/artifacts/model",
     "run_id": "8217f29c1e5f4488a8fddaf9245d33bb",
@@ -25,8 +25,8 @@
     "_is_unity_catalog": true,
     "_reg_model_download_uri": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/07ed8e06-e5d4-4015-85f7-3ac30b09a5d0/versions/e882ef11-67fa-40f1-8511-57e4f095782b",
     "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/2668333326915882/8217f29c1e5f4488a8fddaf9245d33bb/artifacts/model",
-    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre_catalog.ml_models2.sklearn_wine_best/version/4",
-    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=andre_catalog.ml_models2.sklearn_wine_best&version=4"
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models.sklearn_wine_best/version/4",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=andre.ml_models.sklearn_wine_best&version=4"
   },
   "mlflow_model": {
     "artifact_path": "model",
@@ -119,10 +119,10 @@
     "utc_time_created": "2023-12-23 00:36:07.296500"
   },
   "registered_model": {
-    "name": "andre_catalog.ml_models2.sklearn_wine_best",
+    "name": "andre.ml_models.sklearn_wine_best",
     "creation_timestamp": 1691761329476,
     "last_updated_timestamp": 1703291776612,
-    "user_id": "andre.mesarovic@databricks.com",
+    "user_id": "andre@mycompany.com",
     "description": "Best sklearn_wine registered model",
     "aliases": [
       {
@@ -144,8 +144,8 @@
     "_creation_timestamp": "2023-08-11 13:42:09",
     "_last_updated_timestamp": "2023-12-23 00:36:17",
     "_is_unity_catalog": true,
-    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre_catalog.ml_models2.sklearn_wine_best",
-    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=andre_catalog.ml_models2.sklearn_wine_best"
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models.sklearn_wine_best",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=andre.ml_models.sklearn_wine_best"
   },
   "run": {
     "run": {
@@ -162,7 +162,7 @@
         "_start_time": "2023-12-23 00:35:57",
         "_end_time": "2023-12-23 00:36:14",
         "_duration": 16.108,
-        "_experiment_name": "/Users/andre.mesarovic@databricks.com/experiments/best/Sklearn_Wine_repo_uc",
+        "_experiment_name": "/Users/andre@mycompany.com/experiments/best/Sklearn_Wine_repo_uc",
         "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/2668333326915882/runs/8217f29c1e5f4488a8fddaf9245d33bb",
         "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=8217f29c1e5f4488a8fddaf9245d33bb"
       },
@@ -189,7 +189,7 @@
         ],
         "tags": {
           "algorithm": "<class 'sklearn.tree._classes.DecisionTreeRegressor'>",
-          "data_source": "andre_catalog.ml_data.winequality_white",
+          "data_source": "andre.ml_data.winequality_white",
           "input_example": "True",
           "log_input": "True",
           "mlflow.databricks.cluster.id": "0414-154233-qm0df4rx",
@@ -223,9 +223,9 @@
           "mlflow.databricks.gitRepoUrl": "https://github.com/amesar/mlflow-examples",
           "mlflow.databricks.notebook.commandID": "2592290364334003787_8643412374301936402_cbb32cd22db3437d9b916ad459329c21",
           "mlflow.databricks.notebookID": 2520253095233459,
-          "mlflow.databricks.notebookPath": "/Repos/andre.mesarovic@databricks.com/mlflow-examples/databricks/notebooks/basic/Sklearn_Wine_UC",
+          "mlflow.databricks.notebookPath": "/Repos/andre@mycompany.com/mlflow-examples/databricks/notebooks/basic/Sklearn_Wine_UC",
           "mlflow.databricks.notebookRevisionID": 1703291773873,
-          "mlflow.databricks.webappURL": "https://oregon.cloud.databricks.com",
+          "mlflow.databricks.webappURL": "https://denali.staging.mycompany.com",
           "mlflow.databricks.workspaceID": 2556758628403379,
           "mlflow.databricks.workspaceURL": "e2-demo-west.cloud.databricks.com",
           "mlflow.log-model.history": [
@@ -321,9 +321,9 @@
             }
           ],
           "mlflow.runName": "white 2023-12-22",
-          "mlflow.source.name": "/Repos/andre.mesarovic@databricks.com/mlflow-examples/databricks/notebooks/basic/Sklearn_Wine_UC",
+          "mlflow.source.name": "/Repos/andre@mycompany.com/mlflow-examples/databricks/notebooks/basic/Sklearn_Wine_UC",
           "mlflow.source.type": "NOTEBOOK",
-          "mlflow.user": "andre.mesarovic@databricks.com",
+          "mlflow.user": "andre@mycompany.com",
           "run_name": "white 2023-12-22",
           "save_signature": "True",
           "sparkDatasourceInfo": [
@@ -354,7 +354,7 @@
               "digest": "4a361360",
               "source_type": "delta_table",
               "source": {
-                "delta_table_name": "andre_catalog.ml_data.winequality_white",
+                "delta_table_name": "andre.ml_data.winequality_white",
                 "is_databricks_uc_table": true
               },
               "schema": {
@@ -421,7 +421,7 @@
   "experiment": {
     "experiment": {
       "experiment_id": 2668333326915882,
-      "name": "/Users/andre.mesarovic@databricks.com/experiments/best/Sklearn_Wine_repo_uc",
+      "name": "/Users/andre@mycompany.com/experiments/best/Sklearn_Wine_repo_uc",
       "artifact_location": "dbfs:/databricks/mlflow-tracking/2668333326915882",
       "lifecycle_stage": "active",
       "last_update_time": 1703291757443,
@@ -430,8 +430,8 @@
         "mlflow.ownerId": 4566812440727830,
         "timestamp": "2023-12-23 00:32:41",
         "version_mlflow": "2.5.0",
-        "mlflow.experiment.sourceName": "/Users/andre.mesarovic@databricks.com/experiments/best/Sklearn_Wine_repo_uc",
-        "mlflow.ownerEmail": "andre.mesarovic@databricks.com",
+        "mlflow.experiment.sourceName": "/Users/andre@mycompany.com/experiments/best/Sklearn_Wine_repo_uc",
+        "mlflow.ownerEmail": "andre@mycompany.com",
         "mlflow.experimentType": "MLFLOW_EXPERIMENT"
       },
       "_creation_time": "2023-07-08 04:17:45",
@@ -459,8 +459,8 @@
           "object_type": "mlflowExperiment",
           "access_control_list": [
             {
-              "user_name": "andre.mesarovic@databricks.com",
-              "display_name": "Andre Mesarovic",
+              "user_name": "andre@mycompany.com",
+              "display_name": "Andre",
               "all_permissions": [
                 {
                   "permission_level": "CAN_MANAGE",
@@ -473,7 +473,7 @@
             },
             {
               "service_principal_name": "038455d4-e5ec-4544-b6cf-64d55b91fee1",
-              "display_name": "feifei-service-principal-e2-demo-west-ws-do-not-delete",
+              "display_name": "service-principal-e2-demo-west-ws-do-not-delete",
               "all_permissions": [
                 {
                   "permission_level": "CAN_MANAGE",
