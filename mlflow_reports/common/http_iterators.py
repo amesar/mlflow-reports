@@ -35,10 +35,11 @@ class BaseIterator():
         else:
             rsp = self.client.get(f"{self.resource}/search", params)
 
-        res = rsp
-        resource = self.resource.replace("-","_")
-        objects = res.get(resource,[])
-        next_page_token = res.get("next_page_token")
+        toks = self.resource.split("/") # account for FeatureTablesIterator resource/endpoint
+        resource = toks[-1]
+        resource = resource.replace("-","_")
+        objects = rsp.get(resource, [])
+        next_page_token = rsp.get("next_page_token")
         return PagedList(objects, next_page_token)
 
 
@@ -99,7 +100,7 @@ class SearchModelVersionsIterator(BaseIterator):
             print(vr)
     """
     def __init__(self, client, max_results=None, filter=None):
-        super().__init__(client,"model-versions", max_results=max_results, filter=filter)
+        super().__init__(client, "model-versions", max_results=max_results, filter=filter)
 
 
 class SearchRunsIterator(BaseIterator):
@@ -108,5 +109,13 @@ class SearchRunsIterator(BaseIterator):
         if isinstance(experiment_ids,str):
             experiment_ids = [ experiment_ids ]
         self.kwargs["experiment_ids"] = experiment_ids
-        if view_type: 
+        if view_type:
             self.kwargs["run_view_type"] = view_type
+
+
+class FeatureTablesIterator(BaseIterator):
+    """
+    Endpoint: api/2.0/feature-store/feature-tables/search
+    """
+    def __init__(self, client, max_results=None, filter=None):
+        super().__init__(client, "feature-store/feature-tables", max_results=max_results, filter=filter)
