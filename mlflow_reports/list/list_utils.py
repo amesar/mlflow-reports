@@ -5,7 +5,15 @@ from mlflow_reports.common.timestamp_utils import TS_FORMAT
 from mlflow_reports.common import object_utils
 
 
-def to_datetime(df, column, datetime_as_string=False):
+def to_datetime(df, column_or_columns, datetime_as_string=False):
+    if isinstance(column_or_columns, list):
+        for column in column_or_columns:
+            _to_datetime(df, column, datetime_as_string)
+    else: # expecting string
+        _to_datetime(df, column_or_columns, datetime_as_string)
+
+
+def _to_datetime(df, column, datetime_as_string=False):
     df[column] = pd.to_datetime(df[column]/1000, unit="s").dt.round("1s")
     if datetime_as_string:
         df[column] = df[column].dt.strftime(TS_FORMAT)
