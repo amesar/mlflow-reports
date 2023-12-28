@@ -3,8 +3,8 @@
 # MAGIC
 # MAGIC #####  Markdown Model report
 # MAGIC * [Detailed_Model_Report]($reports/Detailed_Model_Report) - full report for an MLflow model and its related objects
-# MAGIC   * Entry point: `models:/my_model/123`
 # MAGIC   * Related objects: Run, experiment, registered model, model version and MLflow model objects 
+# MAGIC   * Sample entry point: `models:/my_model/123`
 # MAGIC   * [Markdown and JSON samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/model_reports)
 # MAGIC
 # MAGIC #####  MLflow object dump notebooks.
