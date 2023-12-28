@@ -1,6 +1,6 @@
 """
 Get API JSON response for all feature tables.
-From undocumented Databricks endpoint api/2.0/feature-store/feature-tables/search.
+Call undocumented Databricks endpoint 'api/2.0/feature-store/feature-tables/search'.
 """
 
 from typing import Optional, List
@@ -16,7 +16,7 @@ from mlflow_reports.common.click_options import(
 
 client = FeatureStoreClient()
 
-def list(get_raw: bool) -> List:
+def list(get_raw: bool = False) -> List:
     tables = client.search()
     if get_raw:
         return tables
@@ -32,7 +32,7 @@ def list(get_raw: bool) -> List:
 @opt_output_file
 @opt_silent
 #def main(summary_view, get_details, get_raw, silent, output_file):
-def main(get_raw: bool, silent: bool, output_file: Optional[str]):
+def main(get_raw: bool, silent: bool, output_file: str):
     print("Options:")
     for k,v in locals().items():
         print(f"  {k}: {v}")

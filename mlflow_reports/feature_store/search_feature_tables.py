@@ -1,8 +1,8 @@
 """
-Search/list of all feature tables.
-From undocumented Databricks endpoint api/2.0/feature-store/feature-tables/search.
-Only returns feature tables created by "older" FeatureStoreClient.
-Note this does NOT return Unity Catalog feature tables created with new FeatureEngineeringClient.
+Search/list of all non-UC feature tables.
+Calls undocumented Databricks endpoint 'api/2.0/feature-store/feature-tables/search'.
+Only returns feature tables created by "older" non-UC FeatureStoreClient.
+Does not return Unity Catalog feature tables created with new FeatureEngineeringClient.
 """
 
 import numpy as np

@@ -1,6 +1,6 @@
 """
 Get API JSON response for one feature table.
-From undocumented Databricks endpoint api/2.0/feature-store/feature-tables/get/{table_name}.
+Call undocumented Databricks endpoint 'api/2.0/feature-store/feature-tables/get/{table_name}'.
 """
 
 from typing import Optional, Dict

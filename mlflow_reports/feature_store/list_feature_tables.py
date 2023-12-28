@@ -1,6 +1,6 @@
 """
 List feature tables.
-From undocumented Databricks endpoint api/2.0/feature-store/feature-tables/search.
+Calls undocumented Databricks endpoint 'api/2.0/feature-store/feature-tables/search'.
 """
 
 from typing import Optional, List
