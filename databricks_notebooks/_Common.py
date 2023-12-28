@@ -57,14 +57,15 @@ def activate_unity_catalog(model_name):
 # COMMAND ----------
 
 def get_columns(lst):
-    if len(lst) == 0:
-        return 0
-    mx, idx = 0, 0
-    for j,m in enumerate(lst): 
-        if len(m.keys()) > mx:
-            mx = len(m.keys())
-            idx = j
-    return list(lst[idx].keys())
+    """
+    Returns keys of the widest dict element in a list of dicts.
+    For example [{'name': 'foo'}, {'name': 'bar', 'id': 123}]) will return ['name', 'id'].
+    """
+    columns = []
+    for dct in lst:
+        if len(dct.keys()) > len(columns):
+            columns = dct.keys()
+    return list(columns)
 
 # COMMAND ----------
 
@@ -93,3 +94,11 @@ import os
 print("Versions:")
 print(f"  MLflow version: {mlflow.__version__}")
 print(f"  DBR version: {os.environ.get('DATABRICKS_RUNTIME_VERSION')}")
+
+# COMMAND ----------
+
+def move_column_to_first(df, column):
+    columns = list(df.columns)
+    columns.remove(column)
+    columns = [ column ] + columns 
+    return df[columns]
