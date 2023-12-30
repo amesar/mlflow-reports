@@ -1,7 +1,7 @@
 # Databricks notebook source
 # MAGIC %md ## Get Feature Tables
 # MAGIC * Get JSON API response for all feature tables.
-# MAGIC * Undocumented Databricks REST endpoint `api/2.0/feature-store/feature-tables/search`.
+# MAGIC * Calls undocumented Databricks REST endpoint `api/2.0/feature-store/feature-tables/search`.
 
 # COMMAND ----------
 

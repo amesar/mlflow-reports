@@ -27,7 +27,8 @@
 # MAGIC * [List_Gateway_Routes]($list/List_Gateway_Routes) - List and query AI Gateway routes (deprecated).
 # MAGIC
 # MAGIC ##### Feature store notebooks
-# MAGIC * [List_Feature_Tables]($list/List_Feature_Tables) - List and query feature tables (Pandas dataframe).
+# MAGIC * [List_Feature_Tables]($list/List_Feature_Tables) - List and query feature tables.
+# MAGIC   * [List_Feature_Tables_Pandas]($list/List_Feature_Tables_Pandas) - List and query feature tables (Pandas dataframe).
 # MAGIC * [Get_Feature_Tables]($list/Get_Feature_Tables) - Get JSON API response for feature tables.
 # MAGIC
 # MAGIC ##### MLflow MLmodel notebooks
@@ -48,4 +49,4 @@
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC Last updated: _2023-12-28_
+# MAGIC Last updated: _2023-12-30_
