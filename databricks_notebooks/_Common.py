@@ -23,6 +23,9 @@ def dump_as_json(dct, output_file=None, sort_keys=None):
         print(">> output_file:",output_file)
         with open(output_file, "w", encoding="utf-8") as f:
             f.write(content)
+def dump_obj(obj):
+    for k,v in obj.__dict__.items():
+        print(f"  {k}: {v}")
 
 # COMMAND ----------
 
@@ -102,3 +105,10 @@ def move_column_to_first(df, column):
     columns.remove(column)
     columns = [ column ] + columns 
     return df[columns]
+
+# COMMAND ----------
+
+context = dbutils.notebook.entry_point.getDbutils().notebook().getContext()
+_token = context.apiToken().get()
+_host_name = context.tags().get("browserHostName").get()
+_auth_headers = { "Authorization": f"Bearer {_token}" }

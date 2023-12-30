@@ -26,10 +26,13 @@
 # MAGIC * [List_Vector_Search_Endpoints]($list/List_Vector_Search_Endpoints) - List and query Vector Search endpoints.
 # MAGIC * [List_Gateway_Routes]($list/List_Gateway_Routes) - List and query AI Gateway routes (deprecated).
 # MAGIC
-# MAGIC ##### Feature store notebooks
-# MAGIC * [List_Feature_Tables]($feature_store/List_Feature_Tables) - List and query feature tables.
-# MAGIC   * [List_Feature_Tables_Pandas]($feature_store/List_Feature_Tables_Pandas) - List and query feature tables (Pandas dataframe).
-# MAGIC * [Get_Feature_Tables]($feature_store/Get_Feature_Tables) - Get JSON API response for feature tables.
+# MAGIC ##### Feature  notebooks
+# MAGIC * List feature tables
+# MAGIC   * [List_Feature_Tables]($feature_store/List_Feature_Tables) - List and query feature tables.
+# MAGIC     * [List_Feature_Tables_Pandas]($feature_store/List_Feature_Tables_Pandas) - List and query feature tables (Pandas dataframe).
+# MAGIC   * [Get_Feature_Tables]($feature_store/Get_Feature_Tables) - Get JSON API response for feature tables.
+# MAGIC * [Get_Feature_Table]($feature_store/Get_Feature_Table) - Get feature tables details.
+# MAGIC
 # MAGIC
 # MAGIC ##### MLflow MLmodel notebooks
 # MAGIC * [Download_MLmodel]($objects/Download_MLmodel) - Download and display a model version's MLmodel artifact.
