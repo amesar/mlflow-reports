@@ -27,9 +27,9 @@
 # MAGIC * [List_Gateway_Routes]($list/List_Gateway_Routes) - List and query AI Gateway routes (deprecated).
 # MAGIC
 # MAGIC ##### Feature store notebooks
-# MAGIC * [List_Feature_Tables]($list/List_Feature_Tables) - List and query feature tables.
-# MAGIC   * [List_Feature_Tables_Pandas]($list/List_Feature_Tables_Pandas) - List and query feature tables (Pandas dataframe).
-# MAGIC * [Get_Feature_Tables]($list/Get_Feature_Tables) - Get JSON API response for feature tables.
+# MAGIC * [List_Feature_Tables]($feature_store/List_Feature_Tables) - List and query feature tables.
+# MAGIC   * [List_Feature_Tables_Pandas]($feature_store/List_Feature_Tables_Pandas) - List and query feature tables (Pandas dataframe).
+# MAGIC * [Get_Feature_Tables]($feature_store/Get_Feature_Tables) - Get JSON API response for feature tables.
 # MAGIC
 # MAGIC ##### MLflow MLmodel notebooks
 # MAGIC * [Download_MLmodel]($objects/Download_MLmodel) - Download and display a model version's MLmodel artifact.
