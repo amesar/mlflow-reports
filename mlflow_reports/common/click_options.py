@@ -149,3 +149,11 @@ def opt_silent(function):
         show_default=True
     )(function)
     return function
+
+def opt_table(function):
+    function = click.option("--table",
+        help="Table name",
+        type=str,
+        required=True
+    )(function)
+    return function

@@ -9,11 +9,12 @@ import click
 from mlflow_reports.client.feature_store_client import FeatureStoreClient
 from mlflow_reports.data import data_utils
 from mlflow_reports.common.click_options import(
+    opt_table,
     opt_get_raw,
     opt_silent,
     opt_output_file
 )
-from . click_options import opt_table, opt_get_from_search
+from . click_options import opt_get_from_search
 
 client = FeatureStoreClient()
 
