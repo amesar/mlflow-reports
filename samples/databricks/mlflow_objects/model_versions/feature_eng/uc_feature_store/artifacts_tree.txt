@@ -1,0 +1,17 @@
+artifacts
+├── MLmodel
+├── conda.yaml
+├── data
+│   └── feature_store
+│       ├── feature_spec.yaml
+│       └── raw_model
+│           ├── MLmodel
+│           ├── conda.yaml
+│           ├── model.pkl
+│           ├── python_env.yaml
+│           └── requirements.txt
+├── python_env.yaml
+├── registered_model_meta
+└── requirements.txt
+
+4 directories, 11 files

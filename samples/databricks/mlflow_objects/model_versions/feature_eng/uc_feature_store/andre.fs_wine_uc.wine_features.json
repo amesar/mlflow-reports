@@ -1,0 +1,152 @@
+{
+  "catalog_name": "andre",
+  "columns": [
+    {
+      "name": "wine_id",
+      "nullable": false,
+      "position": 0,
+      "type_json": "{\"name\":\"wine_id\",\"type\":\"long\",\"nullable\":false,\"metadata\":{}}",
+      "type_name": "LONG",
+      "type_precision": 0,
+      "type_scale": 0,
+      "type_text": "bigint"
+    },
+    {
+      "name": "fixed_acidity",
+      "nullable": true,
+      "position": 1,
+      "type_json": "{\"name\":\"fixed_acidity\",\"type\":\"double\",\"nullable\":true,\"metadata\":{}}",
+      "type_name": "DOUBLE",
+      "type_precision": 0,
+      "type_scale": 0,
+      "type_text": "double"
+    },
+    {
+      "name": "volatile_acidity",
+      "nullable": true,
+      "position": 2,
+      "type_json": "{\"name\":\"volatile_acidity\",\"type\":\"double\",\"nullable\":true,\"metadata\":{}}",
+      "type_name": "DOUBLE",
+      "type_precision": 0,
+      "type_scale": 0,
+      "type_text": "double"
+    },
+    {
+      "name": "citric_acid",
+      "nullable": true,
+      "position": 3,
+      "type_json": "{\"name\":\"citric_acid\",\"type\":\"double\",\"nullable\":true,\"metadata\":{}}",
+      "type_name": "DOUBLE",
+      "type_precision": 0,
+      "type_scale": 0,
+      "type_text": "double"
+    },
+    {
+      "name": "residual_sugar",
+      "nullable": true,
+      "position": 4,
+      "type_json": "{\"name\":\"residual_sugar\",\"type\":\"double\",\"nullable\":true,\"metadata\":{}}",
+      "type_name": "DOUBLE",
+      "type_precision": 0,
+      "type_scale": 0,
+      "type_text": "double"
+    },
+    {
+      "name": "chlorides",
+      "nullable": true,
+      "position": 5,
+      "type_json": "{\"name\":\"chlorides\",\"type\":\"double\",\"nullable\":true,\"metadata\":{}}",
+      "type_name": "DOUBLE",
+      "type_precision": 0,
+      "type_scale": 0,
+      "type_text": "double"
+    },
+    {
+      "name": "free_sulfur_dioxide",
+      "nullable": true,
+      "position": 6,
+      "type_json": "{\"name\":\"free_sulfur_dioxide\",\"type\":\"double\",\"nullable\":true,\"metadata\":{}}",
+      "type_name": "DOUBLE",
+      "type_precision": 0,
+      "type_scale": 0,
+      "type_text": "double"
+    },
+    {
+      "name": "total_sulfur_dioxide",
+      "nullable": true,
+      "position": 7,
+      "type_json": "{\"name\":\"total_sulfur_dioxide\",\"type\":\"double\",\"nullable\":true,\"metadata\":{}}",
+      "type_name": "DOUBLE",
+      "type_precision": 0,
+      "type_scale": 0,
+      "type_text": "double"
+    },
+    {
+      "name": "density",
+      "nullable": true,
+      "position": 8,
+      "type_json": "{\"name\":\"density\",\"type\":\"double\",\"nullable\":true,\"metadata\":{}}",
+      "type_name": "DOUBLE",
+      "type_precision": 0,
+      "type_scale": 0,
+      "type_text": "double"
+    },
+    {
+      "name": "pH",
+      "nullable": true,
+      "position": 9,
+      "type_json": "{\"name\":\"pH\",\"type\":\"double\",\"nullable\":true,\"metadata\":{}}",
+      "type_name": "DOUBLE",
+      "type_precision": 0,
+      "type_scale": 0,
+      "type_text": "double"
+    },
+    {
+      "name": "sulphates",
+      "nullable": true,
+      "position": 10,
+      "type_json": "{\"name\":\"sulphates\",\"type\":\"double\",\"nullable\":true,\"metadata\":{}}",
+      "type_name": "DOUBLE",
+      "type_precision": 0,
+      "type_scale": 0,
+      "type_text": "double"
+    },
+    {
+      "name": "alcohol",
+      "nullable": true,
+      "position": 11,
+      "type_json": "{\"name\":\"alcohol\",\"type\":\"double\",\"nullable\":true,\"metadata\":{}}",
+      "type_name": "DOUBLE",
+      "type_precision": 0,
+      "type_scale": 0,
+      "type_text": "double"
+    }
+  ],
+  "comment": "id and features of all wine",
+  "created_at": 1703459121785,
+  "created_by": "andre@mycompany.com",
+  "data_access_configuration_id": "00000000-0000-0000-0000-000000000000",
+  "data_source_format": "DELTA",
+  "effective_predictive_optimization_flag": {
+    "inherited_from_name": "unity-catalog-demo",
+    "value": "ENABLE"
+  },
+  "enable_predictive_optimization": "INHERIT",
+  "full_name": "andre.fs_wine_uc.wine_features",
+  "metastore_id": "b169b504-4c54-49f2-bc3a-adf4b128f36d",
+  "name": "wine_features",
+  "owner": "andre@mycompany.com",
+  "properties": {
+    "delta.lastCommitTimestamp": "1703459123000",
+    "delta.lastUpdateVersion": "1",
+    "delta.minReaderVersion": "1",
+    "delta.minWriterVersion": "2"
+  },
+  "schema_name": "fs_wine_uc",
+  "storage_location": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/tables/c0293437-694f-4e77-84e7-6776285640fe",
+  "table_constraints": {},
+  "table_id": "c0293437-694f-4e77-84e7-6776285640fe",
+  "table_type": "MANAGED",
+  "updated_at": 1703459123832,
+  "updated_by": "andre@mycompany.com"
+}

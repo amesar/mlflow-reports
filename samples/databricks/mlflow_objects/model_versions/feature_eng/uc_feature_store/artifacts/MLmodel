@@ -1,0 +1,27 @@
+artifact_path: model
+databricks_runtime: 14.1.x-cpu-ml-scala2.12
+flavors:
+  python_function:
+    data: data/feature_store
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: databricks.feature_store.mlflow_model
+    python_version: 3.10.12
+mlflow_version: 2.9.2
+model_size_bytes: 124979
+model_uuid: c1611f5ecf5942d5a7f13a9027704780
+run_id: a217098b91764da685ceba2fce4e7428
+signature:
+  inputs: '[{"type": "long", "name": "wine_id"}, {"type": "double", "name": "real_time_measurement"},
+    {"type": "double", "name": "fixed_acidity", "optional": true}, {"type": "double",
+    "name": "volatile_acidity", "optional": true}, {"type": "double", "name": "citric_acid",
+    "optional": true}, {"type": "double", "name": "residual_sugar", "optional": true},
+    {"type": "double", "name": "chlorides", "optional": true}, {"type": "double",
+    "name": "free_sulfur_dioxide", "optional": true}, {"type": "double", "name": "total_sulfur_dioxide",
+    "optional": true}, {"type": "double", "name": "density", "optional": true}, {"type":
+    "double", "name": "pH", "optional": true}, {"type": "double", "name": "sulphates",
+    "optional": true}, {"type": "double", "name": "alcohol", "optional": true}]'
+  outputs: '[{"type": "integer", "name": "quality"}]'
+  params: null
+utc_time_created: '2023-12-25 02:18:19.997308'
