@@ -33,7 +33,6 @@
 # MAGIC   * [Get_Feature_Tables]($feature_store/Get_Feature_Tables) - Get JSON API response for feature tables.
 # MAGIC * [Get_Feature_Table]($feature_store/Get_Feature_Table) - Get feature tables details.
 # MAGIC
-# MAGIC
 # MAGIC ##### MLflow MLmodel notebooks
 # MAGIC * [Download_MLmodel]($objects/Download_MLmodel) - Download and display a model version's MLmodel artifact.
 # MAGIC * [Download_MLmodels]($objects/Download_MLmodels) - Download a list of MLmodel-s.
@@ -45,6 +44,10 @@
 # MAGIC * [Model_Version_Queries]($sql_analytics/Model_Version_Queries)
 # MAGIC * [Create_MLflow_Database]($sql_analytics/Create_MLflow_Database) - Create the `models` and `versions` tables.
 # MAGIC
+# MAGIC ##### Unit Catalog notebooks
+# MAGIC * [Get_Table]($unity_catalog/Get_Table) - get table details
+# MAGIC * [Get_Table_Lineage]($unity_catalog/Get_Table_Lineage) - get table details
+# MAGIC
 # MAGIC ##### Common helper utilities
 # MAGIC * [Common]($Common) - [_Common]($_Common)
 # MAGIC
@@ -52,4 +55,4 @@
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC Last updated: _2023-12-30_
+# MAGIC Last updated: _2024-01-01_

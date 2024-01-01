@@ -25,6 +25,7 @@
 # MAGIC
 # MAGIC ##### Sample tables
 # MAGIC   * andre_catalog.fs_wine_uc.wine_features - Created by FE client
+# MAGIC   * andre_catalog.fs_wine_uc.wine_tmp - Created with PK and without FE client
 # MAGIC   * andre_catalog.fs_wine.wine_features_ws - Created by FS client
 # MAGIC   * hive_metastore.andre_fs_wine.wine_features - Created by FS client
 # MAGIC     * andre_fs_wine.wine_features - Created by FS client
@@ -132,8 +133,11 @@ table
 
 # COMMAND ----------
 
-#dump_as_json(table.__dict__)
-dump_obj(table)
+try:
+    dump_as_json(table.__dict__)
+except Exception as e: # TypeError: Object of type Notebook is not JSON serializable
+    dump_obj(table)
+    print(f"\nERROR: {type(e).__name__}: {e}")
 
 # COMMAND ----------
 

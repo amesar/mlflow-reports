@@ -23,7 +23,9 @@ def dump_as_json(dct, output_file=None, sort_keys=None):
         print(">> output_file:",output_file)
         with open(output_file, "w", encoding="utf-8") as f:
             f.write(content)
-def dump_obj(obj):
+def dump_obj(obj, title=None):
+    title = title if title else type(obj).__name__
+    print(title)
     for k,v in obj.__dict__.items():
         print(f"  {k}: {v}")
 
@@ -108,7 +110,11 @@ def move_column_to_first(df, column):
 
 # COMMAND ----------
 
+import requests
+
 context = dbutils.notebook.entry_point.getDbutils().notebook().getContext()
 _token = context.apiToken().get()
 _host_name = context.tags().get("browserHostName").get()
 _auth_headers = { "Authorization": f"Bearer {_token}" }
+_base_api_uri = f"https://{_host_name}/api"
+print(f"Base API URI:", _base_api_uri)

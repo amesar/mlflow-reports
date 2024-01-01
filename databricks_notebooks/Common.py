@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %pip install git+https:///github.com/amesar/mlflow-reports/#egg=mlflow-reports
+!pip install git+https:///github.com/amesar/mlflow-reports/#egg=mlflow-reports
 
 # COMMAND ----------
 
@@ -14,6 +14,6 @@ def list_model_versions(max_versions=None):
     versions = []
     for m in SearchRegisteredModelsIterator(client):
         versions += list(SearchModelVersionsIterator(client, filter=f"name='{m.name}'"))
-        if len(versions) > max_versions:
+        if max_versions and len(versions) > max_versions:
             break
     return versions
