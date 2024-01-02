@@ -26,13 +26,6 @@
 # MAGIC * [List_Vector_Search_Endpoints]($list/List_Vector_Search_Endpoints) - List and query Vector Search endpoints.
 # MAGIC * [List_Gateway_Routes]($list/List_Gateway_Routes) - List and query AI Gateway routes (deprecated).
 # MAGIC
-# MAGIC ##### Feature  notebooks
-# MAGIC * List feature tables
-# MAGIC   * [List_Feature_Tables]($feature_store/List_Feature_Tables) - List and query feature tables.
-# MAGIC     * [List_Feature_Tables_Pandas]($feature_store/List_Feature_Tables_Pandas) - List and query feature tables (Pandas dataframe).
-# MAGIC   * [Get_Feature_Tables]($feature_store/Get_Feature_Tables) - Get JSON API response for feature tables.
-# MAGIC * [Get_Feature_Table]($feature_store/Get_Feature_Table) - Get feature tables details.
-# MAGIC
 # MAGIC ##### MLflow MLmodel notebooks
 # MAGIC * [Download_MLmodel]($objects/Download_MLmodel) - Download and display a model version's MLmodel artifact.
 # MAGIC * [Download_MLmodels]($objects/Download_MLmodels) - Download a list of MLmodel-s.
@@ -44,7 +37,17 @@
 # MAGIC * [Model_Version_Queries]($sql_analytics/Model_Version_Queries)
 # MAGIC * [Create_MLflow_Database]($sql_analytics/Create_MLflow_Database) - Create the `models` and `versions` tables.
 # MAGIC
-# MAGIC ##### Unit Catalog notebooks
+# MAGIC ##### Feature  table notebooks
+# MAGIC
+# MAGIC * List feature tables
+# MAGIC   * [List_Feature_Tables]($feature_store/List_Feature_Tables) - List and query feature tables.
+# MAGIC     * Only applies to non-UC features tables created with `FeatureStoreClient`. 
+# MAGIC       * Does not apply to UC tables created with `FeatureEngineeringClient`.
+# MAGIC     * [List_Feature_Tables_Pandas]($feature_store/List_Feature_Tables_Pandas) - List and query feature tables (Pandas dataframe).
+# MAGIC   * [Get_Feature_Tables]($feature_store/Get_Feature_Tables) - Get JSON API response for feature tables.
+# MAGIC * [Get_Feature_Table]($feature_store/Get_Feature_Table) - Get feature table details.
+# MAGIC
+# MAGIC ##### Uniyt Catalog notebooks
 # MAGIC * [Get_Table]($unity_catalog/Get_Table) - get table details
 # MAGIC * [Get_Table_Lineage]($unity_catalog/Get_Table_Lineage) - get table details
 # MAGIC
@@ -55,4 +58,4 @@
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC Last updated: _2024-01-01_
+# MAGIC Last updated: _2024-01-02_

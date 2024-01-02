@@ -46,23 +46,17 @@ print(f"table_name:", table_name)
 
 # COMMAND ----------
 
-import requests
-
-base_uri = f"https://{_host_name}/api"
-base_uri
-
-# COMMAND ----------
-
 # MAGIC %md #### REST API `api/2.0/feature-store/feature-tables/get`
 # MAGIC * Note: not documented in [Databricks REST API reference](https://docs.databricks.com/api/workspace/introduction)
 
 # COMMAND ----------
 
-uri = f"{base_uri}/2.0/feature-store/feature-tables/get"
+uri = f"{_base_api_uri}/2.0/feature-store/feature-tables/get"
 uri
 
 # COMMAND ----------
 
+import requests
 rsp = requests.get(uri, headers=_auth_headers, json={"name": table_name})
 dump_as_json(rsp.json())
 
@@ -146,7 +140,7 @@ except Exception as e: # TypeError: Object of type Notebook is not JSON serializ
 
 # COMMAND ----------
 
-uri = f"{base_uri}/2.1/unity-catalog/tables/{table_name}"
+uri = f"{_base_api_uri}/2.1/unity-catalog/tables/{table_name}"
 uri
 
 # COMMAND ----------
@@ -163,7 +157,7 @@ dump_as_json(rsp.json())
 
 # COMMAND ----------
 
-uri = f"{base_uri}/2.0/lineage-tracking/table-lineage"
+uri = f"{_base_api_uri}/2.0/lineage-tracking/table-lineage"
 uri
 
 # COMMAND ----------
