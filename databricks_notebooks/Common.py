@@ -1,5 +1,7 @@
 # Databricks notebook source
 !pip install git+https:///github.com/amesar/mlflow-reports/#egg=mlflow-reports
+!pip install mlflow[skinny]
+dbutils.library.restartPython()
 
 # COMMAND ----------
 
