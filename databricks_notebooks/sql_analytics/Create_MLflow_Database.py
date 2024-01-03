@@ -4,11 +4,11 @@
 # MAGIC ##### Overview
 # MAGIC
 # MAGIC Creates a database with two tables:
-# MAGIC * `models`: All registered models by calling API endpoint `2.0/mlflow/registered-models/search`
-# MAGIC * `versions`: All model verfsions by calling API endpoint `2.0/mlflow/model-versions/search`
+# MAGIC * `models`: All registered models from calling API endpoint `2.0/mlflow/registered-models/search`
+# MAGIC * `versions`: All model verfsions from calling API endpoint `2.0/mlflow/model-versions/search`
 # MAGIC
 # MAGIC ##### Widgets
-# MAGIC * `Database` - full path name such as `andre_m.mlflow_ws` or `andre_m.mlflow_uc`.
+# MAGIC * `Database` - full path name such as `andre_catalog.mlflow_uc` or `andre_catalog.mlflow_ws`.
 
 # COMMAND ----------
 
@@ -20,7 +20,7 @@
 
 # COMMAND ----------
 
-dbutils.widgets.text("1. Database", "")
+dbutils.widgets.text("1. Database", "andre_catalog.mlflow_uc")
 database_name = dbutils.widgets.get("1. Database")
 
 dbutils.widgets.dropdown("2. Unity Catalog", "yes", ["yes", "no"])
