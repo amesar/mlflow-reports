@@ -101,8 +101,17 @@ def main(registered_model,
     print("Options:")
     for k,v in locals().items():
         print(f"  {k}: {v}")
-    dct = get(registered_model, get_run, artifact_max_level,
-        get_versions, get_latest_versions, get_permissions, get_raw
+    #dct = get(registered_model, get_run, artifact_max_level,
+        #get_versions, get_latest_versions, get_permissions, get_raw
+    #)
+    dct = get(
+        model_name = registered_model,
+        get_run = get_run,
+        artifact_max_level = artifact_max_level,
+        get_versions = get_versions,
+        get_latest_versions = get_latest_versions,
+        get_permissions = get_permissions,
+        get_raw = get_raw,
     )
     data_utils.dump_object(dct, output_file, silent)
 
