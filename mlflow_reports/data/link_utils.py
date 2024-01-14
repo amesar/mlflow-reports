@@ -3,7 +3,7 @@ from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.common.mlflow_utils import is_unity_catalog_model
 
 
-http_client = get_mlflow_client()
+mlflow_client = get_mlflow_client()
 
 _workspace_host, _workspace_id = get_workspace_info_from_dbutils()
 
@@ -19,7 +19,7 @@ def add_run_links(run):
     run_id = info["run_id"]
     link = f"{_get_mlflow_ui_base()}/experiments/{experiment_id}/runs/{run_id}"
     run["info"][_UI_LINK_TAG] = link
-    link = f"{http_client.get_api_uri()}/runs/get?run_id={run_id}"
+    link = f"{mlflow_client.get_api_uri()}/runs/get?run_id={run_id}"
     run["info"][_API_LINK_TAG] = link
 
 
@@ -27,7 +27,7 @@ def add_experiment_links(exp):
     experiment_id = exp["experiment_id"]
     link = f"{_get_mlflow_ui_base()}/experiments/{experiment_id}"
     exp[_UI_LINK_TAG] = link
-    link = f"{http_client.get_api_uri()}/experiments/get?experiment_id={experiment_id}"
+    link = f"{mlflow_client.get_api_uri()}/experiments/get?experiment_id={experiment_id}"
     exp[_API_LINK_TAG] = link
 
 
@@ -64,7 +64,7 @@ def _mk_uc_links(dct, model_name, version=None):
     else:
         resource = "registered-models"
     qp = urlencode(params)
-    api_link = f"{http_client.get_api_uri()}/{uc_component}{resource}/get?{qp}"
+    api_link = f"{mlflow_client.get_api_uri()}/{uc_component}{resource}/get?{qp}"
 
     dct[_UI_LINK_TAG] = ui_link
     dct[_API_LINK_TAG] = api_link
@@ -72,13 +72,13 @@ def _mk_uc_links(dct, model_name, version=None):
 def _get_mlflow_ui_base():
     """
     OSS:        http://localhost:5020#
-    Databricks: https://e2-demo-west.cloud.databricks.com#mlflow 
+    Databricks: https://e2-demo-west.cloud.databricks.com#mlflow
     """
     mlflow_uri = _get_host_name()
     if _workspace_host: # inside Databricks, e.g. "https://c3-south.mist.databricks.com"
         mlflow_uri = f"{_workspace_host}#mlflow"
     else:
-        if not http_client.get_token(): # calling MLflow OSS tracking server
+        if not mlflow_client.get_token(): # calling MLflow OSS tracking server
             mlflow_uri += "#" # for open source
         else: # calling Databricks externally
             mlflow_uri += "#mlflow"
@@ -89,6 +89,6 @@ def _get_host_name():
     OSS:        http://localhost:5020
     Databricks: https://e2-demo-west.cloud.databricks.com
     """
-    client_uri = http_client.get_api_uri()
+    client_uri = mlflow_client.get_api_uri()
     idx = client_uri.find("/api/")
     return client_uri[0:idx]

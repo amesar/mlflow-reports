@@ -3,8 +3,8 @@ import mlflow
 from mlflow_reports.client.http_client import (
     is_unity_catalog,
     get_mlflow_client,
-    MlflowHttpClient,
-    UnityCatalogHttpClient
+    mlflow_client,
+    uc_mlflow_client
 )
 
 UC_VALUE = "databricks-uc"
@@ -33,18 +33,18 @@ def test_registry_uri_not_uc():
 def test_get_mlflow_client_MlflowHttpClient():
     _init()
     client = get_mlflow_client()
-    assert isinstance(client, MlflowHttpClient)
+    assert client == mlflow_client
 
 def test_get_mlflow_client_UnityCatalogHttpClient():
     _init()
     os.environ["MLFLOW_REGISTRY_URI"] = UC_VALUE
     client = get_mlflow_client()
-    assert isinstance(client, UnityCatalogHttpClient)
+    assert client == uc_mlflow_client
 
 
 def _init():
     os.environ.pop("MLFLOW_REGISTRY_URI",None)
-    mlflow.set_registry_uri("foo") 
+    mlflow.set_registry_uri("foo")
     env_var = os.environ.get("MLFLOW_REGISTRY_URI")
     api_val = mlflow.get_registry_uri()
     assert env_var != UC_VALUE

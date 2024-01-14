@@ -1,10 +1,9 @@
-from mlflow_reports.client.http_client import DatabricksHttpClient, HttpClient
+#from mlflow_reports.client.http_client import DatabricksHttpClient, HttpClient
+from mlflow_reports.client.http_client import dbx_20_client, dbx_21_client
 from mlflow_reports.common import MlflowReportsException
 from mlflow_reports.common.mlflow_utils import is_unity_catalog_model
 from mlflow_reports.common.mlflow_utils import is_calling_databricks
 from mlflow_reports.common import exception_utils
-
-dbx_client = DatabricksHttpClient()
 
 def add_experiment_permissions(experiment):
     if not is_calling_databricks():
@@ -17,7 +16,7 @@ def add_experiment_permissions(experiment):
 
 class UcPermissionsClient:
     def __init__(self):
-        self.client = HttpClient("api/2.1")
+        self.client = dbx_21_client
 
     def get_permissions(self, model_name):
         resource = f"unity-catalog/permissions/function/{model_name}"
@@ -58,7 +57,7 @@ def _add(obj, perm_levels, perms):
 
 def _call(resource, root=None):
     try:
-        return dbx_client.get(resource)
+        return dbx_20_client.get(resource)
 
     except MlflowReportsException as e:
 

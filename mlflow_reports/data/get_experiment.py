@@ -19,7 +19,7 @@ from mlflow_reports.common.click_options import(
 from mlflow_reports.data import data_utils, link_utils
 from mlflow_reports.data import enriched_tags
 
-http_client = get_mlflow_client()
+mlflow_client = get_mlflow_client()
 
 
 def get(
@@ -32,14 +32,14 @@ def get(
     exp = mlflow_utils.get_experiment(experiment_id_or_name)
     experiment_id = exp["experiment_id"]
 
-    rsp = http_client.get(f"experiments/get", { "experiment_id": experiment_id })
+    rsp = mlflow_client.get(f"experiments/get", { "experiment_id": experiment_id })
     if get_raw:
         return rsp
 
     experiment = rsp["experiment"]
     dct = { "experiment": experiment }
     if get_runs:
-        runs = SearchRunsIterator(http_client, [experiment_id])
+        runs = SearchRunsIterator(mlflow_client, [experiment_id])
         dct["runs"] = [ _get_run.enrich(run, artifact_max_level=artifact_max_level) for run in runs ]
     enrich(experiment, get_permissions)
 

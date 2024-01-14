@@ -55,7 +55,7 @@ def search_registered_models(client, filter=None, get_search_object_again=False)
     returned model since aliases and tags are not returned. This is much
     slower obviously especially for a large number of models. For 328 models,
     just the search takes 6 seconds and with the extra get call takes 178 seconds.
-    
+
     https://databricks.atlassian.net/browse/ES-834105
     UC-ML MLflow search_registered_models and search_model_versions do not return tags and aliases
     """
@@ -197,17 +197,16 @@ def has_error(dct):
 
 _is_calling_into_databricks = None
 
-def is_calling_databricks(dbx_client=None):
+def is_calling_databricks():
     """
     Are we calling Databricks MLflow? Check by making call to Databricks-specific API endpoint.
     """
-    from mlflow_reports.client.http_client import DatabricksHttpClient
+    from mlflow_reports.client.http_client import dbx_20_client
 
     global _is_calling_into_databricks
-    dbx_client = dbx_client or DatabricksHttpClient()
     if _is_calling_into_databricks is None:
         try:
-            dbx_client.get("workspace/get-status")
+            dbx_20_client.get("workspace/get-status")
             return False # Should never get here
         except MlflowReportsException as e:
             _is_calling_into_databricks =  e.http_status_code == 400

@@ -19,7 +19,7 @@ from mlflow_reports.data import get_run as _get_run
 from mlflow_reports.data import data_utils, link_utils
 from mlflow_reports.data import enriched_tags
 
-http_client = get_mlflow_client()
+mlflow_client = get_mlflow_client()
 
 
 def get(
@@ -37,7 +37,7 @@ def get(
     :param artifact_max_level: Number of artifact levels to recurse for run artifacts.
     :return: Returns model version object.
     """
-    rsp = http_client.get(f"model-versions/get", {"name": registered_model_name, "version": version} )
+    rsp = mlflow_client.get(f"model-versions/get", {"name": registered_model_name, "version": version} )
     if get_raw:
         return rsp
     vr = rsp["model_version"]
@@ -57,7 +57,7 @@ def enrich(vr):
     data_utils.mk_tags(vr)
     if mlflow_utils.is_calling_databricks() and not mlflow_utils.is_unity_catalog_model(vr["name"]):
         try:
-            rsp = http_client.get(f"transition-requests/list", {"name": vr['name'], "version": vr['version']} )
+            rsp = mlflow_client.get(f"transition-requests/list", {"name": vr['name'], "version": vr['version']} )
             requests = rsp["requests"] if rsp else []
             vr["_transition_requests"] = requests
         except MlflowReportsException as e:

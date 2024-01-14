@@ -3,14 +3,14 @@ Client for undocumented Databricks REST API for feature store.
 Base endpoint: api/2.0/feature-store/feature-tables.
 """
 
-from . http_client import DatabricksHttpClient
+from . http_client import dbx_20_client
 from mlflow_reports.common.http_iterators import FeatureTablesIterator
 
 
 class FeatureStoreClient:
 
     def __init__(self):
-        self.client = DatabricksHttpClient()
+        self.client = dbx_20_client
 
     def search(self):
         """

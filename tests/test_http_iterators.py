@@ -5,7 +5,7 @@ Test the MLflow HTTP object iterators (Run, Experiment, Registered Model and Mod
 from mlflow.entities import ViewType
 import mlflow
 
-from mlflow_reports.client.http_client import MlflowHttpClient
+from mlflow_reports.client.http_client import mlflow_client as http_client
 from mlflow_reports.common.http_iterators import (
     SearchExperimentsIterator,
     SearchRegisteredModelsIterator,
@@ -20,8 +20,7 @@ from . iterators_test_utils import (
     TEST_OBJECT_PREFIX
 )
 
-mlflow_client = mlflow.MlflowClient()
-http_client = MlflowHttpClient()
+mlflow_client = mlflow.MlflowClient() 
 
 
 # ==== Test SearchExperimentsIterator

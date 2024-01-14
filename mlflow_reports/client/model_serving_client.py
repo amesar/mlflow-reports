@@ -2,13 +2,13 @@
 
 import time
 from mlflow_reports.common import MlflowReportsException
-from . http_client import DatabricksHttpClient
+from . http_client import dbx_20_client
 
 
 class ModelServingClient:
 
     def __init__(self):
-        self.databricks_client = DatabricksHttpClient()
+        self.databricks_client = dbx_20_client
 
     def get_endpoint(self, endpoint_name):
         return self.databricks_client.get(f"serving-endpoints/{endpoint_name}")

@@ -71,7 +71,7 @@ class BaseHttpClient(metaclass=ABCMeta):
 
 
 class HttpClient(BaseHttpClient):
-    """ 
+    """
     Wrapper for HTTP calls for MLflow Databricks APIs.
     """
     def __init__(self, api_name, host=None, token=None):
@@ -81,7 +81,7 @@ class HttpClient(BaseHttpClient):
         :param token: Databricks token if using Databricks.
         """
         if host:
-            # Assume 'host' is a Databricks profile 
+            # Assume 'host' is a Databricks profile
             if not host.startswith("http"):
                 profile = host.replace("databricks://","")
                 (host, token) = databricks_cli_utils.get_host_token_for_profile(profile)
@@ -92,7 +92,7 @@ class HttpClient(BaseHttpClient):
             raise MlflowReportsException(message="MLflow tracking URI (MLFLOW_TRACKING_URI environment variable) is not configured correctly")
         self.api_uri = os.path.join(host, api_name)
         self.token = token
-        
+
 
     def _get(self, resource, params=None):
         uri = self._mk_uri(resource)
@@ -191,26 +191,10 @@ class HttpClient(BaseHttpClient):
         return self.api_uri
 
 
-class DatabricksHttpClient(HttpClient):
-    """
-    Databricks API client: api/2.0
-    """
-    def __init__(self, host=None, token=None):
-        super().__init__("api/2.0", host, token)
-
-
-class MlflowHttpClient(HttpClient):
-    """
-    MLflow API client: api/2.0
-    """
-    def __init__(self, host=None, token=None):
-        super().__init__("api/2.0/mlflow", host, token)
-
-
 class UnityCatalogHttpClient(BaseHttpClient):
     """
     Composite client that supports Databricks Unity Catalog API.
-    Contains two underlying clients: standard MLflow API client 'api/2.0/mlflow' 
+    Contains two underlying clients: standard MLflow API client 'api/2.0/mlflow'
     and UC client for calls to 'api/2.0/mlflow/unity-catalog'.
     """
     uc_resources = {
@@ -220,8 +204,8 @@ class UnityCatalogHttpClient(BaseHttpClient):
         "transition-requests"
         "comments"
     }
-    def __init__(self, mlflow_client=None, uc_client=None):
-        self._mlflow_client = mlflow_client or MlflowHttpClient()
+    def __init__(self, _mlflow_client=None, uc_client=None):
+        self._mlflow_client = _mlflow_client or mlflow_client
         self._uc_client = uc_client or HttpClient("api/2.0/mlflow/unity-catalog")
 
 
@@ -275,11 +259,16 @@ class UnityCatalogHttpClient(BaseHttpClient):
         return str(msg)
 
 
+dbx_20_client = HttpClient("api/2.0")
+dbx_21_client = HttpClient("api/2.1")
+mlflow_client = HttpClient("api/2.0/mlflow")
+uc_mlflow_client = UnityCatalogHttpClient()
+
 def get_mlflow_client():
     """
     Returns either a UC-enabled client or not, depending if MLFLOW_REGISTRY_URI is set to 'databricks-uc://e2_demo'
     """
-    return UnityCatalogHttpClient() if is_unity_catalog() else MlflowHttpClient() 
+    return uc_mlflow_client if is_unity_catalog() else mlflow_client
 
 
 def is_unity_catalog():
@@ -343,7 +332,7 @@ def main(api, resource, method, params, data, output_file):
         else:
             return params
 
-    client = DatabricksHttpClient() if api == "databricks" else MlflowHttpClient()
+    client = dbx_20_client if api == "databricks" else mlflow_client
     method = method.upper()
     if "GET" == method:
         if params:
