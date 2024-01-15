@@ -6,9 +6,10 @@ class BaseIterator():
     """
     Base class to iterate for 'search' methods that return PageList.
     """
-    def __init__(self, client, resource, max_results=None, filter=None, http_method=None):
+    def __init__(self, client, resource, object_name, max_results=None, filter=None, http_method="GET"):
         self.client = client
         self.resource = resource
+        self.object_name = object_name
         self.filter = filter
         self.idx = 0
         self.paged_list = None
@@ -26,19 +27,17 @@ class BaseIterator():
 
 
     def _invoke(self, token=None):
-        params = {}
         params = self.kwargs.copy()
         if token: params["page_token"] = token
 
-        if self.http_method and self.http_method.upper() == "POST": # NOTE!!: https://github.com/mlflow/mlflow/issues/7949
-            rsp = self.client.post(f"{self.resource}/search", params)
+        if self.http_method.upper() == "POST": # NOTE!!: https://github.com/mlflow/mlflow/issues/7949
+            rsp = self.client.post(self.resource, params)
         else:
-            rsp = self.client.get(f"{self.resource}/search", params)
+            rsp = self.client.get(self.resource, params)
 
-        toks = self.resource.split("/") # account for FeatureTablesIterator resource/endpoint
-        resource = toks[-1]
-        resource = resource.replace("-","_")
-        objects = rsp.get(resource, [])
+        # extract the list of objects from the root key of the response
+        objects = rsp.get(self.object_name, [])
+
         next_page_token = rsp.get("next_page_token")
         return PagedList(objects, next_page_token)
 
@@ -74,9 +73,8 @@ class SearchExperimentsIterator(BaseIterator):
         for experiment in experiments:
             print(experiment)
     """
-# TODO: max_results default required bug
     def __init__(self, client, view_type=None, max_results=None, filter=None):
-        super().__init__(client,"experiments", max_results=max_results, filter=filter)
+        super().__init__(client, "experiments/search", "experiments", max_results=max_results, filter=filter)
         if view_type:
             self.kwargs["view_type"] = view_type
 
@@ -89,7 +87,7 @@ class SearchRegisteredModelsIterator(BaseIterator):
             print(model)
     """
     def __init__(self, client, max_results=None, filter=None):
-        super().__init__(client,"registered-models", max_results=max_results, filter=filter)
+        super().__init__(client, "registered-models/search", "registered_models", max_results=max_results, filter=filter)
 
 
 class SearchModelVersionsIterator(BaseIterator):
@@ -100,12 +98,12 @@ class SearchModelVersionsIterator(BaseIterator):
             print(vr)
     """
     def __init__(self, client, max_results=None, filter=None):
-        super().__init__(client, "model-versions", max_results=max_results, filter=filter)
+        super().__init__(client, "model-versions/search", "model_versions", max_results=max_results, filter=filter)
 
 
 class SearchRunsIterator(BaseIterator):
     def __init__(self, client, experiment_ids, max_results=None, filter=None, view_type=None):
-        super().__init__(client, "runs", max_results=max_results, filter=filter, http_method="POST")
+        super().__init__(client, "runs/search", "runs", max_results=max_results, filter=filter, http_method="POST")
         if isinstance(experiment_ids,str):
             experiment_ids = [ experiment_ids ]
         self.kwargs["experiment_ids"] = experiment_ids
@@ -118,4 +116,4 @@ class FeatureTablesIterator(BaseIterator):
     Endpoint: api/2.0/feature-store/feature-tables/search
     """
     def __init__(self, client, max_results=None, filter=None):
-        super().__init__(client, "feature-store/feature-tables", max_results=max_results, filter=filter)
+        super().__init__(client, "feature-store/feature-tables/search", "feature_tables", max_results=max_results, filter=filter)
