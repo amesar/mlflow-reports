@@ -30,7 +30,9 @@ class BaseIterator():
         params = self.kwargs.copy()
         if token: params["page_token"] = token
 
-        if self.http_method.upper() == "POST": # NOTE!!: https://github.com/mlflow/mlflow/issues/7949
+        # NOTE: https://github.com/mlflow/mlflow/issues/7949
+        # Some search endpoints are GET and others are POST :(
+        if self.http_method.upper() == "POST": 
             rsp = self.client.post(self.resource, params)
         else:
             rsp = self.client.get(self.resource, params)
@@ -74,6 +76,10 @@ class SearchExperimentsIterator(BaseIterator):
             print(experiment)
     """
     def __init__(self, client, view_type=None, max_results=None, filter=None):
+        # NOTE: HACK because of https://github.com/mlflow/mlflow/issues/10819 - 2024-01-14
+        # For OSS MLflow, max_results is required for experiments but not for any other search endpoints (:
+        if not max_results:
+            max_results = 1000  # NOTE: mlflow uses 1000 as default value per mlflow/store/tracking/__init__.py:SEARCH_MAX_RESULTS_DEFAULT = 1000
         super().__init__(client, "experiments/search", "experiments", max_results=max_results, filter=filter)
         if view_type:
             self.kwargs["view_type"] = view_type
