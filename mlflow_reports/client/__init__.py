@@ -1,1 +1,1 @@
-USER_AGENT = "mlflow-tools/1.0.0"
+USER_AGENT = "mlflow-report/1.0.0"
