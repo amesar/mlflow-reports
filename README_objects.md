@@ -2,48 +2,50 @@
 
 ## Overview
 
-Python scripts and [Databricks notebooks](databricks_notebooks/README.md) 
-to display and list MLflow objects.
+Python scripts and [Databricks notebooks](databricks_notebooks/README.md) to display and list MLflow objects.
 
-Last updated: _2023-11-26_.
+Last updated: _2024-01-16_.
 
 ### Commands
 
-#### [MLflow model commands](#mlflow-model-commands)
+#### [Get MLflow object details](#get-mlflow-object-details)
+*  [get-run](#get-run) - get run
+*  [get-experiment](#get-experiment) - get experiment
+*  [get-model-version](#get-model-version) - gets model version
+*  [get-registered-model](#get-registered-model) - gets registered model
+
+
+#### [List objects](#list-mlflow-objects)
+*  [list-registered-models](#list-registered-models) - list registered models
+*  [list-model-versions](#list-model-versions) - list model versions
+*  [list-model-serving-endpoints](#list-model-serving-endpoints) - list model serving endpoints
+*  [list-deployment-endpoints](#list-deployment-endpoints) - list deployment endpoints
+  *  [list-gateway-routes](#list-gateway-routes) - list AI Gateway routes - deprecated as of MLflow 2.9.2
+*  [list_feature_tables](#list_feature_tables) - list feature tables (non-UC "Feature Store" instead of UC "Feature Engineering")
+
+#### MLflow model commands
 *  [get-mlflow-model](#get-mlflow-model) - returns the contents of an MLflow model's [MLmodel](samples/databricks/model_reports/credit_adjudication/MLmodel) artifact.
 *  [get-mlflow-model-wide](#get-mlflow-model-wide) - same as above plus  with all of the model's  related objects (run, experiment, model version and registered model).
 
-#### [MLflow object commands](#mlflow-object-commands)
-Get object:
-*  [get-run](#get-run) - returns a run
-*  [get-experiment](#get-experiment) - returns an experiment
-*  [get-model-version](#get-model-version) - returns a model version
-*  [get-registered-model](#get-registered-model) - returns a registered model
 
-List objects:
-*  [list-registered-models](#list-registered-models) - lists registered models
-*  [list-model-versions](#list-model-versions) - lists model versions
-*  [list-gateway-routes](#list-gateway-routes) - lists AI Gateway routes
-
-
-## MLflow Model Commands
+## Get MLflow Object Details
 
 ### Get MLflow Model
 
 Returns the contents of an MLflow model's MLmodel artifact.
 
-Sample: 
+Sample:
   * [mlflow_model.json](samples/databricks/mlflow_objects/mlflow_models/credit_adjudication.json)
   * [MLmodel](samples/databricks/model_reports/credit_adjudication/MLmodel)
 
 ##### Example
 ```
 get-mlflow-model \
-  --model-uri models:/credit_adjudication/3 
+  --model-uri models:/credit_adjudication/3
 ```
 
 ```
-{         
+{
   "mlflow_model": {
     "artifact_path": "model",
     "databricks_runtime": "12.2.x-cpu-ml-scala2.12",
@@ -63,8 +65,8 @@ get-mlflow-model \
         "pickled_model": "model.pkl",
         "serialization_format": "cloudpickle",
         "sklearn_version": "1.0.2"
-      }   
-    },  
+      }
+    },
 ```
 
 ##### Usage
@@ -82,18 +84,18 @@ Options:
   --output-file TEXT  JSON output file.
 ```
 
-### Get MLflow Model Wide 
+### Get MLflow Model Wide
 
 Returns the contents of an MLflow model's MLmodel artifact along with all its related objects (run, experiment, model version and registered model).
 
-Sample: 
+Sample:
   * [MLmodel](samples/databricks/model_reports/credit_adjudication/MLmodel)
   * [credit_adjudication.json](samples/databricks/model_reports/credit_adjudication/report.json)
 
 ##### Example
 ```
 get-mlflow-model \
-  --model-uri models:/credit_adjudication/3 
+  --model-uri models:/credit_adjudication/3
 ```
 
 ```
@@ -405,7 +407,7 @@ Options:
   --output-file TEXT             JSON output file.
 ```
 
-## List Objects
+## List MLflow Objects
 
 ### List Registered Models
 
@@ -482,7 +484,89 @@ Options:
 ```
 
 
+### List Model Serving Endpoints
+
+```
+list-model-serving-endpoints \
+  --columns name,endpoint_type,task,creator,creation_timestamp \
+  --output-csv-file endpoints.csv 
+```
+
+```
+| name                             | endpoint_type        | task               | creator                           | creation_timestamp   |
+|----------------------------------|----------------------|--------------------|-----------------------------------|----------------------|
+| embeddings_proxy_eo              |                      |                    | amelia.young-singer@mycompany.com | 2023-11-22 18:36:33  |
+| eo_rfp_rag                       |                      |                    | amelia.young-singer@mycompany.com | 2023-11-22 19:00:33  |
+| databricks-llama-2-70b-chat      | FOUNDATION_MODEL_API | llm/v1/chat        |                                   | 2023-11-10 09:53:20  |
+| databricks-mixtral-8x7b-instruct | FOUNDATION_MODEL_API | llm/v1/chat        |                                   | 2023-11-10 09:53:20  |
+| databricks-bge-large-en          | FOUNDATION_MODEL_API | llm/v1/embeddings  |                                   | 2023-11-10 09:53:20  |
+| databricks-mpt-30b-instruct      | FOUNDATION_MODEL_API | llm/v1/completions |                                   | 2023-11-10 09:53:20  |
+| databricks-mpt-7b-instruct       | FOUNDATION_MODEL_API | llm/v1/completions |                                   | 2023-11-10 09:53:20  |
+```
+
+```
+Options:
+  --columns TEXT          Columns to display. Comma delimited.
+  --output-csv-file TEXT  Output CSV file.
+  --help                  Show this message and exit.
+```
+
+### List Deployment Endpoints
+```
+list-deployment-endpoints \
+  --columns name,endpoint_type,task,creator,creation_timestamp \
+  --output-csv-file endpoints.csv 
+```
+
+```
+| name                             | endpoint_type        | task               | creator                           | creation_timestamp   |
+|----------------------------------|----------------------|--------------------|-----------------------------------|----------------------|
+| embeddings_proxy_eo              |                      |                    | amelia.young-singer@mycompany.com | 2023-11-22 18:36:33  |
+| eo_rfp_rag                       |                      |                    | amelia.young-singer@mycompany.com | 2023-11-22 19:00:33  |
+| databricks-llama-2-70b-chat      | FOUNDATION_MODEL_API | llm/v1/chat        |                                   | 2023-11-10 09:53:20  |
+| databricks-mixtral-8x7b-instruct | FOUNDATION_MODEL_API | llm/v1/chat        |                                   | 2023-11-10 09:53:20  |
+| databricks-bge-large-en          | FOUNDATION_MODEL_API | llm/v1/embeddings  |                                   | 2023-11-10 09:53:20  |
+| databricks-mpt-30b-instruct      | FOUNDATION_MODEL_API | llm/v1/completions |                                   | 2023-11-10 09:53:20  |
+| databricks-mpt-7b-instruct       | FOUNDATION_MODEL_API | llm/v1/completions |                                   | 2023-11-10 09:53:20  |
+```
+
+```
+Options:
+  --columns TEXT          Columns to display. Comma delimited.
+  --output-csv-file TEXT  Output CSV file.
+```
+
+### List Feature Store Tables
+
+List feature tables (non-UC "Feature Store" instead of UC "Feature Engineering").
+
+```
+list-feature-tables \
+  --columns name,primary_keys,features,creation_timestamp,creator_id
+```
+
+```
+| name                                                              | primary_keys                       | features                                                                                                                                                                               | creation_timestamp   | creator_id                  |
+|-------------------------------------------------------------------|------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|-----------------------------|
+| andre_fs_wine.wine_features                                       | ['wine_id']                        | ['alcohol', 'chlorides', 'citric_acid', 'density', 'fixed_acidity', 'free_sulfur_dioxide', 'pH', 'residual_sugar', 'sulphates', 'total_sulfur_dioxide', 'volatile_acidity', 'wine_id'] | 2023-11-16 11:22:54  | amelia.singer@mycompany.com |
+| andre_fs_wine.wine_static_features                                | ['wine_id']                        | ['chlorides', 'citric_acid', 'density', 'fixed_acidity', 'free_sulfur_dioxide', 'pH', 'residual_sugar', 'sulphates', 'total_sulfur_dioxide', 'volatile_acidity', 'wine_id']            | 2023-05-29 02:49:42  | amelia.singer@mycompany.com |
+| dbdemos_fs_travel_shared.destination_features_advanced            | ['destination_id']                 | ['destination_id', 'sum_clicks_7d', 'sum_impressions_7d', 'ts']                                                                                                                        | 2023-08-14 16:58:07  | amelia.singer@mycompany.com |
+| travel_recommendations_realtime.destination_availability_features | ['destination_id', 'booking_date'] | ['availability', 'booking_date', 'destination_id', 'event_ts', 'name', 'price']                                                                                                        | 2022-10-31 18:42:57  | samaim.amisam@mycompany.com |
+| travel_recommendations_realtime.destination_location_features     | ['destination_id']                 | ['destination_id', 'latitude', 'longitude', 'name']                                                                                                                                    | 2022-10-31 18:18:19  | samaim.amisam@mycompany.com |
+| travel_recommendations_realtime.destination_popularity_features   | ['destination_id']                 | ['destination_id', 'sum_clicks_7d', 'sum_impressions_7d', 'ts']                                                                                                                        | 2022-10-31 20:09:12  | samaim.amisam@mycompany.com |
+```
+
+```
+Options:
+  --columns TEXT          Columns to display. Comma delimited.
+  --output-csv-file TEXT  Output CSV file.
+```
+
+
+
 ### List Gateway Routes
+
+Deprecated as of MLflow 2.9.2.
 
 List Gateway routes.
 
@@ -491,7 +575,9 @@ See Databricks notebook [List_Gateway_Routes](databricks_notebooks/objects/List_
 ```
 export MLFLOW_GATEWAY_URI=databricks://v8-catfood
 list-gateway-routes
+```
 
+```
 +--------------------------------------+--------------------+--------------------------+--------------------------+
 | name                                 | route_type         | model_name               | model_provider           |
 +--------------------------------------+--------------------+--------------------------+--------------------------+
@@ -588,7 +674,8 @@ Options:
 | _web_ui_link            | Link to the web UI object                                      |
 | _api_link               | Link to the API object                                         |
 
-## Response format
+
+## JSON Response format
 
 The returned format is an "enriched" format of the original raw JSON response.
 Enhanced attribute details can be found in the [Enriched Objects](#enriched-objects) section at the end.
@@ -616,7 +703,7 @@ For example, the response for a run is:
       "_duration": 3.823,
       "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/bf024d57582f4c8cbf816151cc6e1bac/runs/76031d22c5464dd99431e426b939e800",
       "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=76031d22c5464dd99431e426b939e800"
-    },   
+    },
     }
   }
 }
