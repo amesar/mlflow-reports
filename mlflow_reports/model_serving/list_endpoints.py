@@ -23,7 +23,9 @@ def main(columns, output_csv_file):
     for k,v in locals().items():
         print(f"  {k}: {v}")
     df = create_pandas_df()
-    columns = None
+    print(f"Found {df.shape[0]} routes")
+    if isinstance(columns, str):
+        columns = columns.split(",")
     list_utils.show_and_write(df, columns, output_csv_file)
 
 if __name__ == "__main__":

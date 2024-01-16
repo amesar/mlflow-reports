@@ -7,8 +7,7 @@ from mlflow.deployments import get_deploy_client
 from mlflow_reports.list.click_options import opt_columns, opt_output_csv_file
 from mlflow_reports.list import list_utils
 
-
-def list():
+def create_pandas_df():
     client = get_deploy_client(os.environ.get("MLFLOW_TRACKING_URI"))
     endpoints = client.list_endpoints()
     df = pd.json_normalize(endpoints)
@@ -25,7 +24,7 @@ def main(columns, output_csv_file):
     print("Options:")
     for k,v in locals().items():
         print(f"  {k}: {v}")
-    df = list()
+    df = create_pandas_df()
     print(f"Found {df.shape[0]} routes")
     if isinstance(columns, str):
         columns = columns.split(",")
