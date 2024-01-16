@@ -1,3 +1,7 @@
+"""
+Iterators for search methods that handle page token magic.
+"""
+
 from mlflow.store.entities.paged_list import PagedList
 from mlflow_reports.common import MlflowReportsException
 
@@ -6,14 +10,14 @@ class BaseIterator():
     """
     Base class to iterate for 'search' methods that return PageList.
     """
-    def __init__(self, client, resource, object_name, max_results=None, filter=None, http_method="GET"):
+    def __init__(self, client, resource, object_name, max_results=None, filter=None, http_method="GET", kwargs=None):
         self.client = client
         self.resource = resource
         self.object_name = object_name
         self.filter = filter
         self.idx = 0
         self.paged_list = None
-        self.kwargs = {}
+        self.kwargs = kwargs or {}
         if filter: self.kwargs["filter"] = filter
         if max_results: self.kwargs["max_results"] = max_results
         self.http_method = http_method
@@ -32,7 +36,7 @@ class BaseIterator():
 
         # NOTE: https://github.com/mlflow/mlflow/issues/7949
         # Some search endpoints are GET and others are POST :(
-        if self.http_method.upper() == "POST": 
+        if self.http_method.upper() == "POST":
             rsp = self.client.post(self.resource, params)
         else:
             rsp = self.client.get(self.resource, params)
@@ -80,9 +84,8 @@ class SearchExperimentsIterator(BaseIterator):
         # For OSS MLflow, max_results is required for experiments but not for any other search endpoints (:
         if not max_results:
             max_results = 1000  # NOTE: mlflow uses 1000 as default value per mlflow/store/tracking/__init__.py:SEARCH_MAX_RESULTS_DEFAULT = 1000
-        super().__init__(client, "experiments/search", "experiments", max_results=max_results, filter=filter)
-        if view_type:
-            self.kwargs["view_type"] = view_type
+        kwargs = { "view_type": view_type } if view_type else {}
+        super().__init__(client, "experiments/search", "experiments", max_results=max_results, filter=filter, kwargs=kwargs)
 
 
 class SearchRegisteredModelsIterator(BaseIterator):
@@ -109,12 +112,13 @@ class SearchModelVersionsIterator(BaseIterator):
 
 class SearchRunsIterator(BaseIterator):
     def __init__(self, client, experiment_ids, max_results=None, filter=None, view_type=None):
-        super().__init__(client, "runs/search", "runs", max_results=max_results, filter=filter, http_method="POST")
         if isinstance(experiment_ids,str):
             experiment_ids = [ experiment_ids ]
-        self.kwargs["experiment_ids"] = experiment_ids
+        kwargs = { "experiment_ids": experiment_ids }
         if view_type:
-            self.kwargs["run_view_type"] = view_type
+            kwargs["run_view_type"] = view_type
+
+        super().__init__(client, "runs/search", "runs", max_results=max_results, filter=filter, http_method="POST", kwargs=kwargs)
 
 
 class FeatureTablesIterator(BaseIterator):
