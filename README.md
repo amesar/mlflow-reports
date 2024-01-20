@@ -111,17 +111,18 @@ list-registered-models \
 ```
 
 ```
-+----------------------------------|----------------------|--------------------|-----------------------------------|----------------------+
-| name                             | endpoint_type        | task               | creator                           | creation_timestamp   |
-+----------------------------------|----------------------|--------------------|-----------------------------------|----------------------+
-| embeddings_proxy_eo              |                      |                    | amelia.young-singer@mycompany.com | 2023-11-22 18:36:33  |
-| eo_rfp_rag                       |                      |                    | amelia.young-singer@mycompany.com | 2023-11-22 19:00:33  |
-| databricks-llama-2-70b-chat      | FOUNDATION_MODEL_API | llm/v1/chat        |                                   | 2023-11-10 09:53:20  |
-| databricks-mixtral-8x7b-instruct | FOUNDATION_MODEL_API | llm/v1/chat        |                                   | 2023-11-10 09:53:20  |
-| databricks-bge-large-en          | FOUNDATION_MODEL_API | llm/v1/embeddings  |                                   | 2023-11-10 09:53:20  |
-| databricks-mpt-30b-instruct      | FOUNDATION_MODEL_API | llm/v1/completions |                                   | 2023-11-10 09:53:20  |
-| databricks-mpt-7b-instruct       | FOUNDATION_MODEL_API | llm/v1/completions |                                   | 2023-11-10 09:53:20  |
-+----------------------------------|----------------------|--------------------|-----------------------------------|----------------------+
++-----------------------------------------+--------------------------+----------------------+
+| name                                    | user_id                  | creation_timestamp   |
++-----------------------------------------+--------------------------+----------------------+
+| andre.basic_models.copy_test            | sagarmatha@mycompany.com | 2023-10-09 20:48:51  |
+| andre.basic_models.mini_mlops_pipeline  | k2@mycompany.com         | 2023-10-06 06:14:27  |
+| andre.basic_models.xgboost_wine_best    | karakoram@mycompany.com  | 2023-08-16 05:34:57  |
+| andre.basic_models.sklearn_wine_champ   | denali@mycompany.com     | 2023-09-19 23:01:56  |
+| andre.basic_models.sklearn_wine_test_fs | chimborazo@mycompany.com | 2023-08-17 14:55:30  |
+| market.llm_models.mistral7b_instruct    | huascaran@mycompany.com  | 2023-08-16 06:38:53  |
+| market.llm_models.codellama-7b          | denali@mycompany.com     | 2023-08-11 14:38:18  |
++-----------------------------------------+--------------------------+----------------------+
+
 ```
 
-#### Last updated: 2024-01-15
+#### Last updated: 2024-01-20
