@@ -49,7 +49,7 @@
 # MAGIC
 # MAGIC ##### Uniyt Catalog notebooks
 # MAGIC * [Get_Table]($unity_catalog/Get_Table) - get table details
-# MAGIC * [Get_Table_Lineage]($unity_catalog/Get_Table_Lineage) - get table details
+# MAGIC * [Get_Table_Lineage]($unity_catalog/Get_Table_Lineage) - get table lineage
 # MAGIC
 # MAGIC ##### Common helper utilities
 # MAGIC * [Common]($Common) - [_Common]($_Common)
@@ -58,4 +58,4 @@
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC Last updated: _2024-01-02_
+# MAGIC Last updated: _2024-01-21_

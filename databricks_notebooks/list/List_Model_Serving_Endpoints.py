@@ -1,7 +1,6 @@
 # Databricks notebook source
 # MAGIC %md ## List and Query Model Serving Endpoints
-# MAGIC * https://docs.databricks.com/api/workspace/servingendpoints
-# MAGIC * [api/2.0/serving-endpoints](https://docs.databricks.com/api/workspace/servingendpoints/list)
+# MAGIC * /api/2.0/serving-endpoints - https://docs.databricks.com/api/workspace/servingendpoints
 
 # COMMAND ----------
 
@@ -38,11 +37,19 @@ df.createOrReplaceTempView("endpoints")
 
 # COMMAND ----------
 
-# MAGIC %md ##### Summary
+# MAGIC %md ##### Summary by creation_timestamp
 
 # COMMAND ----------
 
-# MAGIC %sql select name, creator, creation_timestamp from endpoints order by creation_timestamp desc
+# MAGIC %sql select name, creator, endpoint_type, creation_timestamp from endpoints order by creation_timestamp desc
+
+# COMMAND ----------
+
+# MAGIC %md ##### Summary by endpoint_type
+
+# COMMAND ----------
+
+# MAGIC %sql select name, creator, endpoint_type, creation_timestamp from endpoints order by endpoint_type
 
 # COMMAND ----------
 

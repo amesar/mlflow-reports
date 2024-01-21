@@ -62,14 +62,9 @@ def activate_unity_catalog(model_name):
 # COMMAND ----------
 
 def get_columns(lst):
-    """
-    Returns keys of the widest dict element in a list of dicts.
-    For example [{'name': 'foo'}, {'name': 'bar', 'id': 123}]) will return ['name', 'id'].
-    """
-    columns = []
+    columns = set()
     for dct in lst:
-        if len(dct.keys()) > len(columns):
-            columns = dct.keys()
+        columns = columns.union(dct.keys())
     return list(columns)
 
 # COMMAND ----------

@@ -1,11 +1,18 @@
 # Databricks notebook source
 # MAGIC %md ## List Deployment Server Endpoints
+# MAGIC * /api/2.0/endpoints
 # MAGIC * https://mlflow.org/docs/latest/llms/deployments/index.html
+# MAGIC * https://mlflow.org/docs/latest/llms/deployments/index.html#deployments-rest-api
 
 # COMMAND ----------
 
-# MAGIC %pip install -U mlflow[skinny]>=2.9.2
-# MAGIC dbutils.library.restartPython()
+!pip install -U mlflow_skinny
+dbutils.library.restartPython()
+
+# COMMAND ----------
+
+import mlflow
+mlflow.__version__
 
 # COMMAND ----------
 
@@ -53,11 +60,19 @@ df.createOrReplaceTempView("endpoints")
 
 # COMMAND ----------
 
-# MAGIC %md ##### Summary
+# MAGIC %md ##### Summary by creation_timestamp
 
 # COMMAND ----------
 
-# MAGIC  %sql select name, creator, creation_timestamp from endpoints order by creation_timestamp desc
+# MAGIC  %sql select name, creator, endpoint_type, creation_timestamp from endpoints order by creation_timestamp desc
+
+# COMMAND ----------
+
+# MAGIC %md ##### Summary by endpoint_type
+
+# COMMAND ----------
+
+# MAGIC  %sql select name, creator, endpoint_type, creation_timestamp from endpoints order by endpoint_type
 
 # COMMAND ----------
 

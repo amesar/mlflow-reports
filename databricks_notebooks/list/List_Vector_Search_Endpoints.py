@@ -1,12 +1,12 @@
 # Databricks notebook source
 # MAGIC %md ## List and Query Vector Search Endpoints
-# MAGIC
+# MAGIC * https://docs.databricks.com/en/generative-ai/vector-search.html
 # MAGIC * [Vector Search Public Preview API](https://docs.google.com/document/d/1czSOKwnHQG99cYdCk2NbX4dxbRYoDvoKNQdj2RevVL0/edit)
 
 # COMMAND ----------
 
-# MAGIC %pip install databricks-vectorsearch==0.22
-# MAGIC dbutils.library.restartPython() 
+!pip install databricks-vectorsearch
+dbutils.library.restartPython() 
 
 # COMMAND ----------
 
