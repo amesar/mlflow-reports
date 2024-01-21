@@ -58,3 +58,19 @@ df.createOrReplaceTempView("endpoints")
 # COMMAND ----------
 
 # MAGIC %sql select creator, count(*) as count from endpoints group by creator order by count desc
+
+# COMMAND ----------
+
+# MAGIC %md ##### Group by endpoint_type
+
+# COMMAND ----------
+
+# MAGIC %sql select endpoint_type, count(*) as count from endpoints group by endpoint_type order by count desc
+
+# COMMAND ----------
+
+# MAGIC %md ##### Group by task
+
+# COMMAND ----------
+
+# MAGIC %sql select task, count(*) as count from endpoints group by task order by count desc
