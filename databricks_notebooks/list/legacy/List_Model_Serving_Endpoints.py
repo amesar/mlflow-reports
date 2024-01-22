@@ -1,40 +1,25 @@
 # Databricks notebook source
-# MAGIC %md ## List Deployment Server Endpoints
-# MAGIC * /api/2.0/endpoints
-# MAGIC * https://mlflow.org/docs/latest/llms/deployments/index.html
-# MAGIC * https://mlflow.org/docs/latest/llms/deployments/index.html#deployments-rest-api
+# MAGIC %md ## List and Query Model Serving Endpoints
+# MAGIC * /api/2.0/serving-endpoints - https://docs.databricks.com/api/workspace/servingendpoints
 
 # COMMAND ----------
 
-!pip install -U mlflow_skinny
-dbutils.library.restartPython()
+# MAGIC %run ../../Common
 
 # COMMAND ----------
 
-import mlflow
-mlflow.__version__
+# MAGIC %md #### Create endpoints dataframe
 
 # COMMAND ----------
 
-# MAGIC %md #### Setup
+from mlflow_reports.client.model_serving_client import ModelServingClient
 
 # COMMAND ----------
 
-# MAGIC %run ../_Common
+client = ModelServingClient()
 
-# COMMAND ----------
-
-# MAGIC %md #### Create endpoints dataframe from API call
-
-# COMMAND ----------
-
-from mlflow.deployments import get_deploy_client
-client = get_deploy_client("databricks")
-client
-
-# COMMAND ----------
-
-endpoints = client.list_endpoints()
+rsp = client.list_endpoints()
+endpoints = rsp["endpoints"]
 len(endpoints)
 
 # COMMAND ----------
@@ -52,19 +37,11 @@ df.createOrReplaceTempView("endpoints")
 
 # COMMAND ----------
 
-# MAGIC %md ##### Describe
-
-# COMMAND ----------
-
-# MAGIC %sql describe endpoints
-
-# COMMAND ----------
-
 # MAGIC %md ##### Summary by creation_timestamp
 
 # COMMAND ----------
 
-# MAGIC  %sql select name, creator, endpoint_type, creation_timestamp from endpoints order by creation_timestamp desc
+# MAGIC %sql select name, creator, endpoint_type, creation_timestamp from endpoints order by creation_timestamp desc
 
 # COMMAND ----------
 
@@ -72,7 +49,7 @@ df.createOrReplaceTempView("endpoints")
 
 # COMMAND ----------
 
-# MAGIC  %sql select name, creator, endpoint_type, creation_timestamp from endpoints order by endpoint_type
+# MAGIC %sql select name, creator, endpoint_type, creation_timestamp from endpoints order by endpoint_type
 
 # COMMAND ----------
 
