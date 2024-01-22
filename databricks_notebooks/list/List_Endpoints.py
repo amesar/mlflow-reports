@@ -33,21 +33,25 @@
 
 # COMMAND ----------
 
-dbutils.widgets.widgets.removeAll()
-
-.dropdown("Endpoint client", "DatabricksDeploymentClient", 
-                         [ "DatabricksDeploymentClient", 
+dbutils.widgets.dropdown("1. Endpoint client", "DatabricksDeploymentClient", [
+                           "DatabricksDeploymentClient", 
                            "Direct call to api/2.0/serving-endpoints"])
+dbutils.widgets.dropdown("2. Show JSON", "no", ["yes","no"])
+dbutils.widgets.text("3. Save JSON as file", "")
 
-endpoint_client = dbutils.widgets.get("Endpoint client") 
+endpoint_client = dbutils.widgets.get("1. Endpoint client") 
 call_databricks_model_serving = endpoint_client != "DatabricksDeploymentClient"
+show_json = dbutils.widgets.get("2. Show JSON") == "yes"
+output_file = dbutils.widgets.get("3. Save JSON as file")
 
 print("endpoint_client:", endpoint_client)
 print("call_databricks_model_serving:", call_databricks_model_serving)
+print("show_json:", show_json)
+print("output_file:", output_file)
 
 # COMMAND ----------
 
-# MAGIC %md #### Create endpoints dataframe
+# MAGIC %md #### Get JSON response from API call
 
 # COMMAND ----------
 
@@ -57,9 +61,21 @@ client = get_endpoint_client(call_databricks_model_serving)
 # COMMAND ----------
 
 endpoints = client.list_endpoints()
-if isinstance(endpoints, dict): # NOTE: Databricks api/2.0/serving-endpoints returns dict and not list
+
+# NOTE: Databricks api/2.0/serving-endpoints returns dict and not list as DatabricksDeploymentClient does
+if isinstance(endpoints, dict): 
     endpoints = endpoints["endpoints"]
+    
 len(endpoints)
+
+# COMMAND ----------
+
+if output_file or show_json:
+    dump_as_json(endpoints, output_file, silent=not show_json)
+
+# COMMAND ----------
+
+# MAGIC %md #### Create endpoints dataframe
 
 # COMMAND ----------
 

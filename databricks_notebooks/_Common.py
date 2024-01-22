@@ -14,15 +14,17 @@ def mk_local_path(path):
 
 # COMMAND ----------
 
-def dump_as_json(dct, output_file=None, sort_keys=None):
+def dump_as_json(dct, output_file=None, silent=False, sort_keys=None):
     import json
     content = json.dumps(dct, sort_keys=sort_keys, indent=2)
-    print(content)
+    if not silent:
+        print(content)
     if output_file:
         output_file = mk_local_path(output_file)
-        print(">> output_file:",output_file)
+        print("output_file:",output_file)
         with open(output_file, "w", encoding="utf-8") as f:
             f.write(content)
+
 def dump_obj(obj, title=None):
     title = title if title else type(obj).__name__
     print(title)
