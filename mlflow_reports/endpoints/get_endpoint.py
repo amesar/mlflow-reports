@@ -1,3 +1,7 @@
+"""
+Return the JSON response for one endpoint.
+"""
+
 import click
 
 from mlflow_reports.data import data_utils

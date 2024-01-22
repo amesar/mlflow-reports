@@ -1,3 +1,7 @@
+"""
+Create and show a Pandas dataframe and text table fromt the JSON response for all endpoints.
+"""
+
 import click
 import pandas as pd
 

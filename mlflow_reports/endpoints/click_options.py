@@ -1,4 +1,3 @@
-
 import click
 
 def opt_endpoint(function):
@@ -6,14 +5,6 @@ def opt_endpoint(function):
         help="Model serving endpoint name.",
         type=str,
         required=False
-    )(function)
-    return function
-
-def opt_get_details(function):
-    function = click.option("--get-details",
-        help="Get details",
-        type=bool,
-        default=False
     )(function)
     return function
 
@@ -27,7 +18,7 @@ def opt_sort(function):
 
 def opt_call_databricks_model_serving(function):
     function = click.option("--call-databricks-model-serving",
-        help="Call Databricks 'api/2.0/serving-endpoints' resource eirectly instead of using DatabricksDeploymentClient",
+        help="Call Databricks 'api/2.0/serving-endpoints' resource directly instead of using mlflow.deployments.get_deploy_client",
         type=bool,
         default=False
     )(function)
