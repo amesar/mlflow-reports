@@ -21,10 +21,8 @@
 # MAGIC * [List_Experiments]($list/List_Experiments) - List and query experiments.
 # MAGIC
 # MAGIC ##### List endpoints notebooks
-# MAGIC * [List_Model_Serving_Endpoints]($list/List_Model_Serving_Endpoints) - List and query model serving endpoints.
-# MAGIC * [List_Deployment_Endpoints]($list/List_Deployment_Endpoints) - List and query deployment endpoints.
+# MAGIC * [List_Endpoints]($list/List_Model_Endpoints) - List and query model serving endpoints aka MLflow deployment endpoints.
 # MAGIC * [List_Vector_Search_Endpoints]($list/List_Vector_Search_Endpoints) - List and query Vector Search endpoints.
-# MAGIC * [List_Gateway_Routes]($list/List_Gateway_Routes) - List and query AI Gateway routes (deprecated).
 # MAGIC
 # MAGIC ##### MLflow MLmodel notebooks
 # MAGIC * [Download_MLmodel]($objects/Download_MLmodel) - Download and display a model version's MLmodel artifact.
@@ -53,6 +51,12 @@
 # MAGIC
 # MAGIC ##### Common helper utilities
 # MAGIC * [Common]($Common) - [_Common]($_Common)
+# MAGIC
+# MAGIC ##### Legacy
+# MAGIC
+# MAGIC * [List_Model_Serving_Endpoints]($list/List_Model_Serving_Endpoints) - List and query model serving endpoints.
+# MAGIC * [List_Deployment_Endpoints]($list/List_Deployment_Endpoints) - List and query deployment endpoints.
+# MAGIC * [List_Gateway_Routes]($list/List_Gateway_Routes) - List and query AI Gateway routes (deprecated).
 # MAGIC
 # MAGIC ##### Git Repo
 # MAGIC * https://github.com/amesar/mlflow-reports
