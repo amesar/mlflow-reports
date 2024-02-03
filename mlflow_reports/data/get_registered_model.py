@@ -35,16 +35,15 @@ def get(
 
     reg_model = mlflow_utils.get_registered_model(model_name, get_permissions)
     dct = { "registered_model": reg_model }
-    if get_versions:
-        dct["versions"] = enrich(reg_model, get_permissions)
-        if get_run:
-            _get_runs(dct, artifact_max_level)
+    dct["versions"] = enrich(reg_model, get_permissions, get_versions)
+    if get_run:
+        _get_runs(dct, artifact_max_level)
     if not get_latest_versions:
         reg_model.pop("latest_versions", None)
     return dct
 
 
-def enrich(reg_model, get_permissions=False, enrich_versions=False):
+def enrich(reg_model, get_permissions=False, get_versions=False, enrich_versions=False):
     model_name = reg_model["name"]
     reg_model["tags"] = mlflow_utils.mk_tags_dict(reg_model.get("tags"))
     data_utils.adjust_ts(reg_model, [ "creation_timestamp", "last_updated_timestamp" ])
@@ -52,16 +51,19 @@ def enrich(reg_model, get_permissions=False, enrich_versions=False):
     link_utils.add_registered_model_links(reg_model)
 
     # get all versions
-    filter = f"name = '{model_name}'"
-    versions = SearchModelVersionsIterator(mlflow_client, filter=filter)
-    versions = list(versions)
-    if enrich_versions:
-        for vr in versions:
-            get_model_version.enrich(vr)
+    if get_versions:
+        filter = f"name = '{model_name}'"
+        versions = SearchModelVersionsIterator(mlflow_client, filter=filter)
+        versions = list(versions)
+        if enrich_versions:
+            for vr in versions:
+                get_model_version.enrich(vr)
 
-    if not mlflow_utils.is_unity_catalog_model(model_name):
-        for vr in reg_model.get("latest_versions",[]):
-            get_model_version.enrich(vr)
+        if not mlflow_utils.is_unity_catalog_model(model_name):
+            for vr in reg_model.get("latest_versions",[]):
+                get_model_version.enrich(vr)
+    else:
+        versions = []
     if get_permissions and mlflow_utils.is_calling_databricks():
         permissions_utils.add_model_permissions(reg_model)
     return versions
@@ -101,9 +103,6 @@ def main(registered_model,
     print("Options:")
     for k,v in locals().items():
         print(f"  {k}: {v}")
-    #dct = get(registered_model, get_run, artifact_max_level,
-        #get_versions, get_latest_versions, get_permissions, get_raw
-    #)
     dct = get(
         model_name = registered_model,
         get_run = get_run,
