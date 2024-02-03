@@ -21,7 +21,7 @@ def _to_datetime(df, column, datetime_as_string=False):
 
 def show_and_write(df, columns=None, csv_file=None):
     """
-    Display dataframe to stdout and write to file.
+    Display Pandas dataframe to stdout and writes to file.
     """
     if df.empty:
         print(f"WARNING: no search results")

@@ -1,9 +1,13 @@
 import json
 import yaml
+import pandas as pd
+from mlflow_reports.data import data_utils
+from mlflow_reports.list import list_utils
+
 
 # Fix for PyYaml bug where yaml.safe_load() automatically converts to datetime-like fields to Python datetime
 yaml.constructor.SafeConstructor.yaml_constructors[
-    "tag:yaml.org,2002:timestamp"] = yaml.constructor.SafeConstructor.yaml_constructors[u"tag:yaml.org,2002:str"
+    "tag:yaml.org,2002:timestamp"] = yaml.constructor.SafeConstructor.yaml_constructors["tag:yaml.org,2002:str"
 ]
 
 def mk_local_path(path):
@@ -44,3 +48,20 @@ def read_file(path, file_type=None):
             return yaml.safe_load(f)
         else:
             return f.read()
+
+
+def write_csv_and_json_files(output_file_base, lst_of_dicts, columns, ts_columns):
+    """
+    Write a list of dicts in JSON format and its Pandas dataframe in CSV format.
+    File base for JSON and CSV output files. For example, 'out' will result in 'out.csv' and 'out.json.
+    Write to JSON, YAML or text file.
+    :param output_file_base: File base for JSON and CSV output files. For example, 'out' will result in 'out.csv' and 'out.json.
+    :param lst_of_dicts: List of dicts
+    :param df: Pandas dataframe
+    :param columns: Dataframe columns to write
+    :param columns: Dataframe timestamp columns to convert from millis to human friendly format
+    """
+    df = pd.json_normalize(lst_of_dicts)
+    list_utils.to_datetime(df, ts_columns)
+    list_utils.show_and_write(df, columns, f"{output_file_base}.csv")
+    data_utils.dump_object(lst_of_dicts, f"{output_file_base}.json", silent=True)

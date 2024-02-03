@@ -43,6 +43,7 @@ setup(
             "list-model-versions = mlflow_reports.list.list_model_versions:main",
             "list-model-serving-endpoints = mlflow_reports.model_serving.list_endpoints:main",
             "list-deployment-endpoints = mlflow_reports.deployments.list_endpoints:main",
+            "list-vector-search-endpoints = mlflow_reports.search_search.list_endpoints:main",
             "list-feature-tables = mlflow_reports.feature_store.list_feature_tables:main",
             "list-gateway-routes = mlflow_reports.list.list_gateway_routes:main"
         ]
