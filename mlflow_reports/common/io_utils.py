@@ -50,7 +50,7 @@ def read_file(path, file_type=None):
             return f.read()
 
 
-def write_csv_and_json_files(output_file_base, lst_of_dicts, columns, ts_columns):
+def write_csv_and_json_files(output_file_base, lst_of_dicts, columns=None, ts_columns=None):
     """
     Write a list of dicts in JSON format and its Pandas dataframe in CSV format.
     File base for JSON and CSV output files. For example, 'out' will result in 'out.csv' and 'out.json.
