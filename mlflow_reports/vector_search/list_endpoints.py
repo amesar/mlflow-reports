@@ -2,7 +2,7 @@ import click
 from mlflow_reports.common.click_options import opt_output_file_base
 from mlflow_reports.list.click_options import opt_columns
 from mlflow_reports.common import io_utils
-from . client import get_VectorSearchClient
+from . import get_VectorSearchClient
 
 client = get_VectorSearchClient()
 
