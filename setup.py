@@ -18,6 +18,7 @@ setup(
     zip_safe=False,
     install_requires=[
         "mlflow-skinny>=2.8.1",
+        "databricks-vectorsearch",
         "pandas>=2.0.3",
         "mdutils",
         "wheel"
