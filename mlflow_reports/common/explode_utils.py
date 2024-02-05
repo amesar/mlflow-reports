@@ -62,13 +62,13 @@ def explode_json(obj):
 
 
 def main(path):
-    from mlflow_tools.common import object_utils
+    from mlflow_tools.common import dump_utils
     print("path:",path)
     with open(path, "r", encoding="utf-8") as f:
         dct = json.load(f)
     explode_json(dct)
-    object_utils.write_dict_as_json(dct, "out.json")
-    object_utils.dump_dict_as_json(dct)
+    dump_utils.write_dict_as_json(dct, "out.json")
+    dump_utils.dump_dict_as_json(dct)
     print("path:",path)
 
 

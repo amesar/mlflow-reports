@@ -1,4 +1,6 @@
+
 # https://mlflow.org/docs/latest/python_api/mlflow.gateway.html
+# MLflow AI gateway is deprecated and has been replaced by the deployments API for generative AI. See MLflow AI Gateway Migration Guide for migration.
 
 import pandas as pd
 import click

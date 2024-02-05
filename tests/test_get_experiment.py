@@ -4,7 +4,7 @@ from mlflow_reports.data import get_experiment
 
 from . utils_test import create_experiment, create_run, assert_enriched_tags
 from . import test_get_run
-from mlflow_reports.common.object_utils import dump_as_json
+from mlflow_reports.common.dump_utils import dump_as_json
 
 
 # == 

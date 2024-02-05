@@ -3,7 +3,7 @@ from mlflow_reports.common import MlflowReportsException
 from mlflow_reports.data import get_registered_model
 from . utils_test import create_registered_model
 from . utils_test import assert_enriched_tags
-from mlflow_reports.common.object_utils import dump_as_json
+from mlflow_reports.common.dump_utils import dump_as_json
 
 client = mlflow.MlflowClient()
 

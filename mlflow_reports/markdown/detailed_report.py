@@ -3,7 +3,7 @@ import copy
 from mdutils.mdutils import MdUtils
 
 from mlflow_reports.mlflow_model import mlflow_model_manager as model_manager
-from mlflow_reports.common import mlflow_utils, io_utils, timestamp_utils, object_utils
+from mlflow_reports.common import mlflow_utils, io_utils, timestamp_utils, dump_utils
 from mlflow_reports.common.click_options import(
     opt_model_uri,
     opt_output_file,
@@ -203,7 +203,7 @@ def _build_run(rf, run):
     rf.card.new_header(level=1, title="Run")
 
     if "error" in run:
-        msg = object_utils.json_to_dict(run.get("error"))
+        msg = dump_utils.json_to_dict(run.get("error"))
         rf.wf.mk_list_as_table(msg, title=rf.wf.mk_red("Error"), level=2)
         return
 

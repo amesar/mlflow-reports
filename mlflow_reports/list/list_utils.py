@@ -2,7 +2,7 @@ import pandas as pd
 from tabulate import tabulate
 
 from mlflow_reports.common.timestamp_utils import TS_FORMAT
-from mlflow_reports.common import object_utils
+from mlflow_reports.common import dump_utils
 
 
 def to_datetime(df, column_or_columns, datetime_as_string=False):
@@ -47,5 +47,5 @@ def kv_list_to_dict(model_or_version, key, func, tags_and_aliases_as_string):
         model_or_version[key] = func(kv_list)
         dct = func(kv_list)
         if tags_and_aliases_as_string:
-            dct = object_utils.dict_to_json(dct)
+            dct = dump_utils.dict_to_json(dct)
         model_or_version[key] = dct

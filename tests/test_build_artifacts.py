@@ -2,7 +2,7 @@ from tempfile import NamedTemporaryFile
 import mlflow
 
 from mlflow_reports.common.mlflow_utils import build_artifacts
-#from mlflow_reports.common.object_utils import dump_as_json
+#from mlflow_reports.common.dump_utils import dump_as_json
 from . utils_test import create_experiment
 
 
