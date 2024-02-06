@@ -3,57 +3,58 @@ Create and show a Pandas dataframe and text table fromt the JSON response for al
 """
 
 import click
-import pandas as pd
-
-from mlflow_reports.common import MlflowReportsException
-from mlflow_reports.list.click_options import opt_columns, opt_output_csv_file
-from mlflow_reports.list import list_utils
-from . click_options import opt_call_databricks_model_serving
-from . import get_endpoint_client
 
 from mlflow.deployments.mlflow import MlflowDeploymentClient
 from mlflow.deployments.databricks import DatabricksDeploymentClient
 
+from mlflow_reports.client.model_serving_client import ModelServingClient
+from mlflow_reports.common import MlflowReportsException
+from mlflow_reports.common.click_options import opt_output_file_base
+from mlflow_reports.common import io_utils
+from mlflow_reports.list.click_options import opt_columns
+from . click_options import opt_call_databricks_model_serving
+from . import get_endpoint_client
 
-def create_pandas_df(call_databricks_model_serving=False):
+
+def list_endpoints(columns, output_file_base, call_databricks_model_serving):
     client = get_endpoint_client(call_databricks_model_serving)
     endpoints = client.list_endpoints()
     if isinstance(client, MlflowDeploymentClient):
         endpoints = _to_dict(endpoints)
-        df = pd.json_normalize(endpoints)
+        ts_columns = []
     elif isinstance(client, DatabricksDeploymentClient):
-        if isinstance(endpoints, dict): # NOTE: Databricks api/2.0/serving-endpoints returns dict and not list
-            endpoints = endpoints["endpoints"]
-        df = pd.json_normalize(endpoints)
-        list_utils.to_datetime(df, "creation_timestamp")
-        list_utils.to_datetime(df, "last_updated_timestamp")
+        ts_columns = [ "creation_timestamp", "last_updated_timestamp" ]
+    elif isinstance(client, ModelServingClient):
+        endpoints = endpoints["endpoints"]
+        ts_columns = [ "creation_timestamp", "last_updated_timestamp" ]
     else:
-        raise MlflowReportsException(message=f"Unsupported MLflow Deployments client: {type(client)}")
-    return df
+        raise MlflowReportsException(message=f"Unsupported Deployment client: {type(client)}")
+    io_utils.write_csv_and_json_files(output_file_base, endpoints, columns, ts_columns)
 
 
 def _to_dict(endpoints):
-    def convert(ep):
-        _ep = { k:v for k,v in ep.model.__dict__.items() if k != "model" }
-        model = { k:v for k,v in ep.model.__dict__.items() }
-        _ep["model"] = model
+    def convert(ep): # mlflow.deployments.server.config.Endpoint
+        _ep = { k:v for k,v in ep.__dict__.items() if k not in ["model", "limit"] }
+        _ep["model"] = { k:v for k,v in ep.model.__dict__.items() } # mlflow.gateway.config.RouteModelInfo
+        if ep.limit: # mlflow.gateway.config.Limit
+            limit = { k:v for k,v in ep.limit.__dict__.items() }
+            _ep["limit"] = limit
         return _ep
     return [ convert(ep) for ep in endpoints ]
 
 
 @click.command()
 @opt_columns
-@opt_output_csv_file
+@opt_output_file_base
 @opt_call_databricks_model_serving
-def main(columns, output_csv_file, call_databricks_model_serving):
+def main(columns, output_file_base, call_databricks_model_serving):
     print("Options:")
     for k,v in locals().items():
         print(f"  {k}: {v}")
-    df = create_pandas_df(call_databricks_model_serving)
-    print(f"Found {df.shape[0]} endpoints")
     if isinstance(columns, str):
         columns = columns.split(",")
-    list_utils.show_and_write(df, columns, output_csv_file)
+    list_endpoints(columns, output_file_base, call_databricks_model_serving)
+
 
 if __name__ == "__main__":
     main()
