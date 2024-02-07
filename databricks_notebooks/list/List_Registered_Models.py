@@ -2,14 +2,14 @@
 # MAGIC %md ## List Registered Models
 # MAGIC
 # MAGIC ##### Overview
-# MAGIC * List registered models for either the Workspace (WS) Model Registry or Unity Catalog (UC) Model Registry.
+# MAGIC * List registered models for either the  Unity Catalog (UC) Model Registry or Workspace (WS) Model Registry.
 # MAGIC
 # MAGIC ##### Widgets
 # MAGIC * `1. Unity Catalog` - Use Unity Catalog.
 # MAGIC * `2. Filter` - `filter_string` argument for for [MlflowClient.search_registered_models](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_registered_models). 
 # MAGIC   * Non-UC example: `name like 'Sklearn%'`
 # MAGIC   * UC: Does not accept filter so this field is ignored by the MLflow API.
-# MAGIC * `3. Get tags and aliases (UC)`. Since UC search_registered_models does not return tags and aliases (bug), call get_registered_model (which does correctly return them) for each returned model.
+# MAGIC * `3. Get tags and aliases (UC)`. Since UC search_registered_models does not return tags and aliases (bug), we call [MlflowClient.get_registered_model](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.get_registered_model) (which does correctly return them) for each returned model.
 # MAGIC   * Non-UC search_registered_models does return tags.
 # MAGIC   * Slows retrieval substantially.
 # MAGIC   * https://databricks.atlassian.net/browse/ES-834105

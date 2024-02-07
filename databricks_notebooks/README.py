@@ -1,13 +1,7 @@
 # Databricks notebook source
 # MAGIC %md ## README - mlflow-reports - Databricks notebooks
 # MAGIC
-# MAGIC #####  Markdown Model report
-# MAGIC * [Detailed_Model_Report]($reports/Detailed_Model_Report) - full report for an MLflow model and its related objects
-# MAGIC   * Related objects: Run, experiment, registered model, model version and MLflow model objects 
-# MAGIC   * Sample entry point: `models:/my_model/123`
-# MAGIC   * [Markdown and JSON samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/model_reports)
-# MAGIC
-# MAGIC #####  MLflow object dump notebooks.
+# MAGIC #####  MLflow object dump notebooks
 # MAGIC * [Get_Model_Version]($objects/Get_Model_Version) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/model_versions)
 # MAGIC * [Get_Registered_Model]($objects/Get_Registered_Model) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/registered_models)
 # MAGIC * [Get_Experiment]($objects/Get_Experiment) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/experiments)
@@ -45,9 +39,15 @@
 # MAGIC   * [Get_Feature_Tables]($feature_store/Get_Feature_Tables) - Get JSON API response for feature tables.
 # MAGIC * [Get_Feature_Table]($feature_store/Get_Feature_Table) - Get feature table details.
 # MAGIC
-# MAGIC ##### Uniyt Catalog notebooks
+# MAGIC ##### Unity Catalog notebooks
 # MAGIC * [Get_Table]($unity_catalog/Get_Table) - get table details
 # MAGIC * [Get_Table_Lineage]($unity_catalog/Get_Table_Lineage) - get table lineage
+# MAGIC
+# MAGIC #####  Markdown Model report
+# MAGIC * [Detailed_Model_Report]($reports/Detailed_Model_Report) - full report for an MLflow model and its related objects
+# MAGIC   * Related objects: Run, experiment, registered model, model version and MLflow model objects 
+# MAGIC   * Sample entry point: `models:/my_model/123`
+# MAGIC   * [Markdown and JSON samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/model_reports)
 # MAGIC
 # MAGIC ##### Common helper utilities
 # MAGIC * [Common]($Common) - [_Common]($_Common)
@@ -62,4 +62,4 @@
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC Last updated: _2024-01-21_
+# MAGIC Last updated: _2024-02-07_

@@ -124,6 +124,16 @@ df.createOrReplaceTempView("endpoints")
 
 # COMMAND ----------
 
+# MAGIC %md ##### Show external models
+
+# COMMAND ----------
+
+# MAGIC %sql select name, creator, creation_timestamp from endpoints 
+# MAGIC where endpoint_type = 'EXTERNAL_MODEL'
+# MAGIC order by creation_timestamp desc
+
+# COMMAND ----------
+
 # MAGIC %md ##### Group by task
 
 # COMMAND ----------

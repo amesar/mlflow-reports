@@ -58,7 +58,7 @@ df.createOrReplaceTempView("endpoints")
 
 # COMMAND ----------
 
-# MAGIC %sql select name, creator, creation_timestamp, num_indexes from endpoints order by num_indexes desc
+# MAGIC %sql select name, num_indexes, creator, creation_timestamp from endpoints order by num_indexes desc
 
 # COMMAND ----------
 
