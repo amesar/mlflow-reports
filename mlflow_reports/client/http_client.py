@@ -10,6 +10,7 @@ from . import databricks_cli_utils
 
 _TIMEOUT = 120 # per MLflow client
 
+_debug = os.environ.get("DEBUG")
 
 class BaseHttpClient(metaclass=ABCMeta):
     """
@@ -96,6 +97,7 @@ class HttpClient(BaseHttpClient):
 
     def _get(self, resource, params=None):
         uri = self._mk_uri(resource)
+        if _debug: print(f">> HttpClient: GET URI: {uri} PARAMS: {params}")
         rsp = requests.get(uri, headers=self._mk_headers(), json=params, timeout=_TIMEOUT)
         return self._check_response(rsp, params)
 
@@ -161,6 +163,7 @@ class HttpClient(BaseHttpClient):
 
     def _mutator(self, method, resource, data=None):
         uri = self._mk_uri(resource)
+        if _debug: print(f">> HttpClient: {method} URI: {uri} DATA: {data}")
         rsp = method(uri, headers=self._mk_headers(), data=data, timeout=_TIMEOUT)
         return self._check_response(rsp)
 
