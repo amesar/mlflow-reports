@@ -60,12 +60,12 @@ def search_registered_models(client, filter=None, get_search_object_again=False)
     UC-ML MLflow search_registered_models and search_model_versions do not return tags and aliases
     """
     models = list(SearchRegisteredModelsIterator(client, filter=filter))
-    if not get_search_object_again:
+    if get_search_object_again:
+        print(f"Calling get_registered_model() again for {len(models)} models")
+        models = [ client.get("registered-models/get", {"name": m["name"]}) for m in models ]
+        return [ m["registered_model"] for m in models]
+    else:
         return models
-
-    print(f"Calling get_registered_model() again for {len(models)} models")
-    models = [ client.get("registered-models/get", {"name": m["name"]}) for m in models ]
-    return [ m["registered_model"] for m in models]
 
 
 def search_model_versions(client, filter=None, get_search_object_again=False):

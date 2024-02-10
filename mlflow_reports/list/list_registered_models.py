@@ -4,16 +4,16 @@ List all registered models.
 
 import click
 from mlflow_reports.client.http_client import get_mlflow_client
+from mlflow_reports.common import io_utils
+from mlflow_reports.common.click_options import opt_output_file_base
 from . import search_registered_models
-from . import list_utils
 from . click_options import (
     opt_filter,
     opt_prefix,
     opt_get_tags_and_aliases,
     opt_unity_catalog,
     opt_columns,
-    opt_max_description,
-    opt_output_csv_file,
+    opt_max_description
 )
 
 mlflow_client = get_mlflow_client()
@@ -25,16 +25,18 @@ def show(filter,
         unity_catalog,
         columns,
         max_description,
-        output_csv_file
+        output_file_base
     ):
     if isinstance(columns, str):
         columns = columns.split(",")
-    df = search_registered_models.search_as_pandas_df(filter, prefix, get_tags_and_aliases, unity_catalog)
+    models = search_registered_models.search(filter, get_tags_and_aliases, unity_catalog)
+    print(f"Found {len(models)} registered models")
+
+    df = search_registered_models.to_pandas_df(models, prefix=prefix)
     if "description" in df and max_description:
         df["description"] = df["description"].str[:max_description]
 
-    list_utils.show_and_write(df, columns, output_csv_file)
-    print(f"Found {df.shape[0]} registered models")
+    io_utils.write_csv_and_json_files(output_file_base, models, columns)
 
 
 @click.command()
@@ -44,7 +46,7 @@ def show(filter,
 @opt_prefix
 @opt_columns
 @opt_max_description
-@opt_output_csv_file
+@opt_output_file_base
 
 def main(
         filter,
@@ -53,7 +55,7 @@ def main(
         unity_catalog,
         columns,
         max_description,
-        output_csv_file
+        output_file_base
     ):
     print("Options:")
     args = locals()

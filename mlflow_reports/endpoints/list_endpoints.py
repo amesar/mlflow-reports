@@ -9,8 +9,8 @@ from mlflow.deployments.databricks import DatabricksDeploymentClient
 
 from mlflow_reports.client.model_serving_client import ModelServingClient
 from mlflow_reports.common import MlflowReportsException
-from mlflow_reports.common.click_options import opt_output_file_base
 from mlflow_reports.common import io_utils
+from mlflow_reports.common.click_options import opt_output_file_base
 from mlflow_reports.list.click_options import opt_columns
 from . click_options import opt_call_databricks_model_serving
 from . import get_endpoint_client

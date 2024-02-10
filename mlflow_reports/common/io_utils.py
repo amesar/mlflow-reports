@@ -61,6 +61,8 @@ def write_csv_and_json_files(output_file_base, lst_of_dicts, columns=None, ts_co
     :param columns: Dataframe columns to write
     :param columns: Dataframe timestamp columns to convert from millis to human friendly format
     """
+    for dct in lst_of_dicts:
+        data_utils.adjust_ts(dct, ts_columns)
     df = pd.json_normalize(lst_of_dicts)
     list_utils.to_datetime(df, ts_columns)
     list_utils.show_and_write(df, columns, f"{output_file_base}.csv")

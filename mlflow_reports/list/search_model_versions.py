@@ -28,13 +28,7 @@ def search(
     return versions
 
 
-def search_as_pandas_df(
-        filter = None,
-        get_tags_and_aliases = True,
-        get_model_details = False,
-        unity_catalog = False
-    ):
-    versions = search(filter, get_tags_and_aliases, get_model_details, unity_catalog)
+def to_pandas_df(versions):
     if len(versions) == 0:
         return pd.DataFrame()
     df = pd.DataFrame.from_dict(versions)

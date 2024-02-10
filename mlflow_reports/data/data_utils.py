@@ -22,8 +22,9 @@ def adjust_ts(dct, keys):
         ts = dct.get(key)
         if ts:
             dct[f"_{key}"] = fmt_ts_millis(int(ts))
-    for k in keys:
-        format_ts(dct, k)
+    if keys:
+        for k in keys:
+            format_ts(dct, k)
 
 
 def adjust_uc(reg_model_or_version):

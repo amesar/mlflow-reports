@@ -5,17 +5,17 @@ List all experiments.
 import click
 
 from mlflow_reports.client.http_client import get_mlflow_client
-from . import search_experiments
-from . import list_utils
+from mlflow_reports.common import io_utils
+from mlflow_reports.common.click_options import opt_output_file_base
 from . click_options import (
     opt_filter,
     opt_tags_and_aliases_as_string,
     opt_max_results,
     opt_columns,
     opt_max_description,
-    opt_output_csv_file,
     opt_view_type,
 )
+from . import search_experiments
 
 mlflow_client = get_mlflow_client()
 
@@ -26,16 +26,18 @@ def show(filter,
         max_results,
         columns,
         max_description,
-        output_csv_file
+        output_file_base
     ):
     if isinstance(columns, str):
         columns = columns.split(",")
-    df = search_experiments.search_as_pandas_df(filter, view_type, max_results, tags_and_aliases_as_string)
+    experiments = search_experiments.search(filter, view_type, max_results, tags_and_aliases_as_string)
+    df = search_experiments.to_pandas_df(experiments)
     if "description" in df and max_description:
         df["description"] = df["description"].str[:max_description]
-
-    list_utils.show_and_write(df, columns, output_csv_file)
-    print(f"Found {df.shape[0]} experiments")
+    ts_columns = [ "creation_time", "last_update_time" ]
+    experiments = search_experiments.search(filter, view_type, max_results, tags_and_aliases_as_string)
+    io_utils.write_csv_and_json_files(output_file_base, experiments, columns, ts_columns)
+    print(f"Found {len(experiments)} experiments")
 
 
 @click.command()
@@ -45,7 +47,7 @@ def show(filter,
 @opt_tags_and_aliases_as_string
 @opt_columns
 @opt_max_description
-@opt_output_csv_file
+@opt_output_file_base
 
 def main(
         filter,
@@ -54,7 +56,7 @@ def main(
         tags_and_aliases_as_string,
         columns,
         max_description,
-        output_csv_file
+        output_file_base
     ):
     print("Options:")
     args = locals()
