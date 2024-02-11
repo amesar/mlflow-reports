@@ -1,6 +1,27 @@
 """
-Iterators for search methods that handle page token magic.
+Iterators for MLflow search methods that handle page token magic for you.
 """
+
+# ====
+# https://github.com/mlflow/mlflow/blob/master/mlflow/store/model_registry/__init__.py
+
+from mlflow.store.model_registry.__init__ import (
+    SEARCH_REGISTERED_MODEL_MAX_RESULTS_THRESHOLD, # = 1000
+    SEARCH_MODEL_VERSION_MAX_RESULTS_THRESHOLD     # = 200_000
+)
+#    SEARCH_REGISTERED_MODEL_MAX_RESULTS_DEFAULT = 100
+#    SEARCH_MODEL_VERSION_MAX_RESULTS_DEFAULT    = 10000
+
+
+# ====
+# https://github.com/mlflow/mlflow/blob/master/mlflow/store/tracking/__init__.py
+
+from mlflow.store.tracking.__init__ import (
+    SEARCH_MAX_RESULTS_THRESHOLD # = 50000
+)
+#    SEARCH_MAX_RESULTS_DEFAULT = 1000
+
+# ====
 
 from mlflow.store.entities.paged_list import PagedList
 from mlflow_reports.common import MlflowReportsException
@@ -79,7 +100,7 @@ class SearchExperimentsIterator(BaseIterator):
         for experiment in experiments:
             print(experiment)
     """
-    def __init__(self, client, view_type=None, max_results=None, filter=None):
+    def __init__(self, client, view_type=None, max_results=SEARCH_MAX_RESULTS_THRESHOLD, filter=None):
         # NOTE: HACK because of https://github.com/mlflow/mlflow/issues/10819 - 2024-01-14
         # For OSS MLflow, max_results is required for experiments but not for any other search endpoints (:
         if not max_results:
@@ -95,7 +116,7 @@ class SearchRegisteredModelsIterator(BaseIterator):
         for model in models:
             print(model)
     """
-    def __init__(self, client, max_results=None, filter=None):
+    def __init__(self, client, max_results=SEARCH_REGISTERED_MODEL_MAX_RESULTS_THRESHOLD, filter=None):
         super().__init__(client, "registered-models/search", "registered_models", max_results=max_results, filter=filter)
 
 
@@ -106,12 +127,12 @@ class SearchModelVersionsIterator(BaseIterator):
         for vr in versions:
             print(vr)
     """
-    def __init__(self, client, max_results=None, filter=None):
+    def __init__(self, client, max_results=SEARCH_MODEL_VERSION_MAX_RESULTS_THRESHOLD, filter=None):
         super().__init__(client, "model-versions/search", "model_versions", max_results=max_results, filter=filter)
 
 
 class SearchRunsIterator(BaseIterator):
-    def __init__(self, client, experiment_ids, max_results=None, filter=None, view_type=None):
+    def __init__(self, client, experiment_ids, max_results=SEARCH_MAX_RESULTS_THRESHOLD, filter=None, view_type=None):
         if isinstance(experiment_ids,str):
             experiment_ids = [ experiment_ids ]
         kwargs = { "experiment_ids": experiment_ids }
