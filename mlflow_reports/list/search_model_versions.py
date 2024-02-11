@@ -92,7 +92,6 @@ def _get_model_details(vr):
     try:
         mlflow_model = get_mlflow_model.get(model_uri)
         mlflow_model = mlflow_model.get("mlflow_model")
-        #return mlflow_model["model_flavor"], mlflow_model["model_size_bytes"]
         return mlflow_model.get("model_flavor"), mlflow_model.get("model_size_bytes")
     except mlflow.exceptions.MlflowException as e:
         print(f"WARNING: Cannot get MLflow model for {model_uri}: {e}")

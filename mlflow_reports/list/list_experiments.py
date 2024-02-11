@@ -4,7 +4,6 @@ List all experiments.
 
 import click
 
-from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.common import io_utils
 from mlflow_reports.common.click_options import opt_output_file_base
 from . click_options import (
@@ -16,8 +15,6 @@ from . click_options import (
     opt_view_type,
 )
 from . import search_experiments
-
-mlflow_client = get_mlflow_client()
 
 
 def show(filter,
