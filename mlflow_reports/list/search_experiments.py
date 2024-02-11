@@ -4,15 +4,13 @@ Search for experiments.
 
 import numpy as np
 import pandas as pd
-from mlflow_reports.common.http_iterators import SearchExperimentsIterator
-from mlflow_reports.client.http_client import get_mlflow_client
+from mlflow_reports.client import mlflow_client
 from mlflow_reports.common import mlflow_utils
 from . import list_utils
 
-mlflow_client = get_mlflow_client()
 
 def search(filter=None, view_type=None, max_results=None):
-    experiments = SearchExperimentsIterator(mlflow_client, filter=filter, view_type=view_type, max_results=max_results)
+    experiments = mlflow_client.search_experiments(filter, view_type, max_results)
     experiments = list(experiments)
     print(f"Found {len(experiments)} experiments")
     return experiments

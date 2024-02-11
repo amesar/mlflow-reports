@@ -5,7 +5,6 @@ Search for registered models
 import numpy as np
 import pandas as pd
 
-from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.common import mlflow_utils
 from . import list_utils
 
@@ -15,8 +14,7 @@ def search(filter=None, get_tags_and_aliases=False, unity_catalog=False):
     :return: Returns registered models as list of Dicts.
     """
     mlflow_utils.use_unity_catalog(unity_catalog)
-    mlflow_client = get_mlflow_client()
-    models = mlflow_utils.search_registered_models(mlflow_client, filter, get_tags_and_aliases)
+    models = mlflow_utils.search_registered_models(filter, get_tags_and_aliases)
     print(f"Found {len(models)} registered models")
     models = sorted(models, key=lambda x: x["name"])
     return models

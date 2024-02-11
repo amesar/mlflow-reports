@@ -7,8 +7,7 @@ import pandas as pd
 import mlflow
 
 from mlflow_reports.data import get_mlflow_model
-from mlflow_reports.client.http_client import get_mlflow_client
-from mlflow_reports.common.http_iterators import SearchRegisteredModelsIterator
+from mlflow_reports.client import mlflow_client
 from mlflow_reports.common import mlflow_utils
 from . import list_utils
 
@@ -20,11 +19,10 @@ def search(
         unity_catalog = False
     ):
     mlflow_utils.use_unity_catalog(unity_catalog)
-    mlflow_client = get_mlflow_client()
     if mlflow_utils.is_calling_databricks():
-        versions = _list_model_versions_databricks(mlflow_client, filter, get_tags_and_aliases, get_model_details)
+        versions = _list_model_versions_databricks(filter, get_tags_and_aliases, get_model_details)
     else:
-        versions = _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details)
+        versions = _list_model_versions(filter, get_tags_and_aliases, get_model_details)
     return versions
 
 
@@ -38,7 +36,7 @@ def to_pandas_df(versions):
     return df
 
 
-def _list_model_versions_databricks(mlflow_client, filter, get_tags_and_aliases, get_model_details):
+def _list_model_versions_databricks(filter, get_tags_and_aliases, get_model_details):
     """
     Databricks search_model_version differs from OSS one in that it requires a filter.
     So to fetch all versions of all models, we have to loop over all models first.
@@ -51,27 +49,27 @@ def _list_model_versions_databricks(mlflow_client, filter, get_tags_and_aliases,
     """
 
     if filter:
-        return _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details)
-    models = SearchRegisteredModelsIterator(mlflow_client)
-    models = list(models)
+        return _list_model_versions(filter, get_tags_and_aliases, get_model_details)
+
+    models = mlflow_client.search_registered_models()
     num_models = len(models)
     print(f"Found {num_models} models")
     versions = []
     for j, model in enumerate(models):
         print(f"Processing {j+1}/{num_models} model '{model['name']}'")
         filter = f"name='{model['name']}'"
-        vrs = _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details)
+        vrs = _list_model_versions(filter, get_tags_and_aliases, get_model_details)
         if vrs:
             versions += vrs
     print(f"Found {len(versions)} model versions")
     return versions
 
 
-def _list_model_versions(mlflow_client, filter, get_tags_and_aliases, get_model_details):
+def _list_model_versions(filter, get_tags_and_aliases, get_model_details):
     """
     Standard OSS search_model_version documented filter.
     """
-    versions = mlflow_utils.search_model_versions(mlflow_client, filter, get_tags_and_aliases)
+    versions = mlflow_utils.search_model_versions(filter, get_tags_and_aliases)
     if len(versions) == 0:
         print(f"WARNING: No model versions. Filter: '{filter}'")
         return []

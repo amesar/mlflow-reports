@@ -8,20 +8,20 @@ from . http_client import dbx_20_client
 class ModelServingClient:
 
     def __init__(self):
-        self.databricks_client = dbx_20_client
+        self.client = dbx_20_client
 
     def get_endpoint(self, endpoint_name):
-        return self.databricks_client.get(f"serving-endpoints/{endpoint_name}")
+        return self.client.get(f"serving-endpoints/{endpoint_name}")
 
     def list_endpoints(self):
-        return self.databricks_client.get("serving-endpoints")
+        return self.client.get("serving-endpoints")
 
     def start_endpoint(self, spec):
-        return self.databricks_client.post("serving-endpoints", spec)
+        return self.client.post("serving-endpoints", spec)
 
     def stop_endpoint(self, endpoint_name):
         try:
-            self.databricks_client.delete(f"serving-endpoints/{endpoint_name}")
+            self.client.delete(f"serving-endpoints/{endpoint_name}")
             return True
         except MlflowReportsException as e:
             if e.http_status_code != 404:
