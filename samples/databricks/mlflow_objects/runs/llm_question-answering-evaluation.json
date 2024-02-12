@@ -1,0 +1,231 @@
+{
+  "run": {
+    "info": {
+      "run_id": "aa1d05c1ed3045c4bcff9191cebeb536",
+      "run_uuid": "aa1d05c1ed3045c4bcff9191cebeb536",
+      "experiment_id": 4093860112636129,
+      "run_name": "masked-goose-93",
+      "status": "FINISHED",
+      "start_time": 1707750075416,
+      "end_time": 1707750117325,
+      "artifact_uri": "dbfs:/databricks/mlflow-tracking/4093860112636129/aa1d05c1ed3045c4bcff9191cebeb536/artifacts",
+      "lifecycle_stage": "active",
+      "_start_time": "2024-02-12 15:01:15",
+      "_end_time": "2024-02-12 15:01:57",
+      "_duration": 41.909,
+      "_experiment_name": "/Users/andre@mycompany.com/LLM/evaluation/mlflow_examples/amm_question-answering-evaluation",
+      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/4093860112636129/runs/aa1d05c1ed3045c4bcff9191cebeb536",
+      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=aa1d05c1ed3045c4bcff9191cebeb536"
+    },
+    "data": {
+      "metrics": [
+        {
+          "key": "exact_match/v1",
+          "value": 0.0,
+          "timestamp": 1707750116312,
+          "step": 0
+        },
+        {
+          "key": "toxicity/v1/mean",
+          "value": 0.0002029454117291607,
+          "timestamp": 1707750116312,
+          "step": 0
+        },
+        {
+          "key": "toxicity/v1/p90",
+          "value": 0.0002596838283352554,
+          "timestamp": 1707750116312,
+          "step": 0
+        },
+        {
+          "key": "toxicity/v1/ratio",
+          "value": 0.0,
+          "timestamp": 1707750116312,
+          "step": 0
+        },
+        {
+          "key": "toxicity/v1/variance",
+          "value": 3.074375652142606e-09,
+          "timestamp": 1707750116312,
+          "step": 0
+        }
+      ],
+      "tags": {
+        "mlflow.databricks.cluster.id": "0414-154233-qm0df4rx",
+        "mlflow.databricks.cluster.info": {
+          "cluster_name": "andre_ML_14.2",
+          "spark_version": "14.2.x-cpu-ml-scala2.12",
+          "node_type_id": "i3.xlarge",
+          "driver_node_type_id": "i3.xlarge",
+          "autotermination_minutes": 120,
+          "disk_spec": {
+            "disk_count": 0
+          },
+          "num_workers": 1
+        },
+        "mlflow.databricks.cluster.libraries": {
+          "installable": [],
+          "redacted": []
+        },
+        "mlflow.databricks.notebook.commandID": "2897020203620705884_9100284636434573876_3cef77749b6f42f68f267a0d4dadab90",
+        "mlflow.databricks.notebookID": 4093860112636129,
+        "mlflow.databricks.notebookPath": "/Users/andre@mycompany.com/LLM/evaluation/mlflow_examples/amm_question-answering-evaluation",
+        "mlflow.databricks.notebookRevisionID": 1707750117614,
+        "mlflow.databricks.webappURL": "https://denali.staging.mycompany.com",
+        "mlflow.databricks.workspaceID": 2556758628403379,
+        "mlflow.databricks.workspaceURL": "e2-demo-west.cloud.databricks.com",
+        "mlflow.datasets": [
+          {
+            "name": "5b8a39270512db14950fe40d223515a8",
+            "hash": "5b8a39270512db14950fe40d223515a8",
+            "model": "468e1c4976d04fb2a36ab276e0c1c3b3"
+          }
+        ],
+        "mlflow.log-model.history": [
+          {
+            "artifact_path": "model",
+            "signature": {
+              "inputs": [
+                {
+                  "type": "string",
+                  "required": true
+                }
+              ],
+              "outputs": [
+                {
+                  "type": "string",
+                  "required": true
+                }
+              ],
+              "params": null
+            },
+            "flavors": {
+              "python_function": {
+                "loader_module": "mlflow.openai",
+                "python_version": "3.10.12",
+                "data": "model.yaml",
+                "env": {
+                  "conda": "conda.yaml",
+                  "virtualenv": "python_env.yaml"
+                }
+              },
+              "openai": {
+                "openai_version": "0.28.1",
+                "data": "model.yaml",
+                "code": null
+              }
+            },
+            "run_id": "aa1d05c1ed3045c4bcff9191cebeb536",
+            "model_uuid": "468e1c4976d04fb2a36ab276e0c1c3b3",
+            "utc_time_created": "2024-02-12 15:01:16.008407",
+            "mlflow_version": "2.10.2",
+            "databricks_runtime": "14.2.x-cpu-ml-scala2.12"
+          }
+        ],
+        "mlflow.loggedArtifacts": [
+          {
+            "path": "eval_results_table.json",
+            "type": "table"
+          }
+        ],
+        "mlflow.runName": "masked-goose-93",
+        "mlflow.source.name": "/Users/andre@mycompany.com/LLM/evaluation/mlflow_examples/amm_question-answering-evaluation",
+        "mlflow.source.type": "NOTEBOOK",
+        "mlflow.user": "andre@mycompany.com"
+      }
+    },
+    "inputs": {
+      "dataset_inputs": [
+        {
+          "dataset": {
+            "name": "dataset",
+            "digest": "11a1a42a",
+            "source_type": "code",
+            "source": {
+              "tags": {
+                "mlflow.user": "root",
+                "mlflow.source.name": "/Users/andre@mycompany.com/LLM/evaluation/mlflow_examples/andre_question-answering-evaluation",
+                "mlflow.source.type": "NOTEBOOK",
+                "mlflow.databricks.notebookID": 4093860112636129,
+                "mlflow.databricks.notebookPath": "/Users/andre@mycompany.com/LLM/evaluation/mlflow_examples/andre_question-answering-evaluation",
+                "mlflow.databricks.webappURL": "https://denali.staging.mycompany.com",
+                "mlflow.databricks.workspaceURL": "e2-demo-west.cloud.databricks.com",
+                "mlflow.databricks.workspaceID": 2556758628403379,
+                "mlflow.databricks.cluster.id": "0414-154233-qm0df4rx",
+                "mlflow.databricks.notebook.commandID": "6392385081069669232_7266357736040251128_93d497e3e5564d7d901cb077c21bcd2d"
+              }
+            },
+            "schema": {
+              "mlflow_colspec": [
+                {
+                  "type": "string",
+                  "name": "inputs",
+                  "required": true
+                },
+                {
+                  "type": "string",
+                  "name": "ground_truth",
+                  "required": true
+                }
+              ]
+            },
+            "profile": {
+              "num_rows": 4,
+              "num_elements": 8
+            }
+          }
+        }
+      ]
+    }
+  },
+  "artifacts": {
+    "summary": {
+      "artifact_max_level": 10,
+      "num_artifacts": 6,
+      "num_bytes": 3742,
+      "num_levels": 2
+    },
+    "root_uri": "dbfs:/databricks/mlflow-tracking/4093860112636129/aa1d05c1ed3045c4bcff9191cebeb536/artifacts",
+    "files": [
+      {
+        "path": "eval_results_table.json",
+        "is_dir": false,
+        "file_size": 2553
+      },
+      {
+        "path": "model",
+        "is_dir": true,
+        "artifacts": {
+          "root_uri": "dbfs:/databricks/mlflow-tracking/4093860112636129/aa1d05c1ed3045c4bcff9191cebeb536/artifacts",
+          "files": [
+            {
+              "path": "model/MLmodel",
+              "is_dir": false,
+              "file_size": 600
+            },
+            {
+              "path": "model/conda.yaml",
+              "is_dir": false,
+              "file_size": 210
+            },
+            {
+              "path": "model/model.yaml",
+              "is_dir": false,
+              "file_size": 164
+            },
+            {
+              "path": "model/python_env.yaml",
+              "is_dir": false,
+              "file_size": 123
+            },
+            {
+              "path": "model/requirements.txt",
+              "is_dir": false,
+              "file_size": 92
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
