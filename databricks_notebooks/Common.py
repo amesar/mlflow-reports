@@ -24,3 +24,11 @@ def list_model_versions(max_versions=None):
         if max_versions and len(versions) > max_versions:
             break
     return versions
+
+# COMMAND ----------
+
+import os, json
+def write_json(path, dct):
+    print("Output file:", os.path.abspath(path))
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(json.dumps(dct, indent=2)+"\n")

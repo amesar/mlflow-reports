@@ -13,12 +13,13 @@
 # MAGIC
 # MAGIC It is not clear whether the contract of `DatabricksDeploymentClient` is guaranteed to stay in sync `api/2.0/serving-endpoints`.
 # MAGIC
-# MAGIC ##### Databricks API documentation
-# MAGIC * `api/2.0/serving-endpoints` - https://docs.databricks.com/api/workspace/servingendpoints
+# MAGIC ##### Databricks REST API documentation
+# MAGIC * [GET api/2.0/serving-endpoints](https://docs.databricks.com/api/workspace/servingendpoints/list) 
 # MAGIC
 # MAGIC ##### MLflow mlflow.deployments documentation
-# MAGIC * https://mlflow.org/docs/latest/llms/deployments/index.html
-# MAGIC * https://mlflow.org/docs/latest/llms/deployments/index.html#deployments-rest-api
+# MAGIC * [MLflow Deployments Server (Experimental)
+# MAGIC ](https://mlflow.org/docs/latest/llms/deployments/index.html) - [REST API](https://mlflow.org/docs/latest/llms/deployments/index.html#deployments-rest-api)
+# MAGIC * [GET api/2.0/endpoints](https://mlflow.org/docs/latest/llms/deployments/api.html#/default/list_endpoints_api_2_0_endpoints__get) - OpenAPI
 # MAGIC
 # MAGIC ##### Github
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/mlflow_reports/endpoints
