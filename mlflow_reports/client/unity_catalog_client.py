@@ -1,5 +1,5 @@
 from typing import Dict, List
-from mlflow_reports.common.uc_http_iterators import (
+from mlflow_reports.common.http_iterators import (
     SearchUcRegisteredModelsIterator
 )
 from . http_client import dbx_21_client
@@ -20,7 +20,6 @@ class UnityCatalogClient:
 
     def list_registered_models(self, catalog_name: str, schema_name, max_results=None) -> List:
         return list(SearchUcRegisteredModelsIterator(self.client, catalog_name, schema_name, max_results=max_results))
-
 
 
 client = UnityCatalogClient()
