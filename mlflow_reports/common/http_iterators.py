@@ -142,6 +142,13 @@ class SearchRunsIterator(BaseIterator):
         super().__init__(client, "runs/search", "runs", max_results=max_results, filter=filter, http_method="POST", kwargs=kwargs)
 
 
+class SearchUcRegisteredModelsIterator(BaseIterator):
+    def __init__(self, uc_mlflow_client, catalog, schema, max_results=None, filter=None):
+        super().__init__(uc_mlflow_client, "unity-catalog/models", "registered_models", max_results=max_results, filter=filter)
+        self.kwargs["catalog_name"] = catalog
+        if schema:
+            self.kwargs["schema_name"] = schema
+
 class FeatureTablesIterator(BaseIterator):
     """
     Endpoint: api/2.0/feature-store/feature-tables/search
