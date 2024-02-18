@@ -12,7 +12,7 @@ def get_endpoint_client(use_databricks=False):
         client = ModelServingClient()
     else:
         client = get_deploy_client(os.environ.get("MLFLOW_TRACKING_URI"))
-    print("Endpoint client:", type(client))
+    print("Model serving endpoint client:", type(client))
     return client
 
 
