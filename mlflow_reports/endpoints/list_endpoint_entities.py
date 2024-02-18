@@ -31,7 +31,7 @@ def show(columns, output_file_base, call_databricks_model_serving=False, normali
 
     # write endpoint entities
     ts_columns = [ "ep_creation_timestamp", "ep_last_updated_timestamp" ]
-    entities = _list_entities(endpoints)
+    entities = list_entities(endpoints)
     base = f"{output_file_base}_entities"
     io_utils.write_csv_and_json_files(base, entities, columns, ts_columns, normalized_pandas_df, mv_ep_endpoint_type_column)
 
@@ -42,7 +42,7 @@ def show(columns, output_file_base, call_databricks_model_serving=False, normali
     io_utils.write_csv_and_json_files(base, endpoints, [], ts_columns, normalized_pandas_df)
 
 
-def _list_entities(endpoints):
+def list_entities(endpoints):
     def mk_entities(ep):
         config = ep.get("config", {})
         served_entities = config.get("served_entities", [])
