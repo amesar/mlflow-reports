@@ -15,9 +15,10 @@ def to_datetime(df, column_or_columns, datetime_as_string=False):
 
 
 def _to_datetime(df, column, datetime_as_string=False):
-    df[column] = pd.to_datetime(df[column]/1000, unit="s").dt.round("1s")
-    if datetime_as_string:
-        df[column] = df[column].dt.strftime(TS_FORMAT)
+    if column in df:
+        df[column] = pd.to_datetime(df[column]/1000, unit="s").dt.round("1s")
+        if datetime_as_string:
+            df[column] = df[column].dt.strftime(TS_FORMAT)
 
 
 def show_and_write(df, columns=None, csv_file=None):

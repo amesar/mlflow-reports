@@ -1,6 +1,5 @@
 import click
-from mlflow_reports.client.http_client import get_mlflow_client
-from mlflow_reports.common.http_iterators import SearchModelVersionsIterator
+from mlflow_reports.client import mlflow_client
 from mlflow_reports.common import MlflowReportsException
 from mlflow_reports.common import mlflow_utils
 from mlflow_reports.common import permissions_utils
@@ -18,8 +17,6 @@ from mlflow_reports.common.click_options import(
 from mlflow_reports.data import get_run, get_model_version
 from mlflow_reports.data import data_utils, link_utils
 
-mlflow_client = get_mlflow_client()
-
 
 def get(
         model_name,
@@ -31,7 +28,7 @@ def get(
         get_raw = False,
     ):
     if get_raw:
-        return mlflow_client.get("registered-models/get", { "name": model_name })
+        return mlflow_client.get_registered_model(model_name)
 
     reg_model = mlflow_utils.get_registered_model(model_name, get_permissions)
     dct = { "registered_model": reg_model }
@@ -52,8 +49,7 @@ def enrich(reg_model, get_permissions=False, get_versions=False, enrich_versions
 
     # get all versions
     if get_versions:
-        filter = f"name = '{model_name}'"
-        versions = SearchModelVersionsIterator(mlflow_client, filter=filter)
+        versions = mlflow_client.search_model_versions(filter=f"name = '{model_name}'")
         versions = list(versions)
         if enrich_versions:
             for vr in versions:

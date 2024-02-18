@@ -1,6 +1,6 @@
 import click
 
-from mlflow_reports.client.http_client import get_mlflow_client
+from mlflow_reports.client import mlflow_client
 from mlflow_reports.common import mlflow_utils, explode_utils
 from mlflow_reports.common.click_options import(
     opt_run_id,
@@ -12,15 +12,13 @@ from mlflow_reports.common.click_options import(
 from mlflow_reports.data import data_utils, link_utils
 from mlflow_reports.data import enriched_tags
 
-mlflow_client = get_mlflow_client()
-
 
 def get(run_id, artifact_max_level=-1, get_raw=False):
     """
     Gets full run details including optionally a list of artifacts.
     :return: Dictionary with "run" and optionally "artifacts" key
     """
-    rsp = mlflow_client.get(f"runs/get", { "run_id": run_id })
+    rsp = mlflow_client.get_run(run_id)
     if get_raw:
         return rsp
     return enrich(rsp["run"], artifact_max_level)
@@ -52,7 +50,7 @@ def _adjust_times(run):
     if start and end:
         dur = float(int(end) - int(start))/1000
         info[enriched_tags.TAG_DURATION] = dur
-    exp = mlflow_client.get("experiments/get", {"experiment_id": info["experiment_id"]}) ["experiment"]
+    exp = mlflow_client.get_experiment(info["experiment_id"])["experiment"]
     run["info"][enriched_tags.TAG_EXPERIMENT_NAME] = exp["name"]
 
 

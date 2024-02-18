@@ -1,7 +1,5 @@
-from mlflow_reports.client.http_client import get_mlflow_client
+from mlflow_reports.client import mlflow_client
 from mlflow_reports.common import mlflow_utils
-
-http_client = get_mlflow_client()
 
 
 def split_model_uri(model_uri):
@@ -9,7 +7,7 @@ def split_model_uri(model_uri):
     Splits an MLflow model URI into two parts
       - For models scheme, returns the model name and stage or version, e.g models:/sklearn_wine/production
       - For runs scheme, returns the run ID relative model path, e.g runs:/2079b9ee113b4b6c8ae631790d4c1009/sklearn-model
-    :param: Models URI.
+    :param: model_uri: Models URI.
     :return: Tuple of model name and stage/version or tuple of run ID and relative model path.
     """
     toks = model_uri.split("/")
@@ -31,10 +29,10 @@ def _get_version(model_name, version_or_stage):
     Get version number for a version_or_stage
     """
     if version_or_stage.isdigit():
-        rsp = http_client.get(f"model-versions/get", {"name": model_name, "version": version_or_stage} )
+        rsp = mlflow_client.get_model_version(model_name, version_or_stage)
         return rsp["model_version"]
     else:
-        rsp = http_client.get(f"registered-models/get-latest-versions", {"name": model_name, "stages": [version_or_stage]} )
+        rsp = mlflow_client.get_latest_versions(model_name, version_or_stage)
         versions = rsp["model_versions"]
         if len(versions) == 0:
             raise RuntimeError(f"No '{version_or_stage}' stage for model '{model_name}/{version_or_stage}'")
@@ -45,7 +43,7 @@ def get_reg_model_download_uri(version):
     """
     Return the download URI of the MLflow model in the registry
     """
-    rsp = http_client.get("model-versions/get-download-uri", {"name": version["name"], "version": version["version"] })
+    rsp = mlflow_client.get_model_version_download_uri(version["name"], version["version"])
     return rsp.get("artifact_uri")
 
 
@@ -54,4 +52,3 @@ def get_run_model_download_uri(version):
     Return the download URI of the MLflow model in the run
     """
     return version["source"]
-

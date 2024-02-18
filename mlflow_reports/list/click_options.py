@@ -103,3 +103,27 @@ def opt_max_results(function):
         default=None
     )(function)
     return function
+
+def opt_catalog(function):
+    function = click.option("--catalog",
+        help="Catalog name.",
+        type=str,
+        required=False
+    )(function)
+    return function
+    
+def opt_schema(function):
+    function = click.option("--schema",
+        help="Schema name.",
+        type=str,
+        required=False
+    )(function)
+    return function
+
+def opt_normalized_pandas_df(function):
+    function = click.option("--normalized-pandas-df",
+        help="Convert JSON list with pd.json_normalize, otherwise use pd.DataFrame.",
+        type=bool,
+        default=False
+    )(function)
+    return function

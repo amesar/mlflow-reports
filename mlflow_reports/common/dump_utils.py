@@ -1,5 +1,6 @@
 import json
 
+
 def obj_to_dict(obj):
     """ Recursively convert an object to a dict. """
     return json.loads(
@@ -7,16 +8,20 @@ def obj_to_dict(obj):
     )   
 
 
-def dict_to_json(dct):
-    return json.dumps(dct)
+def dict_to_json(dct, sort_keys=None, indent=2):
+    return json.dumps(dct, sort_keys=sort_keys, indent=indent)
 
 
-def json_to_dict(json_str):
-    return json.loads(json_str)
+def dump_as_json(dct, title=None, sort_keys=None, indent=2):
+    if title:
+        print(f"{title}:")
+    print(dict_to_json(dct, sort_keys, indent))
 
 
-def dump_as_json(dct, sort_keys=None):
-    print(json.dumps(dct, sort_keys=sort_keys, indent=2))
+def dump_obj_as_json(obj, title=None):
+    title = title if title else type(obj).__name__
+    print(title)
+    dump_as_json(obj_to_dict(obj))
 
 
 def dump_object(obj):

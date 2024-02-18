@@ -1,5 +1,5 @@
-#from mlflow_reports.client.http_client import DatabricksHttpClient, HttpClient
-from mlflow_reports.client.http_client import dbx_20_client, dbx_21_client
+from mlflow_reports.client.http_client import dbx_20_client
+from mlflow_reports.client import unity_catalog_client as uc_client
 from mlflow_reports.common import MlflowReportsException
 from mlflow_reports.common.mlflow_utils import is_unity_catalog_model
 from mlflow_reports.common.mlflow_utils import is_calling_databricks
@@ -14,20 +14,6 @@ def add_experiment_permissions(experiment):
         _call(f"permissions/experiments/{experiment_id}")
     )
 
-class UcPermissionsClient:
-    def __init__(self):
-        self.client = dbx_21_client
-
-    def get_permissions(self, model_name):
-        resource = f"unity-catalog/permissions/function/{model_name}"
-        return self.client.get(resource)
-
-    def get_effective_permissions(self, model_name):
-        resource = f"unity-catalog/effective-permissions/function/{model_name}"
-        return self.client.get(resource)
-
-uc_perms_client = UcPermissionsClient()
-
 
 def add_model_permissions(reg_model):
     if not is_calling_databricks():
@@ -35,8 +21,8 @@ def add_model_permissions(reg_model):
     model_name = reg_model["name"]
     if is_unity_catalog_model(model_name):
         reg_model["permissions"] = {
-            "permissions": uc_perms_client.get_permissions(model_name),
-            "effective_permissions": uc_perms_client.get_effective_permissions(model_name)
+            "permissions": uc_client.get_permissions(model_name),
+            "effective_permissions": uc_client.get_effective_permissions(model_name)
         }
     else:
         model_id = reg_model["id"]

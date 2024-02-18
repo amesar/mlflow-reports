@@ -5,9 +5,7 @@ List model versions.
 import click
 from mlflow_reports.common import io_utils
 from mlflow_reports.common.click_options import opt_output_file_base
-from mlflow_reports.client.http_client import get_mlflow_client
 from . import search_model_versions
-from . import list_utils
 from . click_options import (
     opt_filter,
     opt_get_tags_and_aliases,
@@ -16,8 +14,6 @@ from . click_options import (
     opt_columns,
     opt_max_description
 )
-
-mlflow_client = get_mlflow_client()
 
 
 def show(filter,

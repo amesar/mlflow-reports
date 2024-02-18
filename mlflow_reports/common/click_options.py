@@ -166,3 +166,11 @@ def opt_table(function):
         required=True
     )(function)
     return function
+
+def opt_get_details(function):
+    function = click.option("--get-details",
+        help="Get details of each listed object.",
+        type=bool,
+        default=False
+    )(function)
+    return function

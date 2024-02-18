@@ -3,7 +3,6 @@ List all registered models.
 """
 
 import click
-from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.common import io_utils
 from mlflow_reports.common.click_options import opt_output_file_base
 from . import search_registered_models
@@ -15,8 +14,6 @@ from . click_options import (
     opt_columns,
     opt_max_description
 )
-
-mlflow_client = get_mlflow_client()
 
 
 def show(filter,

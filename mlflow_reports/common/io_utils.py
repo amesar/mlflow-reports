@@ -50,20 +50,32 @@ def read_file(path, file_type=None):
             return f.read()
 
 
-def write_csv_and_json_files(output_file_base, lst_of_dicts, columns=None, ts_columns=None):
+def write_csv_and_json_files(
+        output_file_base,
+        list_of_dicts,
+        columns = None,
+        ts_columns = None,
+        normalized_pandas_df = False,
+        reorder_columns = None
+    ):
     """
     Write a list of dicts in JSON format and its Pandas dataframe in CSV format.
-    File base for JSON and CSV output files. For example, 'out' will result in 'out.csv' and 'out.json.
-    Write to JSON, YAML or text file.
     :param output_file_base: File base for JSON and CSV output files. For example, 'out' will result in 'out.csv' and 'out.json.
-    :param lst_of_dicts: List of dicts
-    :param df: Pandas dataframe
+    :param list_of_dicts: List of dicts
     :param columns: Dataframe columns to write
-    :param columns: Dataframe timestamp columns to convert from millis to human friendly format
+    :param ts_columns: Dataframe timestamp columns to convert from millis to human friendly format
+    :param normalized_pandas_df: convert with pd.json_normalize(), else use pd.DataFrame()
+    :param reorder_columns: customer reorder columns
     """
-    for dct in lst_of_dicts:
-        data_utils.adjust_ts(dct, ts_columns)
-    df = pd.json_normalize(lst_of_dicts)
+    df = pd.json_normalize(list_of_dicts) if normalized_pandas_df else pd.DataFrame(list_of_dicts)
+    if reorder_columns:
+        df = reorder_columns(df)
+    csv_file = f"{output_file_base}.csv"
+    print(f"Writing {len(list_of_dicts)} objects to {csv_file}")
+    print(f"Columns: {list(df.columns)}")
     list_utils.to_datetime(df, ts_columns)
-    list_utils.show_and_write(df, columns, f"{output_file_base}.csv")
-    data_utils.dump_object(lst_of_dicts, f"{output_file_base}.json", silent=True)
+    list_utils.show_and_write(df, columns, csv_file)
+
+    for dct in list_of_dicts:
+        data_utils.adjust_ts(dct, ts_columns)
+    data_utils.dump_object(list_of_dicts, f"{output_file_base}.json", silent=True)

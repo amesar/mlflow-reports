@@ -8,14 +8,13 @@ Get table lineage from Databricks REST API.
 from typing import Dict
 import click
 
-from mlflow_reports.client.http_client import dbx_20_client
+from mlflow_reports.client import databricks_client
 from mlflow_reports.data import data_utils
 from mlflow_reports.common.click_options import opt_table, opt_silent, opt_output_file
 
 
 def get(table_name: str) -> Dict:
-    params = {"table_name": table_name}
-    return dbx_20_client.get("lineage-tracking/table-lineage", params)
+    return databricks_client.get_table_lineage(table_name)
 
 
 @click.command()

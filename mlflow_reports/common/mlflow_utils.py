@@ -2,28 +2,23 @@ from dataclasses import dataclass
 
 import mlflow
 from mlflow.exceptions import RestException
-from mlflow_reports.client.http_client import get_mlflow_client
 from mlflow_reports.common import MlflowReportsException
-from mlflow_reports.common.http_iterators import SearchRegisteredModelsIterator
-from mlflow_reports.common.http_iterators import SearchModelVersionsIterator
-
-http_client = get_mlflow_client()
+from mlflow_reports.client import mlflow_client, databricks_client
 
 
 def get_experiment(exp_id_or_name):
     """
     Gets an experiment either by ID or name.
-    :param: http_client - MLflowClient.
     :param: exp_id_or_name - Experiment ID or name..
     :return: Experiment object.
     """
     try:
-        rsp = http_client.get("experiments/get-by-name", {"experiment_name": exp_id_or_name})
+        rsp = mlflow_client.get_experiment_by_name(exp_id_or_name)
     except MlflowReportsException as e:
         try:
-            rsp = http_client.get("experiments/get", {"experiment_id": exp_id_or_name})
+            rsp = mlflow_client.get_experiment(exp_id_or_name)
         except RestException as e:
-            raise MlflowReportsException(f"Cannot find experiment ID or name '{exp_id_or_name}'. Client: {http_client}'. Ex: {e}")
+            raise MlflowReportsException(f"Cannot find experiment ID or name '{exp_id_or_name}'. Client: {mlflow_client}'. Ex: {e}")
     return rsp["experiment"]
 
 
@@ -35,20 +30,19 @@ def get_registered_model(model_name, get_permissions):
           to subsequently call to get permissions
     """
     if is_calling_databricks() and get_permissions and not is_unity_catalog_model(model_name):
-        resource = "databricks/registered-models/get"
         try:
-            model = http_client.get(resource, {"name": model_name} )
+            model = databricks_client.get_registered_model(model_name)
             return model["registered_model_databricks"]
         except MlflowReportsException as e:
-            print(f"WARNING: Databricks API call '{resource}' failed: {e}")
-            model = http_client.get(f"registered-models/get", {"name": model_name} )
+            print(f"WARNING: Databricks API call failed: {e}")
+            model = mlflow_client.get_registered_model(model_name)
             return model["registered_model"]
     else:
-        model = http_client.get(f"registered-models/get", {"name": model_name} )
+        model = mlflow_client.get_registered_model(model_name)
         return model["registered_model"]
 
 
-def search_registered_models(client, filter=None, get_search_object_again=False):
+def search_registered_models(filter=None, get_search_object_again=False):
     """
     Search for registered models.
     For Databricks UC, need to call 'registered-models/get' again for each
@@ -59,16 +53,16 @@ def search_registered_models(client, filter=None, get_search_object_again=False)
     https://databricks.atlassian.net/browse/ES-834105
     UC-ML MLflow search_registered_models and search_model_versions do not return tags and aliases
     """
-    models = list(SearchRegisteredModelsIterator(client, filter=filter))
+    models = mlflow_client.search_registered_models(filter=filter)
     if get_search_object_again:
         print(f"Calling get_registered_model() again for {len(models)} models")
-        models = [ client.get("registered-models/get", {"name": m["name"]}) for m in models ]
+        models = [ mlflow_client.get_registered_models(m["name"]) for m in models ]
         return [ m["registered_model"] for m in models]
     else:
         return models
 
 
-def search_model_versions(client, filter=None, get_search_object_again=False):
+def search_model_versions(filter=None, get_search_object_again=False):
     """
     Search for model versions.
     See  https://github.com/mlflow/mlflow/issues/9783 (no alias)
@@ -80,7 +74,7 @@ def search_model_versions(client, filter=None, get_search_object_again=False):
     MlflowClient.search_model_versions does not return aliases
     """
 
-    versions = list(SearchModelVersionsIterator(client, filter=filter))
+    versions = mlflow_client.search_model_versions(filter=filter)
     if not get_search_object_again:
         return versions
 
@@ -89,7 +83,7 @@ def search_model_versions(client, filter=None, get_search_object_again=False):
     failed = []
     for vr in versions:
         try:
-            vr2 = client.get("model-versions/get", {"name": vr["name"], "version": vr["version"]})
+            vr2 = mlflow_client.get_model_version(vr["name"], vr["version"])
             versions2.append(vr2)
         except MlflowReportsException as e:
             # NOTE: Failing for: Unsupported function securable kind FUNCTION_REGISTERED_MODEL_DELTASHARING"
@@ -134,7 +128,7 @@ def _build_artifacts(run_id, artifact_path, artifact_max_level, level=0):
     if level == artifact_max_level:
         return Result({}, 0, 0, level)
 
-    artifacts = http_client.get(f"artifacts/list", { "run_id": run_id, "path": artifact_path })
+    artifacts = mlflow_client.list_artifacts(run_id, artifact_path)
     if level > artifact_max_level:
         return Result(artifacts, 0, 0, level)
 
@@ -201,12 +195,11 @@ def is_calling_databricks():
     """
     Are we calling Databricks MLflow? Check by making call to Databricks-specific API endpoint.
     """
-    from mlflow_reports.client.http_client import dbx_20_client
 
     global _is_calling_into_databricks
     if _is_calling_into_databricks is None:
         try:
-            dbx_20_client.get("workspace/get-status")
+            databricks_client.get_workspace_status()
             return False # Should never get here
         except MlflowReportsException as e:
             _is_calling_into_databricks =  e.http_status_code == 400
