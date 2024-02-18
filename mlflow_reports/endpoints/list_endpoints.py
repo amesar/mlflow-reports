@@ -7,7 +7,7 @@ from mlflow_reports.common import io_utils
 from mlflow_reports.common.click_options import opt_output_file_base, opt_get_raw, opt_get_details
 from mlflow_reports.list.click_options import opt_columns, opt_normalized_pandas_df
 from . click_options import opt_call_databricks_model_serving
-from . import _list_endpoints, get_endpoint_client
+from . import get_endpoints, get_endpoint_client
 
 
 def list_endpoints(
@@ -18,8 +18,8 @@ def list_endpoints(
         get_details = False,
         normalized_pandas_df = False
     ):
-    endpoints = _list_endpoints(call_databricks_model_serving)
-    if get_details:
+    endpoints = get_endpoints(call_databricks_model_serving)
+    if get_details: # NOTE: "GET serving-endpoints/{endpoint_name}" returns more details than "GET serving-endpoints"
         client = get_endpoint_client(call_databricks_model_serving)
         endpoints = [ client.get_endpoint(ep["name"]) for ep in endpoints ]
     ts_columns = [] if get_raw else [ "creation_timestamp", "last_updated_timestamp" ]
@@ -34,11 +34,11 @@ def list_endpoints(
 @opt_get_details
 @opt_normalized_pandas_df
 def main(
-        columns, 
-        output_file_base, 
-        call_databricks_model_serving, 
-        get_raw = False, 
-        get_details = False, 
+        columns,
+        output_file_base,
+        call_databricks_model_serving,
+        get_raw = False,
+        get_details = False,
         normalized_pandas_df = False
     ):
     print("Options:")

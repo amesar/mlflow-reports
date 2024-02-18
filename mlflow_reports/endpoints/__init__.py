@@ -16,7 +16,7 @@ def get_endpoint_client(use_databricks=False):
     return client
 
 
-def _list_endpoints(call_databricks_model_serving=False):
+def get_endpoints(call_databricks_model_serving=False):
     client = get_endpoint_client(call_databricks_model_serving)
     endpoints = client.list_endpoints()
     if isinstance(client, MlflowDeploymentClient):
