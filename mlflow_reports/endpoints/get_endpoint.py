@@ -1,29 +1,25 @@
 """
-Return the JSON response for one endpoint.
+Return the JSON API response for a model serving aka "deployment" endpoint.
 """
 
 import click
-
+from mlflow_reports.common.click_options import opt_get_raw, opt_silent, opt_output_file
 from mlflow_reports.data import data_utils
 from . import get_endpoint_client
-from mlflow_reports.common.click_options import(
-    opt_get_raw,
-    opt_silent,
-    opt_output_file
-)
 from . click_options import opt_endpoint, opt_call_databricks_model_serving
 
 
 def get(endpoint_name, call_databricks_model_serving, get_raw):
+    def _adjust_ts(config, key):
+        for x in config.get(key, []):
+            data_utils.adjust_ts(x, ["creation_timestamp"])
     client = get_endpoint_client(call_databricks_model_serving)
     rsp = client.get_endpoint(endpoint_name)
-    if get_raw:
-        return rsp
-    data_utils.adjust_ts(rsp, ["creation_timestamp", "last_updated_timestamp"])
-    config = rsp.get("config")
-    served_models = config.get("served_models")
-    for sm in served_models:
-        data_utils.adjust_ts(sm, ["creation_timestamp"])
+    if not get_raw:
+        data_utils.adjust_ts(rsp, ["creation_timestamp", "last_updated_timestamp"])
+        config = rsp.get("config", {})
+        _adjust_ts(config, "served_models")
+        _adjust_ts(config, "served_entities")
     return rsp
 
 

@@ -53,15 +53,14 @@ def read_file(path, file_type=None):
 def write_csv_and_json_files(output_file_base, list_of_dicts, columns=None, ts_columns=None, normalized_pandas_df=False):
     """
     Write a list of dicts in JSON format and its Pandas dataframe in CSV format.
-    File base for JSON and CSV output files. For example, 'out' will result in 'out.csv' and 'out.json.
-    Write to JSON, YAML or text file.
     :param output_file_base: File base for JSON and CSV output files. For example, 'out' will result in 'out.csv' and 'out.json.
     :param list_of_dicts: List of dicts
     :param columns: Dataframe columns to write
     :param ts_columns: Dataframe timestamp columns to convert from millis to human friendly format
-    :param normalize: convert with pd.json_normalize, else use pd.DataFrame
+    :param normalized_pandas_df: convert with pd.json_normalize(), else use pd.DataFrame()
     """
     df = pd.json_normalize(list_of_dicts) if normalized_pandas_df else pd.DataFrame(list_of_dicts)
+    print(f"Columns: {list(df.columns)}")
     list_utils.to_datetime(df, ts_columns)
     list_utils.show_and_write(df, columns, f"{output_file_base}.csv")
 
