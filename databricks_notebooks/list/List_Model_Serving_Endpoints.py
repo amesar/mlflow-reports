@@ -56,17 +56,13 @@ print("output_file:", output_file)
 
 # COMMAND ----------
 
-from mlflow_reports.endpoints import get_endpoint_client
-client = get_endpoint_client(call_databricks_model_serving)
+#from mlflow_reports.endpoints import get_endpoint_client
+#client = get_endpoint_client(call_databricks_model_serving)
 
 # COMMAND ----------
 
-endpoints = client.list_endpoints()
-
-# NOTE: Databricks api/2.0/serving-endpoints returns dict and not list as DatabricksDeploymentClient does
-if isinstance(endpoints, dict): 
-    endpoints = endpoints["endpoints"]
-    
+from mlflow_reports.endpoints import get_endpoints
+endpoints = get_endpoints(call_databricks_model_serving)
 len(endpoints)
 
 # COMMAND ----------
@@ -81,6 +77,7 @@ if output_file or show_json:
 # COMMAND ----------
 
 df = to_dataframe(endpoints)
+df = move_column(df, "endpoint_type")
 display(df)
 
 # COMMAND ----------
@@ -90,6 +87,10 @@ display(df)
 # COMMAND ----------
 
 df.createOrReplaceTempView("endpoints") 
+
+# COMMAND ----------
+
+# MAGIC %sql describe endpoints
 
 # COMMAND ----------
 

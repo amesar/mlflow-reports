@@ -63,24 +63,51 @@ def activate_unity_catalog(model_name):
 
 # COMMAND ----------
 
-def get_columns(lst):
+def OLD_get_columns(lst):
     columns = set()
     for dct in lst:
         columns = columns.union(dct.keys())
     return list(columns)
 
+def OLD_get_columns(lst):
+    columns = []
+    set_columns = set()
+    for dct in lst:
+        set_columns = set_columns.union(dct.keys())
+        if len(dct.keys()) > len(columns):
+            columns = dct.keys()
+    print(">> set_columns.1:", set_columns)
+    print(">> columns.2:    ", list(columns))
+    xx = [s for c in columns for s in set_columns if s == c]
+    print(">> columns.3:    ", xx)
+    return xx
+    #return [s for c in columns for s in set_columns if s == c]
+
+def get_columns(lst): ## XXX
+    set_columns, columns = {}, {}
+    for dct in lst:
+        set_columns = { **columns, **dct }
+        if len(dct.keys()) > len(columns):
+            columns = dct
+    #print(">> set_columns.1:", set_columns.keys())
+    #print(">> columns.2:    ", columns.keys())
+    return list(set_columns.keys())
+
 # COMMAND ----------
 
 from pyspark.sql.functions import *
 
-def adjust_timestamps(df, create_ts, update_ts):
+def OLD_adjust_timestamps(df, create_ts, update_ts):
     return df \
         .withColumn(create_ts,from_unixtime(col(create_ts)/1000, "yyyy-MM-dd hh:mm:ss")) \
         .withColumn(update_ts,from_unixtime(col(update_ts)/1000, "yyyy-MM-dd hh:mm:ss"))
 
+def adjust_timestamp(df, column):
+    return df.withColumn(column,from_unixtime(col(column)/1000, "yyyy-MM-dd hh:mm:ss"))
+
 # COMMAND ----------
 
-def to_dataframe(lst, create_ts="creation_timestamp", update_ts="last_updated_timestamp"):
+def OLD_to_dataframe(lst, create_ts="creation_timestamp", update_ts="last_updated_timestamp"):
     """ 
     Default '_ts' arguments are for registered models and model versions. 
     For experiments they are: 'creation_time' and 'last_update_time'. :(
@@ -92,6 +119,20 @@ def to_dataframe(lst, create_ts="creation_timestamp", update_ts="last_updated_ti
 
 # COMMAND ----------
 
+def to_dataframe(lst, ts_columns = ["creation_timestamp", "last_updated_timestamp"]): # XX
+    """ 
+    Default '_ts' arguments are for registered models and model versions. 
+    For experiments they are: 'creation_time' and 'last_update_time'. :(
+    """
+    columns = get_columns(lst)
+    print(f"Columns: {columns}")
+    df = spark.read.json(sc.parallelize(lst)).select(columns)
+    for col in ts_columns:
+        df = adjust_timestamp(df, col)
+    return df
+
+# COMMAND ----------
+
 import os
 print("Versions:")
 print(f"  MLflow version: {mlflow.__version__}")
@@ -99,11 +140,20 @@ print(f"  DBR version: {os.environ.get('DATABRICKS_RUNTIME_VERSION')}")
 
 # COMMAND ----------
 
-def move_column_to_first(df, column):
-    columns = list(df.columns)
+def move_column(df, column, index=1):
+    columns = df.columns 
+    columns.remove(column)
+    columns.insert(index, column)
+    df = df.select(*columns)
+    return df
+
+# COMMAND ----------
+
+def move_column_to_first(pdf, column):
+    columns = list(pdf.columns)
     columns.remove(column)
     columns = [ column ] + columns 
-    return df[columns]
+    return pdf[columns]
 
 # COMMAND ----------
 
