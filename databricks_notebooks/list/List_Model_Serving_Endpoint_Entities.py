@@ -36,7 +36,7 @@ print("output_file:", output_file)
 # COMMAND ----------
 
 from mlflow_reports.endpoints import get_endpoints
-endpoints = get_endpoints(call_databricks_model_serving)
+endpoints = get_endpoints()
 len(endpoints)
 
 # COMMAND ----------

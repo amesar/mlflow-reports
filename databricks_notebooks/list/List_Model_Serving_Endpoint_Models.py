@@ -23,10 +23,6 @@
 
 # COMMAND ----------
 
-dbutils.widgets.removeAll()
-
-# COMMAND ----------
-
 dbutils.widgets.dropdown("1. Show JSON", "no", ["yes","no"])
 dbutils.widgets.text("2. Save JSON as file", "")
 
@@ -43,7 +39,7 @@ print("output_file:", output_file)
 # COMMAND ----------
 
 from mlflow_reports.endpoints import get_endpoints
-endpoints = get_endpoints(call_databricks_model_serving)
+endpoints = get_endpoints()
 len(endpoints)
 
 # COMMAND ----------
@@ -105,6 +101,7 @@ from mlflow_reports.endpoints.list_endpoint_models import (
 
 models = mk_custom_models(endpoints)
 ts_columns = [ "ep_creation_timestamp", "ep_last_updated_timestamp"]
+ts = []
 df = to_dataframe(models, ts_columns)
 df = df.drop("ep_state").drop("ep_last_updated_timestamp")
 df.createOrReplaceTempView("custom_models") 
@@ -211,7 +208,7 @@ display(df)
 # MAGIC         "deployment": "DEPLOYMENT_ABORTED",
 # MAGIC         "deployment_state_message": "Served model creation aborted because the endpoint update timed out. Please see service logs for more information."
 # MAGIC       },
-# MAGIC       "creator": "cindy.wu@databricks.com",
+# MAGIC       "creator": "k2.denali@databricks.com",
 # MAGIC       "creation_timestamp": 1704673381000
 # MAGIC     }
 # MAGIC   ]
