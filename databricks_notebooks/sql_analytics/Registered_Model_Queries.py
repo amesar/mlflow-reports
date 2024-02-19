@@ -25,11 +25,7 @@ spark.sql(f"use {database_name}")
 
 # COMMAND ----------
 
-# MAGIC %md ### Describe table
-
-# COMMAND ----------
-
-# MAGIC %md ##### Describe table
+# MAGIC %md ### Describe table and history
 
 # COMMAND ----------
 

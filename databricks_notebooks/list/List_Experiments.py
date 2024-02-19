@@ -64,7 +64,7 @@ if len(experiments) > 0:
 
 # COMMAND ----------
 
-df = to_dataframe(experiments, "creation_time", "last_update_time")
+df = to_dataframe(experiments, ["creation_time", "last_update_time"])
 display(df)
 
 # COMMAND ----------
