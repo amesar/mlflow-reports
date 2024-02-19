@@ -101,7 +101,6 @@ from mlflow_reports.endpoints.list_endpoint_models import (
 
 models = mk_custom_models(endpoints)
 ts_columns = [ "ep_creation_timestamp", "ep_last_updated_timestamp"]
-ts = []
 df = to_dataframe(models, ts_columns)
 df = df.drop("ep_state").drop("ep_last_updated_timestamp")
 df.createOrReplaceTempView("custom_models") 

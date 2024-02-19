@@ -41,6 +41,11 @@ len(endpoints)
 
 # COMMAND ----------
 
+df = to_dataframe(endpoints)
+display(df, ["creation_timestamp", "last_updated_timestamp"])
+
+# COMMAND ----------
+
 if output_file or show_json:
     dump_as_json(endpoints, output_file, silent=not show_json)
 
@@ -52,6 +57,9 @@ if output_file or show_json:
 
 from mlflow_reports.endpoints.list_endpoint_entities import list_entities
 entities = list_entities(endpoints)
+len(entities)
+
+# COMMAND ----------
 
 df = to_dataframe(entities, ["ep_creation_timestamp", "ep_last_updated_timestamp"])
 df = move_column(df, "ep_endpoint_type")
@@ -59,7 +67,7 @@ display(df)
 
 # COMMAND ----------
 
-# MAGIC %md #### List endpoints without entities - in READY state
+# MAGIC %md #### List endpoints without entities - not in READY state
 
 # COMMAND ----------
 

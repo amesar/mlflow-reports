@@ -80,14 +80,17 @@ def adjust_timestamp(df, column):
 
 # COMMAND ----------
 
-def to_dataframe(lst, ts_columns = ["creation_timestamp", "last_updated_timestamp"]): # XX
+def to_dataframe(lst, ts_columns = ["creation_timestamp", "last_updated_timestamp"]):
     """ 
     Default '_ts' arguments are for registered models and model versions. 
     For experiments they are: 'creation_time' and 'last_update_time'. :(
     """
     columns = get_columns(lst)
+    df = spark.read.json(sc.parallelize(lst))
+    diff = set(columns).difference(set(df.columns))
+    columns = [ c for c in columns if c not in diff ]
     print(f"Columns: {columns}")
-    df = spark.read.json(sc.parallelize(lst)).select(columns)
+    df = df.select(columns)
     for col in ts_columns:
         if col in columns:
             df = adjust_timestamp(df, col)
