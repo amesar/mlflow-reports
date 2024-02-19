@@ -55,7 +55,7 @@ def write_csv_and_json_files(
         list_of_dicts,
         columns = None,
         ts_columns = None,
-        normalized_pandas_df = False,
+        normalize_pandas_df = False,
         reorder_columns = None
     ):
     """
@@ -64,10 +64,10 @@ def write_csv_and_json_files(
     :param list_of_dicts: List of dicts
     :param columns: Dataframe columns to write
     :param ts_columns: Dataframe timestamp columns to convert from millis to human friendly format
-    :param normalized_pandas_df: convert with pd.json_normalize(), else use pd.DataFrame()
+    :param normalize_pandas_df: convert with pd.json_normalize(), else use pd.DataFrame()
     :param reorder_columns: customer reorder columns
     """
-    df = pd.json_normalize(list_of_dicts) if normalized_pandas_df else pd.DataFrame(list_of_dicts)
+    df = pd.json_normalize(list_of_dicts) if normalize_pandas_df else pd.DataFrame(list_of_dicts)
     if reorder_columns:
         df = reorder_columns(df)
     csv_file = f"{output_file_base}.csv"

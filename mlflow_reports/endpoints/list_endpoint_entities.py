@@ -6,12 +6,12 @@ import click
 
 from mlflow_reports.common import io_utils
 from mlflow_reports.common.click_options import opt_output_file_base
-from mlflow_reports.list.click_options import opt_columns, opt_normalized_pandas_df
+from mlflow_reports.list.click_options import opt_columns, opt_normalize_pandas_df
 from . click_options import opt_call_databricks_model_serving
 from . import get_endpoints
 
 
-def show(columns, output_file_base, call_databricks_model_serving=False, normalized_pandas_df=False):
+def show(columns, output_file_base, call_databricks_model_serving=False, normalize_pandas_df=False):
     def reorder_columns(df, column):
         if column in df:
             columns = list(df.columns)
@@ -27,19 +27,19 @@ def show(columns, output_file_base, call_databricks_model_serving=False, normali
 
     # write endpoints
     ts_columns = [ "creation_timestamp", "last_updated_timestamp" ]
-    io_utils.write_csv_and_json_files(f"{output_file_base}", endpoints, columns, ts_columns, normalized_pandas_df, mv_endpoint_type_column)
+    io_utils.write_csv_and_json_files(f"{output_file_base}", endpoints, columns, ts_columns, normalize_pandas_df, mv_endpoint_type_column)
 
     # write endpoint entities
     ts_columns = [ "ep_creation_timestamp", "ep_last_updated_timestamp" ]
     entities = list_entities(endpoints)
     base = f"{output_file_base}_entities"
-    io_utils.write_csv_and_json_files(base, entities, columns, ts_columns, normalized_pandas_df, mv_ep_endpoint_type_column)
+    io_utils.write_csv_and_json_files(base, entities, columns, ts_columns, normalize_pandas_df, mv_ep_endpoint_type_column)
 
     # write endpoints without entities, not READY state
     ts_columns = [ "creation_timestamp", "last_updated_timestamp" ]
     endpoints = list_endpoints_without_entities(endpoints)
     base = f"{output_file_base}_without_entities"
-    io_utils.write_csv_and_json_files(base, endpoints, [], ts_columns, normalized_pandas_df)
+    io_utils.write_csv_and_json_files(base, endpoints, [], ts_columns, normalize_pandas_df)
 
 
 def list_entities(endpoints):
@@ -70,14 +70,14 @@ def _mk_ep(ep):
 @opt_columns
 @opt_output_file_base
 @opt_call_databricks_model_serving
-@opt_normalized_pandas_df
-def main(columns, output_file_base, call_databricks_model_serving, normalized_pandas_df):
+@opt_normalize_pandas_df
+def main(columns, output_file_base, call_databricks_model_serving, normalize_pandas_df):
     print("Options:")
     for k,v in locals().items():
         print(f"  {k}: {v}")
     if isinstance(columns, str):
         columns = columns.split(",")
-    show(columns, output_file_base, call_databricks_model_serving, normalized_pandas_df)
+    show(columns, output_file_base, call_databricks_model_serving, normalize_pandas_df)
 
 
 if __name__ == "__main__":
