@@ -4,7 +4,8 @@
 # MAGIC ##### Overview
 # MAGIC
 # MAGIC * List and query model serving endpoint entities.
-# MAGIC * Entities can be found at endpoint["config"]["served_entities"]
+# MAGIC * Entities can be found at endpoint["config"]["served_entities"].
+# MAGIC * See [List_Model_Serving_Endpoint_Models]($List_Model_Serving_Endpoint_Models) notebook for a breakdown by endpoint/entity type.
 # MAGIC
 # MAGIC ##### Github
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/mlflow_reports/endpoints
@@ -37,6 +38,11 @@ print("output_file:", output_file)
 from mlflow_reports.endpoints import get_endpoints
 endpoints = get_endpoints(call_databricks_model_serving)
 len(endpoints)
+
+# COMMAND ----------
+
+if output_file or show_json:
+    dump_as_json(endpoints, output_file, silent=not show_json)
 
 # COMMAND ----------
 

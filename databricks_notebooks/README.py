@@ -1,24 +1,23 @@
 # Databricks notebook source
 # MAGIC %md ## README - mlflow-reports - Databricks notebooks
 # MAGIC
-# MAGIC #####  MLflow object dump notebooks
+# MAGIC #####  Get MLflow object notebooks
 # MAGIC * [Get_Model_Version]($objects/Get_Model_Version) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/model_versions)
 # MAGIC * [Get_Registered_Model]($objects/Get_Registered_Model) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/registered_models)
 # MAGIC * [Get_Experiment]($objects/Get_Experiment) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/experiments)
 # MAGIC * [Get_Run]($objects/Get_Run) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/runs)
-# MAGIC * [MLflow_Model_Manager]($objects/MLflow_Model_Manager) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/model_reports)
-# MAGIC * [Get_MLflow_Model]($objects/Get_MLflow_Model) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/mlflow_models) 
 # MAGIC
 # MAGIC ##### List MLflow objects notebooks
 # MAGIC * [List_Registered_Models]($list/List_Registered_Models) - List and query registered models.
 # MAGIC * [List_Model_Versions]($list/List_Model_Versions) - List and query model versions.
 # MAGIC * [List_Experiments]($list/List_Experiments) - List and query experiments.
 # MAGIC
-# MAGIC ##### Endpoints notebooks
+# MAGIC ##### Endpoint notebooks
 # MAGIC * Model Serving endpoints aka MLflow deployment endpoints
-# MAGIC   * [List_Model_Serving_Endpoints]($list/List_Model_Serving_Endpoints) - List and query model serving endpoints.
+# MAGIC   * [List_Model_Serving_Endpoints]($list/List_Model_Serving_Endpoints) - List and query endpoints.
+# MAGIC     * [List_Model_Serving_Endpoint_Entities]($list/List_Model_Serving_Endpoint_Entities) - List and query endpoint entities.
+# MAGIC     * [List_Model_Serving_Endpoint_Models]($list/List_Model_Serving_Endpoint_Models) - List and query endpoint models/entities broken down by entity type.
 # MAGIC   * [Get_Model_Serving_Endpoint]($objects/Get_Model_Serving_Endpoint) 
-# MAGIC   * [List_Model_Serving_Endpoint_Entities]($list/List_Model_Serving_Endpoint_Entities) - List and query model serving endpoint entities.
 # MAGIC * Vector Search endpoints
 # MAGIC   * [List_Vector_Search_Endpoints]($list/List_Vector_Search_Endpoints) - List and query Vector Search endpoints.
 # MAGIC
@@ -56,14 +55,26 @@
 # MAGIC ##### Common helper utilities
 # MAGIC * [Common]($Common) - [_Common]($_Common)
 # MAGIC
-# MAGIC ##### Legacy
 # MAGIC
-# MAGIC * [List_Model_Serving_Endpoints]($list/legacy/List_Model_Serving_Endpoints) - List and query model serving endpoints.
-# MAGIC * [List_Deployment_Endpoints]($list/legacy/List_Deployment_Endpoints) - List and query deployment endpoints.
-# MAGIC * [List_Gateway_Routes]($list/legacy/List_Gateway_Routes) - List and query AI Gateway routes (deprecated).
 # MAGIC
 # MAGIC ##### Git Repo
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC Last updated: _2024-02-18_
+# MAGIC #####  Last updated: _2024-02-18_
+
+# COMMAND ----------
+
+# MAGIC %md 
+# MAGIC
+# MAGIC #### Legacy
+# MAGIC
+# MAGIC ##### List
+# MAGIC * [List_Model_Serving_Endpoints]($list/legacy/List_Model_Serving_Endpoints) - List and query model serving endpoints.
+# MAGIC * [List_Deployment_Endpoints]($list/legacy/List_Deployment_Endpoints) - List and query deployment endpoints.
+# MAGIC * [List_Gateway_Routes]($list/legacy/List_Gateway_Routes) - List and query AI Gateway routes (deprecated).
+# MAGIC
+# MAGIC
+# MAGIC ##### Get
+# MAGIC * [Get_MLflow_Model]($objects/Get_MLflow_Model) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/mlflow_models) 
+# MAGIC * [MLflow_Model_Manager]($objects/MLflow_Model_Manager) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/model_reports)
