@@ -128,7 +128,8 @@ def to_dataframe(lst, ts_columns = ["creation_timestamp", "last_updated_timestam
     print(f"Columns: {columns}")
     df = spark.read.json(sc.parallelize(lst)).select(columns)
     for col in ts_columns:
-        df = adjust_timestamp(df, col)
+        if col in columns:
+            df = adjust_timestamp(df, col)
     return df
 
 # COMMAND ----------

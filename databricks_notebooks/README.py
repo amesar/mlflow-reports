@@ -15,10 +15,11 @@
 # MAGIC * [List_Experiments]($list/List_Experiments) - List and query experiments.
 # MAGIC
 # MAGIC ##### Endpoints notebooks
-# MAGIC * Model Serving
-# MAGIC   * [List_Model_Serving_Endpoints]($list/List_Model_Serving_Endpoints) - List and query model serving endpoints aka MLflow deployment endpoints.
+# MAGIC * Model Serving endpoints aka MLflow deployment endpoints
+# MAGIC   * [List_Model_Serving_Endpoints]($list/List_Model_Serving_Endpoints) - List and query model serving endpoints.
 # MAGIC   * [Get_Model_Serving_Endpoint]($objects/Get_Model_Serving_Endpoint) 
-# MAGIC * Vector Search
+# MAGIC   * [List_Model_Serving_Endpoint_Entities]($list/List_Model_Serving_Endpoint_Entities) - List and query model serving endpoint entities.
+# MAGIC * Vector Search endpoints
 # MAGIC   * [List_Vector_Search_Endpoints]($list/List_Vector_Search_Endpoints) - List and query Vector Search endpoints.
 # MAGIC
 # MAGIC ##### MLflow MLmodel notebooks
@@ -65,4 +66,4 @@
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC Last updated: _2024-02-14_
+# MAGIC Last updated: _2024-02-18_
