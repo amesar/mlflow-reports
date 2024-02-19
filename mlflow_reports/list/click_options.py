@@ -120,7 +120,7 @@ def opt_schema(function):
     )(function)
     return function
 
-def opt_normalized_pandas_df(function):
+def opt_normalize_pandas_df(function):
     function = click.option("--normalized-pandas-df",
         help="Convert JSON list with pd.json_normalize, otherwise use pd.DataFrame.",
         type=bool,
