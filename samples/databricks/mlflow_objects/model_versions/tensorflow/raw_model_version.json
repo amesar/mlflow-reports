@@ -1,0 +1,14 @@
+{
+  "model_version": {
+    "name": "andre.ml_models.tf_mnist",
+    "version": "1",
+    "creation_timestamp": 1708393258871,
+    "last_updated_timestamp": 1708393260308,
+    "user_id": "andre@mycompany.com",
+    "source": "dbfs:/databricks/mlflow-tracking/5da3a33d71fe490dabfcb7e4532ba28b/5dad20dfb754416ba9f3a99e0b1c497d/artifacts/model",
+    "run_id": "5dad20dfb754416ba9f3a99e0b1c497d",
+    "run_tracking_server_id": "2556758628403379",
+    "status": "READY",
+    "storage_location": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/5255dc81-51f1-46b7-9fc1-3064e23d079d/versions/7e70fd8c-ac14-4f1b-91b2-6406af963346"
+  }
+}

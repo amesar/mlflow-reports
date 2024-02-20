@@ -1,0 +1,26 @@
+artifact_path: model
+databricks_runtime: 14.2.x-cpu-ml-scala2.12
+flavors:
+  python_function:
+    data: data
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.tensorflow
+    python_version: 3.10.12
+  tensorflow:
+    code: null
+    data: data
+    keras_version: 2.14.0
+    model_type: keras
+    save_format: tf
+mlflow_version: 2.10.2
+model_size_bytes: 3330719
+model_uuid: 771bde4b981541cfbe2b1fb7cdd953b3
+run_id: 5dad20dfb754416ba9f3a99e0b1c497d
+signature:
+  inputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float32", "shape": [-1, 784]}}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float32", "shape": [-1,
+    10]}}]'
+  params: null
+utc_time_created: '2024-02-20 01:40:50.631208'

@@ -1,0 +1,418 @@
+{
+  "model_version": {
+    "name": "andre.ml_models.tf_mnist",
+    "version": "1",
+    "creation_timestamp": 1708393258871,
+    "last_updated_timestamp": 1708393260308,
+    "user_id": "andre@mycompany.com",
+    "source": "dbfs:/databricks/mlflow-tracking/5da3a33d71fe490dabfcb7e4532ba28b/5dad20dfb754416ba9f3a99e0b1c497d/artifacts/model",
+    "run_id": "5dad20dfb754416ba9f3a99e0b1c497d",
+    "run_tracking_server_id": "2556758628403379",
+    "status": "READY",
+    "storage_location": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/5255dc81-51f1-46b7-9fc1-3064e23d079d/versions/7e70fd8c-ac14-4f1b-91b2-6406af963346",
+    "_creation_timestamp": "2024-02-20 01:40:59",
+    "_last_updated_timestamp": "2024-02-20 01:41:00",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/5255dc81-51f1-46b7-9fc1-3064e23d079d/versions/7e70fd8c-ac14-4f1b-91b2-6406af963346",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/5da3a33d71fe490dabfcb7e4532ba28b/5dad20dfb754416ba9f3a99e0b1c497d/artifacts/model",
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models.tf_mnist/version/1",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=andre.ml_models.tf_mnist&version=1"
+  },
+  "mlflow_model": {
+    "artifact_path": "model",
+    "databricks_runtime": "14.2.x-cpu-ml-scala2.12",
+    "flavors": {
+      "python_function": {
+        "data": "data",
+        "env": {
+          "conda": "conda.yaml",
+          "virtualenv": "python_env.yaml"
+        },
+        "loader_module": "mlflow.tensorflow",
+        "python_version": "3.10.12"
+      },
+      "tensorflow": {
+        "code": null,
+        "data": "data",
+        "keras_version": "2.14.0",
+        "model_type": "keras",
+        "save_format": "tf"
+      }
+    },
+    "mlflow_version": "2.10.2",
+    "model_size_bytes": 3330719,
+    "model_uuid": "771bde4b981541cfbe2b1fb7cdd953b3",
+    "run_id": "5dad20dfb754416ba9f3a99e0b1c497d",
+    "signature": {
+      "inputs": [
+        {
+          "type": "tensor",
+          "tensor-spec": {
+            "dtype": "float32",
+            "shape": [
+              -1,
+              784
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "type": "tensor",
+          "tensor-spec": {
+            "dtype": "float32",
+            "shape": [
+              -1,
+              10
+            ]
+          }
+        }
+      ],
+      "params": null
+    },
+    "utc_time_created": "2024-02-20 01:40:50.631208"
+  },
+  "registered_model": {
+    "name": "andre.ml_models.tf_mnist",
+    "creation_timestamp": 1708367704666,
+    "last_updated_timestamp": 1708393258878,
+    "user_id": "andre@mycompany.com",
+    "tags": {},
+    "_creation_timestamp": "2024-02-19 18:35:05",
+    "_last_updated_timestamp": "2024-02-20 01:40:59",
+    "_is_unity_catalog": true,
+    "_web_ui_link": "https://e2-demo-west.cloud.databricks.com/explore/data/models/andre.ml_models.tf_mnist",
+    "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=andre.ml_models.tf_mnist",
+    "permissions": {
+      "permissions": {},
+      "effective_permissions": {
+        "privilege_assignments": [
+          {
+            "principal": "andre@mycompany.com",
+            "privileges": [
+              {
+                "privilege": "EXECUTE",
+                "inherited_from_type": "SCHEMA",
+                "inherited_from_name": "andre.ml_models"
+              }
+            ]
+          },
+          {
+            "principal": "account users",
+            "privileges": [
+              {
+                "privilege": "ALL_PRIVILEGES",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "andre"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "run": {
+    "run": {
+      "info": {
+        "run_id": "5dad20dfb754416ba9f3a99e0b1c497d",
+        "run_uuid": "5dad20dfb754416ba9f3a99e0b1c497d",
+        "experiment_id": "5da3a33d71fe490dabfcb7e4532ba28b",
+        "run_name": "2024-02-20 01:38:15 - 2.10.2",
+        "status": "FINISHED",
+        "start_time": 1708393241383,
+        "end_time": 1708393260484,
+        "artifact_uri": "dbfs:/databricks/mlflow-tracking/5da3a33d71fe490dabfcb7e4532ba28b/5dad20dfb754416ba9f3a99e0b1c497d/artifacts",
+        "lifecycle_stage": "active",
+        "_start_time": "2024-02-20 01:40:41",
+        "_end_time": "2024-02-20 01:41:00",
+        "_duration": 19.101,
+        "_experiment_name": "/Repos/andre@mycompany.com/mlflow-examples/databricks/notebooks/basic/TensorFlow_MNIST",
+        "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/5da3a33d71fe490dabfcb7e4532ba28b/runs/5dad20dfb754416ba9f3a99e0b1c497d",
+        "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=5dad20dfb754416ba9f3a99e0b1c497d"
+      },
+      "data": {
+        "metrics": [
+          {
+            "key": "my_acc",
+            "value": 0.9725000262260437,
+            "timestamp": 1708393249589,
+            "step": 0
+          },
+          {
+            "key": "my_loss",
+            "value": 0.08317824453115463,
+            "timestamp": 1708393249697,
+            "step": 0
+          }
+        ],
+        "params": [
+          {
+            "key": "my_batch_size",
+            "value": 128
+          },
+          {
+            "key": "my_epochs",
+            "value": 2
+          }
+        ],
+        "tags": {
+          "mlflow.databricks.cluster.id": "0414-154233-qm0df4rx",
+          "mlflow.databricks.cluster.info": {
+            "cluster_name": "andre_ML_14.2",
+            "spark_version": "14.2.x-cpu-ml-scala2.12",
+            "node_type_id": "i3.xlarge",
+            "driver_node_type_id": "i3.xlarge",
+            "autotermination_minutes": 120,
+            "disk_spec": {
+              "disk_count": 0
+            },
+            "num_workers": 1
+          },
+          "mlflow.databricks.cluster.libraries": {
+            "installable": [],
+            "redacted": []
+          },
+          "mlflow.databricks.gitRepoCommit": "d8a81445f486b6bb817d5c326b20c91826377b22",
+          "mlflow.databricks.gitRepoProvider": "gitHub",
+          "mlflow.databricks.gitRepoReference": "master",
+          "mlflow.databricks.gitRepoReferenceType": "branch",
+          "mlflow.databricks.gitRepoRelativePath": "databricks/notebooks/basic/TensorFlow_Mnist",
+          "mlflow.databricks.gitRepoStatus": "unknown",
+          "mlflow.databricks.gitRepoUrl": "https://github.com/amesar/mlflow-examples",
+          "mlflow.databricks.notebook.commandID": "5431418109544560072_6003751620473763472_72b38bdb6c1d4a7598a2f2eca7730096",
+          "mlflow.databricks.notebookID": 1280664374373215,
+          "mlflow.databricks.notebookPath": "/Repos/andre@mycompany.com/mlflow-examples/databricks/notebooks/basic/TensorFlow_Mnist",
+          "mlflow.databricks.webappURL": "https://denali.staging.mycompany.com",
+          "mlflow.databricks.workspaceID": 2556758628403379,
+          "mlflow.databricks.workspaceURL": "e2-demo-west.cloud.databricks.com",
+          "mlflow.log-model.history": [
+            {
+              "artifact_path": "model",
+              "signature": {
+                "inputs": [
+                  {
+                    "type": "tensor",
+                    "tensor-spec": {
+                      "dtype": "float32",
+                      "shape": [
+                        -1,
+                        784
+                      ]
+                    }
+                  }
+                ],
+                "outputs": [
+                  {
+                    "type": "tensor",
+                    "tensor-spec": {
+                      "dtype": "float32",
+                      "shape": [
+                        -1,
+                        10
+                      ]
+                    }
+                  }
+                ],
+                "params": null
+              },
+              "flavors": {
+                "tensorflow": {
+                  "data": "data",
+                  "code": null,
+                  "save_format": "tf",
+                  "model_type": "keras",
+                  "keras_version": "2.14.0"
+                },
+                "python_function": {
+                  "loader_module": "mlflow.tensorflow",
+                  "python_version": "3.10.12",
+                  "data": "data",
+                  "env": {
+                    "conda": "conda.yaml",
+                    "virtualenv": "python_env.yaml"
+                  }
+                }
+              },
+              "run_id": "5dad20dfb754416ba9f3a99e0b1c497d",
+              "model_uuid": "771bde4b981541cfbe2b1fb7cdd953b3",
+              "model_size_bytes": 3330719,
+              "utc_time_created": "2024-02-20 01:40:50.631208",
+              "mlflow_version": "2.10.2",
+              "databricks_runtime": "14.2.x-cpu-ml-scala2.12"
+            }
+          ],
+          "mlflow.runName": "2024-02-20 01:38:15 - 2.10.2",
+          "mlflow.source.name": "/Repos/andre@mycompany.com/mlflow-examples/databricks/notebooks/basic/TensorFlow_Mnist",
+          "mlflow.source.type": "NOTEBOOK",
+          "mlflow.user": "andre@mycompany.com",
+          "version.mlflow": "2.10.2",
+          "version.tensorflow": "2.14.0"
+        }
+      },
+      "inputs": {}
+    },
+    "artifacts": {
+      "summary": {
+        "artifact_max_level": 10,
+        "num_artifacts": 13,
+        "num_bytes": 3333482,
+        "num_levels": 5
+      },
+      "root_uri": "dbfs:/databricks/mlflow-tracking/5da3a33d71fe490dabfcb7e4532ba28b/5dad20dfb754416ba9f3a99e0b1c497d/artifacts",
+      "files": [
+        {
+          "path": "model.json",
+          "is_dir": false,
+          "file_size": 1636
+        },
+        {
+          "path": "model",
+          "is_dir": true,
+          "artifacts": {
+            "root_uri": "dbfs:/databricks/mlflow-tracking/5da3a33d71fe490dabfcb7e4532ba28b/5dad20dfb754416ba9f3a99e0b1c497d/artifacts",
+            "files": [
+              {
+                "path": "model/MLmodel",
+                "is_dir": false,
+                "file_size": 744
+              },
+              {
+                "path": "model/conda.yaml",
+                "is_dir": false,
+                "file_size": 185
+              },
+              {
+                "path": "model/python_env.yaml",
+                "is_dir": false,
+                "file_size": 123
+              },
+              {
+                "path": "model/requirements.txt",
+                "is_dir": false,
+                "file_size": 75
+              },
+              {
+                "path": "model/data",
+                "is_dir": true,
+                "artifacts": {
+                  "root_uri": "dbfs:/databricks/mlflow-tracking/5da3a33d71fe490dabfcb7e4532ba28b/5dad20dfb754416ba9f3a99e0b1c497d/artifacts",
+                  "files": [
+                    {
+                      "path": "model/data/global_custom_objects.cloudpickle",
+                      "is_dir": false,
+                      "file_size": 838
+                    },
+                    {
+                      "path": "model/data/keras_module.txt",
+                      "is_dir": false,
+                      "file_size": 16
+                    },
+                    {
+                      "path": "model/data/save_format.txt",
+                      "is_dir": false,
+                      "file_size": 2
+                    },
+                    {
+                      "path": "model/data/model",
+                      "is_dir": true,
+                      "artifacts": {
+                        "root_uri": "dbfs:/databricks/mlflow-tracking/5da3a33d71fe490dabfcb7e4532ba28b/5dad20dfb754416ba9f3a99e0b1c497d/artifacts",
+                        "files": [
+                          {
+                            "path": "model/data/model/fingerprint.pb",
+                            "is_dir": false,
+                            "file_size": 57
+                          },
+                          {
+                            "path": "model/data/model/keras_metadata.pb",
+                            "is_dir": false,
+                            "file_size": 6829
+                          },
+                          {
+                            "path": "model/data/model/saved_model.pb",
+                            "is_dir": false,
+                            "file_size": 61851
+                          },
+                          {
+                            "path": "model/data/model/variables",
+                            "is_dir": true,
+                            "artifacts": {
+                              "root_uri": "dbfs:/databricks/mlflow-tracking/5da3a33d71fe490dabfcb7e4532ba28b/5dad20dfb754416ba9f3a99e0b1c497d/artifacts",
+                              "files": [
+                                {
+                                  "path": "model/data/model/variables/variables.data-00000-of-00001",
+                                  "is_dir": false,
+                                  "file_size": 3260143
+                                },
+                                {
+                                  "path": "model/data/model/variables/variables.index",
+                                  "is_dir": false,
+                                  "file_size": 983
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "experiment": {
+    "experiment": {
+      "experiment_id": "5da3a33d71fe490dabfcb7e4532ba28b",
+      "name": "/Repos/andre@mycompany.com/mlflow-examples/databricks/notebooks/basic/TensorFlow_MNIST",
+      "artifact_location": "dbfs:/databricks/mlflow-tracking/5da3a33d71fe490dabfcb7e4532ba28b",
+      "lifecycle_stage": "active",
+      "last_update_time": 1708393241383,
+      "creation_time": 1704385974128,
+      "tags": {
+        "mlflow.experiment.sourceType": "REPO_NOTEBOOK",
+        "mlflow.ownerId": 4566812440727830,
+        "mlflow.experiment.sourceName": "/Repos/andre@mycompany.com/mlflow-examples/databricks/notebooks/basic/TensorFlow_MNIST",
+        "mlflow.ownerEmail": "andre@mycompany.com",
+        "mlflow.experiment.sourceId": 1280664374373215
+      },
+      "_creation_time": "2024-01-04 16:32:54",
+      "_last_update_time": "2024-02-20 01:40:41",
+      "_tracking_uri": "databricks://e2_demo",
+      "_web_ui_link": "https://e2-demo-west.cloud.databricks.com#mlflow/experiments/5da3a33d71fe490dabfcb7e4532ba28b",
+      "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/experiments/get?experiment_id=5da3a33d71fe490dabfcb7e4532ba28b",
+      "permissions": {
+        "permission_levels": [
+          {
+            "permission_level": "CAN_READ",
+            "description": "Can view the experiment"
+          },
+          {
+            "permission_level": "CAN_EDIT",
+            "description": "Can view, log runs, and edit the experiment"
+          },
+          {
+            "permission_level": "CAN_MANAGE",
+            "description": "Can view, log runs, edit, delete, and change permissions of the experiment"
+          }
+        ],
+        "permissions": {
+          "error": {
+            "message": "Databricks permissions API call failed",
+            "MlflowReportsException": {
+              "http_status_code": 400,
+              "uri": "https://e2-demo-west.cloud.databricks.com/api/2.0/permissions/experiments/5da3a33d71fe490dabfcb7e4532ba28b",
+              "response": {
+                "error_code": "INVALID_PARAMETER_VALUE",
+                "message": "For input string: \"5da3a33d71fe490dabfcb7e4532ba28b\""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
