@@ -3,6 +3,12 @@
 
 # COMMAND ----------
 
+import os
+import json
+import mlflow
+
+# COMMAND ----------
+
 def assert_widget(value, name):
     if len(value.rstrip())==0:
         raise RuntimeError(f"ERROR: '{name}' widget is required")
@@ -15,7 +21,6 @@ def mk_local_path(path):
 # COMMAND ----------
 
 def dump_as_json(dct, output_file=None, silent=False, sort_keys=None):
-    import json
     content = json.dumps(dct, sort_keys=sort_keys, indent=2)
     if not silent:
         print(content)
@@ -33,7 +38,12 @@ def dump_obj(obj, title=None):
 
 # COMMAND ----------
 
-import mlflow
+def write_json(path, dct):
+    print("Output file:", os.path.abspath(path))
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(json.dumps(dct, indent=2)+"\n")
+
+# COMMAND ----------
 
 def show_mlflow_uris(msg):
     print(f"{msg}:")

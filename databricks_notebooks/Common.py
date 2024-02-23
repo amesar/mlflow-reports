@@ -11,10 +11,6 @@ print("MLflow version:", mlflow.__version__)
 
 # COMMAND ----------
 
-# MAGIC %run ./_Common
-
-# COMMAND ----------
-
 from mlflow_reports.common.iterators import SearchRegisteredModelsIterator
 from mlflow_reports.common.iterators import SearchModelVersionsIterator
 
@@ -28,8 +24,4 @@ def list_model_versions(max_versions=None):
 
 # COMMAND ----------
 
-import os, json
-def write_json(path, dct):
-    print("Output file:", os.path.abspath(path))
-    with open(path, "w", encoding="utf-8") as f:
-        f.write(json.dumps(dct, indent=2)+"\n")
+# MAGIC %run ./_Common
