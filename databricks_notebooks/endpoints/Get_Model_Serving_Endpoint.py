@@ -3,6 +3,7 @@
 # MAGIC
 # MAGIC ##### Widgets
 # MAGIC * `Endpoint name` - endpoint name
+# MAGIC * `Save JSON as file` - Save endpoint as JSON file
 # MAGIC
 # MAGIC ##### Documentation
 # MAGIC * Databricks

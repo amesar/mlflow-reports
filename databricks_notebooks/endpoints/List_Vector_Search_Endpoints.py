@@ -25,6 +25,10 @@ client = VectorSearchClient(disable_notice=True)
 
 endpoints = client.list_endpoints()
 endpoints = endpoints["endpoints"]
+len(endpoints)
+
+# COMMAND ----------
+
 df = to_dataframe(endpoints)
 display(df)
 
@@ -54,7 +58,7 @@ df.createOrReplaceTempView("endpoints")
 
 # COMMAND ----------
 
-# MAGIC %md ##### Show by num_indexes
+# MAGIC %md ##### Show by `num_indexes`
 
 # COMMAND ----------
 
@@ -62,7 +66,7 @@ df.createOrReplaceTempView("endpoints")
 
 # COMMAND ----------
 
-# MAGIC %md ##### Group by endpoint_type
+# MAGIC %md ##### Group by `endpoint_type`
 
 # COMMAND ----------
 

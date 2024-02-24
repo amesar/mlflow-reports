@@ -20,6 +20,7 @@
 # MAGIC   * [Get_Model_Serving_Endpoint]($endpoints/Get_Model_Serving_Endpoint) 
 # MAGIC * Vector Search endpoints
 # MAGIC   * [List_Vector_Search_Endpoints]($endpoints/List_Vector_Search_Endpoints) - List and query Vector Search endpoints.
+# MAGIC   * [Get_Vector_Search_Endpoint]($endpoints/Get_Vector_Search_Endpoint) - Get Vector Search endpoint details including its indexes
 # MAGIC
 # MAGIC ##### MLflow MLmodel notebooks
 # MAGIC * [Download_MLmodel]($objects/Download_MLmodel) - Download and display a model version's MLmodel artifact.
@@ -59,7 +60,7 @@
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC #####  Last updated: _2024-02-22_
+# MAGIC #####  Last updated: _2024-02-24_
 
 # COMMAND ----------
 
