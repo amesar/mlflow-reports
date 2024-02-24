@@ -8,6 +8,7 @@
 # MAGIC
 # MAGIC ##### Widgets
 # MAGIC * `Database` - full path name such as `andre_m.mlflow_uc` or `andre_m.mlflow_ws`.
+# MAGIC * `Version` - version of table.
 
 # COMMAND ----------
 
@@ -21,11 +22,15 @@
 
 dbutils.widgets.text("Database", "andre_catalog.mlflow_uc")
 database_name = dbutils.widgets.get("Database")
+table_name = f"{database_name}.models"
+
+dbutils.widgets.text("Version", "")
+version = dbutils.widgets.get("Version")
+if version: version = "@v"+version
+
 print("database_name:", database_name)
-
-# COMMAND ----------
-
-spark.sql(f"use {database_name}")
+print("table_name:", table_name)
+print("version:", version)
 
 # COMMAND ----------
 
@@ -33,16 +38,25 @@ spark.sql(f"use {database_name}")
 
 # COMMAND ----------
 
-# MAGIC %sql describe models
+display(spark.sql(f"describe {table_name}"))
 
 # COMMAND ----------
 
-# MAGIC %sql describe history models
+display(spark.sql(f"describe history {table_name}"))
 
 # COMMAND ----------
 
-table_name = f"{database_name}.models"
 display_table_uri(table_name)
+
+# COMMAND ----------
+
+# MAGIC %md ### Create view
+
+# COMMAND ----------
+
+cmd = f"CREATE OR REPLACE TEMPORARY VIEW models as select * from {table_name}{version}"
+spark.sql(cmd)
+cmd
 
 # COMMAND ----------
 
