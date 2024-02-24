@@ -7,8 +7,11 @@ Iterators for MLflow search methods that handle page token magic for you.
 
 from mlflow.store.model_registry.__init__ import (
     SEARCH_REGISTERED_MODEL_MAX_RESULTS_THRESHOLD, # = 1000
-    SEARCH_MODEL_VERSION_MAX_RESULTS_THRESHOLD     # = 200_000
+    SEARCH_MODEL_VERSION_MAX_RESULTS_THRESHOLD     # = 200_000 # incorrect value per API call
 )
+#_SEARCH_MODEL_VERSION_MAX_RESULTS_THRESHOLD = SEARCH_MODEL_VERSION_MAX_RESULTS_THRESHOLD # per API error message: {"error_code": "INVALID_PARAMETER_VALUE", "message": "Invalid max results 200000, should be between 0 and 10000"}}
+_SEARCH_MODEL_VERSION_MAX_RESULTS_THRESHOLD = 10_000 
+
 #    SEARCH_REGISTERED_MODEL_MAX_RESULTS_DEFAULT = 100
 #    SEARCH_MODEL_VERSION_MAX_RESULTS_DEFAULT    = 10000
 
@@ -127,7 +130,7 @@ class SearchModelVersionsIterator(BaseIterator):
         for vr in versions:
             print(vr)
     """
-    def __init__(self, client, max_results=SEARCH_MODEL_VERSION_MAX_RESULTS_THRESHOLD, filter=None):
+    def __init__(self, client, max_results=_SEARCH_MODEL_VERSION_MAX_RESULTS_THRESHOLD, filter=None):
         super().__init__(client, "model-versions/search", "model_versions", max_results=max_results, filter=filter)
 
 
