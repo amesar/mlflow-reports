@@ -56,7 +56,7 @@ def search_registered_models(filter=None, get_search_object_again=False):
     models = mlflow_client.search_registered_models(filter=filter)
     if get_search_object_again:
         print(f"Calling get_registered_model() again for {len(models)} models")
-        models = [ mlflow_client.get_registered_models(m["name"]) for m in models ]
+        models = [ mlflow_client.search_registered_models(m["name"]) for m in models ]
         return [ m["registered_model"] for m in models]
     else:
         return models
