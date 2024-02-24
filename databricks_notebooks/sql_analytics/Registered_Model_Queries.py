@@ -15,6 +15,10 @@
 
 # COMMAND ----------
 
+# MAGIC %run ../_Common
+
+# COMMAND ----------
+
 dbutils.widgets.text("Database", "andre_catalog.mlflow_uc")
 database_name = dbutils.widgets.get("Database")
 print("database_name:", database_name)
@@ -34,6 +38,11 @@ spark.sql(f"use {database_name}")
 # COMMAND ----------
 
 # MAGIC %sql describe history models
+
+# COMMAND ----------
+
+table_name = f"{database_name}.models"
+display_table_uri(table_name)
 
 # COMMAND ----------
 

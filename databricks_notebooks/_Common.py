@@ -140,3 +140,25 @@ _host_name = context.tags().get("browserHostName").get()
 _auth_headers = { "Authorization": f"Bearer {_token}" }
 _base_api_uri = f"https://{_host_name}/api"
 print(f"Base API URI:", _base_api_uri)
+
+# COMMAND ----------
+
+def display_schema_uri(database_name, schema_name="Schema"):
+    if "." in database_name: # is unity catalog model
+        catalog, schema = database_name.split(".")
+        uri = f"https://{_host_name}/explore/data/{catalog}/{schema}"
+        displayHTML(f'<b>{schema_name}:</b> <a href="{uri}">{uri}</a>')
+    else:
+        pass # TODO
+
+def display_table_uri(table_name):
+    if "." in table_name: # is unity catalog model
+        catalog, schema, table_name = table_name.split(".")
+        uri = f"https://{_host_name}/explore/data/{catalog}/{schema}/{table_name}"
+        displayHTML(f'<b>Table:</b> <a href="{uri}">{uri}</a>')
+    else:
+        pass # TODO
+
+# COMMAND ----------
+
+
