@@ -108,6 +108,10 @@ display(df)
 
 # COMMAND ----------
 
+# MAGIC %sql select ep_name as endpoint, model_name, model_version from custom_models order by ep_name desc
+
+# COMMAND ----------
+
 # MAGIC %md #### Foundation models
 # MAGIC
 # MAGIC * Note there is no `creator` attribute in the entity.

@@ -43,21 +43,7 @@
 
 # COMMAND ----------
 
-dbutils.widgets.dropdown("1. Unity Catalog", "yes", ["yes", "no"])
-dbutils.widgets.text("2. Filter", "")
-dbutils.widgets.dropdown("3. Get tags and aliases (UC)", "no", ["yes", "no"])
-
-unity_catalog = dbutils.widgets.get("1. Unity Catalog") == "yes"
-filter = dbutils.widgets.get("2. Filter")
-get_tags_and_aliases = dbutils.widgets.get("3. Get tags and aliases (UC)") == "yes"
-
-filter = filter or None
-
-print("unity_catalog:", unity_catalog)
-print("filter:", filter)
-print("get_tags_and_aliases:", get_tags_and_aliases)
-if unity_catalog and filter:
-    print("WARNING: Filter is not supported by Unity Catalog search_registered_models()")
+# MAGIC %run
 
 # COMMAND ----------
 
