@@ -31,8 +31,9 @@ len(indexes)
 # COMMAND ----------
 
 if len(indexes) == 0:
-    print("No indexes exist for any endpoints")
-    dbutils.notebook.exit
+    msg = "No indexes exist for any endpoints"
+    print(msg)
+    dbutils.notebook.exit(msg)
 
 # COMMAND ----------
 

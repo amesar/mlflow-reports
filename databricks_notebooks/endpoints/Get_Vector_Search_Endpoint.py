@@ -72,9 +72,24 @@ dump_as_json(indexes)
 
 # COMMAND ----------
 
+# MAGIC %md #### Write to file both endpoint and its indexes
+
+# COMMAND ----------
+
+if output_file:
+    endpoint["indexes"] = indexes
+    write_json(output_file, endpoint)
+
+# COMMAND ----------
+
+# MAGIC %md #### Exit if no indexes
+
+# COMMAND ----------
+
 if len(indexes) == 0:
-    print(f"No indexes for endpoint '{endpoint_name}'")
-    dbutils.notebook.exit
+    msg = f"No indexes for endpoint '{endpoint_name}'"
+    print(msg)
+    dbutils.notebook.exit(msg)
 
 # COMMAND ----------
 
@@ -94,13 +109,3 @@ df.createOrReplaceTempView("indexes")
 # COMMAND ----------
 
 # MAGIC %sql select  * from indexes order by name
-
-# COMMAND ----------
-
-# MAGIC %md #### Write to file both endpoint and its indexes
-
-# COMMAND ----------
-
-if output_file:
-    endpoint["indexes"] = indexes
-    write_json(output_file, endpoint)
