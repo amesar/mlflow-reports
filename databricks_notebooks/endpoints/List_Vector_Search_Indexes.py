@@ -24,9 +24,15 @@ client = VectorSearchClient(disable_notice=True)
 # COMMAND ----------
 
 endpoints = client.list_endpoints()["endpoints"]
-indexes = [ client.list_indexes(ep["name"])["vector_indexes"] for ep in endpoints ]
+indexes = [ client.list_indexes(ep["name"]).get("vector_indexes",[]) for ep in endpoints ]
 indexes = [ _idx for _indexes in indexes for _idx in _indexes]
 len(indexes)
+
+# COMMAND ----------
+
+if len(indexes) == 0:
+    print("No indexes exist for any endpoints")
+    dbutils.notebook.exit
 
 # COMMAND ----------
 
@@ -77,10 +83,6 @@ display(df)
 # COMMAND ----------
 
 # MAGIC %sql select index_type, count(*) as count from indexes group by index_type order by count desc
-
-# COMMAND ----------
-
-
 
 # COMMAND ----------
 

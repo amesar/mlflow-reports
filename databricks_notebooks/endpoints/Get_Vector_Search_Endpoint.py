@@ -11,7 +11,7 @@
 
 # COMMAND ----------
 
-!pip install databricks-vectorsearch
+!pip install -U -q databricks-vectorsearch
 dbutils.library.restartPython() 
 
 # COMMAND ----------
@@ -48,7 +48,6 @@ client = VectorSearchClient(disable_notice=True)
 
 # COMMAND ----------
 
-endpoint_name = "andre_dbdemo"
 endpoint = client.get_endpoint(endpoint_name)
 dump_as_json(endpoint)
 
@@ -59,12 +58,23 @@ dump_as_json(endpoint)
 # COMMAND ----------
 
 indexes = client.list_indexes(endpoint_name)
-indexes = indexes["vector_indexes"]
+indexes
+
+# COMMAND ----------
+
+indexes = client.list_indexes(endpoint_name)
+indexes = indexes.get("vector_indexes", [])
 len(indexes)
 
 # COMMAND ----------
 
 dump_as_json(indexes)
+
+# COMMAND ----------
+
+if len(indexes) == 0:
+    print(f"No indexes for endpoint '{endpoint_name}'")
+    dbutils.notebook.exit
 
 # COMMAND ----------
 
