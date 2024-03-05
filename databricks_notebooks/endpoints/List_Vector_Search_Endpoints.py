@@ -5,6 +5,10 @@
 
 # COMMAND ----------
 
+# MAGIC %md #### Setup
+
+# COMMAND ----------
+
 !pip install databricks-vectorsearch
 dbutils.library.restartPython() 
 
@@ -42,11 +46,15 @@ df.createOrReplaceTempView("endpoints")
 
 # COMMAND ----------
 
-# MAGIC %md ##### Summary
+# MAGIC %md ##### Show my endpoints
 
 # COMMAND ----------
 
-# MAGIC %sql select name, creator, creation_timestamp, num_indexes from endpoints order by creation_timestamp desc
+cmd = f"""
+select name, creator, creation_timestamp, num_indexes from endpoints
+where creator='{_user}' order by creation_timestamp desc, name
+"""
+display(spark.sql(cmd))
 
 # COMMAND ----------
 
@@ -54,7 +62,7 @@ df.createOrReplaceTempView("endpoints")
 
 # COMMAND ----------
 
-# MAGIC %sql select name, creator, creation_timestamp, num_indexes from endpoints order by creation_timestamp desc
+# MAGIC %sql select name, creator, creation_timestamp, num_indexes from endpoints order by creation_timestamp desc, name
 
 # COMMAND ----------
 
@@ -62,7 +70,7 @@ df.createOrReplaceTempView("endpoints")
 
 # COMMAND ----------
 
-# MAGIC %sql select name, num_indexes, creator, creation_timestamp from endpoints order by num_indexes desc
+# MAGIC %sql select name, num_indexes, creator, creation_timestamp from endpoints order by num_indexes desc, name
 
 # COMMAND ----------
 
