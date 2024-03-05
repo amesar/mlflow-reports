@@ -134,12 +134,17 @@ def move_column_to_first(pdf, column):
 
 import requests
 
-context = dbutils.notebook.entry_point.getDbutils().notebook().getContext()
-_token = context.apiToken().get()
-_host_name = context.tags().get("browserHostName").get()
+_context = dbutils.notebook.entry_point.getDbutils().notebook().getContext()
+_token = _context.apiToken().get()
+_host_name = _context.tags().get("browserHostName").get()
+_user = _context.tags().apply('user')
+
 _auth_headers = { "Authorization": f"Bearer {_token}" }
 _base_api_uri = f"https://{_host_name}/api"
+
 print(f"Base API URI:", _base_api_uri)
+print(f"Host name:   ", _host_name)
+print(f"User:        ", _user)
 
 # COMMAND ----------
 
@@ -158,7 +163,3 @@ def display_table_uri(table_name):
         displayHTML(f'<b>Table:</b> <a href="{uri}">{uri}</a>')
     else:
         pass # TODO
-
-# COMMAND ----------
-
-

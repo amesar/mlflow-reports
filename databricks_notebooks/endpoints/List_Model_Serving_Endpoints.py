@@ -56,11 +56,6 @@ print("output_file:", output_file)
 
 # COMMAND ----------
 
-#from mlflow_reports.endpoints import get_endpoint_client
-#client = get_endpoint_client(call_databricks_model_serving)
-
-# COMMAND ----------
-
 from mlflow_reports.endpoints import get_endpoints
 endpoints = get_endpoints(call_databricks_model_serving)
 len(endpoints)
@@ -94,11 +89,24 @@ df.createOrReplaceTempView("endpoints")
 
 # COMMAND ----------
 
+# MAGIC %md ##### Show my endpoints
+
+# COMMAND ----------
+
+cmd = f"""
+select name, creator, endpoint_type, creation_timestamp from endpoints 
+where creator='{_user}'
+order by creation_timestamp desc, name
+"""
+display(sql(cmd))
+
+# COMMAND ----------
+
 # MAGIC %md ##### Summary by creation_timestamp
 
 # COMMAND ----------
 
-# MAGIC %sql select name, creator, endpoint_type, creation_timestamp from endpoints order by creation_timestamp desc
+# MAGIC %sql select name, creator, endpoint_type, creation_timestamp from endpoints order by creation_timestamp desc, name
 
 # COMMAND ----------
 
@@ -106,7 +114,7 @@ df.createOrReplaceTempView("endpoints")
 
 # COMMAND ----------
 
-# MAGIC %sql select name, creator, endpoint_type, creation_timestamp from endpoints order by endpoint_type desc
+# MAGIC %sql select name, creator, endpoint_type, creation_timestamp from endpoints order by endpoint_type desc, name
 
 # COMMAND ----------
 
