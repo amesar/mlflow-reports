@@ -51,12 +51,8 @@ display(df)
 
 # COMMAND ----------
 
-# MAGIC %sql select endpoint_name, name, creator, primary_key, index_type from indexes order by endpoint_name, name
-
-# COMMAND ----------
-
 cmd = f"""
-select endpoint_name, name, creator, primary_key, index_type from indexes
+select endpoint_name, name, primary_key, index_type, creator from indexes
 where creator='{_user}' order by endpoint_name, name
 """
 display(spark.sql(cmd))
