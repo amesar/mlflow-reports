@@ -134,6 +134,32 @@ display(sql(cmd))
 
 # COMMAND ----------
 
+# MAGIC %md ##### Show custom models
+
+# COMMAND ----------
+
+# MAGIC %sql select name, creator, creation_timestamp from endpoints 
+# MAGIC where endpoint_type is null
+# MAGIC order by name
+
+# COMMAND ----------
+
+# MAGIC %sql select name, creator, creation_timestamp from endpoints 
+# MAGIC where endpoint_type is null
+# MAGIC order by creation_timestamp desc
+
+# COMMAND ----------
+
+# MAGIC %md ##### Show foundation models
+
+# COMMAND ----------
+
+# MAGIC %sql select name, creator, creation_timestamp from endpoints 
+# MAGIC where endpoint_type like 'FOUNDATION%'
+# MAGIC order by name, creation_timestamp desc
+
+# COMMAND ----------
+
 # MAGIC %md ##### Show external models
 
 # COMMAND ----------
@@ -144,7 +170,7 @@ display(sql(cmd))
 
 # COMMAND ----------
 
-# MAGIC %md ##### Group by task
+# MAGIC %md ##### Group external models by task
 
 # COMMAND ----------
 
