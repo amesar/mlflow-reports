@@ -10,7 +10,7 @@
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC #####  Last updated: _2024-03-08_
+# MAGIC #####  Last updated: _2024-03-17_
 
 # COMMAND ----------
 

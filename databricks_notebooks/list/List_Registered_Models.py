@@ -43,7 +43,24 @@
 
 # COMMAND ----------
 
-# MAGIC %run
+dbutils.widgets.dropdown("1. Unity Catalog", "yes", ["yes", "no"])
+dbutils.widgets.text("2. Filter", "")
+dbutils.widgets.dropdown("3. Get tags and aliases (UC)", "no", ["yes", "no"])
+dbutils.widgets.text("4. Save as JSON file","")
+
+unity_catalog = dbutils.widgets.get("1. Unity Catalog") == "yes"
+filter = dbutils.widgets.get("2. Filter")
+get_tags_and_aliases = dbutils.widgets.get("3. Get tags and aliases (UC)") == "yes"
+json_file = dbutils.widgets.get("4. Save as JSON file")
+
+filter = filter or None
+
+print("unity_catalog:", unity_catalog)
+print("filter:", filter)
+print("get_tags_and_aliases:", get_tags_and_aliases)
+print("json_file:", json_file)
+if unity_catalog and filter:
+    print("WARNING: Filter is not supported by Unity Catalog search_registered_models()")
 
 # COMMAND ----------
 
@@ -58,11 +75,17 @@ len(models)
 
 # COMMAND ----------
 
+if json_file:
+    write_json(json_file, models)
+
+# COMMAND ----------
+
 # MAGIC %md ### Create Spark DataFrame
 
 # COMMAND ----------
 
 df = to_dataframe(models)
+display(df)
 
 # COMMAND ----------
 
