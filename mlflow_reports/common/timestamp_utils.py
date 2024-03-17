@@ -7,6 +7,13 @@ ts_now_fmt_utc = time.strftime(TS_FORMAT, time.gmtime(ts_now_seconds))
 ts_now_fmt_local = time.strftime(TS_FORMAT, time.localtime(ts_now_seconds))
 
 
+def now(as_utc=True):
+    if as_utc:
+        return time.strftime(TS_FORMAT, time.gmtime(round(time.time())))
+    else:
+        return time.strftime(TS_FORMAT, time.localtime(round(time.time())))
+
+
 def fmt_ts_millis(millis, as_utc=True):
     if not millis:
         return None
