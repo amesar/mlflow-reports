@@ -1,9 +1,8 @@
 from dataclasses import dataclass
 
-import mlflow
 from mlflow.exceptions import RestException
 from mlflow_reports.common import MlflowReportsException
-from mlflow_reports.client import mlflow_client, databricks_client
+from mlflow_reports.client import mlflow_client, databricks_client, get_mlflow_client
 
 
 def get_experiment(exp_id_or_name):
@@ -42,7 +41,7 @@ def get_registered_model(model_name, get_permissions):
         return model["registered_model"]
 
 
-def search_registered_models(filter=None, get_search_object_again=False):
+def search_registered_models(filter=None, get_search_object_again=False, unity_catalog=False):
     """
     Search for registered models.
     For Databricks UC, need to call 'registered-models/get' again for each
@@ -53,16 +52,19 @@ def search_registered_models(filter=None, get_search_object_again=False):
     https://databricks.atlassian.net/browse/ES-834105
     UC-ML MLflow search_registered_models and search_model_versions do not return tags and aliases
     """
-    models = mlflow_client.search_registered_models(filter=filter)
+    def _mk_filter(name):
+        return f"name='{name}'"
+    _mlflow_client = get_mlflow_client(unity_catalog)
+    models = _mlflow_client.search_registered_models(filter=filter)
     if get_search_object_again:
         print(f"Calling get_registered_model() again for {len(models)} models")
-        models = [ mlflow_client.search_registered_models(m["name"]) for m in models ]
+        models = [ _mlflow_client.search_registered_models(_mk_filter(m["name"])) for m in models ]
         return [ m["registered_model"] for m in models]
     else:
         return models
 
 
-def search_model_versions(filter=None, get_search_object_again=False):
+def search_model_versions(filter=None, get_search_object_again=False, unity_catalog=False):
     """
     Search for model versions.
     See  https://github.com/mlflow/mlflow/issues/9783 (no alias)
@@ -74,7 +76,8 @@ def search_model_versions(filter=None, get_search_object_again=False):
     MlflowClient.search_model_versions does not return aliases
     """
 
-    versions = mlflow_client.search_model_versions(filter=filter)
+    _mlflow_client = get_mlflow_client(unity_catalog)
+    versions = _mlflow_client.search_model_versions(filter=filter)
     if not get_search_object_again:
         return versions
 
@@ -174,15 +177,6 @@ def mk_key_value_array_dict(kv_array, key_name, value_name):
 
 def is_unity_catalog_model(model_name):
     return "." in model_name
-
-
-def use_unity_catalog(_use_unity_catalog):
-    if is_calling_databricks():
-        if _use_unity_catalog:
-            mlflow.set_registry_uri("databricks-uc")
-        else:
-            mlflow.set_registry_uri("databricks")
-    print("Current mlflow.registry_uri:",mlflow.get_registry_uri())
 
 
 def has_error(dct):

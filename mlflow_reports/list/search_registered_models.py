@@ -13,8 +13,7 @@ def search(filter=None, get_tags_and_aliases=False, unity_catalog=False):
     """
     :return: Returns registered models as list of Dicts.
     """
-    mlflow_utils.use_unity_catalog(unity_catalog)
-    models = mlflow_utils.search_registered_models(filter, get_tags_and_aliases)
+    models = mlflow_utils.search_registered_models(filter, get_tags_and_aliases, unity_catalog)
     print(f"Found {len(models)} registered models")
     models = sorted(models, key=lambda x: x["name"])
     return models

@@ -60,7 +60,7 @@ def opt_unity_catalog(function):
     function = click.option("--unity-catalog",
         help="Use Databricks Unity Catalog.",
         type=bool,
-        default=True
+        default=False
     )(function)
     return function
 

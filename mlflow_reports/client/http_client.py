@@ -267,11 +267,11 @@ dbx_21_client = HttpClient("api/2.1")
 mlflow_client = HttpClient("api/2.0/mlflow")
 uc_mlflow_client = UnityCatalogHttpClient()
 
-def get_mlflow_client():
+def get_mlflow_client(unity_catalog=False):
     """
     Returns either a UC-enabled client or not, depending if MLFLOW_REGISTRY_URI is set to 'databricks-uc://e2_demo'
     """
-    return uc_mlflow_client if is_unity_catalog() else mlflow_client
+    return uc_mlflow_client if unity_catalog else mlflow_client
 
 
 def is_unity_catalog():
