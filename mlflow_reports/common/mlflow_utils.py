@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-
 from mlflow.exceptions import RestException
 from mlflow_reports.common import MlflowReportsException
 from mlflow_reports.client import mlflow_client, databricks_client, get_mlflow_client
@@ -28,16 +27,17 @@ def get_registered_model(model_name, get_permissions):
        2. databricks/registered-models/get - custom Databricks call that simply has an extra "id" field needed
           to subsequently call to get permissions
     """
+    _mlflow_client = get_mlflow_client(model_name)
     if is_calling_databricks() and get_permissions and not is_unity_catalog_model(model_name):
         try:
             model = databricks_client.get_registered_model(model_name)
             return model["registered_model_databricks"]
         except MlflowReportsException as e:
             print(f"WARNING: Databricks API call failed: {e}")
-            model = mlflow_client.get_registered_model(model_name)
+            model = _mlflow_client.get_registered_model(model_name)
             return model["registered_model"]
     else:
-        model = mlflow_client.get_registered_model(model_name)
+        model = _mlflow_client.get_registered_model(model_name)
         return model["registered_model"]
 
 

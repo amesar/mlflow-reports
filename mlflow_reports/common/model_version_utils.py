@@ -1,4 +1,4 @@
-from mlflow_reports.client import mlflow_client
+from mlflow_reports.client import get_mlflow_client
 from mlflow_reports.common import mlflow_utils
 
 
@@ -29,6 +29,7 @@ def _get_version(model_name, version_or_stage):
     Get version number for a version_or_stage
     """
     if version_or_stage.isdigit():
+        mlflow_client = get_mlflow_client(model_name)
         rsp = mlflow_client.get_model_version(model_name, version_or_stage)
         return rsp["model_version"]
     else:
@@ -43,6 +44,7 @@ def get_reg_model_download_uri(version):
     """
     Return the download URI of the MLflow model in the registry
     """
+    mlflow_client = get_mlflow_client(version["name"])
     rsp = mlflow_client.get_model_version_download_uri(version["name"], version["version"])
     return rsp.get("artifact_uri")
 

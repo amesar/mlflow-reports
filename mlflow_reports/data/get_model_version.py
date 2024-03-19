@@ -1,5 +1,5 @@
 import click
-from mlflow_reports.client import mlflow_client
+from mlflow_reports.client import get_mlflow_client
 from mlflow_reports.data import get_experiment
 from mlflow_reports.data import get_registered_model
 from mlflow_reports.mlflow_model.mlflow_model_utils import get_model_artifact
@@ -35,6 +35,7 @@ def get(
     :param artifact_max_level: Number of artifact levels to recurse for run artifacts.
     :return: Returns model version object.
     """
+    mlflow_client = get_mlflow_client(registered_model_name)
     rsp = mlflow_client.get_model_version(registered_model_name, version)
     if get_raw:
         return rsp
@@ -54,6 +55,7 @@ def enrich(vr):
     data_utils.mk_tags(vr)
     if mlflow_utils.is_calling_databricks() and not mlflow_utils.is_unity_catalog_model(vr["name"]):
         try:
+            mlflow_client = get_mlflow_client(vr["name"])
             rsp = mlflow_client.get_transition_requests(vr["name"], vr["version"])
             requests = rsp["requests"] if rsp else []
             vr["_transition_requests"] = requests

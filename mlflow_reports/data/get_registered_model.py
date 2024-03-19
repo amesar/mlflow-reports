@@ -1,5 +1,5 @@
 import click
-from mlflow_reports.client import mlflow_client
+from mlflow_reports.client import get_mlflow_client
 from mlflow_reports.common import MlflowReportsException
 from mlflow_reports.common import mlflow_utils
 from mlflow_reports.common import permissions_utils
@@ -27,6 +27,7 @@ def get(
         get_permissions = False,
         get_raw = False,
     ):
+    mlflow_client = get_mlflow_client(model_name)
     if get_raw:
         return mlflow_client.get_registered_model(model_name)
 
@@ -42,6 +43,7 @@ def get(
 
 def enrich(reg_model, get_permissions=False, get_versions=False, enrich_versions=False):
     model_name = reg_model["name"]
+    mlflow_client = get_mlflow_client(model_name)
     reg_model["tags"] = mlflow_utils.mk_tags_dict(reg_model.get("tags"))
     data_utils.adjust_ts(reg_model, [ "creation_timestamp", "last_updated_timestamp" ])
     data_utils.adjust_uc(reg_model)
