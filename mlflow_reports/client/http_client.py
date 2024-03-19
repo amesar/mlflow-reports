@@ -12,6 +12,12 @@ _TIMEOUT = 120 # per MLflow client
 
 _debug = os.environ.get("DEBUG")
 
+def debug(*args):
+    import sys
+    for arg in args:
+        sys.stderr.write(f"{arg} ")
+    sys.stderr.write("\n")
+
 class BaseHttpClient(metaclass=ABCMeta):
     """
     Base HTTP client class.
@@ -81,6 +87,8 @@ class HttpClient(BaseHttpClient):
         :param host: Host name of tracking server such as 'http://localhost:5000' or 'databricks://my_profile'.
         :param token: Databricks token if using Databricks.
         """
+
+        msg = { "api_name": api_name, "host": host, "token": token }
         if host:
             # Assume 'host' is a Databricks profile
             if not host.startswith("http"):
@@ -90,7 +98,9 @@ class HttpClient(BaseHttpClient):
             (host, token) = mlflow_auth_utils.get_mlflow_host_token()
 
         if not host:
-            raise MlflowReportsException(message="MLflow tracking URI (MLFLOW_TRACKING_URI environment variable) is not configured correctly")
+            msg = { "api_name": api_name, "host": host, "token": token }
+            msg = f"MLflow tracking URI (MLFLOW_TRACKING_URI or DATABRICKS_HOST environment variable) is not configured correctly. {msg}"
+            raise MlflowReportsException(message=msg)
         self.api_uri = os.path.join(host, api_name)
         self.token = token
 

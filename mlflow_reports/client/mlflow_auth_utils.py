@@ -1,3 +1,5 @@
+import os
+import mlflow
 from mlflow_reports.client import databricks_cli_utils
 from mlflow_reports.common import MlflowReportsException
 
@@ -10,10 +12,16 @@ def get_mlflow_host():
 def get_mlflow_host_token():
     """
     Returns the MLflow tracking URI (host) and Databricks personal access token (PAT).
-    For Databricks, expects the MLflow tracking URI in the form of 'databricks' or 'databricks://MY_PROFILE'.
+    For Databricks there are two environment variable choices:
+       - MLFLOW_TRACKING_URI - profile - the MLflow tracking URI in the form of 'databricks' or 'databricks://MY_PROFILE'.
+       - DATABRICKS_HOST (e.g. https://e2-demo-west.cloud.databricks.com) and DATABRICKS_TOKEN
     """
 
-    import mlflow
+    dbx_host = os.environ.get("DATABRICKS_HOST")
+    dbx_token = os.environ.get("DATABRICKS_TOKEN")
+    if dbx_host and dbx_token:
+        return (dbx_host, dbx_token)
+
     uri = mlflow.tracking.get_tracking_uri()
     if uri:
         if not uri.startswith("databricks"):
