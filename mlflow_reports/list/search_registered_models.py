@@ -2,6 +2,7 @@
 Search for registered models
 """
 
+import copy
 import numpy as np
 import pandas as pd
 
@@ -23,6 +24,7 @@ def search(filter=None, get_tags_and_aliases=False, unity_catalog=False):
 def as_pandas_df(models, prefix=None, tags_and_aliases_as_string=False):
     if len(models) == 0:
         return pd.DataFrame()
+    models = copy.deepcopy(models)
     if prefix:
         models = [ m for m in models if m["name"].startswith(prefix)]
     models = sorted(models, key=lambda x: x["name"])

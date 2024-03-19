@@ -2,6 +2,7 @@
 Search for experiments.
 """
 
+import copy
 import numpy as np
 import pandas as pd
 from mlflow_reports.client import mlflow_client
@@ -19,6 +20,7 @@ def search(filter=None, view_type=None, max_results=None):
 def as_pandas_df(experiments, tags_and_aliases_as_string=False):
     if len(experiments) == 0:
         return pd.DataFrame()
+    experiments = copy.deepcopy(experiments)
     for exp in experiments:
         list_utils.kv_list_to_dict(exp, "tags", mlflow_utils.mk_tags_dict, tags_and_aliases_as_string)
     df = pd.DataFrame.from_dict(experiments)

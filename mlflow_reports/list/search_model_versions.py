@@ -2,6 +2,7 @@
 Search for model versions and return Pandas DataFrame.
 """
 
+import copy
 import numpy as np
 import pandas as pd
 import mlflow
@@ -27,6 +28,7 @@ def search(
 def as_pandas_df(versions, max_description=None):
     if len(versions) == 0:
         return pd.DataFrame()
+    versions = copy.deepcopy(versions)
     df = pd.DataFrame.from_dict(versions)
     df = df.replace(np.nan, "", regex=True)
     df = df.sort_values(["name", "version"], ascending=[True, False])
