@@ -65,7 +65,7 @@ def write_csv_and_json_files(
     :param columns: Dataframe columns to write
     :param ts_columns: Dataframe timestamp columns to convert from millis to human friendly format
     :param normalize_pandas_df: convert with pd.json_normalize(), else use pd.DataFrame()
-    :param reorder_columns: customer reorder columns
+    :param reorder_columns: custom reorder columns function
     """
     df = pd.json_normalize(list_of_dicts) if normalize_pandas_df else pd.DataFrame(list_of_dicts)
     if reorder_columns:

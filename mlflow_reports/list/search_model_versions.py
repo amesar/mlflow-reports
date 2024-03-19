@@ -24,13 +24,15 @@ def search(
     return versions
 
 
-def to_pandas_df(versions):
+def as_pandas_df(versions, max_description=None):
     if len(versions) == 0:
         return pd.DataFrame()
     df = pd.DataFrame.from_dict(versions)
     df = df.replace(np.nan, "", regex=True)
-    list_utils.to_datetime(df, "creation_timestamp")
-    list_utils.to_datetime(df, "last_updated_timestamp")
+    df = df.sort_values(["name", "version"], ascending=[True, False])
+    if "description" in df and max_description:
+        df["description"] = df["description"].str[:max_description]
+    list_utils.to_datetime(df, [ "creation_timestamp", "last_updated_timestamp"])
     return df
 
 
@@ -47,7 +49,7 @@ def _list_model_versions_databricks(filter, get_tags_and_aliases, get_model_deta
     """
 
     if filter:
-        return _list_model_versions(filter, get_tags_and_aliases, get_model_details)
+        return _list_model_versions(filter, get_tags_and_aliases, get_model_details, unity_catalog)
 
     models = mlflow_utils.search_registered_models(unity_catalog=unity_catalog)
     num_models = len(models)

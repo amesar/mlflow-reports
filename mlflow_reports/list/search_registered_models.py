@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 
 from mlflow_reports.common import mlflow_utils
+from mlflow_reports.common.pandas_utils import move_column
 from . import list_utils
 
 
@@ -19,7 +20,7 @@ def search(filter=None, get_tags_and_aliases=False, unity_catalog=False):
     return models
 
 
-def to_pandas_df(models, prefix=None, tags_and_aliases_as_string=False):
+def as_pandas_df(models, prefix=None, tags_and_aliases_as_string=False):
     if len(models) == 0:
         return pd.DataFrame()
     if prefix:
@@ -32,5 +33,6 @@ def to_pandas_df(models, prefix=None, tags_and_aliases_as_string=False):
 
     df = pd.DataFrame.from_dict(models)
     df = df.replace(np.nan, "", regex=True)
+    df = move_column(df, "user_id", index=1)
     list_utils.to_datetime(df, ["creation_timestamp", "last_updated_timestamp"])
     return df

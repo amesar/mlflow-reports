@@ -16,7 +16,7 @@ def search(filter=None, view_type=None, max_results=None):
     return experiments
 
 
-def to_pandas_df(experiments, tags_and_aliases_as_string=False):
+def as_pandas_df(experiments, tags_and_aliases_as_string=False):
     if len(experiments) == 0:
         return pd.DataFrame()
     for exp in experiments:
