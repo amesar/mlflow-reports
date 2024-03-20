@@ -17,8 +17,10 @@ setup(
     packages=find_packages(exclude=["tests", "tests.*"]),
     zip_safe=False,
     install_requires=[
-        "mlflow-skinny>=2.8.1",
+        "mlflow-skinny[databricks]>=2.10.1",
+        "mlflow[genai]",
         "databricks-vectorsearch",
+        "databricks-cli",
         "pandas>=2.0.3",
         "mdutils",
         "wheel"
