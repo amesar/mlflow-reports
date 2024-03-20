@@ -25,7 +25,10 @@ setup(
         "mdutils",
         "wheel"
     ],
-    extras_require= { "tests": [ "mlflow", "pytest","pytest-html>=3.2.0", "shortuuid>=1.0.11" ] },
+    extras_require= { 
+        "tests": [ "mlflow", "pytest","pytest-html>=3.2.0", "shortuuid>=1.0.11" ],
+        "streamlit": [ "streamlit" ]
+    },
     license = "Apache License 2.0",
     keywords = "mlflow ml ai",
     classifiers = [
