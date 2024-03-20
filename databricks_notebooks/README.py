@@ -16,16 +16,16 @@
 
 # MAGIC %md #### Streamlit Notebooks
 # MAGIC
-# MAGIC #### Overview
+# MAGIC ##### Overview
 # MAGIC * Browse MLflow objects and Databricks endpoints as a single pane.
 # MAGIC * Ability to see table view.
 # MAGIC * Ability to see API JSON response.
 # MAGIC
-# MAGIC #### Notebooks
+# MAGIC ##### Notebooks
 # MAGIC * [Streamlit Notebooks README]($streamlit/_README)
 # MAGIC * [List_MLflow_Objects]($streamlit/List_MLflow_Objects) - list and search MLflow objects.
 # MAGIC   * Registered models, model versions, experiments and runs.
-# MAGIC * [List_Databricks_Endpoints]($streamlit) - list and search Databricks endpoints.
+# MAGIC * [List_Databricks_Endpoints]($streamlit/List_Databricks_Endpoints) - list and search Databricks endpoints.
 # MAGIC   * Model serving endpoints, vector search endpoints and vector search indexes.
 
 # COMMAND ----------

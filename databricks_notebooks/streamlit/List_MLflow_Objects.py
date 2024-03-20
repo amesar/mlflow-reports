@@ -26,7 +26,3 @@ print("script_path:", script_path)
 
 from dbtunnel import dbtunnel
 dbtunnel.streamlit(script_path).run()
-
-# COMMAND ----------
-
-
