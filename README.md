@@ -1,5 +1,14 @@
 # MLflow Reports
 
+## Latest
+
+### Streamlit
+
+* [README_streamlit.md](README_streamlit.md) - new Streamlit scripts
+  * List MLflow objects - registered models, model versions, experiments and runs.
+  * List Databricks endpoints - model serving endpoints, vector search endpoints and indexes.
+
+## Overview
 
 Tools to display and list details of MLflow objects in JSON, CSV and Markdown format.
 
@@ -24,7 +33,7 @@ python -m venv mlflow-reports
 source mlflow-reports/bin/activate
 ```
 ```
-pip install git+https:///github.com/amesar/mlflow-reports/#egg=mlflow-reports
+pip install git+https:///github.com/amesar/mlflow-reports/#egg=mlflow-reports[streamlit]
 ```
 
 ```

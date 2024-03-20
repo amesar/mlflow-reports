@@ -5,6 +5,8 @@
 # MAGIC * Browse MLflow objects and Databricks endpoints as a single pane.
 # MAGIC * Ability to see table view.
 # MAGIC * Ability to see API JSON response.
+# MAGIC * Great thanks to https://github.com/stikkireddy/dbtunnel.
+
 # MAGIC
 # MAGIC ##### Notebooks
 # MAGIC * [List_MLflow_Objects]($List_MLflow_Objects) - list and search MLflow objects.
@@ -17,4 +19,4 @@
 # MAGIC * Streamlit local script paths work.
 # MAGIC * Streamlit script paths as raw github seeem not to work yet.
 # MAGIC
-# MAGIC #####  Last updated: _2024-03-19_
+# MAGIC #####  Last updated: _2024-03-20_
