@@ -32,9 +32,17 @@ export MLFLOW_TRACKING_URI=databricks://my_profile
 streamlit run https://raw.githubusercontent.com/amesar/mlflow-reports/master/mlflow_reports/streamlit/list_mlflow_objects.py
 
 streamlit run https://raw.githubusercontent.com/amesar/mlflow-reports/master/mlflow_reports/streamlit/list_databricks_endpoints.py
-```
 
-### Run on your laptop
+```
+### Runing inside Databricks Notebook
+
+* See [databricks_notebooks](databricks_notebooks/streamlit) folder.
+* [List_Mlflow_Objects.py](databricks_notebooks/streamlit/List_Mlflow_Objects.py)
+* [List_Databricks_Endpoints.py](databricks_notebooks/streamlit/List_Databricks_Endpoints.py)
+* Great thanks to https://github.com/stikkireddy/dbtunnel
+
+
+### Run on laptop
 
 #### Run against a local MLflow tracking sever
 
@@ -65,8 +73,4 @@ export DATABRICKS_HOST=https://e2-my-workspace.mycompany.com
 export DATABRICKS_TOKEN=MY_TOKEN
 streamlit run https://raw.githubusercontent.com/amesar/mlflow-reports/master/mlflow_reports/streamlit/list_mlflow_objects.py
 ```
-
-### Runing inside Databricks Notebook
-
-* See [databricks_notebooks](databricks_notebooks/streamlit) folder.
 
