@@ -10,7 +10,23 @@
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC #####  Last updated: _2024-03-17_
+# MAGIC #####  Last updated: _2024-03-19_
+
+# COMMAND ----------
+
+# MAGIC %md #### Streamlit Notebooks
+# MAGIC
+# MAGIC #### Overview
+# MAGIC * Browse MLflow objects and Databricks endpoints as a single pane.
+# MAGIC * Ability to see table view.
+# MAGIC * Ability to see API JSON response.
+# MAGIC
+# MAGIC #### Notebooks
+# MAGIC * [Streamlit Notebooks README]($streamlit/_README)
+# MAGIC * [List_MLflow_Objects]($streamlit/List_MLflow_Objects) - list and search MLflow objects.
+# MAGIC   * Registered models, model versions, experiments and runs.
+# MAGIC * [List_Databricks_Endpoints]($streamlit) - list and search Databricks endpoints.
+# MAGIC   * Model serving endpoints, vector search endpoints and vector search indexes.
 
 # COMMAND ----------
 
