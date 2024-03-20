@@ -3,7 +3,7 @@ import streamlit as st
 from mlflow_reports.list import search_registered_models, search_model_versions, search_experiments
 from mlflow_reports.common.timestamp_utils import now
 from mlflow_reports.client import mlflow_client
-#from mlflow_reports.streamlit.uc_tabs import do_unity_catalog
+#from mlflow_reports.streamlit.unity_catalog.py import do_unity_catalog
 
 
 def main():

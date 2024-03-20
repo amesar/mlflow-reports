@@ -7,7 +7,7 @@ from mlflow_reports.common import io_utils
 from mlflow_reports.common.click_options import opt_output_file_base, opt_get_raw, opt_get_details
 from mlflow_reports.list.click_options import opt_columns, opt_normalize_pandas_df
 from . click_options import opt_call_databricks_model_serving
-from . import get_endpoints, get_endpoint_client
+from . import get_endpoints, get_endpoint_client, get_endpoints_as_pandas_df
 
 
 def list_endpoints(
@@ -24,6 +24,9 @@ def list_endpoints(
         endpoints = [ client.get_endpoint(ep["name"]) for ep in endpoints ]
     ts_columns = [] if get_raw else [ "creation_timestamp", "last_updated_timestamp" ]
     io_utils.write_csv_and_json_files(output_file_base, endpoints, columns, ts_columns, normalize_pandas_df)
+
+    df = get_endpoints_as_pandas_df()
+    io_utils.new_write_csv_and_json_files(endpoints, df, columns, output_file_base+"2")
 
 
 @click.command()

@@ -4,6 +4,7 @@ from mlflow.deployments.mlflow import MlflowDeploymentClient
 from mlflow.deployments.databricks import DatabricksDeploymentClient
 from mlflow.deployments import get_deploy_client
 from mlflow_reports.common import MlflowReportsException
+from mlflow_reports.common.pandas_utils import move_column
 from mlflow_reports.client.model_serving_client import ModelServingClient
 
 
@@ -28,6 +29,17 @@ def get_endpoints(call_databricks_model_serving=False):
     else:
         raise MlflowReportsException(message=f"Unsupported Deployment client: {type(client)}")
     return endpoints
+
+
+def as_pandas_df(endpoints):
+    from mlflow_reports.list import list_utils
+    import pandas as pd
+    import numpy as np
+    df = pd.DataFrame.from_dict(endpoints)
+    df = df.replace(np.nan, "", regex=True)#XX
+    list_utils.to_datetime(df, ["creation_timestamp", "last_updated_timestamp"])
+    df = move_column(df, "endpoint_type", index=1)
+    return df
 
 
 def _MlflowDeploymentClient_to_dict(endpoints):
