@@ -1,5 +1,7 @@
 # Databricks notebook source
-# MAGIC %md ### Get Endpoint - `Model Serving` aka `MLflow Deployment` Endpoint
+# MAGIC %md ### Get Model Serving Endpoint
+# MAGIC
+# MAGIC Also called "MLflow Deployment" endpoint.
 # MAGIC
 # MAGIC ##### Widgets
 # MAGIC * `Endpoint name` - endpoint name

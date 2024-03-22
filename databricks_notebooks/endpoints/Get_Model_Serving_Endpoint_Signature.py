@@ -1,7 +1,7 @@
 # Databricks notebook source
 # MAGIC %md ### Get Model Serving Endpoint Signature
 # MAGIC
-# MAGIC Get the model signature of a served model (__custom model__ only) of a model serving endpoint.
+# MAGIC Get the model signature of a served model (custom models only) of a model serving endpoint.
 # MAGIC
 # MAGIC ##### Widgets
 # MAGIC * `1. Endpoint name` 
@@ -50,10 +50,6 @@
 # COMMAND ----------
 
 # MAGIC %run ../_Common
-
-# COMMAND ----------
-
-#dbutils.widgets.removeAll()
 
 # COMMAND ----------
 
@@ -122,6 +118,10 @@ def get_signature(endpoint_name, entity_name):
     if not model_version:
         print(f"WARNING: no model_version")
         return {}
+    if "." in model_name:
+        mlflow.set_registry_uri("databricks-uc")
+    else:
+        mlflow.set_registry_uri("databricks")
     mlmodel = get_MLmodel(model_name, model_version)
     return mlmodel.get("signature")
 
