@@ -23,3 +23,10 @@ def opt_call_databricks_model_serving(function):
         default=False
     )(function)
     return function
+
+def opt_model_type(function):
+    function = click.option("--model-type",
+        help="Model type: all|custom|foundation|external",
+        type=click.Choice(["all", "custom", "foundation", "external"]), default = "all"
+    )(function)
+    return function

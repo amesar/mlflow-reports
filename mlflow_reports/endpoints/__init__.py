@@ -17,9 +17,10 @@ def get_endpoint_client(use_databricks=False):
     return client
 
 
-def get_endpoints(call_databricks_model_serving=False):
+def get_endpoints(model_type=None, call_databricks_model_serving=False):
     client = get_endpoint_client(call_databricks_model_serving)
     endpoints = client.list_endpoints()
+
     if isinstance(client, MlflowDeploymentClient):
         endpoints = _MlflowDeploymentClient_to_dict(endpoints)
     elif isinstance(client, DatabricksDeploymentClient):
@@ -28,6 +29,14 @@ def get_endpoints(call_databricks_model_serving=False):
         endpoints = endpoints["endpoints"]
     else:
         raise MlflowReportsException(message=f"Unsupported Deployment client: {type(client)}")
+
+    if model_type == "custom":
+        return [ ep for ep in endpoints if not ep.get("endpoint_type") ]
+    elif model_type == "external":
+        return [ ep for ep in endpoints if ep.get("endpoint_type") == "EXTERNAL_MODEL" ]
+    elif model_type == "foundation":
+        return [ ep for ep in endpoints if ep.get("endpoint_type") == "FOUNDATION_MODEL_API" ]
+
     return endpoints
 
 
@@ -36,7 +45,7 @@ def as_pandas_df(endpoints):
     import pandas as pd
     import numpy as np
     df = pd.DataFrame.from_dict(endpoints)
-    df = df.replace(np.nan, "", regex=True)#XX
+    df = df.replace(np.nan, "", regex=True)
     list_utils.to_datetime(df, ["creation_timestamp", "last_updated_timestamp"])
     df = move_column(df, "endpoint_type", index=1)
     return df

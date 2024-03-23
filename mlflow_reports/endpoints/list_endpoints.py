@@ -6,11 +6,12 @@ import click
 from mlflow_reports.common import io_utils
 from mlflow_reports.common.click_options import opt_output_file_base, opt_get_raw, opt_get_details
 from mlflow_reports.list.click_options import opt_columns, opt_normalize_pandas_df
-from . click_options import opt_call_databricks_model_serving
+from . click_options import opt_call_databricks_model_serving, opt_model_type
 from . import get_endpoints, get_endpoint_client, as_pandas_df
 
 
-def list_endpoints(
+def show(
+        model_type,
         columns,
         output_file_base,
         call_databricks_model_serving = False,
@@ -18,7 +19,7 @@ def list_endpoints(
         get_details = False,
         normalize_pandas_df = False
     ):
-    endpoints = get_endpoints(call_databricks_model_serving)
+    endpoints = get_endpoints(model_type, call_databricks_model_serving)
     if get_details: # NOTE: "GET serving-endpoints/{endpoint_name}" returns more details than "GET serving-endpoints"
         client = get_endpoint_client(call_databricks_model_serving)
         endpoints = [ client.get_endpoint(ep["name"]) for ep in endpoints ]
@@ -30,6 +31,7 @@ def list_endpoints(
 
 
 @click.command()
+@opt_model_type
 @opt_columns
 @opt_output_file_base
 @opt_call_databricks_model_serving
@@ -37,6 +39,7 @@ def list_endpoints(
 @opt_get_details
 @opt_normalize_pandas_df
 def main(
+        model_type,
         columns,
         output_file_base,
         call_databricks_model_serving,
@@ -49,7 +52,7 @@ def main(
         print(f"  {k}: {v}")
     if isinstance(columns, str):
         columns = columns.split(",")
-    list_endpoints(columns, output_file_base, call_databricks_model_serving, get_raw, get_details, normalize_pandas_df)
+    show(model_type, columns, output_file_base, call_databricks_model_serving, get_raw, get_details, normalize_pandas_df)
 
 
 if __name__ == "__main__":
