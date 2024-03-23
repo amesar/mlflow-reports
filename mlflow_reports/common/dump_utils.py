@@ -25,7 +25,8 @@ def dump_obj_as_json(obj, title=None):
 
 
 def dump_object(obj):
-    title = f"{type(obj)}.__name__"
+    ##title = f"{type(obj).__name__}"
+    title = f"{type(obj)}"
     print(f"{title}:")
     for k,v in obj.__dict__.items():
         print(f"  {k}: {v}")

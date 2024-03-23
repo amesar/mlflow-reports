@@ -1,7 +1,8 @@
+import mlflow
 from mlflow.artifacts import download_artifacts
 from mlflow.utils.file_utils import TempDir
 
-from mlflow_reports.common import io_utils, explode_utils, exception_utils
+from mlflow_reports.common import io_utils, explode_utils, exception_utils, mlflow_utils
 
 
 def get_model_info(model_uri):
@@ -17,6 +18,9 @@ def get_model_artifact(model_uri, artifact_path, file_type=None, explode_json=Tr
     """
     Returns contents of an artifact as a Python object.
     """
+
+    if mlflow_utils.is_unity_catalog_model(model_uri):
+        mlflow.set_registry_uri("databricks-uc")
 
     artifact_uri = f"{model_uri}/{artifact_path}"
     try:
