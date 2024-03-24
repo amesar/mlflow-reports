@@ -56,7 +56,8 @@ def write_csv_and_json_files(
         columns = None,
         ts_columns = None,
         normalize_pandas_df = False,
-        reorder_columns = None
+        reorder_columns = None,
+        silent = False
     ):
     """
     Write a list of dicts in JSON format and its Pandas dataframe in CSV format.
@@ -74,7 +75,7 @@ def write_csv_and_json_files(
     print(f"Writing {len(list_of_dicts)} objects to {csv_file}")
     print(f"Columns: {list(df.columns)}")
     list_utils.to_datetime(df, ts_columns)
-    list_utils.show_and_write(df, columns, csv_file)
+    list_utils.show_and_write(df, columns, csv_file, silent=silent)
 
     for dct in list_of_dicts:
         data_utils.adjust_ts(dct, ts_columns)

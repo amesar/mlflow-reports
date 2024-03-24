@@ -21,7 +21,7 @@ def _to_datetime(df, column, datetime_as_string=False):
             df[column] = df[column].dt.strftime(TS_FORMAT)
 
 
-def show_and_write(df, columns=None, csv_file=None):
+def show_and_write(df, columns=None, csv_file=None, silent=False):
     """
     Display Pandas dataframe to stdout and writes to file.
     """
@@ -33,7 +33,8 @@ def show_and_write(df, columns=None, csv_file=None):
         columns = [c for c in columns if c in df.columns ]
         df = df[columns]
 
-    print(tabulate(df, headers="keys", tablefmt="psql", numalign="right", showindex=False))
+    if not silent:
+        print(tabulate(df, headers="keys", tablefmt="psql", numalign="right", showindex=False))
     if csv_file:
         with open(csv_file, "w", encoding="utf-8") as f:
             df.to_csv(f, index=False)
