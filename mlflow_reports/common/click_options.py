@@ -141,6 +141,15 @@ def opt_output_file(function):
     )(function)
     return function
 
+def opt_output_dir(function):
+    function = click.option("--output-dir",
+        help="Output directory.",
+        type=str,
+        default=".",
+        show_default=True
+    )(function)
+    return function
+
 def opt_output_file_base(function):
     function = click.option("--output-file-base",
         help="File base for JSON and CSV output files. For example, 'out' will result in 'out.csv' and 'out.json.'",

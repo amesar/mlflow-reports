@@ -1,4 +1,3 @@
-
 import os
 from mlflow.deployments.mlflow import MlflowDeploymentClient
 from mlflow.deployments.databricks import DatabricksDeploymentClient
@@ -6,6 +5,12 @@ from mlflow.deployments import get_deploy_client
 from mlflow_reports.common import MlflowReportsException
 from mlflow_reports.common.pandas_utils import move_column
 from mlflow_reports.client.model_serving_client import ModelServingClient
+
+
+CUSTOM_MODEL = "CUSTOM_MODEL" # note that endpoint type is not set for custom model
+FOUNDATION_MODEL = "FOUNDATION_MODEL"
+EXTERNAL_MODEL = "EXTERNAL_MODEL"
+FEATURE_SPEC = "FEATURE_SPEC"
 
 
 def get_endpoint_client(use_databricks=False):
@@ -18,6 +23,9 @@ def get_endpoint_client(use_databricks=False):
 
 
 def get_endpoints(model_type=None, call_databricks_model_serving=False):
+    """
+    Get model server endpoints from either Databricks or OSS Mlflow.
+    """
     client = get_endpoint_client(call_databricks_model_serving)
     endpoints = client.list_endpoints()
 
@@ -40,6 +48,17 @@ def get_endpoints(model_type=None, call_databricks_model_serving=False):
     return endpoints
 
 
+def get_entities(endpoint):
+    config = endpoint.get("config", {})
+    return config.get("served_entities", [])
+
+def filter_entities(entities, entity_type=None):
+    if entity_type == CUSTOM_MODEL: # Custom models don't have a type field set
+        return [ ent for ent in entities if not ent.get("type") ]
+    else:
+        return [ ent for ent in entities if ent.get("type") == entity_type ]
+
+
 def as_pandas_df(endpoints):
     from mlflow_reports.list import list_utils
     import pandas as pd
@@ -53,7 +72,7 @@ def as_pandas_df(endpoints):
 
 def _MlflowDeploymentClient_to_dict(endpoints):
     """
-    Convert mlflow.deployments.mlflow.MlflowDeploymentClient to dict
+    Convert mlflow.deployments.mlflow.MlflowDeploymentClient to a dict
     """
     def convert(ep): # mlflow.deployments.server.config.Endpoint
         _ep = { k:v for k,v in ep.__dict__.items() if k not in ["model", "limit"] }
