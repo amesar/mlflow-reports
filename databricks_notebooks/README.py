@@ -10,7 +10,7 @@
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC #####  Last updated: _2024-03-22_
+# MAGIC #####  Last updated: _2024-03-24_
 
 # COMMAND ----------
 
@@ -69,7 +69,7 @@
 # MAGIC   * [List_Model_Serving_Endpoint_Entities]($endpoints/List_Model_Serving_Endpoint_Entities) - List and query endpoint entities.
 # MAGIC   * [List_Model_Serving_Endpoint_Models]($endpoints/List_Model_Serving_Endpoint_Models) - List and query endpoint models/entities broken down by entity type.
 # MAGIC * [Get_Model_Serving_Endpoint]($endpoints/Get_Model_Serving_Endpoint) 
-# MAGIC * [Get_Model_Serving_Endpoint_Signature]($endpoints/Get_Model_Serving_Endpoint_Signature) - Get the model signature of a served model (custom model only) of a model serving endpoint.
+# MAGIC * [Get_Model_Serving_Endpoint_Signature]($endpoints/Get_Model_Serving_Endpoint_Signature) - Get the model signature of an endpoint entity (custom model only).
 # MAGIC
 # MAGIC ##### Vector Search endpoints
 # MAGIC * [List_Vector_Search_Endpoints]($endpoints/List_Vector_Search_Endpoints) - List and query endpoints.

@@ -1,11 +1,11 @@
 # Databricks notebook source
 # MAGIC %md ### Get Model Serving Endpoint Signature
 # MAGIC
-# MAGIC Get the model signature of a served model (custom models only) of a model serving endpoint.
+# MAGIC Get the model signature of a model serving endpoint "entity" (custom models only).
 # MAGIC
 # MAGIC ##### Widgets
-# MAGIC * `1. Endpoint name` 
-# MAGIC * `2. Served model name` == `config.served.models.name`. One of the served models, usually there is just one.
+# MAGIC * `1. Endpoint` 
+# MAGIC * `2. Entity (model)` == `config.served_entities[0].name`. One of the served entities (model), usually there is just one.
 # MAGIC
 # MAGIC ##### Endpoint JSON response example
 # MAGIC
@@ -14,11 +14,11 @@
 # MAGIC   "name": "dbdemos_endpoint_advanced_andre_catalog_rag_chatbot_2024_03_04",
 # MAGIC   . . .
 # MAGIC   "config": {
-# MAGIC     "served_models": [
+# MAGIC     "served_entities": [
 # MAGIC       {
 # MAGIC         "name": "dbdemos_advanced_chatbot_model-1",
-# MAGIC         "model_name": "andre_catalog.rag_chatbot_2024_03_04.dbdemos_advanced_chatbot_model",
-# MAGIC         "model_version": "1",
+# MAGIC         "entity_name": "andre_catalog.rag_chatbot.dbdemos_advanced_chatbot_model",
+# MAGIC         "entity_version": "1",
 # MAGIC         "workload_size": "Small",
 # MAGIC         "scale_to_zero_enabled": true,
 # MAGIC         "workload_type": "CPU",
@@ -53,19 +53,19 @@
 
 # COMMAND ----------
 
-dbutils.widgets.text("1. Endpoint name", "dbdemos_endpoint_advanced_andre_catalog_rag_chatbot_2024_03_04")
-dbutils.widgets.text("2. Served model name", "dbdemos_advanced_chatbot_model-1")
+dbutils.widgets.text("1. Endpoint", "dbdemos_endpoint_advanced_andre_catalog_rag_chatbot_2024_03_04")
+dbutils.widgets.text("2. Entity (model)", "dbdemos_advanced_chatbot_model-1")
 
-endpoint_name = dbutils.widgets.get("1. Endpoint name")
-served_model_name = dbutils.widgets.get("2. Served model name")
+endpoint_name = dbutils.widgets.get("1. Endpoint")
+entity_name = dbutils.widgets.get("2. Entity (model)")
 
 print("endpoint_name:    ", endpoint_name)
-print("served_model_name:", served_model_name)
+print("entity_name:", entity_name)
 
 # COMMAND ----------
 
 assert_widget(endpoint_name, "1. Endpoint name")
-assert_widget(served_model_name, "2. Served model name")
+assert_widget(entity_name, "2. Entity (model)")
 
 # COMMAND ----------
 
@@ -99,29 +99,32 @@ def get_MLmodel(model_name, model_version):
 # COMMAND ----------
 
 def get_signature(endpoint_name, entity_name):
-    def find(served_models, served_model_name):
-        return [ x for x in served_models if x["name"] == served_model_name ]
+    def find(entities, entity_name):
+        matches = [ x for x in entities if x["name"] == entity_name ]
+        return matches[0] if matches else None
 
     endpoint = deploy_client.get_endpoint(endpoint_name)
     config = endpoint.get("config", {})
-    served_models = config.get("served_models", [])
+    entities = config.get("served_entities", [])
 
-    served_model = find(served_models, served_model_name)
-    if not served_model:
-        print(f"WARNING: no entity '{served_model_name}'")
+    entity = find(entities, entity_name)
+    if not entity:
+        print(f"WARNING: no entity '{entity_name}'")
         return {}
-    served_model = served_model[0]
-    model_name = served_model.get("model_name")
-    model_version = served_model.get("model_version")
+
+    model_name = entity.get("entity_name")
+    model_version = entity.get("entity_version")
     print("model_name:", model_name)
     print("model_version:", model_version)
     if not model_version:
         print(f"WARNING: no model_version")
         return {}
+    
     if "." in model_name:
         mlflow.set_registry_uri("databricks-uc")
     else:
         mlflow.set_registry_uri("databricks")
+        
     mlmodel = get_MLmodel(model_name, model_version)
     return mlmodel.get("signature")
 
@@ -131,7 +134,7 @@ def get_signature(endpoint_name, entity_name):
 
 # COMMAND ----------
 
-signature = get_signature(endpoint_name, served_model_name)
+signature = get_signature(endpoint_name, entity_name)
 
 # COMMAND ----------
 
