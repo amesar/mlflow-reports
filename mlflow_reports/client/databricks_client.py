@@ -16,5 +16,8 @@ class DatabricksClient:
     def get_table_lineage(self, table_name: str) -> Dict:
         return dbx_20_client.get("lineage-tracking/table-lineage", {"table_name": table_name})
 
+    def __repr__(self):
+        return str(dbx_20_client)
+
 
 client = DatabricksClient()

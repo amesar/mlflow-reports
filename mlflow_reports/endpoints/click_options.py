@@ -30,3 +30,10 @@ def opt_model_type(function):
         type=click.Choice(["all", "custom", "foundation", "external"]), default = "all"
     )(function)
     return function
+
+def opt_expand_model_version(function):
+    function = click.option("--expand-model-version",
+        help="Model type: version|version-and-signature|version-all",
+        type=click.Choice(["none", "version", "version-and-signature", "version-all"]),
+    )(function)
+    return function
