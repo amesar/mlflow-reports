@@ -15,7 +15,7 @@ def main():
         do_vector_search()
 
 
-# ========
+# ==============
 # Model serving
 
 def do_model_serving():
@@ -75,7 +75,7 @@ def do_model_serving_endpoint_details():
     st.write(endpoint)
 
 
-# ========
+# ==============
 # Vector search
 
 def do_vector_search():
@@ -87,10 +87,11 @@ def do_vector_search():
     with tab_endpoint:
         do_vector_search_endpoint_details()
 
+
 def do_list_vector_search_endpoints():
     from mlflow_reports.vector_search.list_endpoints import list, as_pandas_df
     def refresh():
-        vs_endpoints = list() # XXXX
+        vs_endpoints = list()
         st.write(f"Retrieved {len(vs_endpoints)} vector search endpoints at {now()}.")
         st.session_state.vs_endpoints = vs_endpoints
         return vs_endpoints
