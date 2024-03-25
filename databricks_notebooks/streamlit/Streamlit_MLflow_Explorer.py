@@ -1,9 +1,9 @@
 # Databricks notebook source
-# MAGIC %md ## List Databricks Endpoints
+# MAGIC %md ## Streamlit MLflow Explorer
 # MAGIC
-# MAGIC * Last and search registered models, model versions, experiments and runs.
-# MAGIC * Script: [../../mlflow_reports/streamlit/list_databricks_endpoints.py]($../../mlflow_reports/streamlit/list_databricks_endpoints.py)
-# MAGIC * Note: git raw path does not work yet.
+# MAGIC * List and get details for registered models, model versions, experiments and runs.
+# MAGIC * Script: [../../mlflow_reports/streamlit/mlflow_explorer.py]($../../mlflow_reports/streamlit/mlflow_explorer.py)
+# MAGIC * Note: Using git raw path seems not to work yet.
 
 # COMMAND ----------
 
@@ -11,12 +11,7 @@
 
 # COMMAND ----------
 
-
-script_paths = mk_script_paths("list_databricks_endpoints.py")
-
-# COMMAND ----------
-
-#dbutils.widgets.removeAll()
+script_paths = mk_script_paths("mlflow_explorer.py")
 
 # COMMAND ----------
 
