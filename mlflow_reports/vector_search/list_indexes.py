@@ -1,7 +1,9 @@
-# https://mlflow.org/docs/latest/python_api/mlflow.gateway.html
+# GET /api/2.0/vector-search/indexes
+# https://docs.databricks.com/api/workspace/vectorsearchindexes/listindexes
 
 import pandas as pd
 import click
+
 from mlflow_reports.list import list_utils
 from mlflow_reports.common.click_options import opt_output_file_base
 from mlflow_reports.list.click_options import opt_columns
@@ -11,12 +13,14 @@ from mlflow_reports.common.pandas_utils import move_column
 from . import get_VectorSearchClient
 
 client = get_VectorSearchClient()
+
         
 def list_all_indexes():
     endpoints = client.list_endpoints()["endpoints"]
     indexes = [ client.list_indexes(ep["name"]).get("vector_indexes",[]) for ep in endpoints ]
     indexes = [ _idx for _indexes in indexes for _idx in _indexes]
     return endpoints
+
 
 def list_indexes(endpoint_name):
     return client.list_indexes(endpoint_name)["vector_indexes"]

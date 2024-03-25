@@ -1,10 +1,14 @@
+# GET  /api/2.0/vector-search/endpoints
+# https://docs.databricks.com/api/workspace/vectorsearchendpoints/listendpoints
+
+
 import click
 from mlflow_reports.common.click_options import opt_output_file_base
 from mlflow_reports.list.click_options import opt_columns
 from mlflow_reports.common import io_utils
 from . import get_VectorSearchClient
 
-def list_endpoints():
+def list():
     client = get_VectorSearchClient()
     return client.list_endpoints()["endpoints"]
 
@@ -18,7 +22,7 @@ def as_pandas_df(endpoints):
     return df
 
 def show(columns, output_file_base):
-    endpoints = list_endpoints()
+    endpoints = list()
     print(f"Found {len(endpoints)}")
     ts_columns = [ "creation_timestamp", "last_updated_timestamp" ]
     io_utils.write_csv_and_json_files(output_file_base, endpoints, columns, ts_columns)

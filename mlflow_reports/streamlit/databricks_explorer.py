@@ -1,19 +1,14 @@
 import streamlit as st
 from mlflow_reports.client import databricks_client
-from mlflow_reports.endpoints import get_endpoint
-from mlflow_reports.vector_search import get_endpoint as get_vs_endpoint
 from mlflow_reports.common.timestamp_utils import now
-from mlflow_reports.endpoints.click_options import opt_input_file
 from mlflow_reports.streamlit.endpoint_entity import do_model_serving_endpoint_entity
 
 
 def main():
-    st.title("Databricks Endpoints")
+    st.title("Databricks API Explorer", help="Explore Databricks model serving and vector search endpoints")
     st.write(f"Databricks API: {databricks_client}")
- 
-    tab_model_serving, tab_vector_search = \
-        st.tabs([ "Model serving endpoints", "Vector search endpoints" ] )
 
+    tab_model_serving, tab_vector_search = st.tabs([ "Model serving endpoints", "Vector search endpoints" ] )
     with tab_model_serving:
         do_model_serving()
     with tab_vector_search:
@@ -36,10 +31,8 @@ def do_model_serving():
 
 
 def do_list_model_serving_endpoints():
-    from mlflow_reports.endpoints import get_endpoints
-    from mlflow_reports.endpoints import as_pandas_df
+    from mlflow_reports.endpoints import get_endpoints , as_pandas_df
     def refresh():
-        ##from work import get_endpoints # XX
         endpoints = get_endpoints()
         st.write(f"Retrieved {len(endpoints)} model serving endpoints at {now()}.")
         st.session_state.endpoints = endpoints
@@ -62,6 +55,7 @@ def do_list_model_serving_endpoints():
 
 
 def do_model_serving_endpoint_details():
+    from mlflow_reports.endpoints import get_endpoint
     def refresh(name):
         if not name:
             return { "error": "Missing model serving endpoint name" }
@@ -94,9 +88,9 @@ def do_vector_search():
         do_vector_search_endpoint_details()
 
 def do_list_vector_search_endpoints():
-    from mlflow_reports.vector_search.list_endpoints import list_endpoints, as_pandas_df
+    from mlflow_reports.vector_search.list_endpoints import list, as_pandas_df
     def refresh():
-        vs_endpoints = list_endpoints()
+        vs_endpoints = list() # XXXX
         st.write(f"Retrieved {len(vs_endpoints)} vector search endpoints at {now()}.")
         st.session_state.vs_endpoints = vs_endpoints
         return vs_endpoints
@@ -117,11 +111,12 @@ def do_list_vector_search_endpoints():
 
 
 def do_vector_search_endpoint_details():
+    from mlflow_reports.vector_search import get_endpoint
     def refresh(name):
         if not name:
             #return { "error": "Missing vector search endpoint name" }
             return "ERROR: Missing vector search endpoint name"
-        endpoint = get_vs_endpoint.get(name, False)
+        endpoint = get_endpoint.get(name, False)
         st.write(f"Retrieved vector search endpoint '{name}' at {now()}")
         st.session_state.vs_endpoint = endpoint
         return endpoint

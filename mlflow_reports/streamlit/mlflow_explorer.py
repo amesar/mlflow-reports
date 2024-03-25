@@ -1,5 +1,5 @@
 import copy
-import streamlit as st 
+import streamlit as st
 from mlflow_reports.list import search_registered_models, search_model_versions, search_experiments
 from mlflow_reports.data import get_registered_model, get_model_version, get_experiment, get_run
 from mlflow_reports.mlflow_model.mlflow_model_utils import get_model_artifact
@@ -8,15 +8,16 @@ from mlflow_reports.common.timestamp_utils import now
 from mlflow_reports.client import mlflow_client
 
 
-def main(): 
-    st.title("MLflow Objects")
+def main():
+    help="Explore MLlflow objects - registered models, model versions, model signatures, experiments and runs"
+    st.title("MLflow API Explorer", help=help)
+
     st.write(f"MLflow tracking server: {mlflow_client}")
-        
+
     help = "Add additional fields such as readable timestamps and related objects response JSON"
     raw = not st.toggle("Enrich", key="enrich", help=help)
 
     tab_list, tab_details = st.tabs([ "List", "Details" ] )
-
     with tab_list:
         do_tab_list()
     with tab_details:
@@ -50,12 +51,12 @@ def do_registered_models():
         st.write(f"Retrieved {len(models)} registered models at {now()}")
         st.session_state.models = models
         return models
-        
+
     models = st.session_state.models if "models" in st.session_state else []
     st.subheader("_Registered Models_")
 
     unity_catalog = st.toggle("Unity Catalog", key="use_uc_registered_models")
-    
+
     help = """
 See [MlflowClient.search_registered_models()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_registered_models). Example: _name='sklearn_wine'_ or _name like '%sklearn%'_.
 """

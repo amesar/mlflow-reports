@@ -1,3 +1,6 @@
+# GET /api/2.0/vector-search/endpoints/{endpoint_name}
+# https://docs.databricks.com/api/workspace/vectorsearchendpoints/getendpoint
+
 import click
 
 from mlflow_reports.data import data_utils
