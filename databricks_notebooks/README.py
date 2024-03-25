@@ -1,9 +1,9 @@
 # Databricks notebook source
 # MAGIC %md ## README - mlflow-reports - Databricks notebooks
 # MAGIC
-# MAGIC Display details and list MLflow and Databricks objects
+# MAGIC Display details and list MLflow and Databricks endpoints
 # MAGIC * MLflow objects: experiments, run, registered models and model versions.
-# MAGIC * Databricks endpoints - model serving and vector search endpoints.
+# MAGIC * Databricks endpoints - model serving, vector search endpoints and others.
 # MAGIC * Feature tables.
 # MAGIC
 # MAGIC ##### Git Repo
@@ -66,8 +66,7 @@
 # MAGIC
 # MAGIC ##### Model Serving endpoints aka MLflow deployment endpoints
 # MAGIC * [List_Model_Serving_Endpoints]($endpoints/List_Model_Serving_Endpoints) - List and query endpoints.
-# MAGIC   * [List_Model_Serving_Endpoint_Entities]($endpoints/List_Model_Serving_Endpoint_Entities) - List and query endpoint entities.
-# MAGIC   * [List_Model_Serving_Endpoint_Models]($endpoints/List_Model_Serving_Endpoint_Models) - List and query endpoint models/entities broken down by entity type.
+# MAGIC * [List_Entities_By_Type]($endpoints/List_Entities_By_Type) - List and query all endpoint models/entities broken down by entity type (custom, foundation, etc.).
 # MAGIC * [Get_Model_Serving_Endpoint]($endpoints/Get_Model_Serving_Endpoint) 
 # MAGIC * [Get_Model_Serving_Endpoint_Signature]($endpoints/Get_Model_Serving_Endpoint_Signature) - Get the model signature of an endpoint entity (custom model only).
 # MAGIC

@@ -1,14 +1,12 @@
 # Databricks notebook source
-# MAGIC %md ## List and Query Model Serving Endpoint Models
+# MAGIC %md ## List all model serving entities (models) by type
 # MAGIC
 # MAGIC ##### Overview
 # MAGIC
-# MAGIC * List and query the different types of model/entity types.
+# MAGIC * List and query the different types of model/entity types - custom, foundation, external etc.
 # MAGIC * Entities are found at `endpoint["config"]["served_entities"]`
-# MAGIC * Models are found at `endpoint["config"]["served_models"]`
-# MAGIC * When `served_models` is present, it is a copy of `served entities` albeit different attribute names.
-# MAGIC * See also [List_Model_Serving_Endpoint_Entities]($List_Model_Serving_Endpoint_Entities) notebook.
-# MAGIC
+# MAGIC * Since entities are polymorphic, each entity type has its own fields as well as common ones.
+# MAGIC * To create these entity views, we rely on [mlflow_reports/endpoints/list_entities_by_type.py](https://github.com/amesar/mlflow-reports/blob/master/mlflow_reports/endpoints/list_entities_by_type.py).
 # MAGIC
 # MAGIC ##### Github
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/mlflow_reports/endpoints
