@@ -1,30 +1,46 @@
-import streamlit as st
-
+import copy
+import streamlit as st 
 from mlflow_reports.list import search_registered_models, search_model_versions, search_experiments
+from mlflow_reports.data import get_registered_model, get_model_version, get_experiment, get_run
+from mlflow_reports.mlflow_model.mlflow_model_utils import get_model_artifact
+from mlflow_reports.common import explode_utils
 from mlflow_reports.common.timestamp_utils import now
 from mlflow_reports.client import mlflow_client
-#from mlflow_reports.streamlit.unity_catalog.py import do_unity_catalog
 
 
-def main():
-    st.title("List MLflow Objects")
+def main(): 
+    st.title("MLflow Objects")
     st.write(f"MLflow tracking server: {mlflow_client}")
+        
+    help = "Add additional fields such as readable timestamps and related objects response JSON"
+    raw = not st.toggle("Enrich", key="enrich", help=help)
+
+    tab_list, tab_details = st.tabs([ "List", "Details" ] )
+
+    with tab_list:
+        do_tab_list()
+    with tab_details:
+        do_tab_details(raw)
+
+
+# ==============
+# List objects
+
+def do_tab_list():
+    st.header("List MLflow Objects")
 
     tab_models, tab_versions, tab_experiments, tab_runs = \
         st.tabs(["Registered models", "Model versions", "Experiments", "Runs" ])
-    #tab_models, tab_versions, tab_experiments, tab_runs, tab_unity_catalog = \
-        #st.tabs(["Registered models", "Model versions", "Experiments", "Runs", "Unity Catalog"])
 
     with tab_models:
         do_registered_models()
+
     with tab_versions:
         do_model_versions()
     with tab_experiments:
         do_experiments()
     with tab_runs:
         do_runs()
-    #with tab_unity_catalog:
-        #do_unity_catalog()
 
 
 def do_registered_models():
@@ -34,12 +50,12 @@ def do_registered_models():
         st.write(f"Retrieved {len(models)} registered models at {now()}")
         st.session_state.models = models
         return models
-
+        
     models = st.session_state.models if "models" in st.session_state else []
-    st.header("Registered Models")
+    st.subheader("_Registered Models_")
 
     unity_catalog = st.toggle("Unity Catalog", key="use_uc_registered_models")
-
+    
     help = """
 See [MlflowClient.search_registered_models()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_registered_models). Example: _name='sklearn_wine'_ or _name like '%sklearn%'_.
 """
@@ -65,7 +81,7 @@ def do_model_versions():
         st.session_state.versions = versions
         return versions
 
-    st.header("Model Versions")
+    st.subheader("_Model Versions_")
 
     unity_catalog = st.toggle("Unity Catalog", key="use_uc_model_versions")
     help = """
@@ -85,7 +101,6 @@ See [MlflowClient.search_model_versions()](https://mlflow.org/docs/latest/python
         with tab_json:
             st.write(versions)
 
-
 def do_experiments():
     def refresh(filter):
         filter = filter or None
@@ -94,7 +109,7 @@ def do_experiments():
         st.session_state.experiments = experiments
         return experiments
 
-    st.header("Experiments")
+    st.subheader("_Experiments_")
 
     help = """
 See [MlflowClient.search_experiments()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_experiments). Example: _name='sklearn_wine'_ or _name like '%sklearn%'_.
@@ -127,7 +142,7 @@ def do_runs():
         st.session_state.runs = runs
         return runs
 
-    st.header("Runs")
+    st.subheader("_Runs_")
 
     help = """ See [MlflowClient.search_runs()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_runs) """
     exp_id_or_name = st.text_input("Experiment ID or name", "")
@@ -145,6 +160,122 @@ def do_runs():
         with tab_json:
             st.write(runs)
 
+
+# ==============
+# Object Details
+
+def do_tab_details(raw):
+    tab_model, tab_version, tab_experiment, tab_run = \
+        st.tabs(["Registered model", "Model version", "Experiment", "Run" ])
+
+    with tab_model:
+        do_registered_model(raw)
+    with tab_version:
+        do_model_version(raw)
+    with tab_experiment:
+        do_experiment(raw)
+    with tab_run:
+        do_run(raw)
+
+
+def do_registered_model(get_raw):
+    def refresh(name):
+        model = get_registered_model.get(name, get_raw=get_raw)
+        st.write(f"Retrieved registered model '{name}' at {now()}")
+        st.session_state.model = model
+        return model
+
+    model = st.session_state.model if "model" in st.session_state else None
+    st.subheader("_Registered Model_")
+
+    help = """
+See [MlflowClient.get_registered_model()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.get_registered_model)."
+"""
+    model_name = st.text_input("Registered model", key="registered_model", help=help)
+
+    if st.button("Refresh", key="refresh_registered_model"):
+        model = refresh(model_name)
+
+    st.write(model)
+
+
+def do_model_version(get_raw):
+    def refresh(name, version):
+        vr = get_model_version.get(name, version, get_raw=get_raw)
+
+        model_uri = f"models:/{name}/{version}"
+        mlmodel = get_model_artifact(model_uri, "MLmodel", file_type="yaml", explode_json=False)
+
+        signature = copy.deepcopy(mlmodel.get("signature"))
+        explode_utils.explode_json(signature)
+        st.write(f"Retrieved model version '{name}/{version}' at {now()}")
+        st.session_state.version = vr
+        return vr, signature, mlmodel
+
+    vr = st.session_state.version if "version" in st.session_state else None
+    mlmodel = st.session_state.mlmodel if "mlmodel" in st.session_state else None
+    signature = None
+    st.header("Model Version")
+
+    help = """
+See [MlflowClient.get_model_version()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.get_model_version)."
+"""
+    name = st.text_input("Name", key="registered_model_vr", help=help)
+    version = st.text_input("Version", key="version_vr", help=help)
+
+    if st.button("Refresh", key="refresh_model_version"):
+        vr, signature, mlmodel = refresh(name, version)
+
+    tab_version, tab_signature, tab_mlmodel = st.tabs(["Version", "Signature", "MLmodel"])
+    if vr:
+        with tab_version:
+            st.write(vr)
+        with tab_signature:
+            st.write(signature)
+        with tab_mlmodel:
+            st.write(mlmodel)
+
+
+def do_experiment(get_raw):
+    def refresh(name):
+        exp = get_experiment.get(name, get_raw=get_raw)
+        st.write(f"Retrieved experiment '{name}' at {now()}")
+        st.session_state.experiment = exp
+        return exp
+
+    experiment = st.session_state.experiment if "experiment" in st.session_state else None
+    st.header("Experiment")
+
+    help = """
+See [MlflowClient.get_experiment()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.get_experiment)."
+"""
+    name = st.text_input("Name", key="experiment_name", help=help)
+
+    if st.button("Refresh", key="refresh_experiment"):
+        experiment = refresh(name)
+
+    st.write(experiment)
+
+
+def do_run(get_raw):
+    def refresh(run_id):
+        run = get_run.get(run_id, get_raw=get_raw)
+        st.write(f"Retrieved run '{run_id}' at {now()}")
+        st.session_state.run = run
+        return run
+
+    run = st.session_state.run if "run" in st.session_state else None
+    st.header("Run")
+
+    help = """
+See [MlflowClient.get_run()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.get_run)."
+"""
+    name = st.text_input("Run ID", key="run_id", help=help)
+
+    if st.button("Refresh", key="refresh_run"):
+        run = refresh(name)
+
+    st.write(run)
 
 if __name__ == "__main__":
     main()
