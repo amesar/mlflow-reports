@@ -18,7 +18,7 @@
 # MAGIC
 # MAGIC ##### Overview
 # MAGIC * Browse MLflow objects and Databricks endpoints as a single pane.
-# MAGIC * For list objects, sbility to both a table view and raw API JSON response.
+# MAGIC * For listing objects, ability to see both a table view and raw API JSON response.
 # MAGIC
 # MAGIC ##### Notebooks
 # MAGIC * [Streamlit Notebooks README]($streamlit/_README)
