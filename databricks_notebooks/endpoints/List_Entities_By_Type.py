@@ -66,7 +66,7 @@ display(df)
 
 # COMMAND ----------
 
-from mlflow_reports.endpoints.list_endpoint_models import (
+from mlflow_reports.endpoints.list_entities_by_type import (
     mk_custom_models, 
     mk_foundation_models, 
     mk_external_models, 
