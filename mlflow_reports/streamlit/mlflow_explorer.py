@@ -7,6 +7,9 @@ from mlflow_reports.common import explode_utils
 from mlflow_reports.common.timestamp_utils import now
 from mlflow_reports.client import mlflow_client
 
+from mlflow_reports.streamlit.widgets import mk_text_input, init_widgets
+
+init_widgets()
 
 def main():
     help="Explore MLlflow objects - registered models, model versions, model signatures, experiments and runs"
@@ -55,12 +58,12 @@ def do_registered_models():
     models = st.session_state.models if "models" in st.session_state else []
     st.subheader("_Registered Models_")
 
-    unity_catalog = st.toggle("Unity Catalog", key="use_uc_registered_models")
+    unity_catalog = st.toggle("Unity Catalog", key="use_uc_registered_models", help="Databricks only")
 
     help = """
 See [MlflowClient.search_registered_models()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_registered_models). Example: _name='sklearn_wine'_ or _name like '%sklearn%'_.
 """
-    filter = st.text_input("Search filter", key="model_filter", help=help)
+    filter = mk_text_input("Search filter", "model_filter", help=help)
 
     if st.button("Refresh", key="refresh_registered_models"):
         models = refresh(filter, unity_catalog)
@@ -84,11 +87,11 @@ def do_model_versions():
 
     st.subheader("_Model Versions_")
 
-    unity_catalog = st.toggle("Unity Catalog", key="use_uc_model_versions")
+    unity_catalog = st.toggle("Unity Catalog", key="use_uc_model_versions", help="Databricks only")
     help = """
 See [MlflowClient.search_model_versions()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_model_versions). Example: _name='llama'_ or _name like '%viscacha%'_.
 """
-    filter = st.text_input("Search filter", key="version_filter", help=help)
+    filter = mk_text_input("Search filter", "version_filter", help=help)
 
     versions = st.session_state.versions if "versions" in st.session_state else []
     if st.button("Refresh", key="refresh_model_versions"):
@@ -115,7 +118,7 @@ def do_experiments():
     help = """
 See [MlflowClient.search_experiments()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_experiments). Example: _name='sklearn_wine'_ or _name like '%sklearn%'_.
 """
-    filter = st.text_input("Search filter", key="experiment_filter", help=help)
+    filter = mk_text_input("Search filter", "experiment_filter", help=help)
 
     experiments = st.session_state.experiments if "experiments" in st.session_state else []
     if st.button("Refresh", key="refresh_experiments"):
@@ -192,7 +195,7 @@ def do_registered_model(get_raw):
     help = """
 See [MlflowClient.get_registered_model()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.get_registered_model)."
 """
-    model_name = st.text_input("Registered model", key="registered_model", help=help)
+    model_name = mk_text_input("Name", "registered_model", help=help)
 
     if st.button("Refresh", key="refresh_registered_model"):
         model = refresh(model_name)
@@ -216,13 +219,13 @@ def do_model_version(get_raw):
     vr = st.session_state.version if "version" in st.session_state else None
     mlmodel = st.session_state.mlmodel if "mlmodel" in st.session_state else None
     signature = None
-    st.header("Model Version")
+    st.subheader("_Model Version_")
 
     help = """
 See [MlflowClient.get_model_version()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.get_model_version)."
 """
-    name = st.text_input("Name", key="registered_model_vr", help=help)
-    version = st.text_input("Version", key="version_vr", help=help)
+    name = mk_text_input("Name", "registered_model_vr", help=help)
+    version = mk_text_input("Version", "version_vr", help=help)
 
     if st.button("Refresh", key="refresh_model_version"):
         vr, signature, mlmodel = refresh(name, version)
@@ -245,12 +248,12 @@ def do_experiment(get_raw):
         return exp
 
     experiment = st.session_state.experiment if "experiment" in st.session_state else None
-    st.header("Experiment")
+    st.subheader("_Experiment_")
 
     help = """
 See [MlflowClient.get_experiment()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.get_experiment)."
 """
-    name = st.text_input("Name", key="experiment_name", help=help)
+    name = mk_text_input("Name", "experiment_name", help=help)
 
     if st.button("Refresh", key="refresh_experiment"):
         experiment = refresh(name)
@@ -266,12 +269,12 @@ def do_run(get_raw):
         return run
 
     run = st.session_state.run if "run" in st.session_state else None
-    st.header("Run")
+    st.subheader("_Run_")
 
     help = """
 See [MlflowClient.get_run()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.get_run)."
 """
-    name = st.text_input("Run ID", key="run_id", help=help)
+    name = mk_text_input("Run ID", "run_id", help=help)
 
     if st.button("Refresh", key="refresh_run"):
         run = refresh(name)

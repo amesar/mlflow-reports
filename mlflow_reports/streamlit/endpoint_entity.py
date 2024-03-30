@@ -1,5 +1,5 @@
 import copy
-import streamlit as st 
+import streamlit as st
 from mlflow_reports.endpoints import get_endpoint
 from mlflow_reports.data import get_model_version
 from mlflow_reports.mlflow_model.mlflow_model_utils import get_model_artifact
@@ -13,7 +13,6 @@ def do_model_serving_endpoint_entity():
             return { "error": "Missing model serving endpoint name" }, None, None, None
         endpoint = get_endpoint.get(endpoint_name)
         entity = get_entity(endpoint, entity_name)
-        #entity_name = entity.get("entity_name")
         entity_name = entity.get("name")
         st.write(f"Retrieved entity _{endpoint_name}/{entity_name}_ at {now()}")
         st.session_state.entity = entity
@@ -69,9 +68,8 @@ def _get_model_version(entity):
 
     model_uri = f"models:/{name}/{version}"
     mlmodel = get_model_artifact(model_uri, "MLmodel", file_type="yaml", explode_json=False)
-        
+
     signature = copy.deepcopy(mlmodel.get("signature"))
     explode_utils.explode_json(signature)
 
     return vr, signature, mlmodel
-
