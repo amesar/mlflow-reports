@@ -7,7 +7,13 @@ from mlflow_reports.common import explode_utils
 from mlflow_reports.common.timestamp_utils import now
 from mlflow_reports.client import mlflow_client
 
-from mlflow_reports.streamlit.widgets import mk_text_input, init_widgets
+from mlflow_reports.streamlit.widgets import (
+    init_widgets,
+    mk_csv_json_tabs,
+    mk_text_input,
+    mk_download_button_json,
+    mk_download_buttons
+)
 
 init_widgets()
 
@@ -55,9 +61,7 @@ def do_registered_models():
         st.session_state.models = models
         return models
 
-    models = st.session_state.models if "models" in st.session_state else []
     st.subheader("_Registered Models_")
-
     unity_catalog = st.toggle("Unity Catalog", key="use_uc_registered_models", help="Databricks only")
 
     help = """
@@ -65,16 +69,14 @@ See [MlflowClient.search_registered_models()](https://mlflow.org/docs/latest/pyt
 """
     filter = mk_text_input("Search filter", "model_filter", help=help)
 
-    if st.button("Refresh", key="refresh_registered_models"):
-        models = refresh(filter, unity_catalog)
+    models = st.session_state.models if "models" in st.session_state else []
+    col1, col2, col3 = st.columns([1, 1, 1])
+    with col1:
+        if st.button("Refresh", key="refresh_registered_models"):
+            models = refresh(filter, unity_catalog)
+    mk_download_buttons(models, "registered_models", search_registered_models.as_pandas_df, col2, col3)
 
-    tab_table, tab_json = st.tabs(["Table", "JSON"])
-    if models:
-        with tab_table:
-            df = search_registered_models.as_pandas_df(models)
-            st.write(df)
-        with tab_json:
-            st.write(models)
+    mk_csv_json_tabs(models, search_registered_models.as_pandas_df)
 
 
 def do_model_versions():
@@ -94,16 +96,14 @@ See [MlflowClient.search_model_versions()](https://mlflow.org/docs/latest/python
     filter = mk_text_input("Search filter", "version_filter", help=help)
 
     versions = st.session_state.versions if "versions" in st.session_state else []
-    if st.button("Refresh", key="refresh_model_versions"):
-        versions = refresh(filter, unity_catalog)
+    col1, col2, col3 = st.columns([1, 1, 1])
+    with col1:
+        if st.button("Refresh", key="refresh_model_versions"):
+            versions = refresh(filter, unity_catalog)
+    mk_download_buttons(versions, "model_versions", search_model_versions.as_pandas_df, col2, col3)
 
-    tab_table, tab_json = st.tabs(["Table", "JSON"])
-    if versions:
-        with tab_table:
-            df = search_model_versions.as_pandas_df(versions)
-            st.write(df)
-        with tab_json:
-            st.write(versions)
+    mk_csv_json_tabs(versions, search_model_versions.as_pandas_df)
+
 
 def do_experiments():
     def refresh(filter):
@@ -121,16 +121,13 @@ See [MlflowClient.search_experiments()](https://mlflow.org/docs/latest/python_ap
     filter = mk_text_input("Search filter", "experiment_filter", help=help)
 
     experiments = st.session_state.experiments if "experiments" in st.session_state else []
-    if st.button("Refresh", key="refresh_experiments"):
-        experiments = refresh(filter)
+    col1, col2, col3 = st.columns([1, 1, 1])
+    with col1:
+        if st.button("Refresh", key="refresh_experiments"):
+            experiments = refresh(filter)
+    mk_download_buttons(experiments, "experiments", search_experiments.as_pandas_df, col2, col3)
 
-    tab_table, tab_json = st.tabs(["Table", "JSON"])
-    if experiments:
-        with tab_table:
-            df = search_experiments.as_pandas_df(experiments)
-            st.write(df)
-        with tab_json:
-            st.write(experiments)
+    mk_csv_json_tabs(experiments, search_experiments.as_pandas_df)
 
 
 def do_runs():
@@ -153,16 +150,13 @@ def do_runs():
     filter = st.text_input("Search filter", key="run_filter", help=help)
 
     runs = st.session_state.runs if "runs" in st.session_state else []
-    if st.button("Refresh", key="refresh_runs"):
-        runs = refresh(exp_id_or_name, filter)
+    col1, col2, col3 = st.columns([1, 1, 1])
+    with col1:
+        if st.button("Refresh", key="refresh_runs"):
+            runs = refresh(exp_id_or_name, filter)
+    mk_download_buttons(runs, "runs", search_runs.as_pandas_df, col2, col3)
 
-    tab_table, tab_json = st.tabs(["Table", "JSON"])
-    if runs:
-        with tab_table:
-            df = search_runs.as_pandas_df(runs)
-            st.write(df)
-        with tab_json:
-            st.write(runs)
+    mk_csv_json_tabs(runs, search_runs.as_pandas_df)
 
 
 # ==============
@@ -197,8 +191,12 @@ See [MlflowClient.get_registered_model()](https://mlflow.org/docs/latest/python_
 """
     model_name = mk_text_input("Name", "registered_model", help=help)
 
-    if st.button("Refresh", key="refresh_registered_model"):
-        model = refresh(model_name)
+    col1, col2 = st.columns([1, 1])
+    with col1:
+        if st.button("Refresh", key="refresh_registered_model"):
+            model = refresh(model_name)
+    with col2:
+        mk_download_button_json(model, "registered_model.json", "Download")
 
     st.write(model)
 
@@ -206,38 +204,45 @@ See [MlflowClient.get_registered_model()](https://mlflow.org/docs/latest/python_
 def do_model_version(get_raw):
     def refresh(name, version):
         vr = get_model_version.get(name, version, get_raw=get_raw)
-
         model_uri = f"models:/{name}/{version}"
         mlmodel = get_model_artifact(model_uri, "MLmodel", file_type="yaml", explode_json=False)
-
         signature = copy.deepcopy(mlmodel.get("signature"))
         explode_utils.explode_json(signature)
         st.write(f"Retrieved model version '{name}/{version}' at {now()}")
         st.session_state.version = vr
-        return vr, signature, mlmodel
-
-    vr = st.session_state.version if "version" in st.session_state else None
-    mlmodel = st.session_state.mlmodel if "mlmodel" in st.session_state else None
-    signature = None
-    st.subheader("_Model Version_")
+        return vr, mlmodel, signature
 
     help = """
 See [MlflowClient.get_model_version()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.get_model_version)."
 """
-    name = mk_text_input("Name", "registered_model_vr", help=help)
-    version = mk_text_input("Version", "version_vr", help=help)
+    st.subheader("_Model Version_", help=help)
 
-    if st.button("Refresh", key="refresh_model_version"):
-        vr, signature, mlmodel = refresh(name, version)
+    vr = st.session_state.version if "version" in st.session_state else None
+    mlmodel = st.session_state.mlmodel if "mlmodel" in st.session_state else None
+    signature = st.session_state.signature if "signature" in st.session_state else None
 
-    tab_version, tab_signature, tab_mlmodel = st.tabs(["Version", "Signature", "MLmodel"])
+    name = mk_text_input("Name", "registered_model_vr") # , help=help)
+    version = mk_text_input("Version", "version_vr")
+
+    col1, col2, col3, col4  = st.columns([1, 1, 1, 1])
+    with col1:
+        if st.button("Refresh", key="refresh_model_version"):
+            vr, mlmodel, signature = refresh(name, version)
+    with col2:
+        mk_download_button_json(vr, "model_version.json", "Download version")
+    with col3:
+        mk_download_button_json(mlmodel, "MLmodel.json", "Download MLmodel")
+    with col4:
+        mk_download_button_json(signature, "signature.json", "Download signature")
+
+    tab_version, tab_mlmodel, tab_signature = st.tabs(["Version", "MLmodel", "Signature"])
     if vr:
         with tab_version:
             st.write(vr)
-        with tab_signature:
-            st.write(signature)
         with tab_mlmodel:
             st.write(mlmodel)
+        with tab_signature:
+            st.write(signature)
 
 
 def do_experiment(get_raw):
@@ -255,8 +260,12 @@ See [MlflowClient.get_experiment()](https://mlflow.org/docs/latest/python_api/ml
 """
     name = mk_text_input("Name", "experiment_name", help=help)
 
-    if st.button("Refresh", key="refresh_experiment"):
-        experiment = refresh(name)
+    col1, col2 = st.columns([1, 1])
+    with col1:
+        if st.button("Refresh", key="refresh_experiment"):
+            experiment = refresh(name)
+    with col2:
+        mk_download_button_json(experiment, "experiment.json", "Download")
 
     st.write(experiment)
 
@@ -276,8 +285,12 @@ See [MlflowClient.get_run()](https://mlflow.org/docs/latest/python_api/mlflow.cl
 """
     name = mk_text_input("Run ID", "run_id", help=help)
 
-    if st.button("Refresh", key="refresh_run"):
-        run = refresh(name)
+    col1, col2 = st.columns([1, 1])
+    with col1:
+        if st.button("Refresh", key="refresh_run"):
+            run = refresh(name)
+    with col2:
+        mk_download_button_json(run, "run.json", "Download")
 
     st.write(run)
 
