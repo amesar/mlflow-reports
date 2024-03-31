@@ -1,5 +1,6 @@
 import copy
 import streamlit as st
+from mlflow.utils.time import Timer
 from mlflow_reports.list import search_registered_models, search_model_versions, search_experiments
 from mlflow_reports.data import get_registered_model, get_model_version, get_experiment, get_run
 from mlflow_reports.mlflow_model.mlflow_model_utils import get_model_artifact
@@ -13,7 +14,8 @@ from mlflow_reports.streamlit.widgets import (
     mk_text_input,
     mk_download_button_json,
     mk_download_buttons,
-    mk_uc_toggle
+    mk_uc_toggle,
+    show_list_msg
 )
 
 init_widgets()
@@ -25,7 +27,7 @@ def main():
     st.write(f"MLflow tracking server: {mlflow_client}")
 
     help = "Add additional fields such as readable timestamps and related objects response JSON"
-    raw = not st.toggle("Enrich", key="enrich", help=help)
+    raw = not st.checkbox("Enrich response", value=True, key="enrich", help=help)
 
     tab_list, tab_details = st.tabs([ "List", "Details" ] )
     with tab_list:
@@ -57,8 +59,10 @@ def do_tab_list():
 def do_registered_models():
     def refresh(filter, unity_catalog):
         filter = filter or None
-        models = search_registered_models.search(filter=filter, unity_catalog=unity_catalog)
-        st.write(f"Retrieved {len(models)} registered models at {now()}")
+        with Timer() as timer:
+            models = search_registered_models.search(filter=filter, unity_catalog=unity_catalog)
+        show_list_msg(models, "registered models", timer)
+
         st.session_state.models = models
         return models
 
@@ -83,10 +87,12 @@ See [MlflowClient.search_registered_models()](https://mlflow.org/docs/latest/pyt
 def do_model_versions():
     def refresh(filter, unity_catalog):
         filter = filter or None
-        versions = search_model_versions.search(filter=filter, unity_catalog=unity_catalog)
-        st.write(f"Retrieved {len(versions)} model versions at {now()}")
+        with Timer() as timer:
+            versions = search_model_versions.search(filter=filter, unity_catalog=unity_catalog)
+        show_list_msg(versions, "model versions", timer)
         st.session_state.versions = versions
         return versions
+
 
     st.subheader("_Model Versions_")
     unity_catalog = mk_uc_toggle("versions_uc")
@@ -109,8 +115,9 @@ See [MlflowClient.search_model_versions()](https://mlflow.org/docs/latest/python
 def do_experiments():
     def refresh(filter):
         filter = filter or None
-        experiments = search_experiments.search(filter=filter)
-        st.write(f"Retrieved {len(experiments)} experiments at {now()}")
+        with Timer() as timer:
+            experiments = search_experiments.search(filter=filter)
+        show_list_msg(experiments, "experiments", timer)
         st.session_state.experiments = experiments
         return experiments
 
@@ -136,8 +143,9 @@ def do_runs():
     from mlflow_reports.common import mlflow_utils
 
     def refresh(exp_id_or_name, filter):
-        runs = search_runs.search(exp_id_or_name, filter)
-        st.write(f"Retrieved {len(runs)} runs at {now()}")
+        with Timer() as timer:
+            runs = search_runs.search(exp_id_or_name, filter)
+        show_list_msg(runs, "runs", timer)
         exp = mlflow_utils.get_experiment(exp_id_or_name)
         st.write(f"Experiment name: {exp['name']}")
         st.write(f"Experiment ID: {exp['experiment_id']}")

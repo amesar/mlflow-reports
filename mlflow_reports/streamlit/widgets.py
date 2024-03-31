@@ -1,6 +1,7 @@
 import json
 import streamlit as st
 from mlflow_reports.common import mlflow_utils
+from mlflow_reports.common.timestamp_utils import now
 
 
 def init_widgets():
@@ -73,9 +74,28 @@ def mk_csv_json_tabs(data, to_pandas_df_func):
 
 def mk_uc_toggle(key):
     if mlflow_utils.is_calling_databricks():
-    #if True:
         help = "Default is Unity Catalog Model Registry"
         use_ws = st.checkbox("Use Workspace Model Registry", key=key, help=help)
         return not use_ws
     else:
         return False
+
+
+def show_list_msg(lst, name, timer):
+    duration = fmt_seconds(timer.elapsed)
+    st.write(f"Retrieved {len(lst)} {name} in {duration} at {now()}")
+
+def fmt_seconds(seconds):
+    if seconds < 60:
+        seconds = round(seconds,2)
+        fmt = f"{seconds}s"
+    else:
+        seconds = round(seconds)
+        m, s = divmod(seconds, 60)
+        h, m = divmod(m, 60)
+        fmt = f"{s}s"
+        if m > 0:
+            fmt = f"{m}m {fmt}"
+        if h > 0:
+            fmt = f"{h}h {fmt}"
+    return fmt
