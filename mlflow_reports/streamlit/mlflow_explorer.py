@@ -12,7 +12,8 @@ from mlflow_reports.streamlit.widgets import (
     mk_csv_json_tabs,
     mk_text_input,
     mk_download_button_json,
-    mk_download_buttons
+    mk_download_buttons,
+    mk_uc_toggle
 )
 
 init_widgets()
@@ -62,7 +63,7 @@ def do_registered_models():
         return models
 
     st.subheader("_Registered Models_")
-    unity_catalog = st.toggle("Unity Catalog", key="use_uc_registered_models", help="Databricks only")
+    unity_catalog = mk_uc_toggle("models_uc")
 
     help = """
 See [MlflowClient.search_registered_models()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_registered_models). Example: _name='sklearn_wine'_ or _name like '%sklearn%'_.
@@ -88,8 +89,8 @@ def do_model_versions():
         return versions
 
     st.subheader("_Model Versions_")
+    unity_catalog = mk_uc_toggle("versions_uc")
 
-    unity_catalog = st.toggle("Unity Catalog", key="use_uc_model_versions", help="Databricks only")
     help = """
 See [MlflowClient.search_model_versions()](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_model_versions). Example: _name='llama'_ or _name like '%viscacha%'_.
 """
@@ -293,6 +294,7 @@ See [MlflowClient.get_run()](https://mlflow.org/docs/latest/python_api/mlflow.cl
         mk_download_button_json(run, "run.json", "Download")
 
     st.write(run)
+
 
 if __name__ == "__main__":
     main()
