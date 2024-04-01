@@ -63,7 +63,6 @@ def do_registered_models():
         with Timer() as timer:
             models = search_registered_models.search(filter=filter, unity_catalog=unity_catalog)
         show_list_msg(models, "registered models", timer)
-
         st.session_state.models = models
         return models
 

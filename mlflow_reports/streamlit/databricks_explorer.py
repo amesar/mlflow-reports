@@ -1,10 +1,11 @@
 import streamlit as st
+from mlflow.utils.time import Timer
+
 from mlflow_reports.client import databricks_client
 from mlflow_reports.common.timestamp_utils import now
-##from mlflow_reports.streamlit.endpoint_entity import do_model_serving_endpoint_entity
 from mlflow_reports.streamlit.entities import do_endpoint_entities
 from mlflow_reports.endpoints.list_entities_by_type import mk_all_entities
-from mlflow_reports.streamlit.widgets import init_widgets
+from mlflow_reports.streamlit.widgets import init_widgets, show_list_msg
 
 init_widgets()
 
@@ -46,8 +47,9 @@ def do_model_serving():
 def do_list_model_serving_endpoints():
     from mlflow_reports.endpoints import get_endpoints , as_pandas_df
     def refresh():
-        endpoints = get_endpoints()
-        st.write(f"Retrieved {len(endpoints)} model serving endpoints at {now()}.")
+        with Timer() as timer:
+            endpoints = get_endpoints()
+        show_list_msg(endpoints, "model serving endpoints", timer)
         st.session_state.list_endpoint_details = endpoints
         return endpoints
 
@@ -70,8 +72,9 @@ def do_list_model_serving_endpoints():
 def do_tab_list_endpoint_details():
     from mlflow_reports.endpoints import get_endpoints , as_pandas_df
     def refresh():
-        endpoints = get_endpoints()
-        st.write(f"Retrieved {len(endpoints)} model serving endpoints at {now()}.")
+        with Timer() as timer:
+            endpoints = get_endpoints() # TODO details
+        show_list_msg(endpoints, "model serving endpoint details", timer)
         st.session_state.endpoints = endpoints
         return endpoints
 
