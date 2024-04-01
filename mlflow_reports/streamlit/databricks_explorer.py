@@ -1,7 +1,12 @@
 import streamlit as st
 from mlflow_reports.client import databricks_client
 from mlflow_reports.common.timestamp_utils import now
-from mlflow_reports.streamlit.endpoint_entity import do_model_serving_endpoint_entity
+##from mlflow_reports.streamlit.endpoint_entity import do_model_serving_endpoint_entity
+from mlflow_reports.streamlit.entities import do_endpoint_entities
+from mlflow_reports.endpoints.list_entities_by_type import mk_all_entities
+from mlflow_reports.streamlit.widgets import init_widgets
+
+init_widgets()
 
 
 def main():
@@ -20,14 +25,22 @@ def main():
 
 def do_model_serving():
     st.header("Model serving endpoints")
-    tab_list_endpoints, tab_endpoint, tab_entity = st.tabs(["List endpoints", "Endpoint details", "Endpoint entity (model) details"])
+
+    tab_list_endpoints, tab_list_endpoint_details, tab_endpoint, tab_entities = st.tabs([
+        "List endpoints",
+        "List endpoint details",
+        "Endpoint details",
+        "Entities"
+    ])
 
     with tab_list_endpoints:
         do_list_model_serving_endpoints()
+    with tab_list_endpoint_details:
+        do_tab_list_endpoint_details()
     with tab_endpoint:
         do_model_serving_endpoint_details()
-    with tab_entity:
-        do_model_serving_endpoint_entity()
+    with tab_entities:
+        do_endpoint_entities()
 
 
 def do_list_model_serving_endpoints():
@@ -35,13 +48,13 @@ def do_list_model_serving_endpoints():
     def refresh():
         endpoints = get_endpoints()
         st.write(f"Retrieved {len(endpoints)} model serving endpoints at {now()}.")
-        st.session_state.endpoints = endpoints
+        st.session_state.list_endpoint_details = endpoints
         return endpoints
 
-    endpoints = st.session_state.endpoints if "endpoints" in st.session_state else []
+    endpoints = st.session_state.list_endpoint_details if "list_endpoint_details" in st.session_state else []
     st.subheader("_List endpoints_")
 
-    if st.button("Refresh", key="refresh_endpoints"):
+    if st.button("Refresh", key="refresh_list_endpoint_details"):
         endpoints = refresh()
 
     tab_table, tab_json = st.tabs(["Table", "JSON"])
@@ -52,6 +65,31 @@ def do_list_model_serving_endpoints():
             st.write(df)
         with tab_json:
             st.write(endpoints)
+
+
+def do_tab_list_endpoint_details():
+    from mlflow_reports.endpoints import get_endpoints , as_pandas_df
+    def refresh():
+        endpoints = get_endpoints()
+        st.write(f"Retrieved {len(endpoints)} model serving endpoints at {now()}.")
+        st.session_state.endpoints = endpoints
+        return endpoints
+
+    endpoints = st.session_state.endpoints if "endpoints" in st.session_state else []
+    st.subheader("_List endpoint details_")
+
+    if st.button("Refresh", key="refresh_endpoints"):
+        endpoints = refresh()
+
+    tab_table, tab_json = st.tabs(["Table", "JSON"])
+    if endpoints:
+        entities = mk_all_entities(endpoints)
+        with tab_table:
+            df = as_pandas_df(entities)
+            df.sort_values(by=["ep_name", "name"], inplace=True)
+            st.write(df)
+        with tab_json:
+            st.write(entities)
 
 
 def do_model_serving_endpoint_details():

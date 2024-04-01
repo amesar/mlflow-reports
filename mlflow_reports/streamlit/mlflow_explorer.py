@@ -20,6 +20,7 @@ from mlflow_reports.streamlit.widgets import (
 
 init_widgets()
 
+
 def main():
     help="Explore MLlflow objects - registered models, model versions, model signatures, experiments and runs"
     st.title("MLflow API Explorer", help=help)
