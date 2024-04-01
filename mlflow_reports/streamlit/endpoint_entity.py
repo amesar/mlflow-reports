@@ -26,7 +26,7 @@ def do_model_serving_endpoint_entity():
     entity = st.session_state.entity if "entity" in st.session_state else None
     vr, signature, mlmodel = None, None, None
     help = "Custom model entity"
-    st.subheader("_Endpoint entity (model) details_", help=help)
+    #st.subheader("_Endpoint entity (model) details_", help=help)
 
     endpoint_name = st.text_input("Endpoint", key="endpoint_name_2", help="Model serving endpoint")
     entity_name = st.text_input("Entity (model)", key="entity_name", help="Model serving endpoint entity. If empty will return the first entity.")
