@@ -11,12 +11,7 @@
 
 # COMMAND ----------
 
-
 script_paths = mk_script_paths("databricks_explorer.py")
-
-# COMMAND ----------
-
-#dbutils.widgets.removeAll()
 
 # COMMAND ----------
 
