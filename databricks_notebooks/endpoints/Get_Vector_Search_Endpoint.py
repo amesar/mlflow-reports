@@ -20,7 +20,7 @@ dbutils.library.restartPython()
 
 # COMMAND ----------
 
-dbutils.widgets.text("1. Endpoint name", "andre_dbdemo")
+dbutils.widgets.text("1. Endpoint name", "dbdemos_vs_endpoint")
 dbutils.widgets.text("2. Save JSON as file", "")
 
 endpoint_name = dbutils.widgets.get("1. Endpoint name")
