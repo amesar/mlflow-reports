@@ -134,5 +134,5 @@ df.createOrReplaceTempView("models")
 # COMMAND ----------
 
 # MAGIC %sql 
-# MAGIC select name, user_id, creation_timestamp from models where name like '%%llama%' 
+# MAGIC select name, user_id, creation_timestamp from models where name like '%llama%' 
 # MAGIC order by creation_timestamp desc

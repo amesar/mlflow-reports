@@ -152,5 +152,5 @@ df.createOrReplaceTempView("versions")
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC select name, version, user_id, creation_timestamp from versions where name like '%%llama%' 
+# MAGIC select name, version, user_id, creation_timestamp from versions where name like '%llama%' 
 # MAGIC order by creation_timestamp desc
