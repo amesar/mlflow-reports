@@ -1,0 +1,691 @@
+{
+  "model_version": {
+    "name": "andre.rag_chatbot_2024_04_03.dbdemos_advanced_chatbot_model",
+    "version": "1",
+    "creation_timestamp": 1712190157496,
+    "last_updated_timestamp": 1712190159368,
+    "user_id": "andre@mycompany.com",
+    "source": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts/chain",
+    "run_id": "25094ec24afe422091606e4f44011882",
+    "run_tracking_server_id": "1444828305810485",
+    "status": "READY",
+    "storage_location": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/621bd5d6-5999-449a-a330-2930821597ac/versions/0887a632-0143-4d42-8826-d145aad3e1f6",
+    "aliases": [
+      {
+        "alias": "prod",
+        "version": "1"
+      }
+    ],
+    "_creation_timestamp": "2024-04-04 00:22:37",
+    "_last_updated_timestamp": "2024-04-04 00:22:39",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://databricks-e2demofieldengwest/b169b504-4c54-49f2-bc3a-adf4b128f36d/models/621bd5d6-5999-449a-a330-2930821597ac/versions/0887a632-0143-4d42-8826-d145aad3e1f6",
+    "_run_model_download_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts/chain",
+    "_web_ui_link": "https://e2-demo-field-eng.cloud.databricks.com/explore/data/models/andre.rag_chatbot_2024_04_03.dbdemos_advanced_chatbot_model/version/1",
+    "_api_link": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=andre.rag_chatbot_2024_04_03.dbdemos_advanced_chatbot_model&version=1"
+  },
+  "mlflow_model": {
+    "artifact_path": "chain",
+    "databricks_runtime": "14.3.x-scala2.12",
+    "flavors": {
+      "langchain": {
+        "code": null,
+        "langchain_version": "0.1.5",
+        "model_data": "model",
+        "model_load": "runnable_load",
+        "model_type": "RunnableSequence"
+      },
+      "python_function": {
+        "env": {
+          "conda": "conda.yaml",
+          "virtualenv": "python_env.yaml"
+        },
+        "loader_module": "mlflow.langchain",
+        "model_data": "model",
+        "model_load": "runnable_load",
+        "python_version": "3.10.12"
+      }
+    },
+    "mlflow_version": "2.10.1",
+    "model_size_bytes": 19872,
+    "model_uuid": "1b0df09388244cb9ae8cc7c5a0b60386",
+    "run_id": "25094ec24afe422091606e4f44011882",
+    "saved_input_example_info": {
+      "artifact_path": "input_example.json",
+      "type": "json_object"
+    },
+    "signature": {
+      "inputs": [
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string",
+                "required": true
+              },
+              "role": {
+                "type": "string",
+                "required": true
+              }
+            }
+          },
+          "name": "messages",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "type": "string",
+          "name": "result",
+          "required": true
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "name": "sources",
+          "required": true
+        }
+      ],
+      "params": null
+    },
+    "utc_time_created": "2024-04-04 00:22:33.866558"
+  },
+  "registered_model": {
+    "name": "andre.rag_chatbot_2024_04_03.dbdemos_advanced_chatbot_model",
+    "creation_timestamp": 1712190156984,
+    "last_updated_timestamp": 1712190157500,
+    "user_id": "andre@mycompany.com",
+    "aliases": [
+      {
+        "alias": "prod",
+        "version": "1"
+      }
+    ],
+    "tags": {},
+    "_creation_timestamp": "2024-04-04 00:22:37",
+    "_last_updated_timestamp": "2024-04-04 00:22:38",
+    "_is_unity_catalog": true,
+    "_web_ui_link": "https://e2-demo-field-eng.cloud.databricks.com/explore/data/models/andre.rag_chatbot_2024_04_03.dbdemos_advanced_chatbot_model",
+    "_api_link": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=andre.rag_chatbot_2024_04_03.dbdemos_advanced_chatbot_model",
+    "permissions": {
+      "permissions": {},
+      "effective_permissions": {
+        "privilege_assignments": [
+          {
+            "principal": "account users",
+            "privileges": [
+              {
+                "privilege": "ALL_PRIVILEGES",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "andre"
+              }
+            ]
+          },
+          {
+            "principal": "global_read_test",
+            "privileges": [
+              {
+                "privilege": "EXECUTE",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "andre"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "run": {
+    "run": {
+      "info": {
+        "run_id": "25094ec24afe422091606e4f44011882",
+        "run_uuid": "25094ec24afe422091606e4f44011882",
+        "experiment_id": 4049278270812617,
+        "run_name": "dbdemos_chatbot_rag",
+        "status": "FINISHED",
+        "start_time": 1712190150448,
+        "end_time": 1712190159425,
+        "artifact_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+        "lifecycle_stage": "active",
+        "_start_time": "2024-04-04 00:22:30",
+        "_end_time": "2024-04-04 00:22:39",
+        "_duration": 8.977,
+        "_experiment_name": "/Users/andre@mycompany.com/dbdemos/llm-rag-chatbot/02-advanced/02-Advanced-Chatbot-Chain",
+        "_web_ui_link": "https://e2-demo-field-eng.cloud.databricks.com#mlflow/experiments/4049278270812617/runs/25094ec24afe422091606e4f44011882",
+        "_api_link": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=25094ec24afe422091606e4f44011882"
+      },
+      "data": {
+        "tags": {
+          "mlflow.databricks.cluster.id": "0403-213426-y1oo3e26",
+          "mlflow.databricks.cluster.info": {
+            "cluster_name": "dbdemos-llm-rag-chatbot-andre",
+            "spark_version": "14.3.x-scala2.12",
+            "node_type_id": "i3.xlarge",
+            "driver_node_type_id": "i3.xlarge",
+            "autotermination_minutes": 120,
+            "disk_spec": {
+              "disk_count": 0
+            },
+            "autoscale": {
+              "min_workers": 2,
+              "max_workers": 4,
+              "target_workers": 2
+            }
+          },
+          "mlflow.databricks.cluster.libraries": {
+            "installable": [],
+            "redacted": []
+          },
+          "mlflow.databricks.notebook.commandID": "5252103678118992459_4961698516807565393_b76535ac96354b16b1c1d4f5b5dec3bb",
+          "mlflow.databricks.notebookID": 4049278270812617,
+          "mlflow.databricks.notebookPath": "/Users/andre@mycompany.com/dbdemos/llm-rag-chatbot/02-advanced/02-Advanced-Chatbot-Chain",
+          "mlflow.databricks.notebookRevisionID": 1712190159734,
+          "mlflow.databricks.webappURL": "https://denali.staging.mycompany.com",
+          "mlflow.databricks.workspaceID": 1444828305810485,
+          "mlflow.databricks.workspaceURL": "e2-demo-field-eng.cloud.databricks.com",
+          "mlflow.log-model.history": [
+            {
+              "artifact_path": "chain",
+              "saved_input_example_info": {
+                "artifact_path": "input_example.json",
+                "type": "json_object"
+              },
+              "signature": {
+                "inputs": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "content": {
+                          "type": "string",
+                          "required": true
+                        },
+                        "role": {
+                          "type": "string",
+                          "required": true
+                        }
+                      }
+                    },
+                    "name": "messages",
+                    "required": true
+                  }
+                ],
+                "outputs": [
+                  {
+                    "type": "string",
+                    "name": "result",
+                    "required": true
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "name": "sources",
+                    "required": true
+                  }
+                ],
+                "params": null
+              },
+              "flavors": {
+                "python_function": {
+                  "model_load": "runnable_load",
+                  "model_data": "model",
+                  "loader_module": "mlflow.langchain",
+                  "env": {
+                    "conda": "conda.yaml",
+                    "virtualenv": "python_env.yaml"
+                  },
+                  "python_version": "3.10.12"
+                },
+                "langchain": {
+                  "model_load": "runnable_load",
+                  "langchain_version": "0.1.5",
+                  "model_data": "model",
+                  "code": null,
+                  "model_type": "RunnableSequence"
+                }
+              },
+              "run_id": "25094ec24afe422091606e4f44011882",
+              "model_uuid": "1b0df09388244cb9ae8cc7c5a0b60386",
+              "model_size_bytes": 19872,
+              "utc_time_created": "2024-04-04 00:22:33.866558",
+              "mlflow_version": "2.10.1",
+              "databricks_runtime": "14.3.x-scala2.12"
+            }
+          ],
+          "mlflow.runName": "dbdemos_chatbot_rag",
+          "mlflow.source.name": "/Users/andre@mycompany.com/dbdemos/llm-rag-chatbot/02-advanced/02-Advanced-Chatbot-Chain",
+          "mlflow.source.type": "NOTEBOOK",
+          "mlflow.user": "andre@mycompany.com"
+        }
+      },
+      "inputs": {}
+    },
+    "artifacts": {
+      "summary": {
+        "artifact_max_level": 10,
+        "num_artifacts": 16,
+        "num_bytes": 6183,
+        "num_levels": 10
+      },
+      "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+      "files": [
+        {
+          "path": "chain",
+          "is_dir": true,
+          "artifacts": {
+            "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+            "files": [
+              {
+                "path": "chain/MLmodel",
+                "is_dir": false,
+                "file_size": 1076
+              },
+              {
+                "path": "chain/conda.yaml",
+                "is_dir": false,
+                "file_size": 225
+              },
+              {
+                "path": "chain/input_example.json",
+                "is_dir": false,
+                "file_size": 261
+              },
+              {
+                "path": "chain/python_env.yaml",
+                "is_dir": false,
+                "file_size": 123
+              },
+              {
+                "path": "chain/requirements.txt",
+                "is_dir": false,
+                "file_size": 111
+              },
+              {
+                "path": "chain/model",
+                "is_dir": true,
+                "artifacts": {
+                  "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                  "files": [
+                    {
+                      "path": "chain/model/steps.yaml",
+                      "is_dir": false,
+                      "file_size": 166
+                    },
+                    {
+                      "path": "chain/model/steps",
+                      "is_dir": true,
+                      "artifacts": {
+                        "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                        "files": [
+                          {
+                            "path": "chain/model/steps/0",
+                            "is_dir": true,
+                            "artifacts": {
+                              "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                              "files": [
+                                {
+                                  "path": "chain/model/steps/0/model",
+                                  "is_dir": true,
+                                  "artifacts": {
+                                    "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                    "files": [
+                                      {
+                                        "path": "chain/model/steps/0/model/steps.yaml",
+                                        "is_dir": false,
+                                        "file_size": 283
+                                      },
+                                      {
+                                        "path": "chain/model/steps/0/model/steps",
+                                        "is_dir": true,
+                                        "artifacts": {
+                                          "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                          "files": [
+                                            {
+                                              "path": "chain/model/steps/0/model/steps/chat_history",
+                                              "is_dir": true,
+                                              "artifacts": {
+                                                "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                "files": [
+                                                  {
+                                                    "path": "chain/model/steps/0/model/steps/chat_history/model",
+                                                    "is_dir": true,
+                                                    "artifacts": {
+                                                      "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                      "files": [
+                                                        {
+                                                          "path": "chain/model/steps/0/model/steps/chat_history/model/steps.yaml",
+                                                          "is_dir": false,
+                                                          "file_size": 172
+                                                        },
+                                                        {
+                                                          "path": "chain/model/steps/0/model/steps/chat_history/model/steps",
+                                                          "is_dir": true,
+                                                          "artifacts": {
+                                                            "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                            "files": [
+                                                              {
+                                                                "path": "chain/model/steps/0/model/steps/chat_history/model/steps/0",
+                                                                "is_dir": true,
+                                                                "artifacts": {}
+                                                              },
+                                                              {
+                                                                "path": "chain/model/steps/0/model/steps/chat_history/model/steps/1",
+                                                                "is_dir": true,
+                                                                "artifacts": {}
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "path": "chain/model/steps/0/model/steps/question",
+                                              "is_dir": true,
+                                              "artifacts": {
+                                                "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                "files": [
+                                                  {
+                                                    "path": "chain/model/steps/0/model/steps/question/model",
+                                                    "is_dir": true,
+                                                    "artifacts": {
+                                                      "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                      "files": [
+                                                        {
+                                                          "path": "chain/model/steps/0/model/steps/question/model/steps.yaml",
+                                                          "is_dir": false,
+                                                          "file_size": 172
+                                                        },
+                                                        {
+                                                          "path": "chain/model/steps/0/model/steps/question/model/steps",
+                                                          "is_dir": true,
+                                                          "artifacts": {
+                                                            "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                            "files": [
+                                                              {
+                                                                "path": "chain/model/steps/0/model/steps/question/model/steps/0",
+                                                                "is_dir": true,
+                                                                "artifacts": {}
+                                                              },
+                                                              {
+                                                                "path": "chain/model/steps/0/model/steps/question/model/steps/1",
+                                                                "is_dir": true,
+                                                                "artifacts": {}
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "path": "chain/model/steps/0/model/steps/question_is_relevant",
+                                              "is_dir": true,
+                                              "artifacts": {
+                                                "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                "files": [
+                                                  {
+                                                    "path": "chain/model/steps/0/model/steps/question_is_relevant/model",
+                                                    "is_dir": true,
+                                                    "artifacts": {
+                                                      "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                      "files": [
+                                                        {
+                                                          "path": "chain/model/steps/0/model/steps/question_is_relevant/model/steps.yaml",
+                                                          "is_dir": false,
+                                                          "file_size": 340
+                                                        },
+                                                        {
+                                                          "path": "chain/model/steps/0/model/steps/question_is_relevant/model/steps",
+                                                          "is_dir": true,
+                                                          "artifacts": {
+                                                            "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                            "files": [
+                                                              {
+                                                                "path": "chain/model/steps/0/model/steps/question_is_relevant/model/steps/0",
+                                                                "is_dir": true,
+                                                                "artifacts": {}
+                                                              },
+                                                              {
+                                                                "path": "chain/model/steps/0/model/steps/question_is_relevant/model/steps/1",
+                                                                "is_dir": true,
+                                                                "artifacts": {}
+                                                              },
+                                                              {
+                                                                "path": "chain/model/steps/0/model/steps/question_is_relevant/model/steps/2",
+                                                                "is_dir": true,
+                                                                "artifacts": {}
+                                                              },
+                                                              {
+                                                                "path": "chain/model/steps/0/model/steps/question_is_relevant/model/steps/3",
+                                                                "is_dir": true,
+                                                                "artifacts": {}
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "path": "chain/model/steps/1",
+                            "is_dir": true,
+                            "artifacts": {
+                              "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                              "files": [
+                                {
+                                  "path": "chain/model/steps/1/model",
+                                  "is_dir": true,
+                                  "artifacts": {
+                                    "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                    "files": [
+                                      {
+                                        "path": "chain/model/steps/1/model/branches.yaml",
+                                        "is_dir": false,
+                                        "file_size": 432
+                                      },
+                                      {
+                                        "path": "chain/model/steps/1/model/branches",
+                                        "is_dir": true,
+                                        "artifacts": {
+                                          "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                          "files": [
+                                            {
+                                              "path": "chain/model/steps/1/model/branches/0",
+                                              "is_dir": true,
+                                              "artifacts": {
+                                                "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                "files": [
+                                                  {
+                                                    "path": "chain/model/steps/1/model/branches/0/0",
+                                                    "is_dir": true,
+                                                    "artifacts": {
+                                                      "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                      "files": [
+                                                        {
+                                                          "path": "chain/model/steps/1/model/branches/0/0/model.pkl",
+                                                          "is_dir": false,
+                                                          "file_size": 581
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  {
+                                                    "path": "chain/model/steps/1/model/branches/0/1",
+                                                    "is_dir": true,
+                                                    "artifacts": {
+                                                      "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                      "files": [
+                                                        {
+                                                          "path": "chain/model/steps/1/model/branches/0/1/model",
+                                                          "is_dir": true,
+                                                          "artifacts": {
+                                                            "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                            "files": [
+                                                              {
+                                                                "path": "chain/model/steps/1/model/branches/0/1/model/steps.yaml",
+                                                                "is_dir": false,
+                                                                "file_size": 427
+                                                              },
+                                                              {
+                                                                "path": "chain/model/steps/1/model/branches/0/1/model/steps",
+                                                                "is_dir": true,
+                                                                "artifacts": {}
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "path": "chain/model/steps/1/model/branches/1",
+                                              "is_dir": true,
+                                              "artifacts": {
+                                                "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                "files": [
+                                                  {
+                                                    "path": "chain/model/steps/1/model/branches/1/0",
+                                                    "is_dir": true,
+                                                    "artifacts": {
+                                                      "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                      "files": [
+                                                        {
+                                                          "path": "chain/model/steps/1/model/branches/1/0/model.pkl",
+                                                          "is_dir": false,
+                                                          "file_size": 580
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  {
+                                                    "path": "chain/model/steps/1/model/branches/1/1",
+                                                    "is_dir": true,
+                                                    "artifacts": {
+                                                      "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                      "files": [
+                                                        {
+                                                          "path": "chain/model/steps/1/model/branches/1/1/model.pkl",
+                                                          "is_dir": false,
+                                                          "file_size": 617
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "path": "chain/model/steps/1/model/branches/default",
+                                              "is_dir": true,
+                                              "artifacts": {
+                                                "root_uri": "dbfs:/databricks/mlflow-tracking/4049278270812617/25094ec24afe422091606e4f44011882/artifacts",
+                                                "files": [
+                                                  {
+                                                    "path": "chain/model/steps/1/model/branches/default/model.pkl",
+                                                    "is_dir": false,
+                                                    "file_size": 617
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "experiment": {
+    "experiment": {
+      "experiment_id": 4049278270812617,
+      "name": "/Users/andre@mycompany.com/dbdemos/llm-rag-chatbot/02-advanced/02-Advanced-Chatbot-Chain",
+      "artifact_location": "dbfs:/databricks/mlflow-tracking/4049278270812617",
+      "lifecycle_stage": "active",
+      "last_update_time": 1712190150661,
+      "creation_time": 1712190150661,
+      "tags": {
+        "mlflow.ownerId": 4566812440727830,
+        "mlflow.experiment.sourceName": "/Users/andre@mycompany.com/dbdemos/llm-rag-chatbot/02-advanced/02-Advanced-Chatbot-Chain",
+        "mlflow.ownerEmail": "andre@mycompany.com",
+        "mlflow.experimentType": "NOTEBOOK"
+      },
+      "_creation_time": "2024-04-04 00:22:31",
+      "_last_update_time": "2024-04-04 00:22:31",
+      "_tracking_uri": "databricks://e2_demo_fieldeng",
+      "_web_ui_link": "https://e2-demo-field-eng.cloud.databricks.com#mlflow/experiments/4049278270812617",
+      "_api_link": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mlflow/experiments/get?experiment_id=4049278270812617",
+      "permissions": {
+        "permission_levels": [
+          {
+            "permission_level": "CAN_READ",
+            "description": "Can view the experiment"
+          },
+          {
+            "permission_level": "CAN_EDIT",
+            "description": "Can view, log runs, and edit the experiment"
+          },
+          {
+            "permission_level": "CAN_MANAGE",
+            "description": "Can view, log runs, edit, delete, and change permissions of the experiment"
+          }
+        ],
+        "permissions": {
+          "error": {
+            "message": "Databricks permissions API call failed",
+            "MlflowReportsException": {
+              "http_status_code": 400,
+              "uri": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/permissions/experiments/4049278270812617",
+              "response": {
+                "error_code": "INVALID_PARAMETER_VALUE",
+                "message": "Object 4049278270812617 not a experiment."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
