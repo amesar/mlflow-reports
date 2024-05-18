@@ -24,15 +24,6 @@ def opt_use_deployment_client(function):
     )(function)
     return function
 
-
-def opt_call_databricks_model_serving(function):
-    function = click.option("--call-databricks-model-serving",
-        help="Call Databricks 'api/2.0/serving-endpoints' resource directly instead of using mlflow.deployments.get_deploy_client",
-        type=bool,
-        default=False
-    )(function)
-    return function
-
 def opt_model_type(function):
     function = click.option("--model-type",
         help="Model type: all|custom|foundation|external",

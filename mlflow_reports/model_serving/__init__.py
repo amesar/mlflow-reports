@@ -24,11 +24,11 @@ def get_endpoint_client(use_deployment_client=False):
     return client
 
 
-def get_endpoints(model_type=None, call_databricks_model_serving=False):
+def get_endpoints(model_type=None, use_deployment_client=False):
     """
     Get model server endpoints from either Databricks or OSS Mlflow.
     """
-    client = get_endpoint_client(call_databricks_model_serving)
+    client = get_endpoint_client(use_deployment_client)
     endpoints = client.list_endpoints()
 
     if isinstance(client, MlflowDeploymentClient):

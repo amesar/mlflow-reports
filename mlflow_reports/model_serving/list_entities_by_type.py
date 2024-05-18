@@ -13,18 +13,18 @@ from tabulate import tabulate
 
 from mlflow_reports.common import io_utils
 from mlflow_reports.common.click_options import opt_output_dir, opt_silent
-from . click_options import opt_call_databricks_model_serving, opt_input_file
+from . click_options import opt_use_deployment_client, opt_input_file
 from . import get_endpoints, get_entities, filter_entities
 from . import FOUNDATION_MODEL, EXTERNAL_MODEL, FEATURE_SPEC
 
 
-def show(output_dir, call_databricks_model_serving, input_file, silent):
+def show(output_dir, use_deployment_client, input_file, silent):
     if input_file:
         print(f"Using file '{input_file}' instead of calling '/api/2.0/serving-endpoints'")
         with open(input_file, "r", encoding="utf-8") as f:
             endpoints = json.load(f)
     else:
-        endpoints = get_endpoints(call_databricks_model_serving)
+        endpoints = get_endpoints(use_deployment_client=use_deployment_client)
 
     ts_columns = [ "creation_timestamp", "last_updated_timestamp" ]
     base = os.path.join(output_dir, "all_endpoints")
@@ -111,8 +111,6 @@ def report(endpoints):
         config = ep.get("config", {})
         _entities = config.get("served_entities", [])
         num_entities = len(_entities)
-        #if num_entities != 1:
-            #print(f">> #entities {num_entities}: {ep['name']}")
         map[num_entities] = map.get(num_entities,0) + 1
         entities.extend(_entities)
     print(f"Found {len(entities)} entities")
@@ -133,11 +131,11 @@ def report(endpoints):
 
 @click.command()
 @opt_output_dir
-@opt_call_databricks_model_serving
+@opt_use_deployment_client
 @opt_input_file
 @opt_silent
 
-def main(output_dir, call_databricks_model_serving, input_file, silent):
+def main(output_dir, use_deployment_client, input_file, silent):
     """
 Write a tuple of files (JSON and CSV) for each of the different model serving endpoint entity types.
 Each file tuple (except 'all_endpoints.json/csv') is an 'opinionated' unrolling of select nested fields since
@@ -159,7 +157,7 @@ Output files are:
     print("Options:")
     for k,v in locals().items():
         print(f"  {k}: {v}")
-    show(output_dir, call_databricks_model_serving, input_file, silent)
+    show(output_dir, use_deployment_client, input_file, silent)
 
 if __name__ == "__main__":
     main()

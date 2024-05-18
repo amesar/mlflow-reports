@@ -7,11 +7,11 @@ import click
 from mlflow_reports.common import io_utils
 from mlflow_reports.common.click_options import opt_output_file_base
 from mlflow_reports.list.click_options import opt_columns, opt_normalize_pandas_df
-from . click_options import opt_call_databricks_model_serving
+from . click_options import opt_use_deployment_client
 from . import get_endpoints
 
 
-def show(columns, output_file_base, call_databricks_model_serving=False, normalize_pandas_df=False):
+def show(columns, output_file_base, use_deployment_client=False, normalize_pandas_df=False):
     def reorder_columns(df, column):
         if column in df:
             columns = list(df.columns)
@@ -23,7 +23,7 @@ def show(columns, output_file_base, call_databricks_model_serving=False, normali
         return reorder_columns(df, "endpoint_type")
     def mv_ep_endpoint_type_column(df):
         return reorder_columns(df, "ep_endpoint_type")
-    endpoints = get_endpoints(call_databricks_model_serving)
+    endpoints = get_endpoints(use_deployment_client=use_deployment_client)
 
     # write endpoints
     ts_columns = [ "creation_timestamp", "last_updated_timestamp" ]
@@ -69,15 +69,15 @@ def _mk_ep(ep):
 @click.command()
 @opt_columns
 @opt_output_file_base
-@opt_call_databricks_model_serving
+@opt_use_deployment_client
 @opt_normalize_pandas_df
-def main(columns, output_file_base, call_databricks_model_serving, normalize_pandas_df):
+def main(columns, output_file_base, use_deployment_client, normalize_pandas_df):
     print("Options:")
     for k,v in locals().items():
         print(f"  {k}: {v}")
     if isinstance(columns, str):
         columns = columns.split(",")
-    show(columns, output_file_base, call_databricks_model_serving, normalize_pandas_df)
+    show(columns, output_file_base, use_deployment_client, normalize_pandas_df)
 
 
 if __name__ == "__main__":
