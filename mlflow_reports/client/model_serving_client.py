@@ -13,6 +13,9 @@ class ModelServingClient:
     def get_endpoint(self, endpoint_name):
         return self.client.get(f"serving-endpoints/{endpoint_name}")
 
+    def get_endpoint_openapi_schema(self, endpoint_name):
+        return self.client.get(f"serving-endpoints/{endpoint_name}/openapi")
+
     def list_endpoints(self):
         return self.client.get("serving-endpoints")
 

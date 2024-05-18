@@ -1,20 +1,21 @@
 """
 Return the JSON API response for a model serving aka "deployment" endpoint.
 https://docs.databricks.com/api/workspace/servingendpoints/get
+https://docs.databricks.com/api/workspace/servingendpoints/getopenapi
 """
 
 import click
 from mlflow_reports.common.click_options import opt_get_raw, opt_silent, opt_output_file
 from mlflow_reports.data import data_utils, get_model_version, get_model_signature
 from . import get_endpoint_client
-from . click_options import opt_endpoint, opt_call_databricks_model_serving, opt_expand_model_version
+from . click_options import opt_endpoint, opt_use_deployment_client, opt_expand_model_version
 
 
-def get(endpoint_name, call_databricks_model_serving=False, get_raw=False, expand_model_version="none"):
+def get(endpoint_name, use_deployment_client=False, get_raw=False, expand_model_version="none"):
     def _adjust_ts(config, key):
         for x in config.get(key, []):
             data_utils.adjust_ts(x, ["creation_timestamp"])
-    client = get_endpoint_client(call_databricks_model_serving)
+    client = get_endpoint_client(use_deployment_client)
     rsp = client.get_endpoint(endpoint_name)
     if not get_raw:
         data_utils.adjust_ts(rsp, ["creation_timestamp", "last_updated_timestamp"])
@@ -23,6 +24,7 @@ def get(endpoint_name, call_databricks_model_serving=False, get_raw=False, expan
         _adjust_ts(config, "served_entities")
         if not expand_model_version == "none":
             _enhance_model_version(rsp, expand_model_version)
+        rsp["openapi_schema"] = client.get_endpoint_openapi_schema(endpoint_name)
     return rsp
 
 
@@ -46,16 +48,16 @@ def _enhance_model_version(rsp, expand_model_version):
 
 @click.command()
 @opt_endpoint
-@opt_call_databricks_model_serving
+@opt_use_deployment_client
 @opt_get_raw
 @opt_output_file
 @opt_silent
 @opt_expand_model_version
-def main(endpoint, call_databricks_model_serving, get_raw, silent, expand_model_version, output_file):
+def main(endpoint, use_deployment_client, get_raw, silent, expand_model_version, output_file):
     print("Options:")
     for k,v in locals().items():
         print(f"  {k}: {v}")
-    dct = get(endpoint, call_databricks_model_serving, get_raw, expand_model_version)
+    dct = get(endpoint, use_deployment_client, get_raw, expand_model_version)
     data_utils.dump_object(dct, output_file, silent)
 
 

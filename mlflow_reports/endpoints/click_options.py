@@ -16,6 +16,15 @@ def opt_sort(function):
     )(function)
     return function
 
+def opt_use_deployment_client(function):
+    function = click.option("--use-deployment-client",
+        help="Databricks only. Use DatabricksDeploymentClient. Otherwise, make direct calls to 'api/2.0/serving-endpoints'.",
+        type=bool,
+        default=False
+    )(function)
+    return function
+
+
 def opt_call_databricks_model_serving(function):
     function = click.option("--call-databricks-model-serving",
         help="Call Databricks 'api/2.0/serving-endpoints' resource directly instead of using mlflow.deployments.get_deploy_client",

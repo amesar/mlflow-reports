@@ -1,3 +1,5 @@
+# https://mlflow.org/docs/latest/python_api/mlflow.deployments.html#mlflow.deployments.DatabricksDeploymentClient
+
 import os
 from mlflow.deployments.mlflow import MlflowDeploymentClient
 from mlflow.deployments.databricks import DatabricksDeploymentClient
@@ -13,11 +15,11 @@ EXTERNAL_MODEL = "EXTERNAL_MODEL"
 FEATURE_SPEC = "FEATURE_SPEC"
 
 
-def get_endpoint_client(use_databricks=False):
-    if use_databricks:
-        client = ModelServingClient()
-    else:
+def get_endpoint_client(use_deployment_client=False):
+    if use_deployment_client:
         client = get_deploy_client(os.environ.get("MLFLOW_TRACKING_URI"))
+    else:
+        client = ModelServingClient()
     print("Model serving endpoint client:", type(client))
     return client
 
