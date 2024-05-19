@@ -92,6 +92,10 @@ def adjust_timestamp(df, column):
 
 def to_dataframe(lst, ts_columns = ["creation_timestamp", "last_updated_timestamp"]):
     """ 
+    Note converting a list of complex polymorphic objects is not perfect and JSON to Spark Dataframe may miss columns.
+    Happens in spark.read.json(sc.parallelize(lst)) which doesn't return 'creator' but does have '_corrupt_record'.
+    TODO to look into.
+
     Default '_ts' arguments are for registered models and model versions. 
     For experiments they are: 'creation_time' and 'last_update_time'. :(
     """

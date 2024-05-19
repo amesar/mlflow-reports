@@ -1,16 +1,23 @@
 # Databricks notebook source
 # MAGIC %md ## README - mlflow-reports - Databricks notebooks
 # MAGIC
-# MAGIC Display details and list MLflow and Databricks endpoints
+# MAGIC ##### Overview
+# MAGIC
+# MAGIC Display details and list MLflow and Databricks endpoints:
 # MAGIC * MLflow objects: experiments, run, registered models and model versions.
-# MAGIC * Databricks endpoints - model serving, vector search endpoints and others.
+# MAGIC * Databricks endpoints - model serving and vector search endpoints.
 # MAGIC * Feature tables.
+# MAGIC
+# MAGIC ##### Limitations
+# MAGIC
+# MAGIC * Note that the process of generating Spark dataframes from the JSON API responses is fragile since the JSON objects in the lists can be quite polymorphic especially for model serving endpoints of which there are three very different objects: custom, foundational and external.
+# MAGIC * In addition, the returned JSON objects are not fully documented and often substantially change.
 # MAGIC
 # MAGIC ##### Git Repo
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC #####  Last updated: _2024-04-03_
+# MAGIC #####  Last updated: _2024-05-19_
 
 # COMMAND ----------
 
@@ -96,7 +103,7 @@
 # MAGIC * [Get_Table_Lineage]($unity_catalog/Get_Table_Lineage) - get table lineage
 # MAGIC
 # MAGIC ##### Common helper utilities
-# MAGIC * [Common]($Common) - [_Common]($_Common)
+# MAGIC * [Common]($Common) and [_Common]($_Common)
 # MAGIC
 
 # COMMAND ----------

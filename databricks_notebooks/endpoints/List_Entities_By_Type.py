@@ -36,7 +36,7 @@ print("output_file:", output_file)
 
 # COMMAND ----------
 
-from mlflow_reports.endpoints import get_endpoints
+from mlflow_reports.model_serving import get_endpoints
 endpoints = get_endpoints()
 len(endpoints)
 
@@ -66,7 +66,7 @@ display(df)
 
 # COMMAND ----------
 
-from mlflow_reports.endpoints.list_entities_by_type import (
+from mlflow_reports.model_serving.list_entities_by_type import (
     mk_custom_models, 
     mk_foundation_models, 
     mk_external_models, 
@@ -106,7 +106,7 @@ display(df)
 
 # COMMAND ----------
 
-# MAGIC %sql select ep_name as endpoint, model_name, model_version from custom_models order by ep_name desc
+# MAGIC %sql select ep_name as endpoint, entity_name as model_name, entity_version as model_version from custom_models order by ep_name desc
 
 # COMMAND ----------
 

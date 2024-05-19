@@ -117,7 +117,7 @@ def get_signature(endpoint_name, entity_name):
     print("model_name:", model_name)
     print("model_version:", model_version)
     if not model_version:
-        print(f"WARNING: no model_version")
+        print(f"WARNING: no model_version - is not a 'custom model'")
         return {}
     
     if "." in model_name:
@@ -131,6 +131,8 @@ def get_signature(endpoint_name, entity_name):
 # COMMAND ----------
 
 # MAGIC %md #### Get signature
+# MAGIC
+# MAGIC The signature `inputs` and `outputs` fields are a JSON string and not a JSON dictionary.
 
 # COMMAND ----------
 

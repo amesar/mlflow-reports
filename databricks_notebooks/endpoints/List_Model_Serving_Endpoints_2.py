@@ -4,8 +4,7 @@
 # MAGIC ##### Overview
 # MAGIC
 # MAGIC * List and query "model serving endpoints" aka MLflow "deployment endpoints".
-# MAGIC * Unfortunately, `spark.read.json(sc.parallelize(json_list))` sometimes fails to return the 'creator' column, the queries with 'creator' column won't work. 
-# MAGIC   * See [List_Model_Serving_Endpoints_2]($List_Model_Serving_Endpoints_) for these queries without the 'creator' column.
+# MAGIC * Variant of [List_Model_Serving_Endpoints]($List_Model_Serving_Endpoints) with queries without the 'creator' column.
 # MAGIC
 # MAGIC ##### Widgets
 # MAGIC * `1. Show JSON` - Show JSON as returned by API call.
@@ -77,24 +76,11 @@ df.createOrReplaceTempView("endpoints")
 
 # COMMAND ----------
 
-# MAGIC %md ##### Show my endpoints
-
-# COMMAND ----------
-
-cmd = f"""
-select {name, creator, endpoint_type, creation_timestamp} from endpoints 
-where creator='{_user}'
-order by creation_timestamp desc, name
-"""
-display(sql(cmd))
-
-# COMMAND ----------
-
 # MAGIC %md ##### Summary by creation_timestamp
 
 # COMMAND ----------
 
-# MAGIC %sql select name, creator, endpoint_type, creation_timestamp from endpoints order by creation_timestamp desc, name
+# MAGIC %sql select name, endpoint_type, creation_timestamp from endpoints order by creation_timestamp desc, name
 
 # COMMAND ----------
 
@@ -102,15 +88,7 @@ display(sql(cmd))
 
 # COMMAND ----------
 
-# MAGIC %sql select name, creator, endpoint_type, creation_timestamp from endpoints order by endpoint_type desc, name
-
-# COMMAND ----------
-
-# MAGIC %md ##### Group by creator
-
-# COMMAND ----------
-
-# MAGIC %sql select creator, count(*) as count from endpoints group by creator order by count desc
+# MAGIC %sql select name, endpoint_type, creation_timestamp from endpoints order by endpoint_type desc, name
 
 # COMMAND ----------
 
@@ -126,13 +104,13 @@ display(sql(cmd))
 
 # COMMAND ----------
 
-# MAGIC %sql select name, creator, creation_timestamp from endpoints 
+# MAGIC %sql select name, creation_timestamp from endpoints 
 # MAGIC where endpoint_type is null
 # MAGIC order by name
 
 # COMMAND ----------
 
-# MAGIC %sql select name, creator, creation_timestamp from endpoints 
+# MAGIC %sql select name, creation_timestamp from endpoints 
 # MAGIC where endpoint_type is null
 # MAGIC order by creation_timestamp desc
 
@@ -142,7 +120,7 @@ display(sql(cmd))
 
 # COMMAND ----------
 
-# MAGIC %sql select name, creator, creation_timestamp from endpoints 
+# MAGIC %sql select name, creation_timestamp from endpoints 
 # MAGIC where endpoint_type like 'FOUNDATION%'
 # MAGIC order by name, creation_timestamp desc
 
@@ -152,7 +130,7 @@ display(sql(cmd))
 
 # COMMAND ----------
 
-# MAGIC %sql select name, creator, creation_timestamp from endpoints 
+# MAGIC %sql select name, creation_timestamp from endpoints 
 # MAGIC where endpoint_type = 'EXTERNAL_MODEL'
 # MAGIC order by creation_timestamp desc
 

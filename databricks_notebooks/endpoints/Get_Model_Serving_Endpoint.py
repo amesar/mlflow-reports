@@ -4,16 +4,14 @@
 # MAGIC Also called "MLflow Deployment" endpoint.
 # MAGIC
 # MAGIC ##### Widgets
-# MAGIC * `Endpoint name` - endpoint name
-# MAGIC * `Save JSON as file` - Save endpoint as JSON file
+# MAGIC * `1. Endpoint name` - endpoint name
+# MAGIC * `2. Save JSON as file` - Save endpoint as JSON file
 # MAGIC
 # MAGIC ##### Documentation
 # MAGIC * Databricks
 # MAGIC   * [GET api/2.0/serving-endpoints/{name}](https://docs.databricks.com/api/workspace/servingendpoints/get) - REST API
 # MAGIC * MLflow
-# MAGIC   * [GET api/2.0/serving-endpoints/{name}](https://mlflow.org/docs/latest/llms/deployments/api.html#/default/get_endpoint_api_2_0_endpoints__endpoint_name__get) - OpenAPI
-# MAGIC   * [MLflow Deployments Server (Experimental)
-# MAGIC ](https://mlflow.org/docs/latest/llms/deployments/index.html) - [REST API](https://mlflow.org/docs/latest/llms/deployments/index.html#deployments-rest-api)
+# MAGIC   * [GET api/2.0/serving-endpoints/{name}](https://mlflow.org/docs/latest/llms/deployments/api.html#/default/get_endpoint_api_2_0_endpoints__endpoint_name__get) - REST API
 
 # COMMAND ----------
 
@@ -36,7 +34,7 @@ assert_widget(endpoint_name, "1. Endpoint name")
 
 # COMMAND ----------
 
-from mlflow_reports.endpoints import get_endpoint_client
+from mlflow_reports.model_serving import get_endpoint_client
 client = get_endpoint_client()
 client
 
