@@ -1,6 +1,6 @@
 import copy
 import streamlit as st
-from mlflow_reports.endpoints import get_endpoint
+from mlflow_reports.model_serving import get_endpoint
 from mlflow_reports.data import get_model_version
 from mlflow_reports.mlflow_model.mlflow_model_utils import get_model_artifact
 from mlflow_reports.common.timestamp_utils import now
@@ -25,7 +25,7 @@ def do_model_serving_endpoint_entity():
 
     entity = st.session_state.entity if "entity" in st.session_state else None
     vr, signature, mlmodel = None, None, None
-    help = "Custom model entity"
+    #help = "Custom model entity"
     #st.subheader("_Endpoint entity (model) details_", help=help)
 
     endpoint_name = st.text_input("Endpoint", key="endpoint_name_2", help="Model serving endpoint")

@@ -40,7 +40,7 @@ def opt_expand_model_version(function):
 
 def opt_input_file(function):
     function = click.option("--input-file",
-        help="Use saved JSON in filefrom a previous call to /api/2.0/serving-endpoints. Will not call API.",
+        help="Use saved JSON in file from a previous call to /api/2.0/serving-endpoints. Will not call API.",
         type=str,
         required=False
     )(function)

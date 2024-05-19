@@ -4,7 +4,7 @@ from mlflow.utils.time import Timer
 from mlflow_reports.client import databricks_client
 from mlflow_reports.common.timestamp_utils import now
 from mlflow_reports.streamlit.entities import do_endpoint_entities
-from mlflow_reports.endpoints.list_entities_by_type import mk_all_entities
+from mlflow_reports.model_serving.list_entities_by_type import mk_all_entities
 from mlflow_reports.streamlit.widgets import init_widgets, show_list_msg
 
 init_widgets()
@@ -45,7 +45,7 @@ def do_model_serving():
 
 
 def do_list_model_serving_endpoints():
-    from mlflow_reports.endpoints import get_endpoints , as_pandas_df
+    from mlflow_reports.model_serving import get_endpoints , as_pandas_df
     def refresh():
         with Timer() as timer:
             endpoints = get_endpoints()
@@ -70,7 +70,7 @@ def do_list_model_serving_endpoints():
 
 
 def do_tab_list_endpoint_details():
-    from mlflow_reports.endpoints import get_endpoints , as_pandas_df
+    from mlflow_reports.model_serving import get_endpoints , as_pandas_df
     def refresh():
         with Timer() as timer:
             endpoints = get_endpoints() # TODO details
@@ -96,7 +96,7 @@ def do_tab_list_endpoint_details():
 
 
 def do_model_serving_endpoint_details():
-    from mlflow_reports.endpoints import get_endpoint
+    from mlflow_reports.model_serving import get_endpoint
     def refresh(name):
         if not name:
             return { "error": "Missing model serving endpoint name" }

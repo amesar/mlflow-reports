@@ -2,8 +2,8 @@ import streamlit as st
 from mlflow.utils.time import Timer
 from mlflow_reports.streamlit.widgets import show_list_msg
 from mlflow_reports.streamlit.endpoint_entity import do_model_serving_endpoint_entity as do_details
-from mlflow_reports.endpoints import get_endpoints, as_pandas_df
-from mlflow_reports.endpoints.list_entities_by_type import (
+from mlflow_reports.model_serving import get_endpoints, as_pandas_df
+from mlflow_reports.model_serving.list_entities_by_type import (
     mk_all_entities,
     mk_custom_models,
     mk_foundation_models,

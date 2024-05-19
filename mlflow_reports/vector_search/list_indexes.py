@@ -7,7 +7,7 @@ import click
 from mlflow_reports.list import list_utils
 from mlflow_reports.common.click_options import opt_output_file_base
 from mlflow_reports.list.click_options import opt_columns
-from mlflow_reports.endpoints.click_options import opt_endpoint
+from mlflow_reports.model_serving.click_options import opt_endpoint
 from mlflow_reports.common import io_utils
 from mlflow_reports.common.pandas_utils import move_column
 from . import get_VectorSearchClient

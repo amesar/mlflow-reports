@@ -4,7 +4,7 @@
 import click
 
 from mlflow_reports.data import data_utils
-from mlflow_reports.endpoints.click_options import opt_endpoint
+from mlflow_reports.model_serving.click_options import opt_endpoint
 from mlflow_reports.common.click_options import opt_get_raw, opt_silent, opt_output_file
 from . import get_VectorSearchClient
 
