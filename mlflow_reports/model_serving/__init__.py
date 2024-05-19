@@ -84,3 +84,10 @@ def _MlflowDeploymentClient_to_dict(endpoints):
             _ep["limit"] = limit
         return _ep
     return [ convert(ep) for ep in endpoints ]
+
+
+def get_openapi_schema(client, endpoint_name):
+    try:
+        return client.get_endpoint_openapi_schema(endpoint_name)
+    except MlflowReportsException as e:
+        return { "error": str(e) }

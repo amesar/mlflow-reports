@@ -7,7 +7,7 @@ from mlflow_reports.common import io_utils
 from mlflow_reports.common.click_options import opt_output_file_base, opt_get_raw, opt_get_details
 from mlflow_reports.list.click_options import opt_columns, opt_normalize_pandas_df
 from . click_options import opt_use_deployment_client, opt_model_type
-from . import get_endpoints, get_endpoint_client
+from . import get_endpoints, get_endpoint_client, get_openapi_schema
 
 
 def show(
@@ -29,7 +29,7 @@ def show(
 
 def _get_endpoint(client, endpoint_name):
     rsp = client.get_endpoint(endpoint_name)
-    rsp["openapi_schema"] = client.get_endpoint_openapi_schema(endpoint_name)
+    rsp["openapi_schema"] = get_openapi_schema(client, endpoint_name)
     return rsp
 
 
