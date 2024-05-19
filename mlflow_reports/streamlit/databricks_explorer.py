@@ -27,10 +27,11 @@ def main():
 def do_model_serving():
     st.header("Model serving endpoints")
 
-    tab_list_endpoints, tab_list_endpoint_details, tab_endpoint, tab_entities = st.tabs([
+    tab_list_endpoints, tab_list_endpoint_details, tab_endpoint, tab_openapi, tab_entities = st.tabs([
         "List endpoints",
         "List endpoint details",
         "Endpoint details",
+        "Endpoint OpenAPI",
         "Entities"
     ])
 
@@ -40,6 +41,8 @@ def do_model_serving():
         do_tab_list_endpoint_details()
     with tab_endpoint:
         do_model_serving_endpoint_details()
+    with tab_openapi:
+        do_endpoint_openapi()
     with tab_entities:
         do_endpoint_entities()
 
@@ -73,7 +76,7 @@ def do_tab_list_endpoint_details():
     from mlflow_reports.model_serving import get_endpoints , as_pandas_df
     def refresh():
         with Timer() as timer:
-            endpoints = get_endpoints() # TODO details
+            endpoints = get_endpoints() # TODO: add details option
         show_list_msg(endpoints, "model serving endpoint details", timer)
         st.session_state.endpoints = endpoints
         return endpoints
@@ -114,6 +117,30 @@ def do_model_serving_endpoint_details():
         endpoint = refresh(name)
 
     st.write(endpoint)
+
+
+def do_endpoint_openapi():
+    from mlflow_reports.model_serving import get_endpoint_client
+
+    def refresh(endpoint_name):
+        if not endpoint_name:
+            return { "error": "Missing model serving endpoint name" }
+
+        client = get_endpoint_client()
+        endpoint_openapi = client.get_endpoint_openapi_schema(endpoint_name)
+        st.write(f"Retrieved endpoint _{name}_ OpenAPI schema at {now()}")
+        st.session_state.endpoint_openapi = endpoint_openapi
+        return endpoint_openapi
+
+    endpoint_openapi = st.session_state.endpoint_openapi if "endpoint_openapi" in st.session_state else None
+    st.subheader("_Endpoint OpenAPI_")
+
+    name = st.text_input("Endpoint", key="endpoint_openapi_name")
+
+    if st.button("Refresh", key="refresh_model_endpoint_openapi"):
+        endpoint_openapi = refresh(name)
+
+    st.write(endpoint_openapi)
 
 
 # ==============
