@@ -35,7 +35,7 @@ print("output_file:", output_file)
 
 # COMMAND ----------
 
-from mlflow_reports.endpoints import get_endpoints
+from mlflow_reports.model_serving import get_endpoints
 endpoints = get_endpoints()
 len(endpoints)
 
@@ -55,7 +55,7 @@ if output_file or show_json:
 
 # COMMAND ----------
 
-from mlflow_reports.endpoints.list_endpoint_entities import list_entities
+from mlflow_reports.model_serving.list_endpoint_entities import list_entities
 entities = list_entities(endpoints)
 len(entities)
 
@@ -71,7 +71,7 @@ display(df)
 
 # COMMAND ----------
 
-from mlflow_reports.endpoints.list_endpoint_entities import list_endpoints_without_entities
+from mlflow_reports.model_serving.list_endpoint_entities import list_endpoints_without_entities
 endpoints_without_entities = list_endpoints_without_entities(endpoints)
 display(to_dataframe(endpoints_without_entities, []))
 

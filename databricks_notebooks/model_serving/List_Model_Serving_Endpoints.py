@@ -5,7 +5,7 @@
 # MAGIC
 # MAGIC * List and query "model serving endpoints" aka MLflow "deployment endpoints".
 # MAGIC * Unfortunately, `spark.read.json(sc.parallelize(json_list))` sometimes fails to return the 'creator' column, the queries with 'creator' column won't work. 
-# MAGIC   * See [List_Model_Serving_Endpoints_2]($List_Model_Serving_Endpoints_) for these queries without the 'creator' column.
+# MAGIC   * See [List_Model_Serving_Endpoints_2]($List_Model_Serving_Endpoints_2) for these queries without the 'creator' column.
 # MAGIC
 # MAGIC ##### Widgets
 # MAGIC * `1. Show JSON` - Show JSON as returned by API call.

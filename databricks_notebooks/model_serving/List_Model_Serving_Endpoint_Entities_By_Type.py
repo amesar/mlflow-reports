@@ -6,7 +6,7 @@
 # MAGIC * List and query the different types of model/entity types - custom, foundation, external etc.
 # MAGIC * Entities are found at `endpoint["config"]["served_entities"]`
 # MAGIC * Since entities are polymorphic, each entity type has its own fields as well as common ones.
-# MAGIC * To create these entity views, we rely on [mlflow_reports/endpoints/list_entities_by_type.py](https://github.com/amesar/mlflow-reports/blob/master/mlflow_reports/endpoints/list_entities_by_type.py).
+# MAGIC * To create these entity views, we rely on [mlflow_reports/model_serving/list_entities_by_type.py](https://github.com/amesar/mlflow-reports/blob/master/mlflow_reports/model_serving/list_entities_by_type.py).
 # MAGIC
 # MAGIC ##### Github
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/mlflow_reports/endpoints

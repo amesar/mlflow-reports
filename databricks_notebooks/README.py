@@ -71,15 +71,23 @@
 # MAGIC %md #### Databricks Endpoints
 # MAGIC
 # MAGIC ##### Model Serving endpoints aka MLflow deployment endpoints
-# MAGIC * [List_Model_Serving_Endpoints]($endpoints/List_Model_Serving_Endpoints) - List and query endpoints.
-# MAGIC * [List_Entities_By_Type]($endpoints/List_Entities_By_Type) - List and query all endpoint models/entities broken down by entity type (custom, foundation, etc.).
-# MAGIC * [Get_Model_Serving_Endpoint]($endpoints/Get_Model_Serving_Endpoint) 
-# MAGIC * [Get_Model_Serving_Endpoint_Signature]($endpoints/Get_Model_Serving_Endpoint_Signature) - Get the model signature of an endpoint entity (custom model only).
+# MAGIC
+# MAGIC Note 'entities' are equivalent to models.
+# MAGIC
+# MAGIC ###### _List_
+# MAGIC * [List_Model_Serving_Endpoints]($model_serving/List_Model_Serving_Endpoints) - List and query endpoints.
+# MAGIC * [List_Model_Serving_Endpoint_Entities]($model_serving/List_Model_Serving_Endpoint_Entities) - List and query endpoint entities.
+# MAGIC * [List_Model_Serving_Endpoint_Entities_By_Type]($model_serving/List_Model_Serving_Endpoint_Entities_By_Type) - List and query all endpoint entities broken down by entity type (custom, foundation, external, etc.).
+# MAGIC
+# MAGIC ###### _Get_
+# MAGIC * [Get_Model_Serving_Endpoint]($model_serving/Get_Model_Serving_Endpoint) 
+# MAGIC * [Get_Model_Serving_Endpoint_OpenAPI_Schema]($model_serving/Get_Model_Serving_Endpoint_OpenAPI_Schema)
+# MAGIC * [Get_Model_Serving_Endpoint_Signature]($model_serving/Get_Model_Serving_Endpoint_Signature) - Get the model signature of an endpoint entity (custom model only).
 # MAGIC
 # MAGIC ##### Vector Search endpoints
-# MAGIC * [List_Vector_Search_Endpoints]($endpoints/List_Vector_Search_Endpoints) - List and query endpoints.
-# MAGIC * [List_Vector_Search_Indexes]($endpoints/List_Vector_Search_Indexes) - List and query all indexes.
-# MAGIC * [Get_Vector_Search_Endpoint]($endpoints/Get_Vector_Search_Endpoint) - Get Vector Search endpoint details including its indexes.
+# MAGIC * [List_Vector_Search_Endpoints]($vector_search/List_Vector_Search_Endpoints) - List and query endpoints.
+# MAGIC * [List_Vector_Search_Indexes]($vector_search/List_Vector_Search_Indexes) - List and query all indexes.
+# MAGIC * [Get_Vector_Search_Endpoint]($vector_search/Get_Vector_Search_Endpoint) - Get Vector Search endpoint details including its indexes.
 
 # COMMAND ----------
 
