@@ -17,7 +17,7 @@ setup(
     packages=find_packages(exclude=["tests", "tests.*"]),
     zip_safe=False,
     install_requires=[
-        "mlflow-skinny[databricks]>=2.10.1",
+        "mlflow-skinny[databricks]>=2.12.2",
         "mlflow[genai]",
         "databricks-vectorsearch",
         "databricks-cli",
@@ -48,10 +48,9 @@ setup(
             "list-registered-models = mlflow_reports.list.list_registered_models:main",
             "list-model-versions = mlflow_reports.list.list_model_versions:main",
             "list-model-serving-endpoints = mlflow_reports.model_serving.list_endpoints:main",
-            "list-deployment-endpoints = mlflow_reports.deployments.list_endpoints:main",
             "list-vector-search-endpoints = mlflow_reports.vector_search.list_endpoints:main",
             "list-feature-tables = mlflow_reports.feature_store.list_feature_tables:main",
-            "list-gateway-routes = mlflow_reports.list.list_gateway_routes:main"
+            "get-list-model-serving-endpoint = mlflow_reports.model_serving.get_endpoint:main"
         ]
     }
 )
