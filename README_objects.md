@@ -4,24 +4,19 @@
 
 Python scripts and [Databricks notebooks](databricks_notebooks/README.md) to display and list MLflow objects.
 
-Last updated: _2024-01-16_.
+Last updated: _2024-05-20_.
 
 ### Commands
 
 #### [Get MLflow object details](#get-mlflow-object-details)
 *  [get-run](#get-run) - get run
 *  [get-experiment](#get-experiment) - get experiment
-*  [get-model-version](#get-model-version) - gets model version
-*  [get-registered-model](#get-registered-model) - gets registered model
-
+*  [get-model-version](#get-model-version) - get model version
+*  [get-registered-model](#get-registered-model) - get registered model
 
 #### [List objects](#list-mlflow-objects)
 *  [list-registered-models](#list-registered-models) - list registered models
 *  [list-model-versions](#list-model-versions) - list model versions
-*  [list-model-serving-endpoints](#list-model-serving-endpoints) - list model serving endpoints
-*  [list-deployment-endpoints](#list-deployment-endpoints) - list deployment endpoints
-  *  [list-gateway-routes](#list-gateway-routes) - list AI Gateway routes - deprecated as of MLflow 2.9.2
-*  [list_feature_tables](#list_feature_tables) - list feature tables (non-UC "Feature Store" instead of UC "Feature Engineering")
 
 #### MLflow model commands
 *  [get-mlflow-model](#get-mlflow-model) - returns the contents of an MLflow model's [MLmodel](samples/databricks/model_reports/credit_adjudication/MLmodel) artifact.
@@ -407,7 +402,74 @@ Options:
   --output-file TEXT             JSON output file.
 ```
 
-## List MLflow Objects
+### Get Model Serving Endpoint 
+
+Get Databricks model serving endpoint details.
+
+```
+get-model-serving-endpoint \
+  --endpoint sklearn_wine_best \
+  --openapi True \
+  --output-file sklearn_wine_best.json
+```
+```
+{
+  "name": "sklearn_wine_best",
+  "creator": "andre@my-company.com",
+  "creation_timestamp": 1706467706000,
+  "last_updated_timestamp": 1706467706000,
+  "state": {
+    "ready": "READY",
+    "config_update": "NOT_UPDATING"
+  },
+  "config": {
+    "served_entities": [
+      {
+        "name": "Sklearn_Wine_best-2",
+        "entity_name": "Sklearn_Wine_best",
+        "entity_version": "2",
+        "workload_size": "Small",
+        "scale_to_zero_enabled": true,
+        "workload_type": "CPU",
+        "state": {
+          "deployment": "DEPLOYMENT_READY",
+          "deployment_state_message": "Scaled to zero"
+        },
+        "creator": "andre@my-company.com",
+        "creation_timestamp": 1706467706000,
+        "_creation_timestamp": "2024-01-28 18:48:26"
+      }
+    ],
+    "traffic_config": {
+      "routes": [
+        {
+          "served_model_name": "Sklearn_Wine_best-2",
+```
+
+##### Usage
+
+```
+get-model-serving-endpoint --help
+
+Options:
+  --endpoint TEXT                 Model serving endpoint name.
+  --openapi BOOLEAN               Get endpoint OpenAPI schema and append it to
+                                  the output JSON.
+  --use-deployment-client BOOLEAN
+                                  Databricks only. Use
+                                  DatabricksDeploymentClient. Otherwise, make
+                                  direct calls to 'api/2.0/serving-endpoints'.
+  --get-raw BOOLEAN               Preserve raw JSON as received from API call.
+                                  [default: False]
+  --output-file TEXT              JSON output file.
+  --silent BOOLEAN                Do not display to stdout.  [default: False]
+  --expand-model-version [none|version|version-and-signature|version-all]
+                                  Model type: version|version-and-
+                                  signature|version-all
+```
+
+
+## List Objects
 
 ### List Registered Models
 
@@ -441,8 +503,9 @@ Options:
   --unity-catalog BOOLEAN         Use Databricks Unity Catalog.
   --prefix TEXT                   Model prefix to show.
   --columns TEXT                  Columns to display. Comma delimited.
-  --max-description INTEGER       max_description.
-  --output-csv-file TEXT          Output CSV file.
+  --output-file-base TEXT         File base for JSON and CSV output files. For
+                                  example, 'out' will result in 'out.csv' and
+                                  'out.json.'  [default: out]
 ```
 
 
@@ -479,159 +542,61 @@ Options:
   --get-model-details BOOLEAN     Get MLflow model flavor and size.
   --unity-catalog BOOLEAN         Use Databricks Unity Catalog.
   --columns TEXT                  Columns to display. Comma delimited.
-  --max-description INTEGER       max_description.
-  --output-csv-file TEXT          Output CSV file.
+  --output-file-base TEXT         File base for JSON and CSV output files. For
+                                  example, 'out' will result in 'out.csv' and
+                                  'out.json.'  [default: out]
+  --help                          Show this message and exit.
 ```
 
 
 ### List Model Serving Endpoints
 
+List Databricks model serving endpoints.
+
 ```
 list-model-serving-endpoints \
   --columns name,endpoint_type,task,creator,creation_timestamp \
-  --output-csv-file endpoints.csv 
+  --output-base endpoints
 ```
 
 ```
-| name                             | endpoint_type        | task               | creator                           | creation_timestamp   |
-|----------------------------------|----------------------|--------------------|-----------------------------------|----------------------|
-| embeddings_proxy_eo              |                      |                    | amelia.young-singer@mycompany.com | 2023-11-22 18:36:33  |
-| eo_rfp_rag                       |                      |                    | amelia.young-singer@mycompany.com | 2023-11-22 19:00:33  |
-| databricks-llama-2-70b-chat      | FOUNDATION_MODEL_API | llm/v1/chat        |                                   | 2023-11-10 09:53:20  |
-| databricks-mixtral-8x7b-instruct | FOUNDATION_MODEL_API | llm/v1/chat        |                                   | 2023-11-10 09:53:20  |
-| databricks-bge-large-en          | FOUNDATION_MODEL_API | llm/v1/embeddings  |                                   | 2023-11-10 09:53:20  |
-| databricks-mpt-30b-instruct      | FOUNDATION_MODEL_API | llm/v1/completions |                                   | 2023-11-10 09:53:20  |
-| databricks-mpt-7b-instruct       | FOUNDATION_MODEL_API | llm/v1/completions |                                   | 2023-11-10 09:53:20  |
-```
-
-```
-Options:
-  --columns TEXT          Columns to display. Comma delimited.
-  --output-csv-file TEXT  Output CSV file.
-  --help                  Show this message and exit.
-```
-
-### List Deployment Endpoints
-```
-list-deployment-endpoints \
-  --columns name,endpoint_type,task,creator,creation_timestamp \
-  --output-csv-file endpoints.csv 
-```
-
-```
-| name                             | endpoint_type        | task               | creator                           | creation_timestamp   |
-|----------------------------------|----------------------|--------------------|-----------------------------------|----------------------|
-| embeddings_proxy_eo              |                      |                    | amelia.young-singer@mycompany.com | 2023-11-22 18:36:33  |
-| eo_rfp_rag                       |                      |                    | amelia.young-singer@mycompany.com | 2023-11-22 19:00:33  |
-| databricks-llama-2-70b-chat      | FOUNDATION_MODEL_API | llm/v1/chat        |                                   | 2023-11-10 09:53:20  |
-| databricks-mixtral-8x7b-instruct | FOUNDATION_MODEL_API | llm/v1/chat        |                                   | 2023-11-10 09:53:20  |
-| databricks-bge-large-en          | FOUNDATION_MODEL_API | llm/v1/embeddings  |                                   | 2023-11-10 09:53:20  |
-| databricks-mpt-30b-instruct      | FOUNDATION_MODEL_API | llm/v1/completions |                                   | 2023-11-10 09:53:20  |
-| databricks-mpt-7b-instruct       | FOUNDATION_MODEL_API | llm/v1/completions |                                   | 2023-11-10 09:53:20  |
-```
-
-```
-Options:
-  --columns TEXT          Columns to display. Comma delimited.
-  --output-csv-file TEXT  Output CSV file.
-```
-
-### List Feature Store Tables
-
-List feature tables (non-UC "Feature Store" instead of UC "Feature Engineering").
-
-```
-list-feature-tables \
-  --columns name,primary_keys,features,creation_timestamp,creator_id
-```
-
-```
-| name                                                              | primary_keys                       | features                                                                                                                                                                               | creation_timestamp   | creator_id                  |
-|-------------------------------------------------------------------|------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|-----------------------------|
-| andre_fs_wine.wine_features                                       | ['wine_id']                        | ['alcohol', 'chlorides', 'citric_acid', 'density', 'fixed_acidity', 'free_sulfur_dioxide', 'pH', 'residual_sugar', 'sulphates', 'total_sulfur_dioxide', 'volatile_acidity', 'wine_id'] | 2023-11-16 11:22:54  | amelia.singer@mycompany.com |
-| andre_fs_wine.wine_static_features                                | ['wine_id']                        | ['chlorides', 'citric_acid', 'density', 'fixed_acidity', 'free_sulfur_dioxide', 'pH', 'residual_sugar', 'sulphates', 'total_sulfur_dioxide', 'volatile_acidity', 'wine_id']            | 2023-05-29 02:49:42  | amelia.singer@mycompany.com |
-| dbdemos_fs_travel_shared.destination_features_advanced            | ['destination_id']                 | ['destination_id', 'sum_clicks_7d', 'sum_impressions_7d', 'ts']                                                                                                                        | 2023-08-14 16:58:07  | amelia.singer@mycompany.com |
-| travel_recommendations_realtime.destination_availability_features | ['destination_id', 'booking_date'] | ['availability', 'booking_date', 'destination_id', 'event_ts', 'name', 'price']                                                                                                        | 2022-10-31 18:42:57  | samaim.amisam@mycompany.com |
-| travel_recommendations_realtime.destination_location_features     | ['destination_id']                 | ['destination_id', 'latitude', 'longitude', 'name']                                                                                                                                    | 2022-10-31 18:18:19  | samaim.amisam@mycompany.com |
-| travel_recommendations_realtime.destination_popularity_features   | ['destination_id']                 | ['destination_id', 'sum_clicks_7d', 'sum_impressions_7d', 'ts']                                                                                                                        | 2022-10-31 20:09:12  | samaim.amisam@mycompany.com |
-```
-
-```
-Options:
-  --columns TEXT          Columns to display. Comma delimited.
-  --output-csv-file TEXT  Output CSV file.
-```
-
-
-
-### List Gateway Routes
-
-Deprecated as of MLflow 2.9.2.
-
-List Gateway routes.
-
-See Databricks notebook [List_Gateway_Routes](databricks_notebooks/objects/List_Gateway_Routes.py).
-
-```
-export MLFLOW_GATEWAY_URI=databricks://v8-catfood
-list-gateway-routes
-```
-
-```
-+--------------------------------------+--------------------+--------------------------+--------------------------+
-| name                                 | route_type         | model_name               | model_provider           |
-+--------------------------------------+--------------------+--------------------------+--------------------------+
-| abes_chat_route_gpt_3.5_turbo        | llm/v1/chat        | gpt-4                    | openai                   |
-| abes_complete_route_gpt_3.5_turbo    | llm/v1/completions | gpt-35-turbo             | openai                   |
-| abs-dolly-v2-3b-completions          | llm/v1/completions | abs-dolly-v2-3b          | databricks-model-serving |
-| abs-gpt-chat                         | llm/v1/chat        | gpt-3.5-turbo            | openai                   |
-| abs-gpt-completions                  | llm/v1/completions | gpt-3.5-turbo            | openai                   |
-| abs-mpt-7b-completions               | llm/v1/completions | abs-mpt-7b-instruct      | databricks-model-serving |
-| abs-mpt7b-chat                       | llm/v1/chat        | abs-mpt-7b-instruct      | databricks-model-serving |
-| abs-openai-embeddings                | llm/v1/embeddings  | text-embedding-ada-002   | openai                   |
-| andre-gpt35-completions              | llm/v1/completions | gpt-35-turbo             | openai                   |
-| andre-openai-model-serving           | llm/v1/completions | andre-gateway-model      | databricks-model-serving |
-| andrew_c_completions-mpt-7b-instruct | llm/v1/completions | andrew_c_mpt-7b-instruct | databricks-model-serving |
-| andrew_c_mosaicml-llama-completions  | llm/v1/completions | llama2-70b-chat          | mosaicml                 |
-| andrew_c_mosaicml-llama2-completions | llm/v1/completions | llama2-70b-chat          | mosaicml                 |
-| andrew_c_mosaicml-mpt30b-completions | llm/v1/completions | mpt-30b-instruct         | mosaicml                 |
-| andrew_c_mosaicml-mpt7b-completions  | llm/v1/completions | mpt-7b-instruct          | mosaicml                 |
-| ann-openai-chat                      | llm/v1/chat        | text-davinci-003         | openai                   |
-| ann-openai-chat-2                    | llm/v1/embeddings  | random-thing             | openai                   |
-| ann-openai-completions               | llm/v1/completions | text-davinci-003         | openai                   |
-| ann-openai-embeddings                | llm/v1/embeddings  | text-davinci-003         | openai                   |
-| ann-openai-embeddings-2              | llm/v1/embeddings  | random-thing             | openai                   |
-| anthropic-claude                     | llm/v1/completions | claude-2                 | anthropic                |
-| anthropic-demo                       | llm/v1/completions | claude-2                 | anthropic                |
-| acantar-gpt-4-completions            | llm/v1/completions | gpt-4                    | openai                   |
-| az-gpt-35                            | llm/v1/completions | az-gpt-35                | openai                   |
-| azureopenai_completions_example      | llm/v1/completions | gpt-3.5-turbo            | openai                   |
-| azureopenai_completions_example_ap   | llm/v1/completions | gpt-3.5-turbo            | openai                   |
-| azureopenai_completions_example_v2   | llm/v1/completions | gpt-3.5-turbo            | openai                   |
-| ben-gpt4                             | llm/v1/completions | gpt-4                    | openai                   |
-| ben-gpt4-test                        | llm/v1/completions | gpt-4                    | openai                   |
-| berk_chat1                           | llm/v1/chat        | gpt-3.5-turbo            | openai                   |
-| berk_completions                     | llm/v1/completions | gpt-3.5-turbo            | openai                   |
-| bilal-mistral-7b                     | llm/v1/completions | mistral-7b               | databricks-model-serving |
-| bilal-mistral-7b-chat                | llm/v1/chat        | mistral-7b               | databricks-model-serving |
-| chat                                 | llm/v1/chat        | gpt-35-turbo             | openai                   |
-| chat-haru                            | llm/v1/chat        | gpt-3.5-turbo            | openai                   |
-| claude-2                             | llm/v1/completions | claude-2                 | anthropic                |
-+--------------------------------------+--------------------+--------------------------+--------------------------+
-
+| name                             | endpoint_type        | task               | creator                 | creation_timestamp   |
+|----------------------------------|----------------------|--------------------|-------------------------|----------------------|
+| embeddings_proxy_eo              |                      |                    | amelia@mycompany.com    | 2023-11-22 18:36:33  |
+| eo_rfp_rag                       |                      |                    | amelia@mycompany.com    | 2023-11-22 19:00:33  |
+| databricks-llama-2-70b-chat      | FOUNDATION_MODEL_API | llm/v1/chat        |                         | 2023-11-10 09:53:20  |
+| databricks-mixtral-8x7b-instruct | FOUNDATION_MODEL_API | llm/v1/chat        |                         | 2023-11-10 09:53:20  |
+| databricks-bge-large-en          | FOUNDATION_MODEL_API | llm/v1/embeddings  |                         | 2023-11-10 09:53:20  |
+| databricks-mpt-30b-instruct      | FOUNDATION_MODEL_API | llm/v1/completions |                         | 2023-11-10 09:53:20  |
+| databricks-mpt-7b-instruct       | FOUNDATION_MODEL_API | llm/v1/completions |                         | 2023-11-10 09:53:20  |
+| openai-completions-endpoint      | EXERNAL_MODEL        | llm/v1/completions | k1.denali@mycompany.com | 2024-05-10 19:03:00  |
 ```
 
 ##### Usage
 ```
-list-gateway-routes --help
-
 Options:
-  --columns TEXT          Columns to display. Comma delimited.
-  --output-csv-file TEXT  Output CSV file.
+  --model-type [all|custom|foundation|external]
+                                  Model type: all|custom|foundation|external
+  --openapi BOOLEAN               Write OpenAPI schema for all endpoints to
+                                  file '{output-file-base}_opena[i.json'.
+  --columns TEXT                  Columns to display. Comma delimited.
+  --output-file-base TEXT         File base for JSON and CSV output files. For
+                                  example, 'out' will result in 'out.csv' and
+                                  'out.json.'  [default: out]
+  --use-deployment-client BOOLEAN
+                                  Databricks only. Use
+                                  DatabricksDeploymentClient. Otherwise, make
+                                  direct calls to 'api/2.0/serving-endpoints'.
+  --get-raw BOOLEAN               Preserve raw JSON as received from API call.
+                                  [default: False]
+  --get-details BOOLEAN           Get details of each listed object.
+  --normalize-pandas-df BOOLEAN   Convert JSON list with pd.json_normalize,
+                                  otherwise use pd.DataFrame.
 ```
 
 
-## Enriched Objects
+## Enriched Objects 
+XX TODO REMOVE
 
 ### Run
 
@@ -705,15 +670,6 @@ For example, the response for a run is:
       "_api_link": "https://e2-demo-west.cloud.databricks.com/api/2.0/mlflow/runs/get?run_id=76031d22c5464dd99431e426b939e800"
     },
     }
-  }
-}
-```
-This also allows you to return associated objects such as:
-```
-{
-  "run": {
-  },
-  "experiment": {
   }
 }
 ```

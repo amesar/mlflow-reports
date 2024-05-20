@@ -1,29 +1,24 @@
 # MLflow Reports
 
-## Latest
-
-### Streamlit
-
-* [README_streamlit.md](README_streamlit.md) - new Streamlit scripts
-  * List MLflow objects - registered models, model versions, experiments and runs.
-  * List Databricks endpoints - model serving endpoints, vector search endpoints and indexes.
-
 ## Overview
 
 Tools to display and list details of MLflow objects in JSON, CSV and Markdown format.
 
-Two types of Python scripts:
+Python scripts:
 * [MLflow objects](README_objects.md) - display and list MLflow objects (runs, experiments, models, versions, etc.) in JSON or CSV format.
+* [Databricks objects](README_databricks.md) - display and list Databricks objects (model serving endpoints and vecotr search endpoints and indexes) in JSON or CSV format.
 * [Model reports](README_model_reports.md) - displays an MLflow model and its related objects in Markdown format.
 
-Tools come in two formats:
-* Regular Python scripts (see above links)
-* [Databricks notebooks](databricks_notebooks/README.md)
+Tools come in three formats:
+* Regular Python scripts (see above links).
+* [Databricks notebooks](databricks_notebooks/README.md).
+* [Streamlit apps](README_streamlit.md) - can be run either on your laptop or inside a notebook.
 
 Notes:
-* See lots of [JSON and Markdown samples](samples/databricks/README.md).
+* See lots of [JSON and Markdown samples](samples). [Model versions](samples/databricks/mlflow_objects/model_versions) have the most samples.
 * Databricks Unity Catalog models are also supported.
-* The README documentation lags the actual implementation.
+* The README documentation lags the actual implementation so always consult the source.
+
 
 ## Quick start
 
@@ -115,7 +110,7 @@ and
 
 ```
 list-registered-models \
-  --output-csv-file models.csv \
+  --output-file-base models \
   --columns name,user_id,creation_timestamp
 ```
 
@@ -134,4 +129,4 @@ list-registered-models \
 
 ```
 
-#### Last updated: 2024-01-20
+#### Last updated: 2024-05-20
