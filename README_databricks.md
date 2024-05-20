@@ -95,7 +95,7 @@ List Databricks model serving endpoints.
 ```
 list-model-serving-endpoints \
   --columns name,endpoint_type,task,creator,creation_timestamp \
-  --output-base endpoints
+  --output-file-base endpoints
 ```
 
 ```
