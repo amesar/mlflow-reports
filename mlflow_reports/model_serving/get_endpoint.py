@@ -11,7 +11,7 @@ from . import get_endpoint_client
 from . click_options import opt_endpoint, opt_use_deployment_client, opt_expand_model_version
 
 
-def get(endpoint_name, use_deployment_client=False, get_raw=False, expand_model_version="none"):
+def get(endpoint_name, openapi=False, use_deployment_client=False, get_raw=False, expand_model_version="none"):
     def _adjust_ts(config, key):
         for x in config.get(key, []):
             data_utils.adjust_ts(x, ["creation_timestamp"])
@@ -24,7 +24,8 @@ def get(endpoint_name, use_deployment_client=False, get_raw=False, expand_model_
         _adjust_ts(config, "served_entities")
         if not expand_model_version == "none":
             _enhance_model_version(rsp, expand_model_version)
-        rsp["openapi_schema"] = client.get_endpoint_openapi_schema(endpoint_name)
+        if openapi:
+            rsp["openapi_schema"] = client.get_endpoint_openapi_schema(endpoint_name)
     return rsp
 
 
@@ -48,16 +49,20 @@ def _enhance_model_version(rsp, expand_model_version):
 
 @click.command()
 @opt_endpoint
+@click.option("--openapi",
+    help="Get endpoint OpenAPI schema and append it to the output JSON.",
+    type=bool,
+    default=False)
 @opt_use_deployment_client
 @opt_get_raw
 @opt_output_file
 @opt_silent
 @opt_expand_model_version
-def main(endpoint, use_deployment_client, get_raw, silent, expand_model_version, output_file):
+def main(endpoint, openapi, use_deployment_client, get_raw, silent, expand_model_version, output_file):
     print("Options:")
     for k,v in locals().items():
         print(f"  {k}: {v}")
-    dct = get(endpoint, use_deployment_client, get_raw, expand_model_version)
+    dct = get(endpoint, openapi, use_deployment_client, get_raw, expand_model_version)
     data_utils.dump_object(dct, output_file, silent)
 
 
