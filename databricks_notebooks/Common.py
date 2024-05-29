@@ -1,8 +1,8 @@
 # Databricks notebook source
-# MAGIC %pip install git+https:///github.com/amesar/mlflow-reports/#egg=mlflow-reports
-# MAGIC %pip install mlflow_skinny==2.12.2 # NOTE: doesn't honor >= or default version
-# MAGIC %pip install starlette # for mlflow.deployments
-# MAGIC dbutils.library.restartPython()
+!pip install -U git+https:///github.com/amesar/mlflow-reports/#egg=mlflow-reports
+!pip install -U mlflow_skinny==2.13.0 # NOTE: doesn't honor >= or default version
+!pip install starlette
+dbutils.library.restartPython()
 
 # COMMAND ----------
 

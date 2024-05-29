@@ -1,23 +1,16 @@
 # Databricks notebook source
 # MAGIC %md ## README - mlflow-reports - Databricks notebooks
 # MAGIC
-# MAGIC ##### Overview
-# MAGIC
-# MAGIC Display details and list MLflow and Databricks endpoints:
+# MAGIC Display details and list MLflow and Databricks endpoints
 # MAGIC * MLflow objects: experiments, run, registered models and model versions.
-# MAGIC * Databricks endpoints - model serving and vector search endpoints.
+# MAGIC * Databricks endpoints - model serving, vector search endpoints and others.
 # MAGIC * Feature tables.
-# MAGIC
-# MAGIC ##### Limitations
-# MAGIC
-# MAGIC * Note that the process of generating Spark dataframes from the JSON API responses is fragile since the JSON objects in the lists can be quite polymorphic especially for model serving endpoints of which there are three very different objects: custom, foundational and external.
-# MAGIC * In addition, the returned JSON objects are not fully documented and often substantially change.
 # MAGIC
 # MAGIC ##### Git Repo
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC #####  Last updated: _2024-05-19_
+# MAGIC #####  Last updated: _2024-05-28_
 
 # COMMAND ----------
 
@@ -29,7 +22,7 @@
 # MAGIC
 # MAGIC ##### Notebooks
 # MAGIC * [Streamlit Notebooks README]($streamlit/_README)
-# MAGIC * [Streamlitt_MLflow_Explorer]($streamlit/Streamlit_MLflow_Explorer) - list and search MLflow objects.
+# MAGIC * [Streamlit_MLflow_Explorer]($streamlit/Streamlit_MLflow_Explorer) - list and search MLflow objects.
 # MAGIC   * Registered models, model versions, experiments and runs.
 # MAGIC * [Streamlit_Databricks_Explorer]($streamlit/Streamlit_Databricks_Explorer) - list and search Databricks endpoints.
 # MAGIC   * Model serving endpoints, vector search endpoints and vector search indexes.
@@ -43,6 +36,7 @@
 # MAGIC * [Get_Registered_Model]($objects/Get_Registered_Model) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/registered_models)
 # MAGIC * [Get_Experiment]($objects/Get_Experiment) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/experiments)
 # MAGIC * [Get_Run]($objects/Get_Run) - [samples](https://github.com/amesar/mlflow-reports/tree/master/samples/databricks/mlflow_objects/runs)
+# MAGIC * [Get_Model_Signature]($objects/Get_Model_Signature)
 # MAGIC
 # MAGIC ##### List MLflow objects
 # MAGIC * [List_Registered_Models]($list/List_Registered_Models) - List and query registered models.
@@ -71,23 +65,15 @@
 # MAGIC %md #### Databricks Endpoints
 # MAGIC
 # MAGIC ##### Model Serving endpoints aka MLflow deployment endpoints
-# MAGIC
-# MAGIC Note 'entities' are equivalent to models.
-# MAGIC
-# MAGIC ###### _List_
-# MAGIC * [List_Model_Serving_Endpoints]($model_serving/List_Model_Serving_Endpoints) - List and query endpoints.
-# MAGIC * [List_Model_Serving_Endpoint_Entities]($model_serving/List_Model_Serving_Endpoint_Entities) - List and query endpoint entities.
-# MAGIC * [List_Model_Serving_Endpoint_Entities_By_Type]($model_serving/List_Model_Serving_Endpoint_Entities_By_Type) - List and query all endpoint entities broken down by entity type (custom, foundation, external, etc.).
-# MAGIC
-# MAGIC ###### _Get_
-# MAGIC * [Get_Model_Serving_Endpoint]($model_serving/Get_Model_Serving_Endpoint) 
-# MAGIC * [Get_Model_Serving_Endpoint_OpenAPI_Schema]($model_serving/Get_Model_Serving_Endpoint_OpenAPI_Schema)
-# MAGIC * [Get_Model_Serving_Endpoint_Signature]($model_serving/Get_Model_Serving_Endpoint_Signature) - Get the model signature of an endpoint entity (custom model only).
+# MAGIC * [List_Model_Serving_Endpoints]($endpoints/List_Model_Serving_Endpoints) - List and query endpoints.
+# MAGIC * [List_Entities_By_Type]($endpoints/List_Entities_By_Type) - List and query all endpoint models/entities broken down by entity type (custom, foundation, etc.).
+# MAGIC * [Get_Model_Serving_Endpoint]($endpoints/Get_Model_Serving_Endpoint) 
+# MAGIC * [Get_Model_Serving_Endpoint_Signature]($endpoints/Get_Model_Serving_Endpoint_Signature) - Get the model signature of an endpoint entity (custom model only).
 # MAGIC
 # MAGIC ##### Vector Search endpoints
-# MAGIC * [List_Vector_Search_Endpoints]($vector_search/List_Vector_Search_Endpoints) - List and query endpoints.
-# MAGIC * [List_Vector_Search_Indexes]($vector_search/List_Vector_Search_Indexes) - List and query all indexes.
-# MAGIC * [Get_Vector_Search_Endpoint]($vector_search/Get_Vector_Search_Endpoint) - Get Vector Search endpoint details including its indexes.
+# MAGIC * [List_Vector_Search_Endpoints]($endpoints/List_Vector_Search_Endpoints) - List and query endpoints.
+# MAGIC * [List_Vector_Search_Indexes]($endpoints/List_Vector_Search_Indexes) - List and query all indexes.
+# MAGIC * [Get_Vector_Search_Endpoint]($endpoints/Get_Vector_Search_Endpoint) - Get Vector Search endpoint details including its indexes.
 
 # COMMAND ----------
 
@@ -111,7 +97,7 @@
 # MAGIC * [Get_Table_Lineage]($unity_catalog/Get_Table_Lineage) - get table lineage
 # MAGIC
 # MAGIC ##### Common helper utilities
-# MAGIC * [Common]($Common) and [_Common]($_Common)
+# MAGIC * [Common]($Common) - [_Common]($_Common)
 # MAGIC
 
 # COMMAND ----------
