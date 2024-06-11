@@ -10,22 +10,7 @@
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC #####  Last updated: _2024-05-28_
-
-# COMMAND ----------
-
-# MAGIC %md #### Streamlit MLflow and Databricks API Explorers
-# MAGIC
-# MAGIC ##### Overview
-# MAGIC * Browse MLflow objects and Databricks endpoints as a single pane.
-# MAGIC * For listing objects, ability to see both a table view and raw API JSON response.
-# MAGIC
-# MAGIC ##### Notebooks
-# MAGIC * [Streamlit Notebooks README]($streamlit/_README)
-# MAGIC * [Streamlit_MLflow_Explorer]($streamlit/Streamlit_MLflow_Explorer) - list and search MLflow objects.
-# MAGIC   * Registered models, model versions, experiments and runs.
-# MAGIC * [Streamlit_Databricks_Explorer]($streamlit/Streamlit_Databricks_Explorer) - list and search Databricks endpoints.
-# MAGIC   * Model serving endpoints, vector search endpoints and vector search indexes.
+# MAGIC #####  Last updated: _2024-06-11_
 
 # COMMAND ----------
 
@@ -50,9 +35,12 @@
 # MAGIC * [Model_Version_Queries]($sql_analytics/Model_Version_Queries)
 # MAGIC * [Create_MLflow_Database]($sql_analytics/Create_MLflow_Database) - Create the `models` and `versions` tables.
 # MAGIC
+# MAGIC ##### Tools
+# MAGIC * [Count_Registered_Models]($tools/Count_Registered_Models)
+# MAGIC
 # MAGIC ##### MLflow MLmodel
 # MAGIC * [Download_MLmodel]($objects/Download_MLmodel) - Download and display a model version's MLmodel artifact.
-# MAGIC * [Download_MLmodels]($objects/Download_MLmodels) - Download a list of MLmodel-s.
+# MAGIC * [Download_MLmodels]($objects/Download_MLmodels) - Download a list of MLmodel files.
 # MAGIC
 # MAGIC ##### Markdown Model report
 # MAGIC * [Detailed_Model_Report]($reports/Detailed_Model_Report) - full report for an MLflow model and its related objects
@@ -87,6 +75,22 @@
 # MAGIC   * [Get_Feature_Tables]($feature_store/Get_Feature_Tables) - Get JSON API response for feature tables.
 # MAGIC * [Get_Feature_Table]($feature_store/Get_Feature_Table) - Get feature table details.
 # MAGIC
+
+# COMMAND ----------
+
+# MAGIC %md #### Streamlit MLflow and Databricks API Explorers
+# MAGIC
+# MAGIC ##### Overview
+# MAGIC * Experimental.
+# MAGIC * Browse MLflow objects and Databricks endpoints as a single pane.
+# MAGIC * For listing objects, ability to see both a table view and raw API JSON response.
+# MAGIC
+# MAGIC ##### Notebooks
+# MAGIC * [Streamlit Notebooks README]($streamlit/_README)
+# MAGIC * [Streamlit_MLflow_Explorer]($streamlit/Streamlit_MLflow_Explorer) - list and search MLflow objects.
+# MAGIC   * Registered models, model versions, experiments and runs.
+# MAGIC * [Streamlit_Databricks_Explorer]($streamlit/Streamlit_Databricks_Explorer) - list and search Databricks endpoints.
+# MAGIC   * Model serving endpoints, vector search endpoints and vector search indexes.
 
 # COMMAND ----------
 
