@@ -7,7 +7,8 @@
 # MAGIC
 # MAGIC * `1. Unity Catalog` - Use Unity Catalog or Workspace model registry.
 # MAGIC * `2. Filter` - `filter_string` argument for for search_registered_models().
-# MAGIC * `3. Max results` argument for for search_registered_models().
+# MAGIC * `3. Max results` - `max_results` argument for for search_registered_models().
+# MAGIC * `4. Verbose`
 # MAGIC
 # MAGIC ##### Documentation
 # MAGIC
@@ -27,10 +28,14 @@ dbutils.widgets.text("3. Max results", "")
 max_results = dbutils.widgets.get("3. Max results")
 max_results = int(max_results) if max_results else None
 
+dbutils.widgets.dropdown("4. Verbose", "no", ["yes","no"])
+verbose = dbutils.widgets.get("4. Verbose") == "yes"
+
 print("unity_catalog:", unity_catalog)
 print("registry_uri:", registry_uri)
 print("filter:", filter)
 print("max_results:", max_results)
+print("verbose:", verbose)
 
 # COMMAND ----------
 
@@ -41,7 +46,7 @@ client._registry_uri
 
 # COMMAND ----------
 
-def count_registered_models(filter, max_results=None):
+def count_registered_models(filter, max_results=None, verbose=False):
     count = 0
     num_iterations = 0
     kwargs = {}
@@ -52,9 +57,10 @@ def count_registered_models(filter, max_results=None):
         if not models.token:
             break
         kwargs = {"page_token": models.token}
-    #print("num_iterations:", num_iterations)
+    if verbose:
+        print("num_iterations:", num_iterations)
     return count
 
 # COMMAND ----------
 
-count_registered_models(filter, max_results)
+count_registered_models(filter, max_results, verbose)
