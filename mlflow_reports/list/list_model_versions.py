@@ -30,6 +30,7 @@ def show(filter,
     )
     ts_columns = [ "creation_timestamp", "last_updated_timestamp" ]
     io_utils.write_csv_and_json_files(output_file_base, versions, columns, ts_columns)
+    print(f"Found {len(versions)} model versions")
 
 
 @click.command()
