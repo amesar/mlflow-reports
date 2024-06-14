@@ -24,7 +24,7 @@ def show(filter,
     ):
     if isinstance(columns, str):
         columns = columns.split(",")
-    models = search_registered_models.search(filter, get_tags_and_aliases, unity_catalog)
+    models = search_registered_models.search(filter, prefix, get_tags_and_aliases, unity_catalog)
     print(f"Found {len(models)} registered models")
 
     ts_columns = [ "creation_timestamp", "last_updated_timestamp" ]

@@ -8,6 +8,7 @@ from mlflow_reports.common.click_options import opt_output_file_base
 from . import search_model_versions
 from . click_options import (
     opt_filter,
+    opt_prefix,
     opt_get_tags_and_aliases,
     opt_get_model_details,
     opt_unity_catalog,
@@ -16,6 +17,7 @@ from . click_options import (
 
 
 def show(filter,
+        prefix,
         get_tags_and_aliases,
         get_model_details,
         unity_catalog,
@@ -24,6 +26,7 @@ def show(filter,
     ):
     versions = search_model_versions.search(
         filter = filter,
+        prefix = prefix,
         get_tags_and_aliases = get_tags_and_aliases,
         get_model_details = get_model_details,
         unity_catalog = unity_catalog
@@ -35,6 +38,7 @@ def show(filter,
 
 @click.command()
 @opt_filter
+@opt_prefix
 @opt_get_tags_and_aliases
 @opt_get_model_details
 @opt_unity_catalog
@@ -43,6 +47,7 @@ def show(filter,
 
 def main(
         filter,
+        prefix,
         get_tags_and_aliases,
         get_model_details,
         unity_catalog,

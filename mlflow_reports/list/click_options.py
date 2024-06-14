@@ -26,7 +26,7 @@ def opt_output_csv_file(function):
 
 def opt_prefix(function):
     function = click.option("--prefix",
-        help="Model prefix to show.",
+        help="Show registered model that start with this prefix. Used for Unity Catalog models since the 'filter' argument is not suppoted for search_registered_models().",
         type=str,
         required=False
     )(function)

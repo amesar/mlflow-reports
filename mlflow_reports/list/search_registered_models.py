@@ -11,14 +11,14 @@ from mlflow_reports.common.pandas_utils import move_column
 from . import list_utils
 
 
-def search(filter=None, get_tags_and_aliases=False, unity_catalog=False):
+def search(filter=None, prefix=None, get_tags_and_aliases=False, unity_catalog=False):
     """
     :return: Returns registered models as list of Dicts.
     """
     models = mlflow_utils.search_registered_models(filter, get_tags_and_aliases, unity_catalog)
     print(f"Found {len(models)} registered models")
-    models = sorted(models, key=lambda x: x["name"])
-    return models
+    models = list_utils.filter_registered_models_by_prefix(models, prefix)
+    return sorted(models, key=lambda m: m["name"])
 
 
 def as_pandas_df(models, prefix=None, tags_and_aliases_as_string=False):

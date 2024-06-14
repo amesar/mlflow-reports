@@ -14,12 +14,13 @@ from . import list_utils
 
 def search(
         filter = None,
+        prefix = None,
         get_tags_and_aliases = False,
         get_model_details = False,
         unity_catalog = False
     ):
     if mlflow_utils.is_calling_databricks():
-        versions = _list_model_versions_databricks(filter, get_tags_and_aliases, get_model_details, unity_catalog)
+        versions = _list_model_versions_databricks(filter, prefix, get_tags_and_aliases, get_model_details, unity_catalog)
     else:
         versions = _list_model_versions(filter, get_tags_and_aliases, get_model_details, unity_catalog)
     return versions
@@ -38,7 +39,7 @@ def as_pandas_df(versions, max_description=None):
     return df
 
 
-def _list_model_versions_databricks(filter, get_tags_and_aliases, get_model_details, unity_catalog):
+def _list_model_versions_databricks(filter, prefix, get_tags_and_aliases, get_model_details, unity_catalog):
     """
     Databricks search_model_version differs from OSS one in that it requires a filter.
     So to fetch all versions of all models, we have to loop over all models first.
@@ -54,6 +55,7 @@ def _list_model_versions_databricks(filter, get_tags_and_aliases, get_model_deta
         return _list_model_versions(filter, get_tags_and_aliases, get_model_details, unity_catalog)
 
     models = mlflow_utils.search_registered_models(unity_catalog=unity_catalog)
+    models = list_utils.filter_registered_models_by_prefix(models, prefix)
     num_models = len(models)
     print(f"Found {num_models} models")
 

@@ -51,3 +51,11 @@ def kv_list_to_dict(model_or_version, key, func, tags_and_aliases_as_string):
         if tags_and_aliases_as_string:
             dct = dump_utils.dict_to_json(dct)
         model_or_version[key] = dct
+
+
+def filter_registered_models_by_prefix(models, prefix):
+    """
+    Since Databricks Unity Catalog search_registered_models() doesn't support filters
+    we use this simple mechanism to return models starting with 'prefix'.
+    """
+    return [ m for m in models if m["name"].startswith(prefix)] if prefix else models 
