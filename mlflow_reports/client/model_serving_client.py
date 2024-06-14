@@ -44,3 +44,6 @@ class ModelServingClient:
                 return state
             time.sleep(sleep_time)
         return {}
+
+    def __repr__():
+        return dbx_20_client
