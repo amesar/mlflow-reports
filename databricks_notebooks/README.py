@@ -10,7 +10,7 @@
 # MAGIC * https://github.com/amesar/mlflow-reports
 # MAGIC * https://github.com/amesar/mlflow-reports/tree/master/databricks_notebooks
 # MAGIC
-# MAGIC #####  Last updated: _2024-06-11_
+# MAGIC #####  Last updated: _2024-06-14_
 
 # COMMAND ----------
 
@@ -82,7 +82,7 @@
 # MAGIC
 # MAGIC ##### Overview
 # MAGIC * Experimental.
-# MAGIC * Browse MLflow objects and Databricks endpoints as a single pane.
+# MAGIC * Browse MLflow objects and Databricks endpoints in a single pane.
 # MAGIC * For listing objects, ability to see both a table view and raw API JSON response.
 # MAGIC
 # MAGIC ##### Notebooks

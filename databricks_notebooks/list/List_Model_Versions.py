@@ -9,15 +9,20 @@
 # MAGIC * `2. Filter` - `filter_string` argument for for [MlflowClient.search_model_versions](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_model_versions). 
 # MAGIC   * Non-UC example: `name like '%klearn%'`.
 # MAGIC   * UC: only accepts this filter syntax: `name='andre_catalog.ml_models2.sklearn_wine_best'`.
-# MAGIC * `3. Get MLflow model details` - Get MLflow model flavor and size in bytes by reading the run's [MLmodel](https://mlflow.org/docs/latest/models.html?highlight=mlmodel#mlflow-models) file and model artifact(s).
-# MAGIC * `4. Get tags and aliases`. Since search_registered_models (for both WS and UC models) does not return tags and aliases (bug), call get_model_version (which does correctly return them) for each returned version.
+# MAGIC * `3. Prefix` - UC only. Filter registered models that start with this prefix. Used for Unity Catalog models since the `filter` argument is not supported for UC `search_registered_models()`.
+# MAGIC * `4. Get MLflow model details` - Get MLflow model flavor and size in bytes by reading the run's [MLmodel](https://mlflow.org/docs/latest/models.html?highlight=mlmodel#mlflow-models) file and model artifact(s).
+# MAGIC * `5. Get tags and aliases`. Since search_registered_models (for both WS and UC models) does not return tags and aliases (bug), call get_model_version (which does correctly return them) for each returned version.
 # MAGIC   * Slows retrieval substantially.
 # MAGIC   * https://databricks.atlassian.net/browse/ES-834105
 # MAGIC     * UC-ML MLflow search_registered_models and search_model_versions do not return tags and aliases
 # MAGIC   * https://github.com/mlflow/mlflow/issues/9783
 # MAGIC     * MlflowClient.search_model_versions does not return aliases
 # MAGIC
-# MAGIC #### Sample Performance Benchmarks
+# MAGIC
+
+# COMMAND ----------
+
+# MAGIC %md #### Sample UC Performance Benchmarks
 # MAGIC
 # MAGIC ##### Notes
 # MAGIC * Date: 2023-11-29
@@ -55,20 +60,28 @@
 
 # COMMAND ----------
 
+dbutils.widgets.removeAll()
+
+# COMMAND ----------
+
 dbutils.widgets.dropdown("1. Unity Catalog", "yes", ["yes", "no"])
-dbutils.widgets.text("2. Filter", "")
-dbutils.widgets.dropdown("3. Get MLflow model details", "no", ["yes", "no"])
-dbutils.widgets.dropdown("4. Get tags and aliases", "no", ["yes", "no"])
+dbutils.widgets.text("2. Filter (non-UC)", "")
+dbutils.widgets.text("3. Prefix (UC)", "")
+dbutils.widgets.dropdown("4. Get MLflow model details", "no", ["yes", "no"])
+dbutils.widgets.dropdown("5. Get tags and aliases", "no", ["yes", "no"])
 
 unity_catalog = dbutils.widgets.get("1. Unity Catalog") == "yes"
-filter = dbutils.widgets.get("2. Filter")
-get_model_details = dbutils.widgets.get("3. Get MLflow model details") == "yes"
-get_tags_and_aliases = dbutils.widgets.get("4. Get tags and aliases") == "yes"
+filter = dbutils.widgets.get("2. Filter (non-UC)")
+prefix = dbutils.widgets.get("3. Prefix (UC)")
+get_model_details = dbutils.widgets.get("4. Get MLflow model details") == "yes"
+get_tags_and_aliases = dbutils.widgets.get("5. Get tags and aliases") == "yes"
 
 filter = filter or None
+prefix = prefix or None
 
 print("unity_catalog:", unity_catalog)
 print("filter:", filter)
+print("prefix:", prefix)
 print("get_model_details:", get_model_details)
 print("get_tags_and_aliases:", get_tags_and_aliases)
 
@@ -82,6 +95,7 @@ from mlflow_reports.list import search_model_versions
 
 versions = search_model_versions.search(
     filter = filter, 
+    prefix = prefix,
     get_tags_and_aliases = get_tags_and_aliases,
     get_model_details = get_model_details,
     unity_catalog = unity_catalog
@@ -111,7 +125,10 @@ df.createOrReplaceTempView("versions")
 
 # COMMAND ----------
 
-# MAGIC %sql select user_id, count(*) as num_versions from versions group by user_id order by num_versions desc
+# MAGIC %sql 
+# MAGIC select user_id, count(*) as num_versions 
+# MAGIC from versions group by user_id 
+# MAGIC order by num_versions desc
 
 # COMMAND ----------
 
@@ -119,7 +136,10 @@ df.createOrReplaceTempView("versions")
 
 # COMMAND ----------
 
-# MAGIC %sql select name, count(*) as num_versions from versions group by name order by num_versions desc
+# MAGIC %sql 
+# MAGIC select name, count(*) as num_versions 
+# MAGIC from versions group by name 
+# MAGIC order by num_versions desc
 
 # COMMAND ----------
 
@@ -152,5 +172,6 @@ df.createOrReplaceTempView("versions")
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC select name, version, user_id, creation_timestamp from versions where name like '%llama%' 
+# MAGIC select name, version, user_id, creation_timestamp 
+# MAGIC from versions where name like '%llama%' 
 # MAGIC order by creation_timestamp desc

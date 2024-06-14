@@ -2,20 +2,27 @@
 # MAGIC %md ## List Registered Models
 # MAGIC
 # MAGIC ##### Overview
-# MAGIC * List registered models for either the  Unity Catalog (UC) Model Registry or Workspace (WS) Model Registry.
+# MAGIC * List registered models for either the Unity Catalog (UC) Model Registry or Workspace (WS) Model Registry.
 # MAGIC
 # MAGIC ##### Widgets
 # MAGIC * `1. Unity Catalog` - Use Unity Catalog.
 # MAGIC * `2. Filter` - `filter_string` argument for for [MlflowClient.search_registered_models](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.search_registered_models). 
 # MAGIC   * Non-UC example: `name like 'Sklearn%'`
 # MAGIC   * UC: Does not accept filter so this field is ignored by the MLflow API.
-# MAGIC * `3. Get tags and aliases (UC)`. Since UC search_registered_models does not return tags and aliases (bug), we call [MlflowClient.get_registered_model](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.get_registered_model) (which does correctly return them) for each returned model.
+# MAGIC * `3. Prefix` - UC only. Filter registered models that start with this prefix. Used for Unity Catalog models since the `filter` argument is not supported for UC `search_registered_models()`.
+# MAGIC * `4. Get tags and aliases (UC)`. Since UC search_registered_models does not return tags and aliases (bug), we call [MlflowClient.get_registered_model](https://mlflow.org/docs/latest/python_api/mlflow.client.html#mlflow.client.MlflowClient.get_registered_model) (which does correctly return them) for each returned model.
 # MAGIC   * Non-UC search_registered_models does return tags.
 # MAGIC   * Slows retrieval substantially.
 # MAGIC   * https://databricks.atlassian.net/browse/ES-834105
 # MAGIC     * UC-ML MLflow search_registered_models and search_model_versions do not return tags and aliases
+# MAGIC * `5. Save as JSON file`
 # MAGIC
-# MAGIC ##### UC Performance Benchmarks
+# MAGIC
+# MAGIC
+
+# COMMAND ----------
+
+# MAGIC %md #### Sample UC Performance Benchmarks
 # MAGIC
 # MAGIC Notes:
 # MAGIC * Date: 2023-11-29
@@ -31,7 +38,6 @@
 # MAGIC |-----|-------|---|
 # MAGIC | No | 4  | 4 seconds |
 # MAGIC | Yes | 96 | 1.60 minutes |
-# MAGIC
 
 # COMMAND ----------
 
@@ -45,22 +51,26 @@
 
 dbutils.widgets.dropdown("1. Unity Catalog", "yes", ["yes", "no"])
 dbutils.widgets.text("2. Filter", "")
-dbutils.widgets.dropdown("3. Get tags and aliases (UC)", "no", ["yes", "no"])
-dbutils.widgets.text("4. Save as JSON file","")
+dbutils.widgets.text("3. Prefix", "")
+dbutils.widgets.dropdown("4. Get tags and aliases (UC)", "no", ["yes", "no"])
+dbutils.widgets.text("5. Save as JSON file","")
 
 unity_catalog = dbutils.widgets.get("1. Unity Catalog") == "yes"
 filter = dbutils.widgets.get("2. Filter")
-get_tags_and_aliases = dbutils.widgets.get("3. Get tags and aliases (UC)") == "yes"
-json_file = dbutils.widgets.get("4. Save as JSON file")
+prefix = dbutils.widgets.get("3. Prefix")
+get_tags_and_aliases = dbutils.widgets.get("4. Get tags and aliases (UC)") == "yes"
+json_file = dbutils.widgets.get("5. Save as JSON file")
 
 filter = filter or None
+prefix = prefix or None
 
 print("unity_catalog:", unity_catalog)
 print("filter:", filter)
+print("prefix:", prefix)
 print("get_tags_and_aliases:", get_tags_and_aliases)
 print("json_file:", json_file)
 if unity_catalog and filter:
-    print("WARNING: Filter is not supported by Unity Catalog search_registered_models()")
+    print("WARNING: Filter is ignored by Unity Catalog search_registered_models()")
 
 # COMMAND ----------
 
@@ -70,7 +80,7 @@ if unity_catalog and filter:
 
 from mlflow_reports.list import search_registered_models
 
-models = search_registered_models.search(filter, get_tags_and_aliases, unity_catalog)
+models = search_registered_models.search(filter, prefix, get_tags_and_aliases, unity_catalog)
 len(models)
 
 # COMMAND ----------
