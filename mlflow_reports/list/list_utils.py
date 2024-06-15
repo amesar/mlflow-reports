@@ -58,4 +58,7 @@ def filter_registered_models_by_prefix(models, prefix):
     Since Databricks Unity Catalog search_registered_models() doesn't support filters
     we use this simple mechanism to return models starting with 'prefix'.
     """
-    return [ m for m in models if m["name"].startswith(prefix)] if prefix else models 
+    if prefix:
+        models = [ m for m in models if m["name"].startswith(prefix)] 
+        print(f"Found {len(models)} registered models for prefix '{prefix}'")
+    return models
