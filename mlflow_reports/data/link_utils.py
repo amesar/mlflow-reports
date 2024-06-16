@@ -47,7 +47,7 @@ def _mk_uc_links(dct, model_name, version=None):
 
     _model_name = quote(model_name)
     if is_unity_catalog_model(model_name):
-        # TODO: need to add "?o={workspace_id}"
+        _model_name = _model_name.replace(".","/")
         ui_link = f"{_get_host_name()}/explore/data/models/{_model_name}"
         uc_component = "unity-catalog/"
         vresource = "version"
