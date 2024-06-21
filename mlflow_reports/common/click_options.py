@@ -110,7 +110,7 @@ def opt_artifact_max_level(function):
     function = click.option("--artifact-max-level",
         help="Number of artifact levels to recurse for run artifacts.",
         type=int,
-        default=-1,
+        default=1,
         show_default=True
     )(function)
     return function

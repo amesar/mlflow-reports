@@ -54,3 +54,17 @@ def get_run_model_download_uri(version):
     Return the download URI of the MLflow model in the run
     """
     return version["source"]
+
+
+def get_latest_model_version(model_name):
+    """
+    Return the latest model version of a registered model.
+    """
+    mlflow_client = get_mlflow_client(model_name)
+    filter = f"name='{model_name}'"
+    versions = mlflow_client.search_model_versions(filter)
+    latest_vr = None
+    for vr in versions:
+        if not latest_vr or vr["version"] > latest_vr["version"]:
+            latest_vr = vr
+    return latest_vr
