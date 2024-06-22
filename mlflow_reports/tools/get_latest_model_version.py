@@ -23,9 +23,9 @@ def get(model_name, get_expanded, get_raw):
 
 @click.command()
 @opt_registered_model
-@opt_output_file
 @opt_get_expanded
 @opt_get_raw
+@opt_output_file
 def main(registered_model, get_expanded, get_raw, output_file):
     """
     Get the latest model version of a registered model.

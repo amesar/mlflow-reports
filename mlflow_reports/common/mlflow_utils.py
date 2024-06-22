@@ -199,3 +199,13 @@ def is_calling_databricks():
             _is_calling_into_databricks =  e.http_status_code == 400
             print(f"Calling Databricks MLflow: {_is_calling_into_databricks}")
     return _is_calling_into_databricks
+
+
+def get_latest_run(experiment_id_or_name):
+    """
+    Return the latest run (by 'start_time') of an experiment..
+    """
+    exp = get_experiment(experiment_id_or_name)
+    runs = mlflow_client.search_runs(exp["experiment_id"], order_by=["start_time desc"])
+    print(f"Found {len(runs)} runs for experiment '{experiment_id_or_name}'")
+    return runs[0] if runs else None
