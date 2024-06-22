@@ -61,10 +61,9 @@ def get_latest_model_version(model_name):
     Return the latest model version of a registered model.
     """
     mlflow_client = get_mlflow_client(model_name)
-    filter = f"name='{model_name}'"
-    versions = mlflow_client.search_model_versions(filter)
-    latest_vr = None
-    for vr in versions:
-        if not latest_vr or vr["version"] > latest_vr["version"]:
-            latest_vr = vr
-    return latest_vr
+    versions = mlflow_client.search_model_versions(
+        filter = f"name='{model_name}'",
+        order_by=["version_number desc"]
+    )
+    print(f"Found {len(versions)} versions for model '{model_name}'")
+    return versions[0] if len(versions) else None
