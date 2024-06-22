@@ -23,8 +23,8 @@ class MlflowClient:
     def get_registered_model(self, model_name: str) -> Dict:
         return self.client.get("registered-models/get", {"name": model_name} )
 
-    def search_registered_models(self, filter: Optional[str]=None) -> List:
-        return list(SearchRegisteredModelsIterator(self.client, filter=filter))
+    def search_registered_models(self, filter: Optional[str]=None, order_by: Optional[str]=None) -> List:
+        return list(SearchRegisteredModelsIterator(self.client, filter=filter, order_by=order_by))
 
 
     # Model versions
@@ -32,8 +32,8 @@ class MlflowClient:
     def get_model_version(self, model_name: str, version: str) -> Dict:
         return self.client.get("model-versions/get", {"name": model_name, "version": version} )
 
-    def search_model_versions(self, filter: Optional[str]=None) -> List:
-        return list(SearchModelVersionsIterator(self.client, filter=filter))
+    def search_model_versions(self, filter: Optional[str]=None, order_by: Optional[str]=None) -> List:
+        return list(SearchModelVersionsIterator(self.client, filter=filter, order_by=order_by))
 
     def get_model_version_download_uri(self, model_name: str, version: str) -> Dict:
         return self.client.get("model-versions/get-download-uri", {"name": model_name, "version": version} )
@@ -53,8 +53,8 @@ class MlflowClient:
     def get_experiment_by_name(self, experiment_name: str) -> Dict:
         return self.client.get("experiments/get-by-name", {"experiment_name": experiment_name })
 
-    def search_experiments(self, filter: Optional[str]=None, view_type: Optional[str]=None, max_results: Optional[str]=None) -> List:
-        return list(SearchExperimentsIterator(self.client, filter=filter, view_type=view_type, max_results=max_results))
+    def search_experiments(self, filter: Optional[str]=None, view_type: Optional[str]=None, max_results: Optional[str]=None, order_by: Optional[str]=None) -> List:
+        return list(SearchExperimentsIterator(self.client, filter=filter, view_type=view_type, max_results=max_results, order_by=order_by))
 
 
     # Runs
@@ -62,8 +62,8 @@ class MlflowClient:
     def get_run(self, run_id: str) -> Dict:
         return self.client.get("runs/get", {"run_id": run_id })
 
-    def search_runs(self, experiment_ids: List[str]) -> List:
-        return list(SearchRunsIterator(self.client, experiment_ids))
+    def search_runs(self, experiment_ids: List[str], order_by: Optional[str]=None) -> List:
+        return list(SearchRunsIterator(self.client, experiment_ids, order_by=order_by))
 
     def list_artifacts(self, run_id: str, path: Optional[str]=None) -> List:
         return self.client.get("artifacts/list", {"run_id": run_id, "path": path })
