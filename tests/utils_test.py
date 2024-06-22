@@ -58,6 +58,7 @@ def create_run(exp=None):
             f.file.close()
             mlflow.log_artifact(f.name, "")
         mlflow.sklearn.log_model(sklearn_model, model_artifact_path)
+    run = mlflow_client.get_run(run.info.run_id)
     return run, exp
 
 
@@ -108,11 +109,11 @@ def compare_dirs(d1, d2):
 
 
 def assert_enriched_tags(dct, do_assert):
-    keys = [ k for k in dct.keys() if k.startswith("_") ]
+    enriched_keys = [ k for k in dct.keys() if k.startswith("_") ]
     if do_assert:
-        assert len(keys) > 0
+        assert len(enriched_keys) > 0
     else:
-        assert len(keys) == 0
+        assert len(enriched_keys) == 0
 
 
 def dump_tags(tags, msg=""):

@@ -20,7 +20,6 @@ from . iterators_test_utils import (
     mk_test_object_name_default,
     TEST_OBJECT_PREFIX
 )
-##from . utils_test import create_model_version
 from . utils_test import create_run
 
 mlflow_client = mlflow.MlflowClient()

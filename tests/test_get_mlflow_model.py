@@ -1,5 +1,3 @@
-from mlflow.exceptions import MlflowException
-
 from mlflow_reports.data import get_mlflow_model
 from . utils_test import (
     create_model_version,
@@ -58,33 +56,24 @@ def _do_test_with_runs(run1, model_uri):
     assert exp["name"] == info["_experiment_name"]
 
 
-# ==== Test failed URIs
+# ==== Test bad URIs
 
 def test_fail_bad_uri(): 
-    try:
-        get_mlflow_model.get("foo")
-        assert False
-    except MlflowException:
-        pass
+    _assert_bad_uri("foo")
 
 def test_fail_non_existent_runs_uri(): 
-    model_uri = "runs:/foo/bar"
-    try:
-        get_mlflow_model.get(model_uri)
-        assert False
-    except MlflowException:  # RestException
-        pass
+    _assert_bad_uri("runs:/foo/bar")
 
 def test_fail_non_existent_models_uri(): 
-    model_uri = "models:/model/1"
-    try:
-        get_mlflow_model.get(model_uri)
-        assert False
-    except MlflowException:  # RestException
-        pass
+    _assert_bad_uri("models:/model/1")
 
 
 # ==== Helpers
+
+def _assert_bad_uri(model_uri):
+    dct = get_mlflow_model.get(model_uri)
+    dct = dct["mlflow_model"]
+    assert "error" in dct
 
 def _assert_model(mm, run):
     assert mm.get("artifact_path") == model_artifact_path
