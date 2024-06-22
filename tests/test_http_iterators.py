@@ -9,18 +9,21 @@ from mlflow_reports.client.http_client import mlflow_client as http_client
 from mlflow_reports.common.http_iterators import (
     SearchExperimentsIterator,
     SearchRegisteredModelsIterator,
+    SearchModelVersionsIterator,
     SearchRunsIterator
 )
 from . iterators_test_utils import (
-    list_experiments, 
-    create_experiment, 
-    delete_experiments, 
+    list_experiments,
+    create_experiment,
+    delete_experiments,
     delete_models,
-    mk_test_object_name_default, 
+    mk_test_object_name_default,
     TEST_OBJECT_PREFIX
 )
+##from . utils_test import create_model_version
+from . utils_test import create_run
 
-mlflow_client = mlflow.MlflowClient() 
+mlflow_client = mlflow.MlflowClient()
 
 
 # ==== Test SearchExperimentsIterator
@@ -29,7 +32,7 @@ _default_num_runs = 5
 
 def _create_experiment(num_runs=_default_num_runs):
     experiment = create_experiment(mlflow_client)
-    for _ in range(0, num_runs):
+    for _ in range(num_runs):
         with mlflow.start_run():
             mlflow.log_metric("m1", 0.1)
     return experiment
@@ -38,7 +41,7 @@ def _create_experiments(num_experiments, num_runs=_default_num_runs):
     delete_experiments(mlflow_client)
     experiments = list_experiments(mlflow_client)
     assert len(experiments) == 0
-    return [ _create_experiment(num_runs).experiment_id for _ in range(0,num_experiments) ]
+    return [ _create_experiment(num_runs).experiment_id for _ in range(num_experiments) ]
 
 def _run_test_search_experiments(num_experiments, max_results):
     _create_experiments(num_experiments)
@@ -69,7 +72,7 @@ def test_search_experiments_max_results_custom():
 
 # == search_experiments view_type tests
 #
-# Since experiments are tombstoned and not physically, 
+# Since experiments are tombstoned and not physically,
 # we have to write some non-obvious logic to account for deleted experiments.
 #
 
@@ -139,7 +142,7 @@ def _create_models(num_models):
     delete_models(mlflow_client)
     models = mlflow_client.search_registered_models()
     assert len(models) == 0
-    for _ in range(0, num_models):
+    for _ in range( num_models):
         model_name = mk_test_object_name_default()
         mlflow_client.create_registered_model(model_name)
 
@@ -197,7 +200,87 @@ def test_search_models_max_results_non_default():
     models2 = SearchRegisteredModelsIterator(http_client, max_results)
     assert len(list(models2)) == num_models
 
-# ==== Test SearchModelVersionsIterator - TODO
+
+# ==== Test SearchModelVersionsIterator
+
+# order_by - Error message:
+#   mlflow.exceptions.RestException: INVALID_PARAMETER_VALUE:
+#   Invalid attribute key 'foo' specified
+#   Valid keys are '{'version_number', 'creation_timestamp', 'last_updated_timestamp', 'name'}'
+
+
+def _create_model_version(model_name):
+    run, _ = create_run()
+    source = f"runs:/{run.info.run_id}/model"
+    return mlflow_client.create_model_version(model_name, source, run.info.run_id)
+
+def _create_versions(num_models, num_versions):
+    delete_models(mlflow_client)
+    models = mlflow_client.search_registered_models()
+    assert len(models) == 0
+    model_names = [ mk_test_object_name_default() for _ in range(num_models) ]
+    for model_name in model_names:
+        mlflow_client.create_registered_model(model_name)
+        for _ in range(num_versions):
+            _create_model_version(model_name)
+    return model_names
+
+
+def test_search_versions_basic():
+    model_names = _create_versions(2, 2)
+    versions = list(SearchModelVersionsIterator(http_client))
+    assert len(model_names) == 2
+    assert len(versions) == 2 * 2
+
+
+def test_search_versions_filter_by_name():
+    model_names = _create_versions(2, 2)
+    filter = f"name='{model_names[0]}'"
+    versions = list(SearchModelVersionsIterator(http_client, filter=filter))
+    assert len(versions) == 2
+
+# NOTE: No error if you specifiy an unsupported column
+def test_search_versions_filter_by_run_id():
+    _create_versions(2, 2)
+    versions = list(SearchModelVersionsIterator(http_client))
+    vr = versions[0]
+    run_id = vr["run_id"]
+    filter = f"run_id='{run_id}'"
+    versions = list(SearchModelVersionsIterator(http_client, filter=filter))
+    assert len(versions) == 1
+
+
+def test_search_versions_order_by_version():
+    model_names = _create_versions(2, 2)
+    filter = f"name='{model_names[0]}'"
+    order_by = ["version_number"]
+    versions = list(SearchModelVersionsIterator(http_client, filter=filter, order_by=order_by))
+    assert len(versions) == 2
+    assert versions[0]["version"] == "1"
+
+def test_search_versions_order_by_version_desc():
+    model_names = _create_versions(2, 2)
+    filter = f"name='{model_names[0]}'"
+    order_by = ["version_number DESC"]
+    versions = list(SearchModelVersionsIterator(http_client, filter=filter, order_by=order_by))
+    assert len(versions) == 2
+    assert versions[0]["version"] == "2"
+
+def test_search_versions_order_by_creation_timestamp_desc():
+    model_names = _create_versions(2, 2)
+    filter = f"name='{model_names[0]}'"
+    order_by = ["creation_timestamp DESC"]
+    versions = list(SearchModelVersionsIterator(http_client, filter=filter, order_by=order_by))
+    assert len(versions) == 2
+    assert versions[0]["version"] == "2"
+
+# NOTE: FAILS
+def _fails_test_search_versions_order_by_run_ud():
+    model_names = _create_versions(2, 2)
+    filter = f"name='{model_names[0]}'"
+    order_by = ["run_id"]
+    versions = list(SearchModelVersionsIterator(http_client, filter=filter, order_by=order_by))
+    assert len(versions) == 2
 
 
 # ==== Test SearchRunsIterator
@@ -243,7 +326,7 @@ def _run_test_deleted_runs():
     exp = _create_experiment(_num_runs)
     runs = list(SearchRunsIterator(http_client, exp.experiment_id))
     assert _num_runs == len(runs)
-    for j in range(0,_num_runs_deleted):
+    for j in range(_num_runs_deleted):
         mlflow_client.delete_run(runs[j]["info"]["run_id"])
     return exp, runs
 
@@ -271,7 +354,7 @@ def test_deleted_runs_view_all():
 
 # == other tests
 
-# Stress test - fails because of connection timeout 
+# Stress test - fails because of connection timeout
 def __test_search_runs_too_many():
     num_runs = 1200
     max_results = 500
