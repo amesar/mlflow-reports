@@ -1,48 +1,92 @@
 {
   "run": {
     "info": {
-      "run_uuid": "42ef213547e5442fb66c0525abb05e10",
-      "experiment_id": 2,
-      "run_name": "all_options",
-      "user_id": "andre",
+      "run_uuid": "77dd54ba943c482cb38f70c2a48b0689",
+      "experiment_id": 1,
+      "run_name": "powerful-snail-661",
+      "user_id": "andre.mesarovic",
       "status": "FINISHED",
-      "start_time": 1695434319419,
-      "end_time": 1695434326706,
-      "artifact_uri": "/opt/mlflow/mlruns/2/42ef213547e5442fb66c0525abb05e10/artifacts",
+      "start_time": 1718749037448,
+      "end_time": 1718749045293,
+      "artifact_uri": "/Users/andre.mesarovic/work/mlflow_server/server_default/mlruns/1/77dd54ba943c482cb38f70c2a48b0689/artifacts",
       "lifecycle_stage": "active",
-      "run_id": "42ef213547e5442fb66c0525abb05e10",
-      "_start_time": "2023-09-23 01:58:39",
-      "_end_time": "2023-09-23 01:58:47",
-      "_duration": 7.287,
+      "run_id": "77dd54ba943c482cb38f70c2a48b0689",
+      "_start_time": "2024-06-18 22:17:17",
+      "_end_time": "2024-06-18 22:17:25",
+      "_duration": 7.845,
       "_experiment_name": "sklearn_wine",
-      "_web_ui_link": "http://localhost:5020#/experiments/2/runs/42ef213547e5442fb66c0525abb05e10",
-      "_api_link": "http://localhost:5020/api/2.0/mlflow/runs/get?run_id=42ef213547e5442fb66c0525abb05e10"
+      "_web_ui_link": "http://localhost:5020#/experiments/1/runs/77dd54ba943c482cb38f70c2a48b0689",
+      "_api_link": "http://localhost:5020/api/2.0/mlflow/runs/get?run_id=77dd54ba943c482cb38f70c2a48b0689"
     },
     "data": {
       "metrics": [
         {
           "key": "rmse",
-          "value": 0.7367947360663162,
-          "timestamp": 1695434320528,
+          "value": 0.7580986606680091,
+          "timestamp": 1718749042471,
           "step": 0
         },
         {
           "key": "r2",
-          "value": 0.28100217442439346,
-          "timestamp": 1695434320540,
+          "value": 0.23882238687057844,
+          "timestamp": 1718749042481,
           "step": 0
         },
         {
           "key": "mae",
-          "value": 0.5877424565761121,
-          "timestamp": 1695434320549,
+          "value": 0.612036647881648,
+          "timestamp": 1718749042491,
           "step": 0
         }
       ],
       "params": [
         {
+          "key": "data-path",
+          "value": "https://raw.githubusercontent.com/mlflow/mlflow/master/examples/sklearn_elasticnet_wine/wine-quality.csv"
+        },
+        {
+          "key": "model-name",
+          "value": "None"
+        },
+        {
+          "key": "model-version-stage",
+          "value": "None"
+        },
+        {
+          "key": "archive-existing-versions",
+          "value": "False"
+        },
+        {
+          "key": "log-signature",
+          "value": "False"
+        },
+        {
+          "key": "log-as-onnx",
+          "value": "False"
+        },
+        {
+          "key": "log-plot",
+          "value": "False"
+        },
+        {
+          "key": "max-depth",
+          "value": 2
+        },
+        {
+          "key": "max-leaf-nodes",
+          "value": 32
+        },
+        {
+          "key": "run-origin",
+          "value": "gitRun/clean"
+        },
+        {
+          "key": "output-path",
+          "value": "None"
+        },
+        {
           "key": "max_depth",
-          "value": 4
+          "value": 2
         },
         {
           "key": "max_leaf_nodes",
@@ -50,36 +94,40 @@
         }
       ],
       "tags": {
-        "mlflow.user": "andre",
-        "mlflow.source.name": "/Users/andre/git/andre/mlflow-examples/python/sklearn/wine_quality/train.py",
-        "mlflow.source.type": "LOCAL",
-        "mlflow.source.git.commit": "2af0aa6b355474e90b606ed81157ea482aeb86a2",
-        "mlflow.runName": "all_options",
-        "run_id": "42ef213547e5442fb66c0525abb05e10",
-        "save_signature": "True",
+        "mlflow.user": "andre.mesarovic",
+        "mlflow.source.name": "https://github.com/amesar/mlflow-examples.git#python/sklearn",
+        "mlflow.source.type": "PROJECT",
+        "mlflow.project.entryPoint": "main",
+        "mlflow.source.git.commit": "1c86ea33afe0e5150f6b26e7207d7cf57d261f6b",
+        "mlflow.source.git.repoURL": "https://github.com/amesar/mlflow-examples.git",
+        "mlflow.gitRepoURL": "https://github.com/amesar/mlflow-examples.git",
+        "mlflow.runName": "powerful-snail-661",
+        "mlflow.project.env": "conda",
+        "mlflow.project.backend": "local",
+        "run_id": "77dd54ba943c482cb38f70c2a48b0689",
+        "log_signature": "False",
         "data_path": "https://raw.githubusercontent.com/mlflow/mlflow/master/examples/sklearn_elasticnet_wine/wine-quality.csv",
-        "registered_model_name": "sklearn_wine",
-        "registered_model_version_stage": "Production",
-        "uuid": "i8fjzSxBXzMU3tubJCjQAA",
+        "reg_model_name": "None",
+        "reg_model_version_stage": "None",
+        "uuid": "FwDquZqgM25RrhWwkWmBnH",
         "dataset": "wine-quality",
-        "run_origin": "none",
-        "timestamp": "2023-09-22 21:58:37",
-        "version.mlflow": "2.5.0",
-        "version.sklearn": "1.2.2",
+        "run_origin": "gitRun/clean",
+        "timestamp": "2024-06-18 18:17:22",
+        "version.mlflow": "2.14.0",
+        "version.sklearn": "1.3.2",
         "version.platform": "macOS-10.16-x86_64-i386-64bit",
-        "version.python": "3.8.16",
-        "use_mlflow.data": "True",
+        "version.python": "3.8.13",
         "mlflow.log-model.history": [
           {
-            "run_id": "42ef213547e5442fb66c0525abb05e10",
+            "run_id": "77dd54ba943c482cb38f70c2a48b0689",
             "artifact_path": "model",
-            "utc_time_created": "2023-09-23 01:58:40.618290",
+            "utc_time_created": "2024-06-18 22:17:22.509564",
             "flavors": {
               "python_function": {
                 "model_path": "model.pkl",
                 "predict_fn": "predict",
                 "loader_module": "mlflow.sklearn",
-                "python_version": "3.8.16",
+                "python_version": "3.8.13",
                 "env": {
                   "conda": "conda.yaml",
                   "virtualenv": "python_env.yaml"
@@ -87,343 +135,96 @@
               },
               "sklearn": {
                 "pickled_model": "model.pkl",
-                "sklearn_version": "1.2.2",
+                "sklearn_version": "1.3.2",
                 "serialization_format": "cloudpickle",
                 "code": null
               }
             },
-            "model_uuid": "a1c1887806694123bb4857f9bb4018b3",
-            "mlflow_version": "2.5.0",
-            "signature": {
-              "inputs": [
-                {
-                  "type": "double",
-                  "name": "fixed_acidity"
-                },
-                {
-                  "type": "double",
-                  "name": "volatile_acidity"
-                },
-                {
-                  "type": "double",
-                  "name": "citric_acid"
-                },
-                {
-                  "type": "double",
-                  "name": "residual_sugar"
-                },
-                {
-                  "type": "double",
-                  "name": "chlorides"
-                },
-                {
-                  "type": "double",
-                  "name": "free_sulfur_dioxide"
-                },
-                {
-                  "type": "double",
-                  "name": "total_sulfur_dioxide"
-                },
-                {
-                  "type": "double",
-                  "name": "density"
-                },
-                {
-                  "type": "double",
-                  "name": "pH"
-                },
-                {
-                  "type": "double",
-                  "name": "sulphates"
-                },
-                {
-                  "type": "double",
-                  "name": "alcohol"
-                }
-              ],
-              "outputs": [
-                {
-                  "type": "tensor",
-                  "tensor-spec": {
-                    "dtype": "float64",
-                    "shape": [
-                      -1
-                    ]
-                  }
-                }
-              ]
-            },
-            "saved_input_example_info": {
-              "artifact_path": "input_example.json",
-              "type": "dataframe",
-              "pandas_orient": "split"
-            }
-          },
-          {
-            "run_id": "42ef213547e5442fb66c0525abb05e10",
-            "artifact_path": "onnx-model",
-            "utc_time_created": "2023-09-23 01:58:44.641531",
-            "flavors": {
-              "python_function": {
-                "loader_module": "mlflow.onnx",
-                "python_version": "3.8.16",
-                "data": "model.onnx",
-                "env": {
-                  "conda": "conda.yaml",
-                  "virtualenv": "python_env.yaml"
-                }
-              },
-              "onnx": {
-                "onnx_version": "1.14.0",
-                "data": "model.onnx",
-                "providers": [
-                  "CUDAExecutionProvider",
-                  "CPUExecutionProvider"
-                ],
-                "onnx_session_options": null,
-                "code": null
-              }
-            },
-            "model_uuid": "d3052ef237b846c3a09016004021a533",
-            "mlflow_version": "2.5.0",
-            "signature": {
-              "inputs": [
-                {
-                  "type": "double",
-                  "name": "fixed_acidity"
-                },
-                {
-                  "type": "double",
-                  "name": "volatile_acidity"
-                },
-                {
-                  "type": "double",
-                  "name": "citric_acid"
-                },
-                {
-                  "type": "double",
-                  "name": "residual_sugar"
-                },
-                {
-                  "type": "double",
-                  "name": "chlorides"
-                },
-                {
-                  "type": "double",
-                  "name": "free_sulfur_dioxide"
-                },
-                {
-                  "type": "double",
-                  "name": "total_sulfur_dioxide"
-                },
-                {
-                  "type": "double",
-                  "name": "density"
-                },
-                {
-                  "type": "double",
-                  "name": "pH"
-                },
-                {
-                  "type": "double",
-                  "name": "sulphates"
-                },
-                {
-                  "type": "double",
-                  "name": "alcohol"
-                }
-              ],
-              "outputs": [
-                {
-                  "type": "tensor",
-                  "tensor-spec": {
-                    "dtype": "float64",
-                    "shape": [
-                      -1
-                    ]
-                  }
-                }
-              ]
-            },
-            "saved_input_example_info": {
-              "artifact_path": "input_example.json",
-              "type": "dataframe",
-              "pandas_orient": "split"
-            }
+            "model_uuid": "21986144aa634e058047537fc84a8271",
+            "mlflow_version": "2.14.0",
+            "model_size_bytes": 1781
           }
         ],
-        "version.onnx": "1.14.0",
         "output_path": "None",
-        "run.info.start_time": 1695434319419,
-        "run.info.end_time": 1695434326706,
-        "run.info._start_time": "2023-09-22 21:58:39",
-        "run.info._end_time": "2023-09-22 21:58:47"
+        "run.info.start_time": 1718749037448,
+        "run.info.end_time": 1718749044924,
+        "run.info._start_time": "2024-06-18 18:17:17",
+        "run.info._end_time": "2024-06-18 18:17:25"
       }
     },
-    "inputs": {
-      "dataset_inputs": [
-        {
-          "tags": [
-            {
-              "key": "mlflow.data.context",
-              "value": "training"
-            }
-          ],
-          "dataset": {
-            "name": "wine_quality_white",
-            "digest": "0b40d4fa",
-            "source_type": "http",
-            "source": {
-              "url": "https://raw.githubusercontent.com/mlflow/mlflow/master/examples/sklearn_elasticnet_wine/wine-quality.csv"
-            },
-            "schema": {
-              "mlflow_colspec": [
-                {
-                  "type": "double",
-                  "name": "fixed_acidity"
-                },
-                {
-                  "type": "double",
-                  "name": "volatile_acidity"
-                },
-                {
-                  "type": "double",
-                  "name": "citric_acid"
-                },
-                {
-                  "type": "double",
-                  "name": "residual_sugar"
-                },
-                {
-                  "type": "double",
-                  "name": "chlorides"
-                },
-                {
-                  "type": "double",
-                  "name": "free_sulfur_dioxide"
-                },
-                {
-                  "type": "double",
-                  "name": "total_sulfur_dioxide"
-                },
-                {
-                  "type": "double",
-                  "name": "density"
-                },
-                {
-                  "type": "double",
-                  "name": "pH"
-                },
-                {
-                  "type": "double",
-                  "name": "sulphates"
-                },
-                {
-                  "type": "double",
-                  "name": "alcohol"
-                }
-              ]
-            },
-            "profile": {
-              "num_rows": 3428,
-              "num_elements": 37708
-            }
-          }
-        }
-      ]
-    }
+    "inputs": {}
   },
   "artifacts": {
     "summary": {
+      "artifact_uri": "runs:/77dd54ba943c482cb38f70c2a48b0689/",
+      "num_bytes": 3739,
+      "_num_bytes": "3,739",
+      "num_artifacts": 9,
+      "num_levels": 3,
       "artifact_max_level": 9,
-      "num_artifacts": 13,
-      "num_bytes": 240895,
-      "num_levels": 2
+      "timestamp": "2024-06-23 22:14:11",
+      "mlflow_tracking_uri": "http://localhost:5020",
+      "mlflow_registry_uri": ""
     },
-    "root_uri": "/opt/mlflow/mlruns/2/42ef213547e5442fb66c0525abb05e10/artifacts",
-    "files": [
+    "artifacts": [
       {
         "path": "model",
-        "is_dir": true,
-        "artifacts": {
-          "root_uri": "/opt/mlflow/mlruns/2/42ef213547e5442fb66c0525abb05e10/artifacts",
-          "files": [
-            {
-              "path": "model/MLmodel",
-              "is_dir": false,
-              "file_size": 1214
-            },
-            {
-              "path": "model/conda.yaml",
-              "is_dir": false,
-              "file_size": 241
-            },
-            {
-              "path": "model/input_example.json",
-              "is_dir": false,
-              "file_size": 102556
-            },
-            {
-              "path": "model/model.pkl",
-              "is_dir": false,
-              "file_size": 3070
-            },
-            {
-              "path": "model/python_env.yaml",
-              "is_dir": false,
-              "file_size": 122
-            },
-            {
-              "path": "model/requirements.txt",
-              "is_dir": false,
-              "file_size": 120
-            }
-          ]
-        }
-      },
-      {
-        "path": "onnx-model",
-        "is_dir": true,
-        "artifacts": {
-          "root_uri": "/opt/mlflow/mlruns/2/42ef213547e5442fb66c0525abb05e10/artifacts",
-          "files": [
-            {
-              "path": "onnx-model/MLmodel",
-              "is_dir": false,
-              "file_size": 1237
-            },
-            {
-              "path": "onnx-model/conda.yaml",
-              "is_dir": false,
-              "file_size": 187
-            },
-            {
-              "path": "onnx-model/input_example.json",
-              "is_dir": false,
-              "file_size": 102556
-            },
-            {
-              "path": "onnx-model/model.onnx",
-              "is_dir": false,
-              "file_size": 1628
-            },
-            {
-              "path": "onnx-model/python_env.yaml",
-              "is_dir": false,
-              "file_size": 122
-            },
-            {
-              "path": "onnx-model/requirements.txt",
-              "is_dir": false,
-              "file_size": 74
-            }
-          ]
-        }
-      },
-      {
-        "path": "plot.png",
-        "is_dir": false,
-        "file_size": 27768
+        "bytes": 3739,
+        "_bytes": "3,739",
+        "artifacts": [
+          {
+            "path": "MLmodel",
+            "bytes": 526,
+            "_bytes": 526
+          },
+          {
+            "path": "conda.yaml",
+            "bytes": 230,
+            "_bytes": 230
+          },
+          {
+            "path": "metadata",
+            "bytes": 1735,
+            "_bytes": "1,735",
+            "artifacts": [
+              {
+                "path": "MLmodel",
+                "bytes": 526,
+                "_bytes": 526
+              },
+              {
+                "path": "conda.yaml",
+                "bytes": 230,
+                "_bytes": 230
+              },
+              {
+                "path": "python_env.yaml",
+                "bytes": 112,
+                "_bytes": 112
+              },
+              {
+                "path": "requirements.txt",
+                "bytes": 111,
+                "_bytes": 111
+              }
+            ]
+          },
+          {
+            "path": "model.pkl",
+            "bytes": 1781,
+            "_bytes": "1,781"
+          },
+          {
+            "path": "python_env.yaml",
+            "bytes": 112,
+            "_bytes": 112
+          },
+          {
+            "path": "requirements.txt",
+            "bytes": 111,
+            "_bytes": 111
+          }
+        ]
       }
     ]
   }
