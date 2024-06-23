@@ -5,6 +5,7 @@ from mlflow_reports.data import get_run as _get_run
 from mlflow_reports.data import get_experiment as _get_experiment
 from mlflow_reports.common import MlflowReportsException
 from mlflow_reports.common import mlflow_utils
+from mlflow_reports.common import artifact_utils
 
 from mlflow_reports.common.click_options import(
     opt_model_uri,
@@ -60,10 +61,8 @@ def _calc_model_size(model_info, model_uri):
         model_info["model_size_bytes"] = -1
     else:
         try:
-            artifacts = mlflow_utils.build_artifacts(
-                run_id,
-                model_info["artifact_path"],
-                sys.maxsize)
+            artifact_uri = f'runs:/{run_id}/{model_info["artifact_path"]}/'
+            artifacts = artifact_utils.list_artifacts(artifact_uri, sys.maxsize)
             model_info["model_size_bytes"] = artifacts["summary"]["num_bytes"]
             model_info["artifacts"] = artifacts
         except MlflowReportsException as e:

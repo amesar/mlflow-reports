@@ -1,7 +1,7 @@
 from tempfile import NamedTemporaryFile
 import mlflow
 
-from mlflow_reports.common.mlflow_utils import build_artifacts
+from mlflow_reports.common.artifact_utils import list_run_artifacts
 #from mlflow_reports.common.dump_utils import dump_as_json
 from . utils_test import create_experiment
 
@@ -115,7 +115,7 @@ def test_create_3_levels_check_4_level():
 
 def _run_test_create(create_func, max_level, num_levels, num_artifacts):
     run = create_func()
-    res = build_artifacts(run.info.run_id, "", max_level)
+    res = list_run_artifacts(run.info.run_id, "", max_level)
     #dump_as_json(res["summary"])
     _assert_result(res, content_size*num_artifacts, num_artifacts, num_levels, max_level)
 

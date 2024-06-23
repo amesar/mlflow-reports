@@ -1,7 +1,7 @@
 import click
 
 from mlflow_reports.client import mlflow_client
-from mlflow_reports.common import mlflow_utils, explode_utils
+from mlflow_reports.common import explode_utils
 from mlflow_reports.common.click_options import(
     opt_run_id,
     opt_get_raw,
@@ -9,6 +9,7 @@ from mlflow_reports.common.click_options import(
     opt_silent,
     opt_output_file
 )
+from mlflow_reports.common import artifact_utils 
 from mlflow_reports.data import data_utils, link_utils
 from mlflow_reports.data import enriched_tags
 
@@ -31,14 +32,13 @@ def enrich(run, artifact_max_level=-1):
     """
     dct = { "run": run }
     if artifact_max_level > 0:
-        artifacts = mlflow_utils.build_artifacts(run["info"]["run_id"], "", artifact_max_level)
+        artifact_uri = f'runs:/{run["info"]["run_id"]}/'
+        artifacts = artifact_utils.list_artifacts(artifact_uri, artifact_max_level)
         dct["artifacts"] = artifacts
-
     _adjust_times(run)
     link_utils.add_run_links(run)
     data_utils.mk_tags(run["data"])
     explode_utils.explode_json(dct)
-
     return dct
 
 

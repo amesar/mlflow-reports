@@ -3,6 +3,7 @@ import json
 from dataclasses import dataclass
 import mlflow
 from mlflow_reports.common import timestamp_utils
+from mlflow_reports.client import mlflow_client
 
 
 @dataclass()
@@ -15,12 +16,13 @@ class Result:
         msg = { "num_bytes": self.num_bytes, "num_artifacts": self.num_artifacts, "num_levels": self.num_levels }
         return json.dumps(msg)
 
+
 def list_artifacts(artifact_uri, artifact_max_level=1, full_path=False):
     """
-    Build recursive tree of calls to 'artifacts/list' API endpoint.
-    :param run_id: Run ID.
-    :param artifact_path: Relative artifact path.
+    Build recursive tree of artifacts with to mlflow.artifacts.list_artifacts()
+    :param artifact_uri: Artifact URI
     :param artifact_max_level: Levels to recurse.
+    :param full_path: Show full artifact path name in 'path' field instead of relative name.
     :return: Nested dict with list of artifacts representing tree node info.
     """
     res = _list_artifacts(artifact_uri, artifact_max_level, 0, full_path)
@@ -36,7 +38,6 @@ def list_artifacts(artifact_uri, artifact_max_level=1, full_path=False):
         "mlflow_registry_uri": os.environ.get("MLFLOW_REGISTRY_URI","")
     }
     return { **{ "summary": summary }, **{ "artifacts": res.artifacts } }
-
 
 def _list_artifacts(artifact_uri, artifact_max_level=1, level=0, full_path=False):
     def _to_dict_without_underscore(obj):
@@ -72,3 +73,47 @@ def _list_artifacts(artifact_uri, artifact_max_level=1, level=0, full_path=False
         artifacts.append(dct)
 
     return Result(artifacts, dir_num_bytes, num_artifacts, num_levels)
+
+
+def list_run_artifacts(run_id, artifact_path, artifact_max_level, level=0):
+    """
+    Build recursive tree of artifacts with to 'artifacts/list' REST API endpoint.
+    :param run_id: Run ID.
+    :param artifact_path: Relative artifact path.
+    :param artifact_max_level: Levels to recurse.
+    :return: Nested dict with list of artifacts representing tree node info.
+    """
+    res = _list_run_artifacts(run_id, artifact_path, artifact_max_level, level)
+    summary = {
+        "artifact_max_level": artifact_max_level,
+        "num_artifacts": res.num_artifacts,
+        "num_bytes": res.num_bytes,
+        "num_levels": res.num_levels
+    }
+    return { **{ "summary": summary }, **res.artifacts }
+
+
+def _list_run_artifacts(run_id, artifact_path, artifact_max_level, level=0):
+    if level == artifact_max_level:
+        return Result({}, 0, 0, level)
+
+    artifacts = mlflow_client.list_artifacts(run_id, artifact_path)
+    if level > artifact_max_level:
+        return Result(artifacts, 0, 0, level)
+
+    files = artifacts.get("files", None)
+    level += 1
+    new_level = level
+    num_bytes, num_artifacts = (0,0)
+    if files:
+        for _,artifact in enumerate(files):
+            num_bytes += int(artifact.get("file_size",0)) or 0
+            if artifact["is_dir"]:
+                res = _list_run_artifacts(run_id, artifact["path"], artifact_max_level, level)
+                new_level = max(new_level, res.num_levels)
+                num_bytes += res.num_bytes
+                num_artifacts += res.num_artifacts
+                artifact["artifacts"] = res.artifacts
+            else:
+                num_artifacts += 1
+    return Result(artifacts, num_bytes, num_artifacts, new_level)
