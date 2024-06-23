@@ -108,7 +108,7 @@ def opt_get_permissions(function):
 
 def opt_artifact_max_level(function):
     function = click.option("--artifact-max-level",
-        help="Number of artifact levels to recurse for run artifacts.",
+        help="Number of artifact levels to recurse when displaying artifacts.",
         type=int,
         default=1,
         show_default=True
