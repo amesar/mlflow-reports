@@ -98,7 +98,7 @@ def opt_view_type(function):
 
 def opt_max_results(function):
     function = click.option("--max-results",
-        help="Max results for search query",
+        help="Max results for search query.",
         type=int,
         default=None
     )(function)

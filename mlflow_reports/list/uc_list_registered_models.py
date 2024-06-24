@@ -1,5 +1,5 @@
 """
-List all UC registered models.
+List UC registered models.
 """
 
 import click

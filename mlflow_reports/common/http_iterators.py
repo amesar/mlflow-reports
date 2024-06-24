@@ -151,11 +151,23 @@ class SearchRunsIterator(BaseIterator):
 
 
 class SearchUcRegisteredModelsIterator(BaseIterator):
-    def __init__(self, uc_mlflow_client, catalog, schema, max_results=None, filter=None, order_by=None):
-        super().__init__(uc_mlflow_client, "unity-catalog/models", "registered_models", max_results=max_results, filter=filter, order_by=order_by)
+    """
+    GET /api/2.1/unity-catalog/models
+    https://docs.databricks.com/api/workspace/registeredmodels/list
+    """
+    def __init__(self, uc_mlflow_client, catalog=None, schema=None, max_results=None):
+        super().__init__(uc_mlflow_client, "unity-catalog/models", "registered_models", max_results=max_results)
         self.kwargs["catalog_name"] = catalog
         if schema:
             self.kwargs["schema_name"] = schema
+
+#class SearchUcModelVersions(BaseIterator): # TODO
+#    """
+#    GET /api/2.1/unity-catalog/models/{full_name}/versions
+#    https://docs.databricks.com/api/workspace/modelversions/list
+#    """
+#    def __init__(self, uc_mlflow_client, full_name, max_results=None):
+
 
 class FeatureTablesIterator(BaseIterator):
     """
