@@ -5,7 +5,7 @@ from mlflow_reports.data import get_registered_model
 from mlflow_reports.mlflow_model.mlflow_model_utils import get_model_artifact
 from mlflow_reports.common import MlflowReportsException
 from mlflow_reports.common.model_version_utils import get_reg_model_download_uri, get_run_model_download_uri
-from mlflow_reports.common import mlflow_utils, explode_utils, exception_utils
+from mlflow_reports.common import mlflow_utils, artifact_utils, explode_utils, exception_utils
 from mlflow_reports.common.click_options import(
     opt_registered_model,
     opt_model_version,
@@ -44,6 +44,8 @@ def get(
     dct = { "model_version": vr }
     if get_expanded:
         dct["mlflow_model"] = _get_mlmodel(registered_model_name, version)
+        model_uri = f"models:/{registered_model_name}/{version}"
+        dct["mlflow_model_artifacts"] = artifact_utils.list_artifacts(model_uri, artifact_max_level)
         reg_model = get_registered_model.get(registered_model_name, get_permissions=True)
         reg_model = reg_model["registered_model"]
         dct["registered_model"] = reg_model
