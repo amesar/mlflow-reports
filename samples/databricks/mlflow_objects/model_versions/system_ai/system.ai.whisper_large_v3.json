@@ -1,0 +1,383 @@
+{
+  "model_version": {
+    "name": "system.ai.whisper_large_v3",
+    "version": "2",
+    "creation_timestamp": 1717411952165,
+    "last_updated_timestamp": 1717411952165,
+    "user_id": "System user",
+    "description": "This model version of `whisper_large_v3` is packaged at revision [bf128ed72b9ea8cd29be04376f1dd1b9d418a2a5](https://huggingface.co/openai/whisper-large-v3/commit/bf128ed72b9ea8cd29be04376f1dd1b9d418a2a5). Refer to the [OpenAI page](https://github.com/openai/whisper) for full details around limitations, evaluated use, and broader implications. For usage of the model on Databricks, review the description of the model in the model overview.\n\n`whisper_large_v3` is licensed under the [MIT License](https://github.com/openai/whisper/blob/main/LICENSE).",
+    "source": "",
+    "status": "READY",
+    "storage_location": "s3://system-tables-prod-us-west-2-uc-metastore-bucket/metastore/8798ecdb-2dee-46a5-aac8-1c2282b100cf/models/e27533c8-720e-49a3-b64b-34fd43e56bcb/versions/b0e23b6d-34bd-4ce2-b982-de9a4ab57cd8",
+    "_creation_timestamp": "2024-06-03 10:52:32",
+    "_last_updated_timestamp": "2024-06-03 10:52:32",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://system-tables-prod-us-west-2-uc-metastore-bucket/metastore/8798ecdb-2dee-46a5-aac8-1c2282b100cf/models/e27533c8-720e-49a3-b64b-34fd43e56bcb/versions/b0e23b6d-34bd-4ce2-b982-de9a4ab57cd8",
+    "_run_model_download_uri": "",
+    "_web_ui_link": "https://e2-demo-field-eng.cloud.databricks.com/explore/data/models/system/ai/whisper_large_v3/version/2",
+    "_api_link": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=system.ai.whisper_large_v3&version=2"
+  },
+  "mlflow_model": {
+    "databricks_runtime": "14.3.x-cpu-ml-scala2.12",
+    "flavors": {
+      "python_function": {
+        "env": {
+          "conda": "conda.yaml",
+          "virtualenv": "python_env.yaml"
+        },
+        "loader_module": "mlflow.transformers",
+        "python_version": "3.10.12"
+      },
+      "transformers": {
+        "code": null,
+        "components": [
+          "feature_extractor",
+          "tokenizer"
+        ],
+        "feature_extractor_type": "WhisperFeatureExtractor",
+        "framework": "pt",
+        "instance_type": "AutomaticSpeechRecognitionPipeline",
+        "model_binary": "model",
+        "pipeline_model_type": "WhisperForConditionalGeneration",
+        "source_model_name": "openai/whisper-large-v3",
+        "task": "automatic-speech-recognition",
+        "tokenizer_type": "WhisperTokenizerFast",
+        "torch_dtype": "torch.float32",
+        "transformers_version": "4.40.0"
+      }
+    },
+    "metadata": {
+      "curation_version": 2,
+      "databricks_model_family": "WhisperForConditionalGeneration (whisper_v3)",
+      "databricks_model_size_parameters": "2b",
+      "databricks_model_source": "model-zoo",
+      "source": "huggingface",
+      "source_model_name": "openai/whisper-large-v3",
+      "source_model_revision": "bf128ed72b9ea8cd29be04376f1dd1b9d418a2a5",
+      "task": "audio/v1/transcriptions"
+    },
+    "mlflow_version": "2.11.2",
+    "model_size_bytes": 6178435592,
+    "model_uuid": "d6ac613a010c41de9429baa98f51ab14",
+    "saved_input_example_info": {
+      "artifact_path": "input_example.json",
+      "pandas_orient": "values",
+      "type": "dataframe"
+    },
+    "signature": {
+      "inputs": [
+        {
+          "type": "binary",
+          "name": 0,
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "type": "string",
+          "required": true
+        }
+      ],
+      "params": null
+    },
+    "utc_time_created": "2024-05-31 23:08:56.158316"
+  },
+  "mlflow_model_artifacts": {
+    "summary": {
+      "artifact_uri": "models:/system.ai.whisper_large_v3/2",
+      "num_bytes": 6178438139,
+      "_num_bytes": "6,178,438,139",
+      "num_artifacts": 26,
+      "num_levels": 3,
+      "artifact_max_level": 1000,
+      "timestamp": "2024-06-24 01:39:29",
+      "mlflow_tracking_uri": "databricks://e2_demo_fieldeng",
+      "mlflow_registry_uri": "databricks-uc://e2_demo_fieldeng"
+    },
+    "artifacts": [
+      {
+        "path": "LICENSE.txt",
+        "bytes": 293,
+        "_bytes": "293"
+      },
+      {
+        "path": "MLmodel",
+        "bytes": 1422,
+        "_bytes": "1,422"
+      },
+      {
+        "path": "components",
+        "bytes": 4184440,
+        "_bytes": "4,184,440",
+        "artifacts": [
+          {
+            "path": "feature_extractor",
+            "bytes": 340,
+            "_bytes": "340",
+            "artifacts": [
+              {
+                "path": "preprocessor_config.json",
+                "bytes": 340,
+                "_bytes": "340"
+              }
+            ]
+          },
+          {
+            "path": "tokenizer",
+            "bytes": 4182725,
+            "_bytes": "4,182,725",
+            "artifacts": [
+              {
+                "path": "added_tokens.json",
+                "bytes": 34648,
+                "_bytes": "34,648"
+              },
+              {
+                "path": "merges.txt",
+                "bytes": 493869,
+                "_bytes": "493,869"
+              },
+              {
+                "path": "normalizer.json",
+                "bytes": 52666,
+                "_bytes": "52,666"
+              },
+              {
+                "path": "special_tokens_map.json",
+                "bytes": 2186,
+                "_bytes": "2,186"
+              },
+              {
+                "path": "tokenizer.json",
+                "bytes": 2480645,
+                "_bytes": "2,480,645"
+              },
+              {
+                "path": "tokenizer_config.json",
+                "bytes": 282843,
+                "_bytes": "282,843"
+              },
+              {
+                "path": "vocab.json",
+                "bytes": 835528,
+                "_bytes": "835,528"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "conda.yaml",
+        "bytes": 596,
+        "_bytes": "596"
+      },
+      {
+        "path": "input_example.json",
+        "bytes": 10358,
+        "_bytes": "10,358"
+      },
+      {
+        "path": "model",
+        "bytes": 6178422462,
+        "_bytes": "6,178,422,462",
+        "artifacts": [
+          {
+            "path": "config.json",
+            "bytes": 1267,
+            "_bytes": "1,267"
+          },
+          {
+            "path": "generation_config.json",
+            "bytes": 3867,
+            "_bytes": "3,867"
+          },
+          {
+            "path": "model-00001-of-00007.safetensors",
+            "bytes": 1000019472,
+            "_bytes": "1,000,019,472"
+          },
+          {
+            "path": "model-00002-of-00007.safetensors",
+            "bytes": 996957656,
+            "_bytes": "996,957,656"
+          },
+          {
+            "path": "model-00003-of-00007.safetensors",
+            "bytes": 976232736,
+            "_bytes": "976,232,736"
+          },
+          {
+            "path": "model-00004-of-00007.safetensors",
+            "bytes": 996992592,
+            "_bytes": "996,992,592"
+          },
+          {
+            "path": "model-00005-of-00007.safetensors",
+            "bytes": 997009680,
+            "_bytes": "997,009,680"
+          },
+          {
+            "path": "model-00006-of-00007.safetensors",
+            "bytes": 996992792,
+            "_bytes": "996,992,792"
+          },
+          {
+            "path": "model-00007-of-00007.safetensors",
+            "bytes": 209905408,
+            "_bytes": "209,905,408"
+          },
+          {
+            "path": "model.safetensors.index.json",
+            "bytes": 111598,
+            "_bytes": "111,598"
+          }
+        ]
+      },
+      {
+        "path": "model_card.md",
+        "bytes": 14290,
+        "_bytes": "14,290"
+      },
+      {
+        "path": "model_card_data.yaml",
+        "bytes": 858,
+        "_bytes": "858"
+      },
+      {
+        "path": "python_env.yaml",
+        "bytes": 123,
+        "_bytes": "123"
+      },
+      {
+        "path": "requirements.txt",
+        "bytes": 406,
+        "_bytes": "406"
+      }
+    ]
+  },
+  "registered_model": {
+    "name": "system.ai.whisper_large_v3",
+    "creation_timestamp": 1716279931849,
+    "last_updated_timestamp": 1716280873429,
+    "user_id": "System user",
+    "description": "\nwhisper_large_v3 - **preview**\n================================\n\n\nThe `whisper_large_v3` model is an automatic speech recognition model released by OpenAI. It is an [MLflow](https://mlflow.org/docs/latest/index.html) model that packages\n[Hugging Face's implementation for the whisper_large_v3 model](https://huggingface.co/openai/whisper-large-v3)\nusing the [transformers](https://mlflow.org/docs/latest/models.html#transformers-transformers-experimental) \nflavor in MLflow. It has 2 Billion parameters.\n\n\n**Input:** binary audio data bytes (e.g. flac, mp3, wav)\n\n**Output:** string containing the generated text\n\nFor example notebooks of using the `whisper_large_v3` model in various use cases on Databricks, refer to [the Databricks ML example repository](https://github.com/databricks/databricks-ml-examples/tree/master/llm-models/transcription/whisper). For details about the `whisper_large_v3` model, please visit [the Hugging Face model card](https://huggingface.co/openai/whisper-large-v3).\n\nThis model is licensed under the [MIT License](https://github.com/openai/whisper/blob/main/LICENSE). By using this model, you acknowledge and agree to the license.\n\n# Usage\n\nDatabricks recommends that you download the model and fine tune the model with your datasets.\n\n## Fine tune the model\n\nCheck [the Databricks ML example repository](https://github.com/databricks/databricks-ml-examples/tree/master/llm-models/transcription/whisper) for a tutorial example on fine-tuning the model.\n\n## Deploying the model to Model Serving\n\nYou can deploy this model directly to a Databricks Model Serving Endpoint ([AWS](https://docs.databricks.com/machine-learning/model-serving/create-manage-serving-endpoints.html)|[Azure](https://learn.microsoft.com/en-us/azure/databricks/machine-learning/model-serving/create-manage-serving-endpoints)).\n\nWe recommend using the `GPU_MEDIUM` workload type on AWS and `GPU_LARGE` workload type on Azure for this model.\n\nTo create the endpoint, click the \u201cServe this model\u201d button above or use Databricks SDK to create the endpoint.\n\nTo create serving endpoint, first install the newest Databricks SDK for Python.\n\n```python\n# Upgrade to use the newest Databricks SDK\n%pip install --upgrade databricks-sdk\ndbutils.library.restartPython()\n```\n\nWith the Databricks SDK installed, you can create the serving endpoint as follows:\n\n```python\nfrom databricks.sdk import WorkspaceClient\nfrom databricks.sdk.service.serving import EndpointCoreConfigInput\nw = WorkspaceClient()\n\nconfig = EndpointCoreConfigInput.from_dict({\n    \"served_models\": [\n        {\n            \"name\": \"whisper_large_v3\",\n            \"model_name\": \"<UC LOCATION FOR MODEL>\",\n            \"model_version\": \"1\",\n            \"workload_type\": \"<WORKLOAD TYPE>\",\n            \"workload_size\": \"Small\",\n            \"scale_to_zero_enabled\": \"False\",\n        }\n    ]\n})\nw.serving_endpoints.create(name=endpoint_name, config=config)\n```\n\n## Generate the text by querying the serving endpoint\n\nWith the Databricks SDK installed, query the serving endpoint as follows:\n\n```python\n# Run below in a separate notebook cell\nimport pandas as pd\nimport base64\nimport json\n\nfrom databricks.sdk import WorkspaceClient\n\n# Change it to your own input file name\nwith open('audio.mp3', 'rb') as audio_file:\n    audio_bytes = audio_file.read()\n    audio_b64 = base64.b64encode(audio_bytes).decode('ascii')\n    dataframe_records = [audio_b64]\n\nw = WorkspaceClient()\nresponse = w.serving_endpoints.query(\n    name=\"whisper_large_v3\",\n    dataframe_records=dataframe_records,\n)\nprint(response.predictions)\n```",
+    "tags": {},
+    "_creation_timestamp": "2024-05-21 08:25:32",
+    "_last_updated_timestamp": "2024-05-21 08:41:13",
+    "_is_unity_catalog": true,
+    "_web_ui_link": "https://e2-demo-field-eng.cloud.databricks.com/explore/data/models/system/ai/whisper_large_v3",
+    "_api_link": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=system.ai.whisper_large_v3",
+    "permissions": {
+      "permissions": {
+        "privilege_assignments": [
+          {
+            "principal": "account users",
+            "privileges": [
+              "EXECUTE"
+            ]
+          }
+        ]
+      },
+      "effective_permissions": {
+        "privilege_assignments": [
+          {
+            "principal": "huascaran@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "k2@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "fitz_roy@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "guallatirimercedario@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "account users",
+            "privileges": [
+              {
+                "privilege": "EXECUTE"
+              },
+              {
+                "privilege": "EXECUTE",
+                "inherited_from_type": "SCHEMA",
+                "inherited_from_name": "system.ai"
+              }
+            ]
+          },
+          {
+            "principal": "kosciuszko@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "pico_navarino@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "denali@databricks.com",
+            "privileges": [
+              {
+                "privilege": "EXECUTE",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "aconcagua@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "run": {
+    "warning": "Model version 'system.ai.whisper_large_v3/2' has no run_id"
+  }
+}

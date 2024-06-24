@@ -1,0 +1,1143 @@
+{
+  "model_version": {
+    "name": "system.ai.dbrx_base",
+    "version": "1",
+    "creation_timestamp": 1716290777449,
+    "last_updated_timestamp": 1716290777449,
+    "user_id": "System user",
+    "description": "This model version of `dbrx_base` is packaged at revision [27ef9bc79c237912f6f05c98c461385c4ef3254b](https://huggingface.co/databricks/dbrx-base/commit/27ef9bc79c237912f6f05c98c461385c4ef3254b). Refer to the [Databricks page](https://huggingface.co/collections/databricks/dbrx-6601c0852a0cdd3c59f71962) for full details around limitations, evaluated use, and broader implications. For usage of the model on Databricks, review the description of the model in the model overview.\n\n`dbrx_base` is licensed under the [Databricks Open Model License](https://www.databricks.com/legal/open-model-license).",
+    "source": "",
+    "status": "READY",
+    "storage_location": "s3://system-tables-prod-us-west-2-uc-metastore-bucket/metastore/8798ecdb-2dee-46a5-aac8-1c2282b100cf/models/688ed908-e750-4d5f-ad34-f9eaa353b8f4/versions/6063bd56-b0ff-4ab6-a9cb-4ca106fc451c",
+    "_creation_timestamp": "2024-05-21 11:26:17",
+    "_last_updated_timestamp": "2024-05-21 11:26:17",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://system-tables-prod-us-west-2-uc-metastore-bucket/metastore/8798ecdb-2dee-46a5-aac8-1c2282b100cf/models/688ed908-e750-4d5f-ad34-f9eaa353b8f4/versions/6063bd56-b0ff-4ab6-a9cb-4ca106fc451c",
+    "_run_model_download_uri": "",
+    "_web_ui_link": "https://e2-demo-field-eng.cloud.databricks.com/explore/data/models/system/ai/dbrx_base/version/1",
+    "_api_link": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=system.ai.dbrx_base&version=1"
+  },
+  "mlflow_model": {
+    "databricks_runtime": "14.3.x-cpu-ml-scala2.12",
+    "flavors": {
+      "python_function": {
+        "env": {
+          "conda": "conda.yaml",
+          "virtualenv": "python_env.yaml"
+        },
+        "loader_module": "mlflow.transformers",
+        "python_version": "3.10.12"
+      },
+      "transformers": {
+        "code": null,
+        "components": [
+          "tokenizer"
+        ],
+        "framework": "pt",
+        "instance_type": "TextGenerationPipeline",
+        "model_binary": "model",
+        "pipeline_model_type": "DbrxForCausalLM",
+        "source_model_name": "databricks/dbrx-base",
+        "task": "text-generation",
+        "tokenizer_type": "TiktokenTokenizerWrapper",
+        "torch_dtype": "torch.bfloat16",
+        "transformers_version": "4.38.2"
+      }
+    },
+    "metadata": {
+      "curation_version": 1,
+      "databricks_model_family": "DbrxForCausalLM (dbrx)",
+      "databricks_model_size_parameters": "132b",
+      "databricks_model_source": "model-zoo",
+      "source": "huggingface",
+      "source_model_name": "databricks/dbrx-base",
+      "source_model_revision": "27ef9bc79c237912f6f05c98c461385c4ef3254b",
+      "task": "llm/v1/completions"
+    },
+    "mlflow_version": "2.11.2",
+    "model_size_bytes": 263193136345,
+    "model_uuid": "2ffaf333db6c444e8ef0ca26bb838afe",
+    "saved_input_example_info": {
+      "artifact_path": "input_example.json",
+      "pandas_orient": "split",
+      "type": "dataframe"
+    },
+    "signature": {
+      "inputs": [
+        {
+          "type": "string",
+          "name": "prompt",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "type": "string",
+          "required": true
+        }
+      ],
+      "params": [
+        {
+          "name": "temperature",
+          "type": "double",
+          "default": 1.0,
+          "shape": null
+        },
+        {
+          "name": "max_new_tokens",
+          "type": "long",
+          "default": 256,
+          "shape": null
+        },
+        {
+          "name": "do_sample",
+          "type": "boolean",
+          "default": true,
+          "shape": null
+        }
+      ]
+    },
+    "utc_time_created": "2024-04-16 00:45:39.344588"
+  },
+  "mlflow_model_artifacts": {
+    "summary": {
+      "artifact_uri": "models:/system.ai.dbrx_base/1",
+      "num_bytes": 263193138272,
+      "_num_bytes": "263,193,138,272",
+      "num_artifacts": 176,
+      "num_levels": 3,
+      "artifact_max_level": 1000,
+      "timestamp": "2024-06-24 01:38:16",
+      "mlflow_tracking_uri": "databricks://e2_demo_fieldeng",
+      "mlflow_registry_uri": "databricks-uc://e2_demo_fieldeng"
+    },
+    "artifacts": [
+      {
+        "path": "LICENSE.txt",
+        "bytes": 244,
+        "_bytes": "244"
+      },
+      {
+        "path": "MLmodel",
+        "bytes": 1516,
+        "_bytes": "1,516"
+      },
+      {
+        "path": "components",
+        "bytes": 3122,
+        "_bytes": "3,122",
+        "artifacts": [
+          {
+            "path": "tokenizer",
+            "bytes": 1362,
+            "_bytes": "1,362",
+            "artifacts": [
+              {
+                "path": "special_tokens_map.json",
+                "bytes": 587,
+                "_bytes": "587"
+              },
+              {
+                "path": "tokenizer_config.json",
+                "bytes": 775,
+                "_bytes": "775"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "conda.yaml",
+        "bytes": 201,
+        "_bytes": "201"
+      },
+      {
+        "path": "input_example.json",
+        "bytes": 50,
+        "_bytes": "50"
+      },
+      {
+        "path": "model",
+        "bytes": 263193125599,
+        "_bytes": "263,193,125,599",
+        "artifacts": [
+          {
+            "path": "config.json",
+            "bytes": 939,
+            "_bytes": "939"
+          },
+          {
+            "path": "generation_config.json",
+            "bytes": 105,
+            "_bytes": "105"
+          },
+          {
+            "path": "model-00001-of-00163.safetensors",
+            "bytes": 1233125512,
+            "_bytes": "1,233,125,512"
+          },
+          {
+            "path": "model-00002-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00003-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00004-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00005-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00006-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00007-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00008-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00009-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00010-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00011-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00012-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00013-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00014-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00015-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00016-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00017-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00018-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00019-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00020-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00021-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00022-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00023-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00024-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00025-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00026-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00027-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00028-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00029-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00030-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00031-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00032-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00033-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00034-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00035-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00036-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00037-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00038-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00039-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00040-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00041-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00042-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00043-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00044-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00045-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00046-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00047-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00048-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00049-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00050-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00051-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00052-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00053-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00054-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00055-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00056-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00057-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00058-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00059-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00060-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00061-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00062-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00063-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00064-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00065-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00066-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00067-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00068-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00069-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00070-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00071-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00072-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00073-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00074-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00075-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00076-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00077-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00078-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00079-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00080-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00081-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00082-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00083-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00084-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00085-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00086-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00087-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00088-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00089-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00090-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00091-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00092-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00093-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00094-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00095-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00096-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00097-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00098-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00099-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00100-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00101-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00102-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00103-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00104-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00105-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00106-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00107-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00108-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00109-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00110-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00111-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00112-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00113-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00114-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00115-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00116-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00117-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00118-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00119-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00120-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00121-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00122-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00123-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00124-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00125-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00126-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00127-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00128-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00129-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00130-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00131-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00132-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00133-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00134-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00135-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00136-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00137-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00138-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00139-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00140-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00141-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00142-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00143-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00144-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00145-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00146-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00147-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00148-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00149-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00150-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00151-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00152-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00153-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00154-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00155-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00156-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00157-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00158-of-00163.safetensors",
+            "bytes": 176382608,
+            "_bytes": "176,382,608"
+          },
+          {
+            "path": "model-00159-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00160-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00161-of-00163.safetensors",
+            "bytes": 2113929368,
+            "_bytes": "2,113,929,368"
+          },
+          {
+            "path": "model-00162-of-00163.safetensors",
+            "bytes": 12416,
+            "_bytes": "12,416"
+          },
+          {
+            "path": "model-00163-of-00163.safetensors",
+            "bytes": 1233125504,
+            "_bytes": "1,233,125,504"
+          },
+          {
+            "path": "model.safetensors.index.json",
+            "bytes": 29270,
+            "_bytes": "29,270"
+          }
+        ]
+      },
+      {
+        "path": "model_card.md",
+        "bytes": 11279,
+        "_bytes": "11,279"
+      },
+      {
+        "path": "model_card_data.yaml",
+        "bytes": 1184,
+        "_bytes": "1,184"
+      },
+      {
+        "path": "python_env.yaml",
+        "bytes": 123,
+        "_bytes": "123"
+      },
+      {
+        "path": "requirements.txt",
+        "bytes": 87,
+        "_bytes": "87"
+      }
+    ]
+  },
+  "registered_model": {
+    "name": "system.ai.dbrx_base",
+    "creation_timestamp": 1716279931810,
+    "last_updated_timestamp": 1716280873433,
+    "user_id": "System user",
+    "description": "\ndbrx_base - **preview**\n================================\n\n\nThe `dbrx_base` model is a text-generation model released by Databricks. It is an [MLflow](https://mlflow.org/docs/latest/index.html) model that packages\n[Hugging Face\u2019s implementation for the dbrx_base model](https://huggingface.co/databricks/dbrx-base)\nusing the [transformers](https://mlflow.org/docs/latest/models.html#transformers-transformers-experimental) \nflavor in MLflow.\n\n- Thanks to its MoE architecture, DBRX is highly efficient for inference, activating only 36 billion parameters out of a total of 132 billion trained parameters. It is capable of handling input length up to 32k tokens, and generating outputs of up to 4k tokens.\n- It is a pre-trained generative text model that can be used for further fine-tuning on specific applications.\n\n\n**Input:** string containing the text of instructions\n\n**Output:** string containing the generated response text\n\nFor details about the `dbrx_base` model, please visit [the Hugging Face model card](https://huggingface.co/databricks/dbrx-base).\n\nThis model is licensed under the [Databricks Open Model License](https://www.databricks.com/legal/open-model-license). By using this model, you acknowledge and agree to the license and the [Databricks Open Model Acceptable Use Policy](https://www.databricks.com/legal/acceptable-use-policy-open-model).\n\n# Usage\n\nDatabricks recommends that you fine-tune this DBRX base model on your dataset before deploying it. More detailed instructions on how to fine-tune with Databricks will be available soon. If you want to deploy a DBRX model today, please see the `dbrx_instruct` model, which has already been fine-tuned to follow instructions and is ready to use. When loading the base model in a Databricks notebook or workflow, Databricks recommends using a stable and high-bandwidth network environment (minimum 1200 Mbps) due to the large model size.\n\n",
+    "tags": {},
+    "_creation_timestamp": "2024-05-21 08:25:32",
+    "_last_updated_timestamp": "2024-05-21 08:41:13",
+    "_is_unity_catalog": true,
+    "_web_ui_link": "https://e2-demo-field-eng.cloud.databricks.com/explore/data/models/system/ai/dbrx_base",
+    "_api_link": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=system.ai.dbrx_base",
+    "permissions": {
+      "permissions": {
+        "privilege_assignments": [
+          {
+            "principal": "account users",
+            "privileges": [
+              "EXECUTE"
+            ]
+          }
+        ]
+      },
+      "effective_permissions": {
+        "privilege_assignments": [
+          {
+            "principal": "huascaran@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "k2@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "fitz_roy@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "guallatirimercedario@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "account users",
+            "privileges": [
+              {
+                "privilege": "EXECUTE"
+              },
+              {
+                "privilege": "EXECUTE",
+                "inherited_from_type": "SCHEMA",
+                "inherited_from_name": "system.ai"
+              }
+            ]
+          },
+          {
+            "principal": "kosciuszko@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "pico_navarino@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "denali@databricks.com",
+            "privileges": [
+              {
+                "privilege": "EXECUTE",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "aconcagua@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "run": {
+    "warning": "Model version 'system.ai.dbrx_base/1' has no run_id"
+  }
+}

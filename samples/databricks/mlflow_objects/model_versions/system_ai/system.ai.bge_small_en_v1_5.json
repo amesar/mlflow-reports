@@ -1,0 +1,351 @@
+{
+  "model_version": {
+    "name": "system.ai.bge_small_en_v1_5",
+    "version": "1",
+    "creation_timestamp": 1716470614554,
+    "last_updated_timestamp": 1716470614554,
+    "user_id": "System user",
+    "description": "This model version of `bge_small_en_v1_5` is packaged at revision [982532469af0dff5df8e70b38075b0940e863662](https://huggingface.co/BAAI/bge-small-en-v1.5/commit/982532469af0dff5df8e70b38075b0940e863662). Refer to the [Beijing Academy of Artificial Intelligence page](https://github.com/FlagOpen/FlagEmbedding) for full details around limitations, evaluated use, and broader implications. For usage of the model on Databricks, review the description of the model in the model overview.\n\n`bge_small_en_v1_5` is licensed under the [MIT License](https://github.com/FlagOpen/FlagEmbedding/blob/master/LICENSE).",
+    "source": "",
+    "status": "READY",
+    "storage_location": "s3://system-tables-prod-us-west-2-uc-metastore-bucket/metastore/8798ecdb-2dee-46a5-aac8-1c2282b100cf/models/92d380ad-31ff-4d1d-9689-9d9a2602d006/versions/9e0591b0-a537-43ff-a63b-ddab0b527da7",
+    "_creation_timestamp": "2024-05-23 13:23:35",
+    "_last_updated_timestamp": "2024-05-23 13:23:35",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://system-tables-prod-us-west-2-uc-metastore-bucket/metastore/8798ecdb-2dee-46a5-aac8-1c2282b100cf/models/92d380ad-31ff-4d1d-9689-9d9a2602d006/versions/9e0591b0-a537-43ff-a63b-ddab0b527da7",
+    "_run_model_download_uri": "",
+    "_web_ui_link": "https://e2-demo-field-eng.cloud.databricks.com/explore/data/models/system/ai/bge_small_en_v1_5/version/1",
+    "_api_link": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=system.ai.bge_small_en_v1_5&version=1"
+  },
+  "mlflow_model": {
+    "databricks_runtime": "14.3.x-cpu-ml-scala2.12",
+    "flavors": {
+      "python_function": {
+        "config": {
+          "task": "llm/v1/embeddings"
+        },
+        "data": "model.sentence_transformer",
+        "env": {
+          "conda": "conda.yaml",
+          "virtualenv": "python_env.yaml"
+        },
+        "loader_module": "mlflow.sentence_transformers",
+        "python_version": "3.10.12"
+      },
+      "sentence_transformers": {
+        "code": null,
+        "sentence_transformers_version": "2.2.2"
+      }
+    },
+    "metadata": {
+      "curation_version": 2,
+      "databricks_model_family": "BertModel (bge_v1_5)",
+      "databricks_model_size_parameters": "24m",
+      "databricks_model_source": "model-zoo",
+      "source": "huggingface",
+      "source_model_name": "BAAI/bge-small-en-v1.5",
+      "source_model_revision": "982532469af0dff5df8e70b38075b0940e863662",
+      "task": "llm/v1/embeddings"
+    },
+    "mlflow_version": "2.11.2",
+    "model_size_bytes": 134499085,
+    "model_uuid": "645f19e9ab2e4d14be14eec31bc6427a",
+    "saved_input_example_info": {
+      "artifact_path": "input_example.json",
+      "format": "tf-serving",
+      "type": "ndarray"
+    },
+    "signature": {
+      "inputs": [
+        {
+          "type": "string",
+          "name": "input",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "type": "string",
+          "name": "object",
+          "required": true
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "embedding": {
+                "type": "array",
+                "items": {
+                  "type": "double"
+                },
+                "required": true
+              },
+              "index": {
+                "type": "long",
+                "required": true
+              },
+              "object": {
+                "type": "string",
+                "required": true
+              }
+            }
+          },
+          "name": "data",
+          "required": true
+        },
+        {
+          "type": "object",
+          "properties": {
+            "prompt_tokens": {
+              "type": "long",
+              "required": true
+            },
+            "total_tokens": {
+              "type": "long",
+              "required": true
+            }
+          },
+          "name": "usage",
+          "required": true
+        }
+      ],
+      "params": null
+    },
+    "utc_time_created": "2024-04-04 10:44:34.344004"
+  },
+  "mlflow_model_artifacts": {
+    "summary": {
+      "artifact_uri": "models:/system.ai.bge_small_en_v1_5/1",
+      "num_bytes": 134501038,
+      "_num_bytes": "134,501,038",
+      "num_artifacts": 16,
+      "num_levels": 3,
+      "artifact_max_level": 1000,
+      "timestamp": "2024-06-24 01:38:06",
+      "mlflow_tracking_uri": "databricks://e2_demo_fieldeng",
+      "mlflow_registry_uri": "databricks-uc://e2_demo_fieldeng"
+    },
+    "artifacts": [
+      {
+        "path": "MLmodel",
+        "bytes": 1566,
+        "_bytes": "1,566"
+      },
+      {
+        "path": "conda.yaml",
+        "bytes": 187,
+        "_bytes": "187"
+      },
+      {
+        "path": "input_example.json",
+        "bytes": 73,
+        "_bytes": "73"
+      },
+      {
+        "path": "model.sentence_transformer",
+        "bytes": 134500838,
+        "_bytes": "134,500,838",
+        "artifacts": [
+          {
+            "path": "1_Pooling",
+            "bytes": 190,
+            "_bytes": "190",
+            "artifacts": [
+              {
+                "path": "config.json",
+                "bytes": 190,
+                "_bytes": "190"
+              }
+            ]
+          },
+          {
+            "path": "README.md",
+            "bytes": 90344,
+            "_bytes": "90,344"
+          },
+          {
+            "path": "config.json",
+            "bytes": 731,
+            "_bytes": "731"
+          },
+          {
+            "path": "config_sentence_transformers.json",
+            "bytes": 124,
+            "_bytes": "124"
+          },
+          {
+            "path": "model.safetensors",
+            "bytes": 133462128,
+            "_bytes": "133,462,128"
+          },
+          {
+            "path": "modules.json",
+            "bytes": 349,
+            "_bytes": "349"
+          },
+          {
+            "path": "sentence_bert_config.json",
+            "bytes": 52,
+            "_bytes": "52"
+          },
+          {
+            "path": "special_tokens_map.json",
+            "bytes": 695,
+            "_bytes": "695"
+          },
+          {
+            "path": "tokenizer.json",
+            "bytes": 711649,
+            "_bytes": "711,649"
+          },
+          {
+            "path": "tokenizer_config.json",
+            "bytes": 1242,
+            "_bytes": "1,242"
+          },
+          {
+            "path": "vocab.txt",
+            "bytes": 231508,
+            "_bytes": "231,508"
+          }
+        ]
+      },
+      {
+        "path": "python_env.yaml",
+        "bytes": 123,
+        "_bytes": "123"
+      },
+      {
+        "path": "requirements.txt",
+        "bytes": 77,
+        "_bytes": "77"
+      }
+    ]
+  },
+  "registered_model": {
+    "name": "system.ai.bge_small_en_v1_5",
+    "creation_timestamp": 1716279931834,
+    "last_updated_timestamp": 1716280873454,
+    "user_id": "System user",
+    "description": "\nbge_small_en_v1_5 - **preview**\n================================\n\nThe `bge_small_en_v1_5` model is an embedding model released by Beijing Academy of Artificial Intelligence. It is an [MLflow](https://mlflow.org/docs/latest/index.html) model that packages\n[Hugging Face\u2019s implementation for the bge_small_en_v1_5 model](https://huggingface.co/BAAI/bge-small-en-v1.5)\nusing the [sentence_transformers](https://mlflow.org/docs/latest/models.html#sentencetransformers-sentence-transformers-experimental) \nflavor in MLflow.\n\nIt has 384 dimensions. While it offers the fastest processing speed, it may have lower quality compared to other models in the model family.\n\nWhen working with embedding models, please be aware that the embeddings\ncreated by one model are not compatible with other embedding\nmodels.\n\nVisit the Hugging Face\n[Massive Text Embedding Benchmark (MTEB) Leaderboard](https://huggingface.co/spaces/mteb/leaderboard)\nto understand the performance of this model relative to other embedding models.\n\n**Input:** string containing the text to embed \n\n**Output:** float array containing embedding of 384 dimensions\n\nThis model is licensed under the [MIT License](https://github.com/FlagOpen/FlagEmbedding/blob/master/LICENSE). By using this model, you acknowledge and agree to the license.\n\n# Usage\nDatabricks recommends that you primarily work with this model via Model Serving ([AWS](https://docs.databricks.com/machine-learning/model-serving/create-manage-serving-endpoints.html)|[Azure](https://learn.microsoft.com/en-us/azure/databricks/machine-learning/model-serving/create-manage-serving-endpoints)).\n\n## Deploying the model to Model Serving\n\nYou can deploy this model directly to a Databricks Model Serving Endpoint ([AWS](https://docs.databricks.com/machine-learning/model-serving/create-manage-serving-endpoints.html)|[Azure](https://learn.microsoft.com/en-us/azure/databricks/machine-learning/model-serving/create-manage-serving-endpoints)).\n\nWe recommend using the `GPU_SMALL` workload type on AWS and `GPU_SMALL` workload type on Azure.\n\nTo create the endpoint, click the \u201cServe this model\u201d button above or use Databricks SDK to create the endpoint.\n\nTo create serving endpoint, first install the newest Databricks SDK for Python.\n\n```python\n# Upgrade to use the newest Databricks SDK\n%pip install --upgrade databricks-sdk\ndbutils.library.restartPython()\n```\n\nWith the Databricks SDK installed, you can create the serving endpoint as follows:\n\n```python\nimport datetime\nfrom databricks.sdk import WorkspaceClient\nfrom databricks.sdk.service.serving import EndpointCoreConfigInput\nw = WorkspaceClient()\n\nconfig = EndpointCoreConfigInput.from_dict({\n    \"served_models\": [\n        {\n            \"name\": \"bge_small_en_v1_5\",\n            \"model_name\": \"<UC LOCATION FOR MODEL>\",\n            \"model_version\": \"1\",\n            \"workload_type\": \"<WORKLOAD TYPE>\",\n            \"workload_size\": \"Small\",\n            \"scale_to_zero_enabled\": \"False\",\n        }\n    ]\n})\nw.serving_endpoints.create(name=endpoint_name, config=config)\n```\n\n## SQL transcription using ai_query\n\nTo generate the text using the endpoint, use `ai_query` \n([AWS](https://docs.databricks.com/sql/language-manual/functions/ai_query.html)|[Azure](https://learn.microsoft.com/en-us/azure/databricks/sql/language-manual/functions/ai_query)) \nto query the Model Serving endpoint. The first parameter should be the name of the endpoint you previously created for Model Serving. \nThe second parameter should be the column name containing the text to embed.\nThe third and fourth parameters set the return type to `Array<Float>`, so that `ai_query` can\nproperly parse and structure the output.\n\nNOTE: `ai_query` is currently in Public Preview. Please sign up at [AI Functions Public Preview enrollment form](https://docs.google.com/forms/d/e/1FAIpQLScVyh5eRioqGwuUVxj9JOiKBAo0-FWi7L3f4QWsKeyldqEw8w/viewform) to try out the new feature.\n\n```sql\nSELECT \nai_query(\n  'bge_small_en_v1_5',\n  'text',\n  'returnType',\n  'Array<Float>'\n) as embedding\nfrom <TABLE>\n```\n\nYou can use `ai_query` in this manner to generate text in SQL queries or notebooks connected to Databricks SQL Pro or Serverless SQL Endpoints.\n\n## Generate the text by querying the serving endpoint\n\nTo query the model serving endpoint, first install the newest Databricks SDK for Python.\n\n```python\n# Upgrade to use the newest Databricks SDK\n%pip install --upgrade databricks-sdk\ndbutils.library.restartPython()\n```\n\nWith the newest Databricks SDK installed, query the serving endpoint as follows:\n\n```python\n# Run below in a separate notebook cell\nfrom databricks.sdk import WorkspaceClient\n\n# Change it to your own input\ndataframe_records = [\n    {\"text\": \"<TEXT TO EMBED>\"}\n]\n\nw = WorkspaceClient()\nw.serving_endpoints.query(\n    name=\"bge_small_en_v1_5\",\n    dataframe_records=dataframe_records,\n)\n```",
+    "tags": {},
+    "_creation_timestamp": "2024-05-21 08:25:32",
+    "_last_updated_timestamp": "2024-05-21 08:41:13",
+    "_is_unity_catalog": true,
+    "_web_ui_link": "https://e2-demo-field-eng.cloud.databricks.com/explore/data/models/system/ai/bge_small_en_v1_5",
+    "_api_link": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=system.ai.bge_small_en_v1_5",
+    "permissions": {
+      "permissions": {
+        "privilege_assignments": [
+          {
+            "principal": "account users",
+            "privileges": [
+              "EXECUTE"
+            ]
+          }
+        ]
+      },
+      "effective_permissions": {
+        "privilege_assignments": [
+          {
+            "principal": "huascaran@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "k2@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "fitz_roy@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "guallatirimercedario@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "account users",
+            "privileges": [
+              {
+                "privilege": "EXECUTE"
+              },
+              {
+                "privilege": "EXECUTE",
+                "inherited_from_type": "SCHEMA",
+                "inherited_from_name": "system.ai"
+              }
+            ]
+          },
+          {
+            "principal": "kosciuszko@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "pico_navarino@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "denali@databricks.com",
+            "privileges": [
+              {
+                "privilege": "EXECUTE",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "aconcagua@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "run": {
+    "warning": "Model version 'system.ai.bge_small_en_v1_5/1' has no run_id"
+  }
+}

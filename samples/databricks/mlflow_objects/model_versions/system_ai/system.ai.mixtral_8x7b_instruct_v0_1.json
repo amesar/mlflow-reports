@@ -1,0 +1,1355 @@
+{
+  "model_version": {
+    "name": "system.ai.mixtral_8x7b_instruct_v0_1",
+    "version": "2",
+    "creation_timestamp": 1717069217404,
+    "last_updated_timestamp": 1717069217404,
+    "user_id": "System user",
+    "description": "This model version of `Mixtral_8x7B_Instruct_v0_1` is packaged at revision [470bbc663648ad40c295fc42ecb6ba3bddd84081](https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1/commit/470bbc663648ad40c295fc42ecb6ba3bddd84081). Refer to the [Mistral AI page](https://mistral.ai/news/mixtral-of-experts) for full details around limitations, evaluated use, and broader implications. For usage of the model on Databricks, review the description of the model in the model overview.\n\n`Mixtral_8x7B_Instruct_v0_1` is licensed under the [Apache 2.0 license](https://choosealicense.com/licenses/apache-2.0).",
+    "source": "",
+    "status": "READY",
+    "storage_location": "s3://system-tables-prod-us-west-2-uc-metastore-bucket/metastore/8798ecdb-2dee-46a5-aac8-1c2282b100cf/models/3bee0dd0-37e1-4e3c-9bdc-fef5aaa81e7a/versions/e0e77ca1-4025-4993-a170-cce960b164b2",
+    "_creation_timestamp": "2024-05-30 11:40:17",
+    "_last_updated_timestamp": "2024-05-30 11:40:17",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://system-tables-prod-us-west-2-uc-metastore-bucket/metastore/8798ecdb-2dee-46a5-aac8-1c2282b100cf/models/3bee0dd0-37e1-4e3c-9bdc-fef5aaa81e7a/versions/e0e77ca1-4025-4993-a170-cce960b164b2",
+    "_run_model_download_uri": "",
+    "_web_ui_link": "https://e2-demo-field-eng.cloud.databricks.com/explore/data/models/system/ai/mixtral_8x7b_instruct_v0_1/version/2",
+    "_api_link": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=system.ai.mixtral_8x7b_instruct_v0_1&version=2"
+  },
+  "mlflow_model": {
+    "databricks_runtime": "14.3.x-cpu-ml-scala2.12",
+    "flavors": {
+      "python_function": {
+        "env": {
+          "conda": "conda.yaml",
+          "virtualenv": "python_env.yaml"
+        },
+        "loader_module": "mlflow.transformers",
+        "python_version": "3.10.12"
+      },
+      "transformers": {
+        "code": null,
+        "components": [
+          "tokenizer"
+        ],
+        "framework": "pt",
+        "instance_type": "TextGenerationPipeline",
+        "model_binary": "model",
+        "pipeline_model_type": "MixtralForCausalLM",
+        "source_model_name": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+        "task": "text-generation",
+        "tokenizer_type": "LlamaTokenizerFast",
+        "torch_dtype": "torch.float32",
+        "transformers_version": "4.40.0"
+      }
+    },
+    "metadata": {
+      "curation_version": 2,
+      "databricks_model_family": "MixtralForCausalLM (mixtral_8x7b)",
+      "databricks_model_size_parameters": "47b",
+      "databricks_model_source": "model-zoo",
+      "source": "huggingface",
+      "source_model_name": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      "source_model_revision": "470bbc663648ad40c295fc42ecb6ba3bddd84081",
+      "task": "llm/v1/chat"
+    },
+    "mlflow_version": "2.11.2",
+    "model_size_bytes": 186813694292,
+    "model_uuid": "506fb4224b7d45359e9a2a27716395c1",
+    "saved_input_example_info": {
+      "artifact_path": "input_example.json",
+      "type": "json_object"
+    },
+    "signature": {
+      "inputs": [
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string",
+                "required": true
+              },
+              "role": {
+                "type": "string",
+                "required": true
+              }
+            }
+          },
+          "name": "messages",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "type": "string",
+          "required": true
+        }
+      ],
+      "params": [
+        {
+          "name": "temperature",
+          "type": "double",
+          "default": 1.0,
+          "shape": null
+        },
+        {
+          "name": "max_new_tokens",
+          "type": "long",
+          "default": 256,
+          "shape": null
+        },
+        {
+          "name": "do_sample",
+          "type": "boolean",
+          "default": true,
+          "shape": null
+        }
+      ]
+    },
+    "utc_time_created": "2024-05-28 23:09:12.867182"
+  },
+  "mlflow_model_artifacts": {
+    "summary": {
+      "artifact_uri": "models:/system.ai.mixtral_8x7b_instruct_v0_1/2",
+      "num_bytes": 186813696378,
+      "_num_bytes": "186,813,696,378",
+      "num_artifacts": 216,
+      "num_levels": 3,
+      "artifact_max_level": 1000,
+      "timestamp": "2024-06-24 01:39:07",
+      "mlflow_tracking_uri": "databricks://e2_demo_fieldeng",
+      "mlflow_registry_uri": "databricks-uc://e2_demo_fieldeng"
+    },
+    "artifacts": [
+      {
+        "path": "LICENSE.txt",
+        "bytes": 319,
+        "_bytes": "319"
+      },
+      {
+        "path": "MLmodel",
+        "bytes": 1675,
+        "_bytes": "1,675"
+      },
+      {
+        "path": "components",
+        "bytes": 2292649,
+        "_bytes": "2,292,649",
+        "artifacts": [
+          {
+            "path": "tokenizer",
+            "bytes": 2290655,
+            "_bytes": "2,290,655",
+            "artifacts": [
+              {
+                "path": "special_tokens_map.json",
+                "bytes": 414,
+                "_bytes": "414"
+              },
+              {
+                "path": "tokenizer.json",
+                "bytes": 1795331,
+                "_bytes": "1,795,331"
+              },
+              {
+                "path": "tokenizer.model",
+                "bytes": 493443,
+                "_bytes": "493,443"
+              },
+              {
+                "path": "tokenizer_config.json",
+                "bytes": 1467,
+                "_bytes": "1,467"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "conda.yaml",
+        "bytes": 201,
+        "_bytes": "201"
+      },
+      {
+        "path": "input_example.json",
+        "bytes": 177,
+        "_bytes": "177"
+      },
+      {
+        "path": "model",
+        "bytes": 186813689160,
+        "_bytes": "186,813,689,160",
+        "artifacts": [
+          {
+            "path": "config.json",
+            "bytes": 803,
+            "_bytes": "803"
+          },
+          {
+            "path": "generation_config.json",
+            "bytes": 111,
+            "_bytes": "111"
+          },
+          {
+            "path": "model-00001-of-00201.safetensors",
+            "bytes": 927073096,
+            "_bytes": "927,073,096"
+          },
+          {
+            "path": "model-00002-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00003-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00004-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00005-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00006-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00007-of-00201.safetensors",
+            "bytes": 872580288,
+            "_bytes": "872,580,288"
+          },
+          {
+            "path": "model-00008-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00009-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00010-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00011-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00012-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00013-of-00201.safetensors",
+            "bytes": 939557640,
+            "_bytes": "939,557,640"
+          },
+          {
+            "path": "model-00014-of-00201.safetensors",
+            "bytes": 872547296,
+            "_bytes": "872,547,296"
+          },
+          {
+            "path": "model-00015-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00016-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00017-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00018-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00019-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00020-of-00201.safetensors",
+            "bytes": 872580288,
+            "_bytes": "872,580,288"
+          },
+          {
+            "path": "model-00021-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00022-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00023-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00024-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00025-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00026-of-00201.safetensors",
+            "bytes": 872580288,
+            "_bytes": "872,580,288"
+          },
+          {
+            "path": "model-00027-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00028-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00029-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00030-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00031-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00032-of-00201.safetensors",
+            "bytes": 872580288,
+            "_bytes": "872,580,288"
+          },
+          {
+            "path": "model-00033-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00034-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00035-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00036-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00037-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00038-of-00201.safetensors",
+            "bytes": 939557640,
+            "_bytes": "939,557,640"
+          },
+          {
+            "path": "model-00039-of-00201.safetensors",
+            "bytes": 872547296,
+            "_bytes": "872,547,296"
+          },
+          {
+            "path": "model-00040-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00041-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00042-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00043-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00044-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00045-of-00201.safetensors",
+            "bytes": 872580288,
+            "_bytes": "872,580,288"
+          },
+          {
+            "path": "model-00046-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00047-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00048-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00049-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00050-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00051-of-00201.safetensors",
+            "bytes": 872580288,
+            "_bytes": "872,580,288"
+          },
+          {
+            "path": "model-00052-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00053-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00054-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00055-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00056-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00057-of-00201.safetensors",
+            "bytes": 872580288,
+            "_bytes": "872,580,288"
+          },
+          {
+            "path": "model-00058-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00059-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00060-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00061-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00062-of-00201.safetensors",
+            "bytes": 939524640,
+            "_bytes": "939,524,640"
+          },
+          {
+            "path": "model-00063-of-00201.safetensors",
+            "bytes": 939557640,
+            "_bytes": "939,557,640"
+          },
+          {
+            "path": "model-00064-of-00201.safetensors",
+            "bytes": 872547304,
+            "_bytes": "872,547,304"
+          },
+          {
+            "path": "model-00065-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00066-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00067-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00068-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00069-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00070-of-00201.safetensors",
+            "bytes": 872580296,
+            "_bytes": "872,580,296"
+          },
+          {
+            "path": "model-00071-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00072-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00073-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00074-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00075-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00076-of-00201.safetensors",
+            "bytes": 872580296,
+            "_bytes": "872,580,296"
+          },
+          {
+            "path": "model-00077-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00078-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00079-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00080-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00081-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00082-of-00201.safetensors",
+            "bytes": 872580296,
+            "_bytes": "872,580,296"
+          },
+          {
+            "path": "model-00083-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00084-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00085-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00086-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00087-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00088-of-00201.safetensors",
+            "bytes": 939557640,
+            "_bytes": "939,557,640"
+          },
+          {
+            "path": "model-00089-of-00201.safetensors",
+            "bytes": 872547304,
+            "_bytes": "872,547,304"
+          },
+          {
+            "path": "model-00090-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00091-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00092-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00093-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00094-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00095-of-00201.safetensors",
+            "bytes": 872580296,
+            "_bytes": "872,580,296"
+          },
+          {
+            "path": "model-00096-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00097-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00098-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00099-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00100-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00101-of-00201.safetensors",
+            "bytes": 872580296,
+            "_bytes": "872,580,296"
+          },
+          {
+            "path": "model-00102-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00103-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00104-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00105-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00106-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00107-of-00201.safetensors",
+            "bytes": 872580296,
+            "_bytes": "872,580,296"
+          },
+          {
+            "path": "model-00108-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00109-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00110-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00111-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00112-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00113-of-00201.safetensors",
+            "bytes": 939557640,
+            "_bytes": "939,557,640"
+          },
+          {
+            "path": "model-00114-of-00201.safetensors",
+            "bytes": 872547304,
+            "_bytes": "872,547,304"
+          },
+          {
+            "path": "model-00115-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00116-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00117-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00118-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00119-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00120-of-00201.safetensors",
+            "bytes": 872580296,
+            "_bytes": "872,580,296"
+          },
+          {
+            "path": "model-00121-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00122-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00123-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00124-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00125-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00126-of-00201.safetensors",
+            "bytes": 872580296,
+            "_bytes": "872,580,296"
+          },
+          {
+            "path": "model-00127-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00128-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00129-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00130-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00131-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00132-of-00201.safetensors",
+            "bytes": 872580296,
+            "_bytes": "872,580,296"
+          },
+          {
+            "path": "model-00133-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00134-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00135-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00136-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00137-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00138-of-00201.safetensors",
+            "bytes": 939557640,
+            "_bytes": "939,557,640"
+          },
+          {
+            "path": "model-00139-of-00201.safetensors",
+            "bytes": 872547304,
+            "_bytes": "872,547,304"
+          },
+          {
+            "path": "model-00140-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00141-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00142-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00143-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00144-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00145-of-00201.safetensors",
+            "bytes": 872580296,
+            "_bytes": "872,580,296"
+          },
+          {
+            "path": "model-00146-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00147-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00148-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00149-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00150-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00151-of-00201.safetensors",
+            "bytes": 872580296,
+            "_bytes": "872,580,296"
+          },
+          {
+            "path": "model-00152-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00153-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00154-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00155-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00156-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00157-of-00201.safetensors",
+            "bytes": 872580296,
+            "_bytes": "872,580,296"
+          },
+          {
+            "path": "model-00158-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00159-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00160-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00161-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00162-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00163-of-00201.safetensors",
+            "bytes": 939557640,
+            "_bytes": "939,557,640"
+          },
+          {
+            "path": "model-00164-of-00201.safetensors",
+            "bytes": 872547304,
+            "_bytes": "872,547,304"
+          },
+          {
+            "path": "model-00165-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00166-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00167-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00168-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00169-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00170-of-00201.safetensors",
+            "bytes": 872580296,
+            "_bytes": "872,580,296"
+          },
+          {
+            "path": "model-00171-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00172-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00173-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00174-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00175-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00176-of-00201.safetensors",
+            "bytes": 872580296,
+            "_bytes": "872,580,296"
+          },
+          {
+            "path": "model-00177-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00178-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00179-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00180-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00181-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00182-of-00201.safetensors",
+            "bytes": 872580296,
+            "_bytes": "872,580,296"
+          },
+          {
+            "path": "model-00183-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00184-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00185-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00186-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00187-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00188-of-00201.safetensors",
+            "bytes": 939557640,
+            "_bytes": "939,557,640"
+          },
+          {
+            "path": "model-00189-of-00201.safetensors",
+            "bytes": 872547304,
+            "_bytes": "872,547,304"
+          },
+          {
+            "path": "model-00190-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00191-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00192-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00193-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00194-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00195-of-00201.safetensors",
+            "bytes": 872580296,
+            "_bytes": "872,580,296"
+          },
+          {
+            "path": "model-00196-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00197-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00198-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00199-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00200-of-00201.safetensors",
+            "bytes": 939524648,
+            "_bytes": "939,524,648"
+          },
+          {
+            "path": "model-00201-of-00201.safetensors",
+            "bytes": 994099896,
+            "_bytes": "994,099,896"
+          },
+          {
+            "path": "model.safetensors.index.json",
+            "bytes": 92659,
+            "_bytes": "92,659"
+          }
+        ]
+      },
+      {
+        "path": "model_card.md",
+        "bytes": 6826,
+        "_bytes": "6,826"
+      },
+      {
+        "path": "model_card_data.yaml",
+        "bytes": 182,
+        "_bytes": "182"
+      },
+      {
+        "path": "python_env.yaml",
+        "bytes": 123,
+        "_bytes": "123"
+      },
+      {
+        "path": "requirements.txt",
+        "bytes": 87,
+        "_bytes": "87"
+      }
+    ]
+  },
+  "registered_model": {
+    "name": "system.ai.mixtral_8x7b_instruct_v0_1",
+    "creation_timestamp": 1716279931845,
+    "last_updated_timestamp": 1716939258036,
+    "user_id": "System user",
+    "description": "\nMixtral_8x7B_Instruct_v0_1 - **preview**\n================================\n\n\nThe `Mixtral_8x7B_Instruct_v0_1` model is a text-generation model released by Mistral AI. It is an [MLflow](https://mlflow.org/docs/latest/index.html) model that packages\n[Hugging Face\u2019s implementation for the Mixtral_8x7B_Instruct_v0_1 model](https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1)\nusing the [transformers](https://mlflow.org/docs/latest/models.html#transformers-transformers-experimental) \nflavor in MLflow.\n\n- It has 47 Billion parameters. This model offers a high quality.\n- It is fine-tuned specifically for dialogue use cases.\n\n\n**Input:** Request that describes the conversation containing the text of instructions, where the messages field must alternate between user and assistant roles, ending with a user message. ([AWS](https://docs.databricks.com/en/machine-learning/foundation-models/api-reference.html#chat-request)|[Azure](https://learn.microsoft.com/en-us/azure/databricks/machine-learning/foundation-models/api-reference#chat-request))\n\n**Output:** Chat completion object that provides the next assistant message containing the generated response text in the conversation([AWS](https://docs.databricks.com/en/machine-learning/foundation-models/api-reference.html#chat-response)|[Azure](https://learn.microsoft.com/en-us/azure/databricks/machine-learning/foundation-models/api-reference#chat-response))\n\nFor example notebooks of using the `Mixtral_8x7B_Instruct_v0_1` model in various use cases on Databricks, refer to [the Databricks ML example repository](https://github.com/databricks/databricks-ml-examples/tree/master/llm-models/mixtral-8x7b). For details about the `Mixtral_8x7B_Instruct_v0_1` model, please visit [the Hugging Face model card](https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1).\n\nThis model is licensed under the [Apache 2.0 license](https://choosealicense.com/licenses/apache-2.0). By using this model, you acknowledge and agree to the license.\n\n# Usage\n\nDatabricks recommends that you primarily work with this model via Model Serving ([AWS](https://docs.databricks.com/machine-learning/model-serving/create-manage-serving-endpoints.html)|[Azure](https://learn.microsoft.com/en-us/azure/databricks/machine-learning/model-serving/create-manage-serving-endpoints)).\n\n## Deploying the model to Model Serving\nDatabricks recommends using the provisioned throughput ([AWS](https://docs.databricks.com/en/machine-learning/foundation-models/deploy-prov-throughput-foundation-model-apis.html)|[Azure](https://learn.microsoft.com/en-us/azure/databricks/machine-learning/foundation-models/deploy-prov-throughput-foundation-model-apis)) experience for optimized inference of LLMs.\n\nTo create the endpoint, click the \u201cServe this model\u201d button above or use Databricks SDK to create the endpoint.\n\nTo deploy your model in provisioned throughput mode via API, you must specify `min_provisioned_throughput` and `max_provisioned_throughput` fields in your request.\n```python\nimport requests\nimport json\n\n# Get the API endpoint and token for the current notebook context\nAPI_ROOT = dbutils.notebook.entry_point.getDbutils().notebook().getContext().apiUrl().get()\nAPI_TOKEN = dbutils.notebook.entry_point.getDbutils().notebook().getContext().apiToken().get()\n\nheaders = {\"Context-Type\": \"text/json\", \"Authorization\": f\"Bearer {API_TOKEN}\"}\noptimizable_info = requests.get(\n    url=f\"{API_ROOT}/api/2.0/serving-endpoints/get-model-optimization-info/<UC LOCATION FOR MODEL>/2\",\n    headers=headers).json()\n\nif 'optimizable' not in optimizable_info or not optimizable_info['optimizable']:\n   raise ValueError(\"Model is not eligible for provisioned throughput\")\n\nchunk_size = optimizable_info['throughput_chunk_size']\n\n# Minimum desired provisioned throughput\nmin_provisioned_throughput = 2 * chunk_size\n\n# Maximum desired provisioned throughput\nmax_provisioned_throughput = 3 * chunk_size\n\n# send the POST request to create the serving endpoint\ndata = {\n    \"name\": endpoint_name,\n    \"config\": {\n        \"served_entities\": [\n            {\n                \"entity_name\": \"<UC LOCATION FOR MODEL>\",\n                \"entity_version\": \"2\",\n                \"min_provisioned_throughput\": min_provisioned_throughput,\n                \"max_provisioned_throughput\": max_provisioned_throughput,\n            }\n        ]\n    },\n}\n\nresponse = requests.post(\n    url=f\"{API_ROOT}/api/2.0/serving-endpoints\", json=data, headers=headers\n)\n\nprint(json.dumps(response.json(), indent=4))\n```\n\n\n\n## SQL transcription using ai_query\n\nTo generate the text using the endpoint, use `ai_query` ([AWS](https://docs.databricks.com/sql/language-manual/functions/ai_query.html)|[Azure](https://learn.microsoft.com/en-us/azure/databricks/sql/language-manual/functions/ai_query)) to query the Model Serving endpoint.\nThe first parameter should be the name of the endpoint you previously created for Model Serving. The second parameter should be a string containing the instruction text.\n\nNOTE: `ai_query` is currently in Public Preview. Please sign up at [AI Functions Public Preview enrollment form](https://docs.google.com/forms/d/e/1FAIpQLScVyh5eRioqGwuUVxj9JOiKBAo0-FWi7L3f4QWsKeyldqEw8w/viewform) to try out the new feature.\n\n```sql\nSELECT\nai_query(\n  'Mixtral_8x7B_Instruct_v0_1',\n  text,\n) as generated_text\nfrom <TABLE>\n```\nYou can use `ai_query` in this manner to generate text in SQL queries or notebooks connected to Databricks SQL Pro or Serverless SQL Endpoints.\n\n## Generate the text by querying the serving endpoint\n\n\nTo query the model serving endpoint, first install the newest Databricks SDK for Python.\n\n```python\n# Upgrade to use the newest Databricks SDK\n%pip install --upgrade databricks-sdk\ndbutils.library.restartPython()\n```\n\nWith the newest Databricks SDK installed, query the serving endpoint as follows:\n```python\nfrom databricks.sdk.service.serving import ChatMessage\nfrom databricks.sdk import WorkspaceClient\n\nw = WorkspaceClient()\n\n# Change it to your own input\nmessages = [\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello!\"\n    },\n    {\n      \"role\": \"assistant\",\n      \"content\": \"Hello! How can I assist you today?\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"What is Databricks?\"\n    }\n]\n\nmessages = [ChatMessage.from_dict(message) for message in messages]\nresponse = w.serving_endpoints.query(\n    name=endpoint_name,\n    messages=messages,\n)\nresponse.as_dict()\n```",
+    "tags": {},
+    "_creation_timestamp": "2024-05-21 08:25:32",
+    "_last_updated_timestamp": "2024-05-28 23:34:18",
+    "_is_unity_catalog": true,
+    "_web_ui_link": "https://e2-demo-field-eng.cloud.databricks.com/explore/data/models/system/ai/mixtral_8x7b_instruct_v0_1",
+    "_api_link": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=system.ai.mixtral_8x7b_instruct_v0_1",
+    "permissions": {
+      "permissions": {
+        "privilege_assignments": [
+          {
+            "principal": "account users",
+            "privileges": [
+              "EXECUTE"
+            ]
+          }
+        ]
+      },
+      "effective_permissions": {
+        "privilege_assignments": [
+          {
+            "principal": "huascaran@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "k2@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "fitz_roy@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "guallatirimercedario@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "account users",
+            "privileges": [
+              {
+                "privilege": "EXECUTE"
+              },
+              {
+                "privilege": "EXECUTE",
+                "inherited_from_type": "SCHEMA",
+                "inherited_from_name": "system.ai"
+              }
+            ]
+          },
+          {
+            "principal": "kosciuszko@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "pico_navarino@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "denali@databricks.com",
+            "privileges": [
+              {
+                "privilege": "EXECUTE",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "aconcagua@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "run": {
+    "warning": "Model version 'system.ai.mixtral_8x7b_instruct_v0_1/2' has no run_id"
+  }
+}

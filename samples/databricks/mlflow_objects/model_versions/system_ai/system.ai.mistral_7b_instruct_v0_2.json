@@ -1,0 +1,515 @@
+{
+  "model_version": {
+    "name": "system.ai.mistral_7b_instruct_v0_2",
+    "version": "1",
+    "creation_timestamp": 1716320898490,
+    "last_updated_timestamp": 1716320898490,
+    "user_id": "System user",
+    "description": "This model version of `mistral_7b_instruct_v0_2` is packaged at revision [b70aa86578567ba3301b21c8a27bea4e8f6d6d61](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2/commit/b70aa86578567ba3301b21c8a27bea4e8f6d6d61). Refer to the [Mistral AI page](https://mistral.ai/news/announcing-mistral-7b/) for full details around limitations, evaluated use, and broader implications. For usage of the model on Databricks, review the description of the model in the model overview.\n\n`mistral_7b_instruct_v0_2` is licensed under the [Apache 2.0 license](https://github.com/mistralai/mistral-src/blob/main/LICENSE).",
+    "source": "",
+    "status": "READY",
+    "storage_location": "s3://system-tables-prod-us-west-2-uc-metastore-bucket/metastore/8798ecdb-2dee-46a5-aac8-1c2282b100cf/models/c1a672df-1708-4f9e-aaa9-02504c0cff6a/versions/0b8aed57-5890-4f9e-8478-ff0d37c7043f",
+    "_creation_timestamp": "2024-05-21 19:48:18",
+    "_last_updated_timestamp": "2024-05-21 19:48:18",
+    "_is_unity_catalog": true,
+    "_reg_model_download_uri": "s3://system-tables-prod-us-west-2-uc-metastore-bucket/metastore/8798ecdb-2dee-46a5-aac8-1c2282b100cf/models/c1a672df-1708-4f9e-aaa9-02504c0cff6a/versions/0b8aed57-5890-4f9e-8478-ff0d37c7043f",
+    "_run_model_download_uri": "",
+    "_web_ui_link": "https://e2-demo-field-eng.cloud.databricks.com/explore/data/models/system/ai/mistral_7b_instruct_v0_2/version/1",
+    "_api_link": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mlflow/unity-catalog/model-versions/get?name=system.ai.mistral_7b_instruct_v0_2&version=1"
+  },
+  "mlflow_model": {
+    "databricks_runtime": "14.3.x-cpu-ml-scala2.12",
+    "flavors": {
+      "python_function": {
+        "env": {
+          "conda": "conda.yaml",
+          "virtualenv": "python_env.yaml"
+        },
+        "loader_module": "mlflow.transformers",
+        "python_version": "3.10.12"
+      },
+      "transformers": {
+        "code": null,
+        "components": [
+          "tokenizer"
+        ],
+        "framework": "pt",
+        "instance_type": "TextGenerationPipeline",
+        "model_binary": "model",
+        "pipeline_model_type": "MistralForCausalLM",
+        "source_model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "task": "text-generation",
+        "tokenizer_type": "LlamaTokenizerFast",
+        "torch_dtype": "torch.bfloat16",
+        "transformers_version": "4.38.2"
+      }
+    },
+    "metadata": {
+      "curation_version": 1,
+      "databricks_model_family": "MistralForCausalLM",
+      "databricks_model_size_parameters": "7b",
+      "databricks_model_source": "model-zoo",
+      "source": "huggingface",
+      "source_model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+      "source_model_revision": "b70aa86578567ba3301b21c8a27bea4e8f6d6d61",
+      "task": "llm/v1/chat"
+    },
+    "mlflow_version": "2.11.2",
+    "model_size_bytes": 28969281780,
+    "model_uuid": "167d95cbf8ac4fbba3ca63b78d944ffc",
+    "saved_input_example_info": {
+      "artifact_path": "input_example.json",
+      "type": "json_object"
+    },
+    "signature": {
+      "inputs": [
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string",
+                "required": true
+              },
+              "role": {
+                "type": "string",
+                "required": true
+              }
+            }
+          },
+          "name": "messages",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "type": "string",
+          "required": true
+        }
+      ],
+      "params": [
+        {
+          "name": "temperature",
+          "type": "double",
+          "default": 1.0,
+          "shape": null
+        },
+        {
+          "name": "max_new_tokens",
+          "type": "long",
+          "default": 256,
+          "shape": null
+        },
+        {
+          "name": "do_sample",
+          "type": "boolean",
+          "default": false,
+          "shape": null
+        }
+      ]
+    },
+    "utc_time_created": "2024-04-04 10:41:07.213243"
+  },
+  "mlflow_model_artifacts": {
+    "summary": {
+      "artifact_uri": "models:/system.ai.mistral_7b_instruct_v0_2/1",
+      "num_bytes": 28969283847,
+      "_num_bytes": "28,969,283,847",
+      "num_artifacts": 48,
+      "num_levels": 3,
+      "artifact_max_level": 1000,
+      "timestamp": "2024-06-24 01:38:45",
+      "mlflow_tracking_uri": "databricks://e2_demo_fieldeng",
+      "mlflow_registry_uri": "databricks-uc://e2_demo_fieldeng"
+    },
+    "artifacts": [
+      {
+        "path": "LICENSE.txt",
+        "bytes": 315,
+        "_bytes": "315"
+      },
+      {
+        "path": "MLmodel",
+        "bytes": 1656,
+        "_bytes": "1,656"
+      },
+      {
+        "path": "components",
+        "bytes": 2292591,
+        "_bytes": "2,292,591",
+        "artifacts": [
+          {
+            "path": "tokenizer",
+            "bytes": 2290620,
+            "_bytes": "2,290,620",
+            "artifacts": [
+              {
+                "path": "special_tokens_map.json",
+                "bytes": 414,
+                "_bytes": "414"
+              },
+              {
+                "path": "tokenizer.json",
+                "bytes": 1795303,
+                "_bytes": "1,795,303"
+              },
+              {
+                "path": "tokenizer.model",
+                "bytes": 493443,
+                "_bytes": "493,443"
+              },
+              {
+                "path": "tokenizer_config.json",
+                "bytes": 1460,
+                "_bytes": "1,460"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "conda.yaml",
+        "bytes": 201,
+        "_bytes": "201"
+      },
+      {
+        "path": "input_example.json",
+        "bytes": 177,
+        "_bytes": "177"
+      },
+      {
+        "path": "model",
+        "bytes": 28969279858,
+        "_bytes": "28,969,279,858",
+        "artifacts": [
+          {
+            "path": "config.json",
+            "bytes": 652,
+            "_bytes": "652"
+          },
+          {
+            "path": "generation_config.json",
+            "bytes": 111,
+            "_bytes": "111"
+          },
+          {
+            "path": "model-00001-of-00033.safetensors",
+            "bytes": 926941888,
+            "_bytes": "926,941,888"
+          },
+          {
+            "path": "model-00002-of-00033.safetensors",
+            "bytes": 872449040,
+            "_bytes": "872,449,040"
+          },
+          {
+            "path": "model-00003-of-00033.safetensors",
+            "bytes": 872449040,
+            "_bytes": "872,449,040"
+          },
+          {
+            "path": "model-00004-of-00033.safetensors",
+            "bytes": 872449040,
+            "_bytes": "872,449,040"
+          },
+          {
+            "path": "model-00005-of-00033.safetensors",
+            "bytes": 872449040,
+            "_bytes": "872,449,040"
+          },
+          {
+            "path": "model-00006-of-00033.safetensors",
+            "bytes": 872449040,
+            "_bytes": "872,449,040"
+          },
+          {
+            "path": "model-00007-of-00033.safetensors",
+            "bytes": 872449040,
+            "_bytes": "872,449,040"
+          },
+          {
+            "path": "model-00008-of-00033.safetensors",
+            "bytes": 872449040,
+            "_bytes": "872,449,040"
+          },
+          {
+            "path": "model-00009-of-00033.safetensors",
+            "bytes": 872449040,
+            "_bytes": "872,449,040"
+          },
+          {
+            "path": "model-00010-of-00033.safetensors",
+            "bytes": 872449040,
+            "_bytes": "872,449,040"
+          },
+          {
+            "path": "model-00011-of-00033.safetensors",
+            "bytes": 872449056,
+            "_bytes": "872,449,056"
+          },
+          {
+            "path": "model-00012-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00013-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00014-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00015-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00016-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00017-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00018-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00019-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00020-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00021-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00022-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00023-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00024-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00025-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00026-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00027-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00028-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00029-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00030-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00031-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00032-of-00033.safetensors",
+            "bytes": 872449048,
+            "_bytes": "872,449,048"
+          },
+          {
+            "path": "model-00033-of-00033.safetensors",
+            "bytes": 994099864,
+            "_bytes": "994,099,864"
+          },
+          {
+            "path": "model.safetensors.index.json",
+            "bytes": 23950,
+            "_bytes": "23,950"
+          }
+        ]
+      },
+      {
+        "path": "model_card.md",
+        "bytes": 3614,
+        "_bytes": "3,614"
+      },
+      {
+        "path": "model_card_data.yaml",
+        "bytes": 165,
+        "_bytes": "165"
+      },
+      {
+        "path": "python_env.yaml",
+        "bytes": 123,
+        "_bytes": "123"
+      },
+      {
+        "path": "requirements.txt",
+        "bytes": 87,
+        "_bytes": "87"
+      }
+    ]
+  },
+  "registered_model": {
+    "name": "system.ai.mistral_7b_instruct_v0_2",
+    "creation_timestamp": 1716279931814,
+    "last_updated_timestamp": 1716280873464,
+    "user_id": "System user",
+    "description": "\nmistral_7b_instruct_v0_2 - **preview**\n================================\n\n\nThe `mistral_7b_instruct_v0_2` model is a text-generation model released by Mistral AI. It is an [MLflow](https://mlflow.org/docs/latest/index.html) model that packages\n[Hugging Face\u2019s implementation for the mistral_7b_instruct_v0_2 model](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)\nusing the [transformers](https://mlflow.org/docs/latest/models.html#transformers-transformers-experimental) \nflavor in MLflow.\n\n- It has 7 billion parameters. It offers competitive processing speed for the generation quality.\n- It is an instruction fine-tuned model for short-form instruction following.\n\n\n**Input:** Input with a prompt containing the text of instructions. ([AWS](https://docs.databricks.com/en/machine-learning/foundation-models/api-reference.html#completion-request)|[Azure](https://learn.microsoft.com/en-us/azure/databricks/machine-learning/foundation-models/api-reference#completion-request))\n\n**Output:** Object with a list of text completions containing the generated response text, with one element for every prompt in the request. ([AWS](https://docs.databricks.com/en/machine-learning/foundation-models/api-reference.html#completion-response)|[Azure](https://learn.microsoft.com/en-us/azure/databricks/machine-learning/foundation-models/api-reference#completion-response))\n\nFor example notebooks of using the `mistral_7b_instruct_v0_2` model in various use cases on Databricks, refer to [the Databricks ML example repository](https://github.com/databricks/databricks-ml-examples/tree/master/llm-models/mistral/mistral-7b). For details about the `mistral_7b_instruct_v0_2` model, please visit [the Hugging Face model card](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2).\n\nThis model is licensed under the [Apache 2.0 license](https://github.com/mistralai/mistral-src/blob/main/LICENSE). By using this model, you acknowledge and agree to the license.\n\n# Evaluation results\n\nThe evaluation results for the `mistral_7b_instruct_v0_2` model, as measured by the [Mosaic Eval Gauntlet](https://www.mosaicml.com/llm-evaluation) framework, are presented below. This framework comprises a series of tasks specifically designed to assess the performance of language models. It includes datasets from MMLU, Big-Bench, HellaSwag, among others.\n\n- **Core Average**: 0.525\n- **World Knowledge**: 0.538\n- **Commonsense Reasoning**: 0.584\n- **Language Understanding**: 0.556\n- **Symbolic Problem Solving**: 0.35\n- **Reading Comprehension**: 0.599\n\n\nRefer to the [Mosaic Eval Gauntlet blog post](https://www.mosaicml.com/llm-evaluation) for the benchmarks included in each category.\nFor a leaderboard of more models, refer to the [example repo](https://github.com/databricks/databricks-ml-examples).\n\n# Usage\n\nDatabricks recommends that you primarily work with this model via Model Serving ([AWS](https://docs.databricks.com/machine-learning/model-serving/create-manage-serving-endpoints.html)|[Azure](https://learn.microsoft.com/en-us/azure/databricks/machine-learning/model-serving/create-manage-serving-endpoints)).\n\n## Deploying the model to Model Serving\nDatabricks recommends using the provisioned throughput ([AWS](https://docs.databricks.com/en/machine-learning/foundation-models/deploy-prov-throughput-foundation-model-apis.html)|[Azure](https://learn.microsoft.com/en-us/azure/databricks/machine-learning/foundation-models/deploy-prov-throughput-foundation-model-apis)) experience for optimized inference of LLMs.\n\nTo create the endpoint, click the \u201cServe this model\u201d button above or use Databricks SDK to create the endpoint.\n\nTo deploy your model in provisioned throughput mode via API, you must specify `min_provisioned_throughput` and `max_provisioned_throughput` fields in your request.\n```python\nimport requests\nimport json\n\n# Get the API endpoint and token for the current notebook context\nAPI_ROOT = dbutils.notebook.entry_point.getDbutils().notebook().getContext().apiUrl().get()\nAPI_TOKEN = dbutils.notebook.entry_point.getDbutils().notebook().getContext().apiToken().get()\n\nheaders = {\"Context-Type\": \"text/json\", \"Authorization\": f\"Bearer {API_TOKEN}\"}\noptimizable_info = requests.get(\n    url=f\"{API_ROOT}/api/2.0/serving-endpoints/get-model-optimization-info/<UC LOCATION FOR MODEL>/1\",\n    headers=headers).json()\n\nif 'optimizable' not in optimizable_info or not optimizable_info['optimizable']:\n   raise ValueError(\"Model is not eligible for provisioned throughput\")\n\nchunk_size = optimizable_info['throughput_chunk_size']\n\n# Minimum desired provisioned throughput\nmin_provisioned_throughput = 2 * chunk_size\n\n# Maximum desired provisioned throughput\nmax_provisioned_throughput = 3 * chunk_size\n\n# send the POST request to create the serving endpoint\ndata = {\n    \"name\": endpoint_name,\n    \"config\": {\n        \"served_entities\": [\n            {\n                \"entity_name\": \"<UC LOCATION FOR MODEL>\",\n                \"entity_version\": \"1\",\n                \"min_provisioned_throughput\": min_provisioned_throughput,\n                \"max_provisioned_throughput\": max_provisioned_throughput,\n            }\n        ]\n    },\n}\n\nresponse = requests.post(\n    url=f\"{API_ROOT}/api/2.0/serving-endpoints\", json=data, headers=headers\n)\n\nprint(json.dumps(response.json(), indent=4))\n```\n\n\n\n## SQL transcription using ai_query\n\nTo generate the text using the endpoint, use `ai_query` ([AWS](https://docs.databricks.com/sql/language-manual/functions/ai_query.html)|[Azure](https://learn.microsoft.com/en-us/azure/databricks/sql/language-manual/functions/ai_query)) to query the Model Serving endpoint.\nThe first parameter should be the name of the endpoint you previously created for Model Serving. The second parameter should be a string containing the instruction text.\n\nNOTE: `ai_query` is currently in Public Preview. Please sign up at [AI Functions Public Preview enrollment form](https://docs.google.com/forms/d/e/1FAIpQLScVyh5eRioqGwuUVxj9JOiKBAo0-FWi7L3f4QWsKeyldqEw8w/viewform) to try out the new feature.\n\n```sql\nSELECT\nai_query(\n  'mistral_7b_instruct_v0_2',\n  text,\n) as generated_text\nfrom <TABLE>\n```\nYou can use `ai_query` in this manner to generate text in SQL queries or notebooks connected to Databricks SQL Pro or Serverless SQL Endpoints.\n\n## Generate the text by querying the serving endpoint\n\n\nTo query the model serving endpoint, first install the newest Databricks SDK for Python.\n\n```python\n# Upgrade to use the newest Databricks SDK\n%pip install --upgrade databricks-sdk\ndbutils.library.restartPython()\n```\n\nWith the newest Databricks SDK installed, query the serving endpoint as follows:\n```python\n# Run below in a separate notebook cell\nfrom databricks.sdk import WorkspaceClient\n\n# Change it to your own input\ndataframe_records = [\n    {\"prompt\": \"<INSTRUCTION TEXT>\", \"max_tokens\": 512}\n]\n\nw = WorkspaceClient()\nresponse = w.serving_endpoints.query(\n    name=\"mistral_7b_instruct_v0_2\",\n    dataframe_records=dataframe_records,\n)\nresponse.as_dict()\n```",
+    "tags": {},
+    "_creation_timestamp": "2024-05-21 08:25:32",
+    "_last_updated_timestamp": "2024-05-21 08:41:13",
+    "_is_unity_catalog": true,
+    "_web_ui_link": "https://e2-demo-field-eng.cloud.databricks.com/explore/data/models/system/ai/mistral_7b_instruct_v0_2",
+    "_api_link": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mlflow/unity-catalog/registered-models/get?name=system.ai.mistral_7b_instruct_v0_2",
+    "permissions": {
+      "permissions": {
+        "privilege_assignments": [
+          {
+            "principal": "account users",
+            "privileges": [
+              "EXECUTE"
+            ]
+          }
+        ]
+      },
+      "effective_permissions": {
+        "privilege_assignments": [
+          {
+            "principal": "huascaran@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "k2@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "fitz_roy@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "guallatirimercedario@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "account users",
+            "privileges": [
+              {
+                "privilege": "EXECUTE"
+              },
+              {
+                "privilege": "EXECUTE",
+                "inherited_from_type": "SCHEMA",
+                "inherited_from_name": "system.ai"
+              }
+            ]
+          },
+          {
+            "principal": "kosciuszko@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "pico_navarino@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "denali@databricks.com",
+            "privileges": [
+              {
+                "privilege": "EXECUTE",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          },
+          {
+            "principal": "aconcagua@databricks.com",
+            "privileges": [
+              {
+                "privilege": "APPLY_TAG",
+                "inherited_from_type": "CATALOG",
+                "inherited_from_name": "system"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "run": {
+    "warning": "Model version 'system.ai.mistral_7b_instruct_v0_2/1' has no run_id"
+  }
+}
