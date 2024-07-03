@@ -1,21 +1,17 @@
 # Databricks notebook source
 # MAGIC %md ## List and Query Model Serving Endpoints
 # MAGIC
-# MAGIC ##### Overview
-# MAGIC
-# MAGIC * List and query "model serving endpoints" aka MLflow "deployment endpoints".
-# MAGIC * Unfortunately, `spark.read.json(sc.parallelize(json_list))` sometimes fails to return the 'creator' column, the queries with 'creator' column won't work. 
-# MAGIC   * See [List_Model_Serving_Endpoints_2]($List_Model_Serving_Endpoints_2) for these queries without the 'creator' column.
+# MAGIC List and query "model serving endpoints" aka MLflow "deployment endpoints".
 # MAGIC
 # MAGIC ##### Widgets
-# MAGIC * `1. Show JSON` - Show JSON as returned by API call.
+# MAGIC * `1. Show JSON` - Show JSON API response.
 # MAGIC * `2. Save JSON as file` - Save JSON as a file.
 # MAGIC
 # MAGIC ##### REST API Documetation
 # MAGIC * [GET api/2.0/serving-endpoints](https://docs.databricks.com/api/workspace/servingendpoints/list) 
 # MAGIC
 # MAGIC ##### Github
-# MAGIC * https://github.com/amesar/mlflow-reports/tree/master/mlflow_reports/endpoints
+# MAGIC * https://github.com/amesar/mlflow-reports/tree/master/mlflow_reports/model_serving
 
 # COMMAND ----------
 
@@ -27,7 +23,7 @@
 
 # COMMAND ----------
 
-dbutils.widgets.dropdown("1. Show JSON", "yes", ["yes", "no"])
+dbutils.widgets.dropdown("1. Show JSON", "no", ["yes","no"])
 dbutils.widgets.text("2. Save JSON as file", "")
 
 show_json = dbutils.widgets.get("1. Show JSON") == "yes"
@@ -64,8 +60,6 @@ display(df)
 # COMMAND ----------
 
 # MAGIC %md #### SQL queries
-# MAGIC
-# MAGIC * Unfortunately, spark.read.json(sc.parallelize() sometimes doesn't return 'creator', so you can skip all the queries with 'creator'.
 
 # COMMAND ----------
 
@@ -82,7 +76,7 @@ df.createOrReplaceTempView("endpoints")
 # COMMAND ----------
 
 cmd = f"""
-select {name, creator, endpoint_type, creation_timestamp} from endpoints 
+select name, creator, endpoint_type, creation_timestamp from endpoints 
 where creator='{_user}'
 order by creation_timestamp desc, name
 """
