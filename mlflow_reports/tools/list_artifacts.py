@@ -15,6 +15,7 @@ def _list(artifact_uri, output_dir, artifact_max_level, full_path):
     artifacts = list_artifacts(artifact_uri, artifact_max_level, full_path)
     dump_as_json(artifacts["summary"], "Artifacts Summary")
 
+    os.makedirs(output_dir, exist_ok=True)
     path = os.path.join(output_dir, "artifacts.json")
     write_file(path, artifacts, "json")
 
