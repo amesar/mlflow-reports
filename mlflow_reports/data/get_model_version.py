@@ -111,6 +111,7 @@ def main(registered_model, version, artifact_max_level, get_expanded, get_raw, s
         print(f"  {k}: {v}")
     dct = get(registered_model, version, get_expanded, get_raw, artifact_max_level)
     data_utils.dump_object(dct, output_file, silent)
+    data_utils.write_artifacts_tree(dct.get("mlflow_model_artifacts"), output_file)
 
 
 if __name__ == "__main__":

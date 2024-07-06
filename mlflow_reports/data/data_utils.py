@@ -1,8 +1,10 @@
+import os
 from mlflow_reports.common import dump_utils
 from mlflow_reports.common import io_utils
 from mlflow_reports.common import mlflow_utils
 from mlflow_reports.common.timestamp_utils import fmt_ts_millis
 from mlflow_reports.data import enriched_tags
+from mlflow_reports.tools.tree_artifacts_utils import artifacts_to_string
 
 def dump_object(dct, output_file, silent):
     if output_file:
@@ -30,3 +32,11 @@ def adjust_ts(dct, keys):
 def adjust_uc(reg_model_or_version):
     model_name = reg_model_or_version.get("name")
     reg_model_or_version[enriched_tags.TAG_IS_UNITY_CATALOG] = mlflow_utils.is_unity_catalog_model(model_name)
+
+
+def write_artifacts_tree(artifacts, output_json_file):
+    tree = artifacts_to_string(artifacts)
+    base = os.path.splitext(output_json_file)[0]
+    path = f"{base}.txt"
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(tree+"\n")

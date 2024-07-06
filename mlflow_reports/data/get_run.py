@@ -67,6 +67,7 @@ def main(run_id, artifact_max_level, get_raw, silent, output_file):
         print(f"  {k}: {v}")
     dct = get(run_id, artifact_max_level, get_raw)
     data_utils.dump_object(dct, output_file, silent)
+    data_utils.write_artifacts_tree(dct.get("artifacts"), output_file)
 
 
 if __name__ == "__main__":
