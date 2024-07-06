@@ -9,6 +9,14 @@ def opt_model_uri(function):
     )(function)
     return function
 
+def opt_artifact_uri(function):
+    function = click.option("--artifact-uri",
+        help="Artifact URI such as 'models:/my-artifact/123' or 'runs:/123/my-artifact'.",
+        type=str,
+        required=True
+    )(function)
+    return function
+
 def opt_run_id(function):
     function = click.option("--run-id",
         help="Run ID",

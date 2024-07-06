@@ -48,6 +48,7 @@ setup(
             "list-registered-models = mlflow_reports.list.list_registered_models:main",
             "list-model-versions = mlflow_reports.list.list_model_versions:main",
             "list-model-serving-endpoints = mlflow_reports.model_serving.list_endpoints:main",
+            "list-artifacts= mlflow_reports.tools.list_artifacts:main",
             "list-vector-search-endpoints = mlflow_reports.vector_search.list_endpoints:main",
             "list-feature-tables = mlflow_reports.feature_store.list_feature_tables:main",
             "get-list-model-serving-endpoint = mlflow_reports.model_serving.get_endpoint:main"

@@ -7,3 +7,11 @@ def opt_full_path(function):
         required=False
     )(function)
     return function
+
+def opt_show_run_artifacts(function):
+    function = click.option("--show-run-artifacts",
+        help="Display run artifacts of model version.",
+        type=bool,
+        required=False
+    )(function)
+    return function
