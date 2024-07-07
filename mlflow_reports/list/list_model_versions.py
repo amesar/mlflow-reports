@@ -31,17 +31,31 @@ def show(filter,
         get_model_details = get_model_details,
         unity_catalog = unity_catalog
     )
+    total_size = _calc_total_size(versions)
+    _to_commas(versions)
     ts_columns = [ "creation_timestamp", "last_updated_timestamp" ]
     io_utils.write_csv_and_json_files(output_file_base, versions, columns, ts_columns)
     print(f"Found {len(versions)} model versions")
-    total_size = _calc_total_size(versions)
     print(f"Total bytes: {total_size:,} bytes")
+    GB = 1000 * 1000000
+    if total_size > GB:
+        total_size = round((total_size/GB),3)
+        print(f"Total bytes: {total_size:,} GB")
+
+def _to_commas(versions):
+    for vr in versions:
+        size = vr.get("model_size")
+        if size and isinstance(size,int):
+            vr["model_size"] = f"{size:,}"
 
 def _calc_total_size(versions):
-    if len(versions)==0 or not "model_size" in versions[0]:
+    def _get_model_size(vr):
+        return vr.get("model_size",0) or 0
+    if len(versions)==0:
         return 0
-    total_size = sum([vr["model_size"] for vr in versions])
+    total_size = sum([_get_model_size(vr) for vr in versions])
     return total_size
+
 
 @click.command()
 @opt_filter
