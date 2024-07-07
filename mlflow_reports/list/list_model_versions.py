@@ -34,7 +34,14 @@ def show(filter,
     ts_columns = [ "creation_timestamp", "last_updated_timestamp" ]
     io_utils.write_csv_and_json_files(output_file_base, versions, columns, ts_columns)
     print(f"Found {len(versions)} model versions")
+    total_size = _calc_total_size(versions)
+    print(f"Total bytes: {total_size:,} bytes")
 
+def _calc_total_size(versions):
+    if len(versions)==0 or not "model_size" in versions[0]:
+        return 0
+    total_size = sum([vr["model_size"] for vr in versions])
+    return total_size
 
 @click.command()
 @opt_filter
