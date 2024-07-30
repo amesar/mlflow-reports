@@ -1,0 +1,6 @@
+├── MLmodel
+├── conda.yaml
+├── model.pkl
+├── python_env.yaml
+├── registered_model_meta
+└── requirements.txt
